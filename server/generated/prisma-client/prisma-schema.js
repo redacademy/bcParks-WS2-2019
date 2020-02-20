@@ -3,7 +3,19 @@ module.exports = {
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-/* GraphQL */ `type AggregateUser {
+/* GraphQL */ `type AggregateFeature {
+  count: Int!
+}
+
+type AggregateGeoPoint {
+  count: Int!
+}
+
+type AggregateLocation {
+  count: Int!
+}
+
+type AggregateSession {
   count: Int!
 }
 
@@ -11,15 +23,613 @@ type BatchPayload {
   count: Long!
 }
 
+type Feature {
+  id: ID!
+  title: String!
+}
+
+type FeatureConnection {
+  pageInfo: PageInfo!
+  edges: [FeatureEdge]!
+  aggregate: AggregateFeature!
+}
+
+input FeatureCreateInput {
+  id: ID
+  title: String!
+}
+
+input FeatureCreateManyInput {
+  create: [FeatureCreateInput!]
+  connect: [FeatureWhereUniqueInput!]
+}
+
+type FeatureEdge {
+  node: Feature!
+  cursor: String!
+}
+
+enum FeatureOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+}
+
+type FeaturePreviousValues {
+  id: ID!
+  title: String!
+}
+
+input FeatureScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  AND: [FeatureScalarWhereInput!]
+  OR: [FeatureScalarWhereInput!]
+  NOT: [FeatureScalarWhereInput!]
+}
+
+type FeatureSubscriptionPayload {
+  mutation: MutationType!
+  node: Feature
+  updatedFields: [String!]
+  previousValues: FeaturePreviousValues
+}
+
+input FeatureSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: FeatureWhereInput
+  AND: [FeatureSubscriptionWhereInput!]
+  OR: [FeatureSubscriptionWhereInput!]
+  NOT: [FeatureSubscriptionWhereInput!]
+}
+
+input FeatureUpdateDataInput {
+  title: String
+}
+
+input FeatureUpdateInput {
+  title: String
+}
+
+input FeatureUpdateManyDataInput {
+  title: String
+}
+
+input FeatureUpdateManyInput {
+  create: [FeatureCreateInput!]
+  update: [FeatureUpdateWithWhereUniqueNestedInput!]
+  upsert: [FeatureUpsertWithWhereUniqueNestedInput!]
+  delete: [FeatureWhereUniqueInput!]
+  connect: [FeatureWhereUniqueInput!]
+  set: [FeatureWhereUniqueInput!]
+  disconnect: [FeatureWhereUniqueInput!]
+  deleteMany: [FeatureScalarWhereInput!]
+  updateMany: [FeatureUpdateManyWithWhereNestedInput!]
+}
+
+input FeatureUpdateManyMutationInput {
+  title: String
+}
+
+input FeatureUpdateManyWithWhereNestedInput {
+  where: FeatureScalarWhereInput!
+  data: FeatureUpdateManyDataInput!
+}
+
+input FeatureUpdateWithWhereUniqueNestedInput {
+  where: FeatureWhereUniqueInput!
+  data: FeatureUpdateDataInput!
+}
+
+input FeatureUpsertWithWhereUniqueNestedInput {
+  where: FeatureWhereUniqueInput!
+  update: FeatureUpdateDataInput!
+  create: FeatureCreateInput!
+}
+
+input FeatureWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  AND: [FeatureWhereInput!]
+  OR: [FeatureWhereInput!]
+  NOT: [FeatureWhereInput!]
+}
+
+input FeatureWhereUniqueInput {
+  id: ID
+}
+
+type GeoPoint {
+  id: ID!
+  lat: Float!
+  long: Float!
+}
+
+type GeoPointConnection {
+  pageInfo: PageInfo!
+  edges: [GeoPointEdge]!
+  aggregate: AggregateGeoPoint!
+}
+
+input GeoPointCreateInput {
+  id: ID
+  lat: Float!
+  long: Float!
+}
+
+input GeoPointCreateManyInput {
+  create: [GeoPointCreateInput!]
+  connect: [GeoPointWhereUniqueInput!]
+}
+
+type GeoPointEdge {
+  node: GeoPoint!
+  cursor: String!
+}
+
+enum GeoPointOrderByInput {
+  id_ASC
+  id_DESC
+  lat_ASC
+  lat_DESC
+  long_ASC
+  long_DESC
+}
+
+type GeoPointPreviousValues {
+  id: ID!
+  lat: Float!
+  long: Float!
+}
+
+input GeoPointScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  lat: Float
+  lat_not: Float
+  lat_in: [Float!]
+  lat_not_in: [Float!]
+  lat_lt: Float
+  lat_lte: Float
+  lat_gt: Float
+  lat_gte: Float
+  long: Float
+  long_not: Float
+  long_in: [Float!]
+  long_not_in: [Float!]
+  long_lt: Float
+  long_lte: Float
+  long_gt: Float
+  long_gte: Float
+  AND: [GeoPointScalarWhereInput!]
+  OR: [GeoPointScalarWhereInput!]
+  NOT: [GeoPointScalarWhereInput!]
+}
+
+type GeoPointSubscriptionPayload {
+  mutation: MutationType!
+  node: GeoPoint
+  updatedFields: [String!]
+  previousValues: GeoPointPreviousValues
+}
+
+input GeoPointSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: GeoPointWhereInput
+  AND: [GeoPointSubscriptionWhereInput!]
+  OR: [GeoPointSubscriptionWhereInput!]
+  NOT: [GeoPointSubscriptionWhereInput!]
+}
+
+input GeoPointUpdateDataInput {
+  lat: Float
+  long: Float
+}
+
+input GeoPointUpdateInput {
+  lat: Float
+  long: Float
+}
+
+input GeoPointUpdateManyDataInput {
+  lat: Float
+  long: Float
+}
+
+input GeoPointUpdateManyInput {
+  create: [GeoPointCreateInput!]
+  update: [GeoPointUpdateWithWhereUniqueNestedInput!]
+  upsert: [GeoPointUpsertWithWhereUniqueNestedInput!]
+  delete: [GeoPointWhereUniqueInput!]
+  connect: [GeoPointWhereUniqueInput!]
+  set: [GeoPointWhereUniqueInput!]
+  disconnect: [GeoPointWhereUniqueInput!]
+  deleteMany: [GeoPointScalarWhereInput!]
+  updateMany: [GeoPointUpdateManyWithWhereNestedInput!]
+}
+
+input GeoPointUpdateManyMutationInput {
+  lat: Float
+  long: Float
+}
+
+input GeoPointUpdateManyWithWhereNestedInput {
+  where: GeoPointScalarWhereInput!
+  data: GeoPointUpdateManyDataInput!
+}
+
+input GeoPointUpdateWithWhereUniqueNestedInput {
+  where: GeoPointWhereUniqueInput!
+  data: GeoPointUpdateDataInput!
+}
+
+input GeoPointUpsertWithWhereUniqueNestedInput {
+  where: GeoPointWhereUniqueInput!
+  update: GeoPointUpdateDataInput!
+  create: GeoPointCreateInput!
+}
+
+input GeoPointWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  lat: Float
+  lat_not: Float
+  lat_in: [Float!]
+  lat_not_in: [Float!]
+  lat_lt: Float
+  lat_lte: Float
+  lat_gt: Float
+  lat_gte: Float
+  long: Float
+  long_not: Float
+  long_in: [Float!]
+  long_not_in: [Float!]
+  long_lt: Float
+  long_lte: Float
+  long_gt: Float
+  long_gte: Float
+  AND: [GeoPointWhereInput!]
+  OR: [GeoPointWhereInput!]
+  NOT: [GeoPointWhereInput!]
+}
+
+input GeoPointWhereUniqueInput {
+  id: ID
+}
+
+type Location {
+  id: ID!
+  title: String!
+  address: String!
+  features(where: FeatureWhereInput, orderBy: FeatureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Feature!]
+  boundaries(where: GeoPointWhereInput, orderBy: GeoPointOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [GeoPoint!]
+}
+
+type LocationConnection {
+  pageInfo: PageInfo!
+  edges: [LocationEdge]!
+  aggregate: AggregateLocation!
+}
+
+input LocationCreateInput {
+  id: ID
+  title: String!
+  address: String!
+  features: FeatureCreateManyInput
+  boundaries: GeoPointCreateManyInput
+}
+
+input LocationCreateManyInput {
+  create: [LocationCreateInput!]
+  connect: [LocationWhereUniqueInput!]
+}
+
+type LocationEdge {
+  node: Location!
+  cursor: String!
+}
+
+enum LocationOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  address_ASC
+  address_DESC
+}
+
+type LocationPreviousValues {
+  id: ID!
+  title: String!
+  address: String!
+}
+
+input LocationScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  address: String
+  address_not: String
+  address_in: [String!]
+  address_not_in: [String!]
+  address_lt: String
+  address_lte: String
+  address_gt: String
+  address_gte: String
+  address_contains: String
+  address_not_contains: String
+  address_starts_with: String
+  address_not_starts_with: String
+  address_ends_with: String
+  address_not_ends_with: String
+  AND: [LocationScalarWhereInput!]
+  OR: [LocationScalarWhereInput!]
+  NOT: [LocationScalarWhereInput!]
+}
+
+type LocationSubscriptionPayload {
+  mutation: MutationType!
+  node: Location
+  updatedFields: [String!]
+  previousValues: LocationPreviousValues
+}
+
+input LocationSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: LocationWhereInput
+  AND: [LocationSubscriptionWhereInput!]
+  OR: [LocationSubscriptionWhereInput!]
+  NOT: [LocationSubscriptionWhereInput!]
+}
+
+input LocationUpdateDataInput {
+  title: String
+  address: String
+  features: FeatureUpdateManyInput
+  boundaries: GeoPointUpdateManyInput
+}
+
+input LocationUpdateInput {
+  title: String
+  address: String
+  features: FeatureUpdateManyInput
+  boundaries: GeoPointUpdateManyInput
+}
+
+input LocationUpdateManyDataInput {
+  title: String
+  address: String
+}
+
+input LocationUpdateManyInput {
+  create: [LocationCreateInput!]
+  update: [LocationUpdateWithWhereUniqueNestedInput!]
+  upsert: [LocationUpsertWithWhereUniqueNestedInput!]
+  delete: [LocationWhereUniqueInput!]
+  connect: [LocationWhereUniqueInput!]
+  set: [LocationWhereUniqueInput!]
+  disconnect: [LocationWhereUniqueInput!]
+  deleteMany: [LocationScalarWhereInput!]
+  updateMany: [LocationUpdateManyWithWhereNestedInput!]
+}
+
+input LocationUpdateManyMutationInput {
+  title: String
+  address: String
+}
+
+input LocationUpdateManyWithWhereNestedInput {
+  where: LocationScalarWhereInput!
+  data: LocationUpdateManyDataInput!
+}
+
+input LocationUpdateWithWhereUniqueNestedInput {
+  where: LocationWhereUniqueInput!
+  data: LocationUpdateDataInput!
+}
+
+input LocationUpsertWithWhereUniqueNestedInput {
+  where: LocationWhereUniqueInput!
+  update: LocationUpdateDataInput!
+  create: LocationCreateInput!
+}
+
+input LocationWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  address: String
+  address_not: String
+  address_in: [String!]
+  address_not_in: [String!]
+  address_lt: String
+  address_lte: String
+  address_gt: String
+  address_gte: String
+  address_contains: String
+  address_not_contains: String
+  address_starts_with: String
+  address_not_starts_with: String
+  address_ends_with: String
+  address_not_ends_with: String
+  features_every: FeatureWhereInput
+  features_some: FeatureWhereInput
+  features_none: FeatureWhereInput
+  boundaries_every: GeoPointWhereInput
+  boundaries_some: GeoPointWhereInput
+  boundaries_none: GeoPointWhereInput
+  AND: [LocationWhereInput!]
+  OR: [LocationWhereInput!]
+  NOT: [LocationWhereInput!]
+}
+
+input LocationWhereUniqueInput {
+  id: ID
+}
+
 scalar Long
 
 type Mutation {
-  createUser(data: UserCreateInput!): User!
-  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
-  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  deleteUser(where: UserWhereUniqueInput!): User
-  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  createFeature(data: FeatureCreateInput!): Feature!
+  updateFeature(data: FeatureUpdateInput!, where: FeatureWhereUniqueInput!): Feature
+  updateManyFeatures(data: FeatureUpdateManyMutationInput!, where: FeatureWhereInput): BatchPayload!
+  upsertFeature(where: FeatureWhereUniqueInput!, create: FeatureCreateInput!, update: FeatureUpdateInput!): Feature!
+  deleteFeature(where: FeatureWhereUniqueInput!): Feature
+  deleteManyFeatures(where: FeatureWhereInput): BatchPayload!
+  createGeoPoint(data: GeoPointCreateInput!): GeoPoint!
+  updateGeoPoint(data: GeoPointUpdateInput!, where: GeoPointWhereUniqueInput!): GeoPoint
+  updateManyGeoPoints(data: GeoPointUpdateManyMutationInput!, where: GeoPointWhereInput): BatchPayload!
+  upsertGeoPoint(where: GeoPointWhereUniqueInput!, create: GeoPointCreateInput!, update: GeoPointUpdateInput!): GeoPoint!
+  deleteGeoPoint(where: GeoPointWhereUniqueInput!): GeoPoint
+  deleteManyGeoPoints(where: GeoPointWhereInput): BatchPayload!
+  createLocation(data: LocationCreateInput!): Location!
+  updateLocation(data: LocationUpdateInput!, where: LocationWhereUniqueInput!): Location
+  updateManyLocations(data: LocationUpdateManyMutationInput!, where: LocationWhereInput): BatchPayload!
+  upsertLocation(where: LocationWhereUniqueInput!, create: LocationCreateInput!, update: LocationUpdateInput!): Location!
+  deleteLocation(where: LocationWhereUniqueInput!): Location
+  deleteManyLocations(where: LocationWhereInput): BatchPayload!
+  createSession(data: SessionCreateInput!): Session!
+  updateSession(data: SessionUpdateInput!, where: SessionWhereUniqueInput!): Session
+  updateManySessions(data: SessionUpdateManyMutationInput!, where: SessionWhereInput): BatchPayload!
+  upsertSession(where: SessionWhereUniqueInput!, create: SessionCreateInput!, update: SessionUpdateInput!): Session!
+  deleteSession(where: SessionWhereUniqueInput!): Session
+  deleteManySessions(where: SessionWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -40,76 +650,105 @@ type PageInfo {
 }
 
 type Query {
-  user(where: UserWhereUniqueInput!): User
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  feature(where: FeatureWhereUniqueInput!): Feature
+  features(where: FeatureWhereInput, orderBy: FeatureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Feature]!
+  featuresConnection(where: FeatureWhereInput, orderBy: FeatureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FeatureConnection!
+  geoPoint(where: GeoPointWhereUniqueInput!): GeoPoint
+  geoPoints(where: GeoPointWhereInput, orderBy: GeoPointOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [GeoPoint]!
+  geoPointsConnection(where: GeoPointWhereInput, orderBy: GeoPointOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): GeoPointConnection!
+  location(where: LocationWhereUniqueInput!): Location
+  locations(where: LocationWhereInput, orderBy: LocationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Location]!
+  locationsConnection(where: LocationWhereInput, orderBy: LocationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LocationConnection!
+  session(where: SessionWhereUniqueInput!): Session
+  sessions(where: SessionWhereInput, orderBy: SessionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Session]!
+  sessionsConnection(where: SessionWhereInput, orderBy: SessionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SessionConnection!
   node(id: ID!): Node
 }
 
-type Subscription {
-  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
-}
-
-type User {
+type Session {
   id: ID!
-  name: String!
+  timeStart: String!
+  timeEnd: String!
+  locations(where: LocationWhereInput, orderBy: LocationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Location!]
+  mood: Int
+  journal: String
 }
 
-type UserConnection {
+type SessionConnection {
   pageInfo: PageInfo!
-  edges: [UserEdge]!
-  aggregate: AggregateUser!
+  edges: [SessionEdge]!
+  aggregate: AggregateSession!
 }
 
-input UserCreateInput {
+input SessionCreateInput {
   id: ID
-  name: String!
+  timeStart: String!
+  timeEnd: String!
+  locations: LocationCreateManyInput
+  mood: Int
+  journal: String
 }
 
-type UserEdge {
-  node: User!
+type SessionEdge {
+  node: Session!
   cursor: String!
 }
 
-enum UserOrderByInput {
+enum SessionOrderByInput {
   id_ASC
   id_DESC
-  name_ASC
-  name_DESC
+  timeStart_ASC
+  timeStart_DESC
+  timeEnd_ASC
+  timeEnd_DESC
+  mood_ASC
+  mood_DESC
+  journal_ASC
+  journal_DESC
 }
 
-type UserPreviousValues {
+type SessionPreviousValues {
   id: ID!
-  name: String!
+  timeStart: String!
+  timeEnd: String!
+  mood: Int
+  journal: String
 }
 
-type UserSubscriptionPayload {
+type SessionSubscriptionPayload {
   mutation: MutationType!
-  node: User
+  node: Session
   updatedFields: [String!]
-  previousValues: UserPreviousValues
+  previousValues: SessionPreviousValues
 }
 
-input UserSubscriptionWhereInput {
+input SessionSubscriptionWhereInput {
   mutation_in: [MutationType!]
   updatedFields_contains: String
   updatedFields_contains_every: [String!]
   updatedFields_contains_some: [String!]
-  node: UserWhereInput
-  AND: [UserSubscriptionWhereInput!]
-  OR: [UserSubscriptionWhereInput!]
-  NOT: [UserSubscriptionWhereInput!]
+  node: SessionWhereInput
+  AND: [SessionSubscriptionWhereInput!]
+  OR: [SessionSubscriptionWhereInput!]
+  NOT: [SessionSubscriptionWhereInput!]
 }
 
-input UserUpdateInput {
-  name: String
+input SessionUpdateInput {
+  timeStart: String
+  timeEnd: String
+  locations: LocationUpdateManyInput
+  mood: Int
+  journal: String
 }
 
-input UserUpdateManyMutationInput {
-  name: String
+input SessionUpdateManyMutationInput {
+  timeStart: String
+  timeEnd: String
+  mood: Int
+  journal: String
 }
 
-input UserWhereInput {
+input SessionWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -124,27 +763,73 @@ input UserWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
-  AND: [UserWhereInput!]
-  OR: [UserWhereInput!]
-  NOT: [UserWhereInput!]
+  timeStart: String
+  timeStart_not: String
+  timeStart_in: [String!]
+  timeStart_not_in: [String!]
+  timeStart_lt: String
+  timeStart_lte: String
+  timeStart_gt: String
+  timeStart_gte: String
+  timeStart_contains: String
+  timeStart_not_contains: String
+  timeStart_starts_with: String
+  timeStart_not_starts_with: String
+  timeStart_ends_with: String
+  timeStart_not_ends_with: String
+  timeEnd: String
+  timeEnd_not: String
+  timeEnd_in: [String!]
+  timeEnd_not_in: [String!]
+  timeEnd_lt: String
+  timeEnd_lte: String
+  timeEnd_gt: String
+  timeEnd_gte: String
+  timeEnd_contains: String
+  timeEnd_not_contains: String
+  timeEnd_starts_with: String
+  timeEnd_not_starts_with: String
+  timeEnd_ends_with: String
+  timeEnd_not_ends_with: String
+  locations_every: LocationWhereInput
+  locations_some: LocationWhereInput
+  locations_none: LocationWhereInput
+  mood: Int
+  mood_not: Int
+  mood_in: [Int!]
+  mood_not_in: [Int!]
+  mood_lt: Int
+  mood_lte: Int
+  mood_gt: Int
+  mood_gte: Int
+  journal: String
+  journal_not: String
+  journal_in: [String!]
+  journal_not_in: [String!]
+  journal_lt: String
+  journal_lte: String
+  journal_gt: String
+  journal_gte: String
+  journal_contains: String
+  journal_not_contains: String
+  journal_starts_with: String
+  journal_not_starts_with: String
+  journal_ends_with: String
+  journal_not_ends_with: String
+  AND: [SessionWhereInput!]
+  OR: [SessionWhereInput!]
+  NOT: [SessionWhereInput!]
 }
 
-input UserWhereUniqueInput {
+input SessionWhereUniqueInput {
   id: ID
+}
+
+type Subscription {
+  feature(where: FeatureSubscriptionWhereInput): FeatureSubscriptionPayload
+  geoPoint(where: GeoPointSubscriptionWhereInput): GeoPointSubscriptionPayload
+  location(where: LocationSubscriptionWhereInput): LocationSubscriptionPayload
+  session(where: SessionSubscriptionWhereInput): SessionSubscriptionPayload
 }
 `
       }

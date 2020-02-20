@@ -5,7 +5,19 @@ var typeDefs = require("./prisma-schema").typeDefs;
 
 var models = [
   {
-    name: "User",
+    name: "Session",
+    embedded: false
+  },
+  {
+    name: "Location",
+    embedded: false
+  },
+  {
+    name: "Feature",
+    embedded: false
+  },
+  {
+    name: "GeoPoint",
     embedded: false
   }
 ];

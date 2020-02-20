@@ -1,14 +1,14 @@
 type Session {
-    id: ID!
+    id: ID! @id
     timeStart: String!
     timeEnd: String!
     locations: [Location]!
-    mood: Integer
+    mood: Int
     journal: String
   }
 
   type Location {
-    id: ID!
+    id: ID! @id
     title: String!
     address: String!
     features: [Feature]!
@@ -16,29 +16,12 @@ type Session {
   }
 
   type Feature {
-    id: ID!
+    id: ID! @id
     title: String!
   }
 
   type GeoPoint {
+    id: ID! @id
     lat: Float!
     long: Float!
-  }
-
-  type Query {
-    session(id:ID!): Session
-    locations(filter:ID): [Location]
-    features: [Feature]
-  }
-
-  input CreateSessionInput {
-    timeStart: Integer!
-    timeEnd: Integer!
-    locations: [Location]!
-    mood: Integer
-    journal: String
-  }
-
-  type Mutation {
-    createSession(session: NewSessionInput!): Session
   }
