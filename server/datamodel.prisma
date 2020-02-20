@@ -1,4 +1,44 @@
-type User {
-  id: ID! @id
-  name: String!
-}
+type Session {
+    id: ID!
+    timeStart: String!
+    timeEnd: String!
+    locations: [Location]!
+    mood: Integer
+    journal: String
+  }
+
+  type Location {
+    id: ID!
+    title: String!
+    address: String!
+    features: [Feature]!
+    boundaries: [GeoPoint]!
+  }
+
+  type Feature {
+    id: ID!
+    title: String!
+  }
+
+  type GeoPoint {
+    lat: Float!
+    long: Float!
+  }
+
+  type Query {
+    session(id:ID!): Session
+    locations(filter:ID): [Location]
+    features: [Feature]
+  }
+
+  input CreateSessionInput {
+    timeStart: Integer!
+    timeEnd: Integer!
+    locations: [Location]!
+    mood: Integer
+    journal: String
+  }
+
+  type Mutation {
+    createSession(session: NewSessionInput!): Session
+  }
