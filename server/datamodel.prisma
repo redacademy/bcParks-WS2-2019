@@ -22,6 +22,21 @@ type Session {
 
   type GeoPoint {
     id: ID! @id
-    lat: Float!
-    long: Float!
+    boundary: Json!
+  }
+
+  type Goal {
+    id : ID! @id
+    hours: Int!
+    days: [Days]
+  }
+
+  type Days {
+    id: ID! @id
+    title: String!
+  }
+
+  type Progress {
+    duration: Float!
+    completion: Float!
   }
