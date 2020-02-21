@@ -1,14 +1,13 @@
 import React from 'react';
 import { Text } from 'react-native';
+import RootStackNavigator from './navigation/RootStackNavigator';
 
 const App = () => {
   return (
     <>
-      <Text>This app works</Text>
+      <RootStackNavigator />
     </>
   );
 };
-
-
 
 export default App;
