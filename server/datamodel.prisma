@@ -3,7 +3,7 @@ type Session {
     timeStart: DateTime!
     timeEnd: DateTime!
     locations: [Location]!
-    mood: Int
+    mood: Float
     journal: String
   }
 
