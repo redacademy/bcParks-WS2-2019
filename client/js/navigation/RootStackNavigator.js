@@ -1,11 +1,14 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import HomeScreen from '../screens/Home';
+import NavigationLayout from "./NavigationLayout";
 
-const AppNavigator = createStackNavigator({
-    Home: {
-        screen: HomeScreen,
-    },
-});
-
-export default createAppContainer(AppNavigator);
+export default createAppContainer(
+    createStackNavigator(
+        {
+            Layout: NavigationLayout
+        },
+        {
+            mode: 'modal',
+            headerMode: 'none',
+        }
+    ))
