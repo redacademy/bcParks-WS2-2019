@@ -1,7 +1,7 @@
 type Session {
     id: ID! @id
-    timeStart: String!
-    timeEnd: String!
+    timeStart: DateTime!
+    timeEnd: DateTime!
     locations: [Location]!
     mood: Int
     journal: String
