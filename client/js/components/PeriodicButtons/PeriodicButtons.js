@@ -19,16 +19,13 @@ class TimePeriods extends Component {
     render() {
         return (
             <View style={styles.mainContainer}>
-                <TouchableOpacity
-                    onPress={() => console.log('Daily')}>
+                <TouchableOpacity>
                     <Text>Daily</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => console.log('Weekly')}>
+                <TouchableOpacity>
                     <Text>Weekly</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => console.log('Monthly')}>
+                <TouchableOpacity>
                     <Text>Monthly</Text>
                 </TouchableOpacity>
             </View>
