@@ -2,16 +2,20 @@ import React from 'react';
 import {
     ScrollView,
     View,
+    Text
 } from 'react-native';
-// import styles from './styles';
-import TimePeriods from '../../components/TimePeriods';
+import styles from './styles';
+import PeriodicButtons from '../../components/PeriodicButtons/PeriodicButtons';
 
-const Activity = ({ data }) => {
+const ActivityScreen = ({ navigation }) => {
     return (
         <ScrollView>
+            <View><Text>Activity Screen</Text></View>
 
             <View >
-                <TimePeriods data={data} />
+                <PeriodicButtons />
+
+
             </View>
 
         </ScrollView >
@@ -19,4 +23,4 @@ const Activity = ({ data }) => {
     );
 };
 
-export default Activity;
+export default ActivityScreen;

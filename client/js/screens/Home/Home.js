@@ -1,13 +1,20 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
+import { withNavigation } from 'react-navigation';
 
-const HomeScreen = () => {
+
+const HomeScreen = ({ navigation }) => {
 
     return (
         <View>
             <Text>Home Screen</Text>
+            <Button
+                title="Go to Activity"
+                onPress={() => navigation.navigate('Activity')}
+
+            />
         </View>
     );
 }
 
-export default HomeScreen;
+export default withNavigation(HomeScreen);
