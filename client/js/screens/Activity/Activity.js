@@ -6,16 +6,18 @@ import {
 } from 'react-native';
 import styles from './styles';
 import PeriodicButtons from '../../components/PeriodicButtons/PeriodicButtons';
+import ActivityChart from '../../components/ActivityChart/ActivityChart';
 
 const ActivityScreen = ({ navigation }) => {
     return (
         <ScrollView>
-            <View><Text>Activity Screen</Text></View>
 
             <View >
                 <PeriodicButtons />
 
-
+            </View>
+            <View>
+                <ActivityChart />
             </View>
 
         </ScrollView >
