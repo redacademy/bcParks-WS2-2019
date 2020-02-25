@@ -7,6 +7,11 @@ type Session {
     journal: String
   }
 
+  type User {
+    email: String!
+    password: String!
+  }
+
   type Location {
     id: ID! @id
     title: String!
