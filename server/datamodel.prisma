@@ -8,6 +8,7 @@ type Session {
   }
 
   type User {
+    id: ID! @id
     email: String!
     password: String!
   }
@@ -42,6 +43,7 @@ type Session {
   }
 
   type Progress {
+    id: ID! @id
     duration: Float!
     completion: Float!
   }
