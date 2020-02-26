@@ -5,6 +5,7 @@ type Session {
     locations: [Location]!
     mood: Float
     journal: String
+    date: DateTime!
   }
 
   type User {
@@ -73,4 +74,5 @@ type Session {
     id: ID! @id
     duration: Float!
     completion: Float!
+    date: String!
   }
