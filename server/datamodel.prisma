@@ -7,6 +7,12 @@ type Session {
     journal: String
   }
 
+  type User {
+    id: ID! @id
+    email: String!
+    password: String!
+  }
+  
   type Map {
     id: ID! @id
     name: String!
@@ -19,24 +25,24 @@ type Session {
   }
 
   type Geometry {
-    locatioin: Location
-    viewport: Viewport
+    location: Location!
+    viewport: Viewport!
   }
   type Location {
-    lat: Float
-    Lng: FLoat
+    lat: Float!
+    lng: Float!
   }
   type Viewport {
-    northeast: NorthEast
-    southwest: SouthWest
+    northeast: NorthEast!
+    southwest: SouthWest!
   }
   type NorthEast{
-    lat: Float
-    ling: FLoat
+    lat: Float!
+    lng: Float!
   }
   type SouthWest{
-    lat: Float
-    Lang: Float
+    lat: Float!
+    lng: Float!
   }
   type PlusCode{
     compound_code:String
@@ -64,6 +70,7 @@ type Session {
   }
 
   type Progress {
+    id: ID! @id
     duration: Float!
     completion: Float!
   }
