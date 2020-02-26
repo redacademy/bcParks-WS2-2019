@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { withNavigation } from 'react-navigation';
 
-const MoodSelectScreen = () => {
+const MoodSelectScreen = ({ navigation }) => {
 
     return (
         <View>
@@ -9,10 +10,14 @@ const MoodSelectScreen = () => {
             <Text>How are you feeling?</Text>
             <Text>Face</Text>
             <Text>----slider---</Text>
-            <Text>Next</Text>
-            <Text>Skip</Text>
+            <TouchableOpacity onPress={() => navigation.push('TextInput')}>
+                <Text>Next</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.push('TextInput')}>
+                <Text>Skip</Text>
+            </TouchableOpacity>
         </View>
     );
 }
 
-export default MoodSelectScreen;
+export default withNavigation(MoodSelectScreen);
