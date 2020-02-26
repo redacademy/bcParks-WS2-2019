@@ -35,7 +35,7 @@ const TabNavigator = createBottomTabNavigator(
             inactiveTintColor: 'grey',
             labelStyle: {
                 fontSize: 14,
-                fontFamily: 'Comfortaa-Bold',
+                fontFamily: 'Comfortaa-Regular',
                 
             },
             style: {
