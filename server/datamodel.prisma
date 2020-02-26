@@ -7,14 +7,41 @@ type Session {
     journal: String
   }
 
-  type Location {
+  type Map {
     id: ID! @id
-    title: String!
-    address: String!
-    features: [Feature]!
-    boundaries: [GeoPoint]!
+    name: String!
+    vicinity: String!
+    plus_code: PlusCode
+    photos: Array
+    opening_hours: Boolean
+    features: [Feature]
+    boundaries: [GeoPoint]
   }
 
+  type Geometry {
+    locatioin: Location
+    viewport: Viewport
+  }
+  type Location {
+    lat: Float
+    Lng: FLoat
+  }
+  type Viewport {
+    northeast: NorthEast
+    southwest: SouthWest
+  }
+  type NorthEast{
+    lat: Float
+    ling: FLoat
+  }
+  type SouthWest{
+    lat: Float
+    Lang: Float
+  }
+  type PlusCode{
+    compound_code:String
+    global_code: String
+  }
   type Feature {
     id: ID! @id
     title: String!
