@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { withNavigation } from "react-navigation";
 import { View, Text, TouchableOpacity } from 'react-native';
 
-const TimerScreen = () => {
+const TimerScreen = ({ navigation }) => {
 
     const [startStop, setStartStop] = useState(true);
 
@@ -27,9 +28,13 @@ const TimerScreen = () => {
                         </Text>
                     }
                 </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.push('MoodSelect')}>
+                    <Text>00:00:00</Text>
+
+                </TouchableOpacity>
             </View>
         </View>
     );
 }
 
-export default TimerScreen;
+export default withNavigation(TimerScreen);
