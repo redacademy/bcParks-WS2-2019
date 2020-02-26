@@ -17,11 +17,26 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* parxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* parxTests.m */; };
 		32E0546CB21D750FC6C05282 /* libPods-parx-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5B1B4F70F81A97C10E40669 /* libPods-parx-tvOSTests.a */; };
+		5215887E2404C14D009CB511 /* AirGoogleMaps in Resources */ = {isa = PBXBuildFile; fileRef = 5215887D2404C14D009CB511 /* AirGoogleMaps */; };
+		4A317DE366414D9284F9072F /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF7FA58C96DF410285DEBFEA /* FontAwesome5_Regular.ttf */; };
 		500AE64296854AE3A137495E /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D97121C0EF6D4257BC2850FC /* OpenSans-Bold.ttf */; };
 		5EA18955C2C23CEECF751A4D /* libPods-parxTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED8D97FCC74BAFC4367B10C2 /* libPods-parxTests.a */; };
 		804570757DEE4169B6CD69FA /* Comfortaa-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A35F75A5D6F8463D972C2C5D /* Comfortaa-Bold.ttf */; };
 		B22B345FF3CD494CC430C6A7 /* libPods-parx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 700B6A45CEDD8B8568C45A5F /* libPods-parx.a */; };
 		D53805CE532605EC5E253264 /* libPods-parx-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E1054AE79E1B419C7EE4DC /* libPods-parx-tvOS.a */; };
+		D875C04314E14FF9B3F3BE01 /* Comfortaa-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9599333AE43540FC87FEA6A8 /* Comfortaa-Light.ttf */; };
+		3EFB9428E6F8416D88E278F9 /* Comfortaa-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 62D0FCF986014432BF2FFA9D /* Comfortaa-Medium.ttf */; };
+		E60848750AAB4594A46DAA24 /* Comfortaa-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 499D2A7DDB724BD7964D6899 /* Comfortaa-Regular.ttf */; };
+		C5FA02A3AE9D4FB8BF34ED6E /* Comfortaa-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9B8A3E53A9624D198F2A0699 /* Comfortaa-SemiBold.ttf */; };
+		42147CB088054FB48B2E0ABD /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2325559B529474DA0AFC406 /* OpenSans-BoldItalic.ttf */; };
+		5D58E3A56E924C188BC20751 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA7E1522ACF4B5394399B1D /* OpenSans-ExtraBold.ttf */; };
+		D5CEC8C767D54C8DB1BEADC6 /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56772CF34B134B27B899E258 /* OpenSans-ExtraBoldItalic.ttf */; };
+		4ACC8F001F6E4366934C3443 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7371440A0184CDCBB893992 /* OpenSans-Italic.ttf */; };
+		568C059E86934956B32FB43D /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59792E8B0A774ED9B7FA0C39 /* OpenSans-Light.ttf */; };
+		CA7FF83385DB4187BADCA079 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 707F2186B31C43ED92AE32C6 /* OpenSans-LightItalic.ttf */; };
+		BC8DD7C398664FA38511EA9F /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22D3D92F6C984EE6AEEFC580 /* OpenSans-Regular.ttf */; };
+		31959E312EF8492BBB5D7A7B /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6B86FDFD8FD4753AAE5C6BE /* OpenSans-SemiBold.ttf */; };
+		ED4F7016CFA9453AA71843C0 /* OpenSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ED0BBADB52484B469B8C5109 /* OpenSans-SemiBoldItalic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +74,9 @@
 		2D02E4901E0B4A5D006451C7 /* parx-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "parx-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D2182F4A692DC910E7C51D9 /* Pods-parx-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parx-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-parx-tvOSTests/Pods-parx-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		4F755C3A57CB626DCE8FE910 /* Pods-parx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parx.debug.xcconfig"; path = "Target Support Files/Pods-parx/Pods-parx.debug.xcconfig"; sourceTree = "<group>"; };
+		5215887D2404C14D009CB511 /* AirGoogleMaps */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AirGoogleMaps; path = "../node_modules/react-native-maps/lib/ios/AirGoogleMaps"; sourceTree = "<group>"; };
+		5287E733EF39404CA320753E /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		577F557E275541648C3BA9D2 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		59DB72794E969C897B4C8C65 /* Pods-parx-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parx-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-parx-tvOS/Pods-parx-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		700B6A45CEDD8B8568C45A5F /* libPods-parx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-parx.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ABD096B34FE55795B3BA49D /* Pods-parx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parx.release.xcconfig"; path = "Target Support Files/Pods-parx/Pods-parx.release.xcconfig"; sourceTree = "<group>"; };
@@ -71,6 +89,19 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		ED8D97FCC74BAFC4367B10C2 /* libPods-parxTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-parxTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9599333AE43540FC87FEA6A8 /* Comfortaa-Light.ttf */ = {isa = PBXFileReference; name = "Comfortaa-Light.ttf"; path = "../js/assets/comfortaa/Comfortaa-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		62D0FCF986014432BF2FFA9D /* Comfortaa-Medium.ttf */ = {isa = PBXFileReference; name = "Comfortaa-Medium.ttf"; path = "../js/assets/comfortaa/Comfortaa-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		499D2A7DDB724BD7964D6899 /* Comfortaa-Regular.ttf */ = {isa = PBXFileReference; name = "Comfortaa-Regular.ttf"; path = "../js/assets/comfortaa/Comfortaa-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9B8A3E53A9624D198F2A0699 /* Comfortaa-SemiBold.ttf */ = {isa = PBXFileReference; name = "Comfortaa-SemiBold.ttf"; path = "../js/assets/comfortaa/Comfortaa-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E2325559B529474DA0AFC406 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; name = "OpenSans-BoldItalic.ttf"; path = "../js/assets/opensans/OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9EA7E1522ACF4B5394399B1D /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; name = "OpenSans-ExtraBold.ttf"; path = "../js/assets/opensans/OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		56772CF34B134B27B899E258 /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; name = "OpenSans-ExtraBoldItalic.ttf"; path = "../js/assets/opensans/OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B7371440A0184CDCBB893992 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; name = "OpenSans-Italic.ttf"; path = "../js/assets/opensans/OpenSans-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		59792E8B0A774ED9B7FA0C39 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; name = "OpenSans-Light.ttf"; path = "../js/assets/opensans/OpenSans-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		707F2186B31C43ED92AE32C6 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; name = "OpenSans-LightItalic.ttf"; path = "../js/assets/opensans/OpenSans-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		22D3D92F6C984EE6AEEFC580 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; name = "OpenSans-Regular.ttf"; path = "../js/assets/opensans/OpenSans-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E6B86FDFD8FD4753AAE5C6BE /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; name = "OpenSans-SemiBold.ttf"; path = "../js/assets/opensans/OpenSans-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		ED0BBADB52484B469B8C5109 /* OpenSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; name = "OpenSans-SemiBoldItalic.ttf"; path = "../js/assets/opensans/OpenSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +209,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				5215887D2404C14D009CB511 /* AirGoogleMaps */,
 				13B07FAE1A68108700A75B9A /* parx */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* parxTests */,
@@ -207,6 +239,19 @@
 			children = (
 				A35F75A5D6F8463D972C2C5D /* Comfortaa-Bold.ttf */,
 				D97121C0EF6D4257BC2850FC /* OpenSans-Bold.ttf */,
+				9599333AE43540FC87FEA6A8 /* Comfortaa-Light.ttf */,
+				62D0FCF986014432BF2FFA9D /* Comfortaa-Medium.ttf */,
+				499D2A7DDB724BD7964D6899 /* Comfortaa-Regular.ttf */,
+				9B8A3E53A9624D198F2A0699 /* Comfortaa-SemiBold.ttf */,
+				E2325559B529474DA0AFC406 /* OpenSans-BoldItalic.ttf */,
+				9EA7E1522ACF4B5394399B1D /* OpenSans-ExtraBold.ttf */,
+				56772CF34B134B27B899E258 /* OpenSans-ExtraBoldItalic.ttf */,
+				B7371440A0184CDCBB893992 /* OpenSans-Italic.ttf */,
+				59792E8B0A774ED9B7FA0C39 /* OpenSans-Light.ttf */,
+				707F2186B31C43ED92AE32C6 /* OpenSans-LightItalic.ttf */,
+				22D3D92F6C984EE6AEEFC580 /* OpenSans-Regular.ttf */,
+				E6B86FDFD8FD4753AAE5C6BE /* OpenSans-SemiBold.ttf */,
+				ED0BBADB52484B469B8C5109 /* OpenSans-SemiBoldItalic.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -351,10 +396,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5215887E2404C14D009CB511 /* AirGoogleMaps in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				804570757DEE4169B6CD69FA /* Comfortaa-Bold.ttf in Resources */,
 				500AE64296854AE3A137495E /* OpenSans-Bold.ttf in Resources */,
+				D875C04314E14FF9B3F3BE01 /* Comfortaa-Light.ttf in Resources */,
+				3EFB9428E6F8416D88E278F9 /* Comfortaa-Medium.ttf in Resources */,
+				E60848750AAB4594A46DAA24 /* Comfortaa-Regular.ttf in Resources */,
+				C5FA02A3AE9D4FB8BF34ED6E /* Comfortaa-SemiBold.ttf in Resources */,
+				42147CB088054FB48B2E0ABD /* OpenSans-BoldItalic.ttf in Resources */,
+				5D58E3A56E924C188BC20751 /* OpenSans-ExtraBold.ttf in Resources */,
+				D5CEC8C767D54C8DB1BEADC6 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+				4ACC8F001F6E4366934C3443 /* OpenSans-Italic.ttf in Resources */,
+				568C059E86934956B32FB43D /* OpenSans-Light.ttf in Resources */,
+				CA7FF83385DB4187BADCA079 /* OpenSans-LightItalic.ttf in Resources */,
+				BC8DD7C398664FA38511EA9F /* OpenSans-Regular.ttf in Resources */,
+				31959E312EF8492BBB5D7A7B /* OpenSans-SemiBold.ttf in Resources */,
+				ED4F7016CFA9453AA71843C0 /* OpenSans-SemiBoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +545,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C57444279E439A1AD9ED9B64 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-parx/Pods-parx-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-parx/Pods-parx-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E81F495F93CD8255D6F6285B /* [CP] Check Pods Manifest.lock */ = {
