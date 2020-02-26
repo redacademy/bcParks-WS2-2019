@@ -17,6 +17,7 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* parxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* parxTests.m */; };
 		32E0546CB21D750FC6C05282 /* libPods-parx-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5B1B4F70F81A97C10E40669 /* libPods-parx-tvOSTests.a */; };
+		5215887E2404C14D009CB511 /* AirGoogleMaps in Resources */ = {isa = PBXBuildFile; fileRef = 5215887D2404C14D009CB511 /* AirGoogleMaps */; };
 		4A317DE366414D9284F9072F /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF7FA58C96DF410285DEBFEA /* FontAwesome5_Regular.ttf */; };
 		500AE64296854AE3A137495E /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D97121C0EF6D4257BC2850FC /* OpenSans-Bold.ttf */; };
 		59516F1B96ED4925971A2621 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16F02542B229414BAA4C1828 /* Zocial.ttf */; };
@@ -78,6 +79,7 @@
 		2D02E4901E0B4A5D006451C7 /* parx-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "parx-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D2182F4A692DC910E7C51D9 /* Pods-parx-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parx-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-parx-tvOSTests/Pods-parx-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		4F755C3A57CB626DCE8FE910 /* Pods-parx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parx.debug.xcconfig"; path = "Target Support Files/Pods-parx/Pods-parx.debug.xcconfig"; sourceTree = "<group>"; };
+		5215887D2404C14D009CB511 /* AirGoogleMaps */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AirGoogleMaps; path = "../node_modules/react-native-maps/lib/ios/AirGoogleMaps"; sourceTree = "<group>"; };
 		5287E733EF39404CA320753E /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		577F557E275541648C3BA9D2 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		59DB72794E969C897B4C8C65 /* Pods-parx-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parx-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-parx-tvOS/Pods-parx-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -184,7 +186,6 @@
 				2419C4F9D473B45DAA65463D /* Pods-parxTests.debug.xcconfig */,
 				A73CC4B043EB7B0D6C641EE0 /* Pods-parxTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -211,6 +212,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				5215887D2404C14D009CB511 /* AirGoogleMaps */,
 				13B07FAE1A68108700A75B9A /* parx */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* parxTests */,
@@ -293,6 +295,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				C57444279E439A1AD9ED9B64 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -371,6 +374,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -399,6 +403,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5215887E2404C14D009CB511 /* AirGoogleMaps in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				804570757DEE4169B6CD69FA /* Comfortaa-Bold.ttf in Resources */,
@@ -532,6 +537,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C57444279E439A1AD9ED9B64 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-parx/Pods-parx-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-parx/Pods-parx-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E81F495F93CD8255D6F6285B /* [CP] Check Pods Manifest.lock */ = {
