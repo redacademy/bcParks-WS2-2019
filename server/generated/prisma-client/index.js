@@ -9,6 +9,10 @@ var models = [
     embedded: false
   },
   {
+    name: "User",
+    embedded: false
+  },
+  {
     name: "Location",
     embedded: false
   },
@@ -18,6 +22,18 @@ var models = [
   },
   {
     name: "GeoPoint",
+    embedded: false
+  },
+  {
+    name: "Goal",
+    embedded: false
+  },
+  {
+    name: "Days",
+    embedded: false
+  },
+  {
+    name: "Progress",
     embedded: false
   }
 ];
