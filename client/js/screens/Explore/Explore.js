@@ -1,7 +1,17 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, StyleSheet} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
+import MapSwiper from '../../components/MapSwiper';
+
+const GOOGLE_API_KEY = 'AIzaSyBAD3HSvKDHWvLVSEXw9hy4ruEhSrpfA1k';
+const dataURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=49.2479999,-123.1300971&radius=1500&type=park&fields=place_id,name,opening_hours,formatted_address,geometry&key=${GOOGLE_API_KEY}`;
 const ExploreScreen = () => {
+  const [mapData, setMapData] = useState();
+  useEffect(() => {
+    fetch(dataURL)
+      .then(response => response.json())
+      .then(data => setMapData(data.results));
+  }, []);
   return (
     <View>
       <MapView
@@ -21,6 +31,7 @@ const ExploreScreen = () => {
           }}
         />
       </MapView>
+      <MapSwiper />
     </View>
   );
 };
