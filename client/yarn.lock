@@ -5720,10 +5720,10 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
-react-native-chart-kit@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-chart-kit/-/react-native-chart-kit-5.0.0.tgz#c14cc29e3bfea452559f2a57660bbe7614867aa0"
-  integrity sha512-HKOGgWP3XzFxwEFkSRfhF8acATOZTrAvPTGt1aNLrCFLvLUKj5+JC345+XCiU8XAU1450tyW5DdwiaEL5SU8SA==
+react-native-chart-kit@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-chart-kit/-/react-native-chart-kit-5.1.1.tgz#dd990a3846c0144a6a4a22a4b39f81b9db971db8"
+  integrity sha512-rnYXIMrwJ/+ZU3bnFVSaaC3SRtO8/l9yeaXcdjTaOJX0FGWDN2y9BSzEAl+EDw0bOawTpQoCPeOjI3uZ3fZoiQ==
   dependencies:
     lodash "^4.17.13"
     paths-js "^0.4.10"

@@ -3,7 +3,11 @@ module.exports = {
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-/* GraphQL */ `type AggregateFeature {
+/* GraphQL */ `type AggregateDays {
+  count: Int!
+}
+
+type AggregateFeature {
   count: Int!
 }
 
@@ -11,7 +15,15 @@ type AggregateGeoPoint {
   count: Int!
 }
 
+type AggregateGoal {
+  count: Int!
+}
+
 type AggregateLocation {
+  count: Int!
+}
+
+type AggregateProgress {
   count: Int!
 }
 
@@ -19,8 +31,186 @@ type AggregateSession {
   count: Int!
 }
 
+type AggregateUser {
+  count: Int!
+}
+
 type BatchPayload {
   count: Long!
+}
+
+scalar DateTime
+
+type Days {
+  id: ID!
+  title: String!
+}
+
+type DaysConnection {
+  pageInfo: PageInfo!
+  edges: [DaysEdge]!
+  aggregate: AggregateDays!
+}
+
+input DaysCreateInput {
+  id: ID
+  title: String!
+}
+
+input DaysCreateManyInput {
+  create: [DaysCreateInput!]
+  connect: [DaysWhereUniqueInput!]
+}
+
+type DaysEdge {
+  node: Days!
+  cursor: String!
+}
+
+enum DaysOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+}
+
+type DaysPreviousValues {
+  id: ID!
+  title: String!
+}
+
+input DaysScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  AND: [DaysScalarWhereInput!]
+  OR: [DaysScalarWhereInput!]
+  NOT: [DaysScalarWhereInput!]
+}
+
+type DaysSubscriptionPayload {
+  mutation: MutationType!
+  node: Days
+  updatedFields: [String!]
+  previousValues: DaysPreviousValues
+}
+
+input DaysSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: DaysWhereInput
+  AND: [DaysSubscriptionWhereInput!]
+  OR: [DaysSubscriptionWhereInput!]
+  NOT: [DaysSubscriptionWhereInput!]
+}
+
+input DaysUpdateDataInput {
+  title: String
+}
+
+input DaysUpdateInput {
+  title: String
+}
+
+input DaysUpdateManyDataInput {
+  title: String
+}
+
+input DaysUpdateManyInput {
+  create: [DaysCreateInput!]
+  update: [DaysUpdateWithWhereUniqueNestedInput!]
+  upsert: [DaysUpsertWithWhereUniqueNestedInput!]
+  delete: [DaysWhereUniqueInput!]
+  connect: [DaysWhereUniqueInput!]
+  set: [DaysWhereUniqueInput!]
+  disconnect: [DaysWhereUniqueInput!]
+  deleteMany: [DaysScalarWhereInput!]
+  updateMany: [DaysUpdateManyWithWhereNestedInput!]
+}
+
+input DaysUpdateManyMutationInput {
+  title: String
+}
+
+input DaysUpdateManyWithWhereNestedInput {
+  where: DaysScalarWhereInput!
+  data: DaysUpdateManyDataInput!
+}
+
+input DaysUpdateWithWhereUniqueNestedInput {
+  where: DaysWhereUniqueInput!
+  data: DaysUpdateDataInput!
+}
+
+input DaysUpsertWithWhereUniqueNestedInput {
+  where: DaysWhereUniqueInput!
+  update: DaysUpdateDataInput!
+  create: DaysCreateInput!
+}
+
+input DaysWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  AND: [DaysWhereInput!]
+  OR: [DaysWhereInput!]
+  NOT: [DaysWhereInput!]
+}
+
+input DaysWhereUniqueInput {
+  id: ID
 }
 
 type Feature {
@@ -197,8 +387,7 @@ input FeatureWhereUniqueInput {
 
 type GeoPoint {
   id: ID!
-  lat: Float!
-  long: Float!
+  boundary: Json!
 }
 
 type GeoPointConnection {
@@ -209,8 +398,7 @@ type GeoPointConnection {
 
 input GeoPointCreateInput {
   id: ID
-  lat: Float!
-  long: Float!
+  boundary: Json!
 }
 
 input GeoPointCreateManyInput {
@@ -226,16 +414,13 @@ type GeoPointEdge {
 enum GeoPointOrderByInput {
   id_ASC
   id_DESC
-  lat_ASC
-  lat_DESC
-  long_ASC
-  long_DESC
+  boundary_ASC
+  boundary_DESC
 }
 
 type GeoPointPreviousValues {
   id: ID!
-  lat: Float!
-  long: Float!
+  boundary: Json!
 }
 
 input GeoPointScalarWhereInput {
@@ -253,22 +438,6 @@ input GeoPointScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  lat: Float
-  lat_not: Float
-  lat_in: [Float!]
-  lat_not_in: [Float!]
-  lat_lt: Float
-  lat_lte: Float
-  lat_gt: Float
-  lat_gte: Float
-  long: Float
-  long_not: Float
-  long_in: [Float!]
-  long_not_in: [Float!]
-  long_lt: Float
-  long_lte: Float
-  long_gt: Float
-  long_gte: Float
   AND: [GeoPointScalarWhereInput!]
   OR: [GeoPointScalarWhereInput!]
   NOT: [GeoPointScalarWhereInput!]
@@ -293,18 +462,15 @@ input GeoPointSubscriptionWhereInput {
 }
 
 input GeoPointUpdateDataInput {
-  lat: Float
-  long: Float
+  boundary: Json
 }
 
 input GeoPointUpdateInput {
-  lat: Float
-  long: Float
+  boundary: Json
 }
 
 input GeoPointUpdateManyDataInput {
-  lat: Float
-  long: Float
+  boundary: Json
 }
 
 input GeoPointUpdateManyInput {
@@ -320,8 +486,7 @@ input GeoPointUpdateManyInput {
 }
 
 input GeoPointUpdateManyMutationInput {
-  lat: Float
-  long: Float
+  boundary: Json
 }
 
 input GeoPointUpdateManyWithWhereNestedInput {
@@ -355,22 +520,6 @@ input GeoPointWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  lat: Float
-  lat_not: Float
-  lat_in: [Float!]
-  lat_not_in: [Float!]
-  lat_lt: Float
-  lat_lte: Float
-  lat_gt: Float
-  lat_gte: Float
-  long: Float
-  long_not: Float
-  long_in: [Float!]
-  long_not_in: [Float!]
-  long_lt: Float
-  long_lte: Float
-  long_gt: Float
-  long_gte: Float
   AND: [GeoPointWhereInput!]
   OR: [GeoPointWhereInput!]
   NOT: [GeoPointWhereInput!]
@@ -379,6 +528,105 @@ input GeoPointWhereInput {
 input GeoPointWhereUniqueInput {
   id: ID
 }
+
+type Goal {
+  id: ID!
+  hours: Int!
+  days(where: DaysWhereInput, orderBy: DaysOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Days!]
+}
+
+type GoalConnection {
+  pageInfo: PageInfo!
+  edges: [GoalEdge]!
+  aggregate: AggregateGoal!
+}
+
+input GoalCreateInput {
+  id: ID
+  hours: Int!
+  days: DaysCreateManyInput
+}
+
+type GoalEdge {
+  node: Goal!
+  cursor: String!
+}
+
+enum GoalOrderByInput {
+  id_ASC
+  id_DESC
+  hours_ASC
+  hours_DESC
+}
+
+type GoalPreviousValues {
+  id: ID!
+  hours: Int!
+}
+
+type GoalSubscriptionPayload {
+  mutation: MutationType!
+  node: Goal
+  updatedFields: [String!]
+  previousValues: GoalPreviousValues
+}
+
+input GoalSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: GoalWhereInput
+  AND: [GoalSubscriptionWhereInput!]
+  OR: [GoalSubscriptionWhereInput!]
+  NOT: [GoalSubscriptionWhereInput!]
+}
+
+input GoalUpdateInput {
+  hours: Int
+  days: DaysUpdateManyInput
+}
+
+input GoalUpdateManyMutationInput {
+  hours: Int
+}
+
+input GoalWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  hours: Int
+  hours_not: Int
+  hours_in: [Int!]
+  hours_not_in: [Int!]
+  hours_lt: Int
+  hours_lte: Int
+  hours_gt: Int
+  hours_gte: Int
+  days_every: DaysWhereInput
+  days_some: DaysWhereInput
+  days_none: DaysWhereInput
+  AND: [GoalWhereInput!]
+  OR: [GoalWhereInput!]
+  NOT: [GoalWhereInput!]
+}
+
+input GoalWhereUniqueInput {
+  id: ID
+}
+
+scalar Json
 
 type Location {
   id: ID!
@@ -606,6 +854,12 @@ input LocationWhereUniqueInput {
 scalar Long
 
 type Mutation {
+  createDays(data: DaysCreateInput!): Days!
+  updateDays(data: DaysUpdateInput!, where: DaysWhereUniqueInput!): Days
+  updateManyDayses(data: DaysUpdateManyMutationInput!, where: DaysWhereInput): BatchPayload!
+  upsertDays(where: DaysWhereUniqueInput!, create: DaysCreateInput!, update: DaysUpdateInput!): Days!
+  deleteDays(where: DaysWhereUniqueInput!): Days
+  deleteManyDayses(where: DaysWhereInput): BatchPayload!
   createFeature(data: FeatureCreateInput!): Feature!
   updateFeature(data: FeatureUpdateInput!, where: FeatureWhereUniqueInput!): Feature
   updateManyFeatures(data: FeatureUpdateManyMutationInput!, where: FeatureWhereInput): BatchPayload!
@@ -618,18 +872,36 @@ type Mutation {
   upsertGeoPoint(where: GeoPointWhereUniqueInput!, create: GeoPointCreateInput!, update: GeoPointUpdateInput!): GeoPoint!
   deleteGeoPoint(where: GeoPointWhereUniqueInput!): GeoPoint
   deleteManyGeoPoints(where: GeoPointWhereInput): BatchPayload!
+  createGoal(data: GoalCreateInput!): Goal!
+  updateGoal(data: GoalUpdateInput!, where: GoalWhereUniqueInput!): Goal
+  updateManyGoals(data: GoalUpdateManyMutationInput!, where: GoalWhereInput): BatchPayload!
+  upsertGoal(where: GoalWhereUniqueInput!, create: GoalCreateInput!, update: GoalUpdateInput!): Goal!
+  deleteGoal(where: GoalWhereUniqueInput!): Goal
+  deleteManyGoals(where: GoalWhereInput): BatchPayload!
   createLocation(data: LocationCreateInput!): Location!
   updateLocation(data: LocationUpdateInput!, where: LocationWhereUniqueInput!): Location
   updateManyLocations(data: LocationUpdateManyMutationInput!, where: LocationWhereInput): BatchPayload!
   upsertLocation(where: LocationWhereUniqueInput!, create: LocationCreateInput!, update: LocationUpdateInput!): Location!
   deleteLocation(where: LocationWhereUniqueInput!): Location
   deleteManyLocations(where: LocationWhereInput): BatchPayload!
+  createProgress(data: ProgressCreateInput!): Progress!
+  updateProgress(data: ProgressUpdateInput!, where: ProgressWhereUniqueInput!): Progress
+  updateManyProgresses(data: ProgressUpdateManyMutationInput!, where: ProgressWhereInput): BatchPayload!
+  upsertProgress(where: ProgressWhereUniqueInput!, create: ProgressCreateInput!, update: ProgressUpdateInput!): Progress!
+  deleteProgress(where: ProgressWhereUniqueInput!): Progress
+  deleteManyProgresses(where: ProgressWhereInput): BatchPayload!
   createSession(data: SessionCreateInput!): Session!
   updateSession(data: SessionUpdateInput!, where: SessionWhereUniqueInput!): Session
   updateManySessions(data: SessionUpdateManyMutationInput!, where: SessionWhereInput): BatchPayload!
   upsertSession(where: SessionWhereUniqueInput!, create: SessionCreateInput!, update: SessionUpdateInput!): Session!
   deleteSession(where: SessionWhereUniqueInput!): Session
   deleteManySessions(where: SessionWhereInput): BatchPayload!
+  createUser(data: UserCreateInput!): User!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -649,28 +921,146 @@ type PageInfo {
   endCursor: String
 }
 
+type Progress {
+  id: ID!
+  duration: Float!
+  completion: Float!
+}
+
+type ProgressConnection {
+  pageInfo: PageInfo!
+  edges: [ProgressEdge]!
+  aggregate: AggregateProgress!
+}
+
+input ProgressCreateInput {
+  id: ID
+  duration: Float!
+  completion: Float!
+}
+
+type ProgressEdge {
+  node: Progress!
+  cursor: String!
+}
+
+enum ProgressOrderByInput {
+  id_ASC
+  id_DESC
+  duration_ASC
+  duration_DESC
+  completion_ASC
+  completion_DESC
+}
+
+type ProgressPreviousValues {
+  id: ID!
+  duration: Float!
+  completion: Float!
+}
+
+type ProgressSubscriptionPayload {
+  mutation: MutationType!
+  node: Progress
+  updatedFields: [String!]
+  previousValues: ProgressPreviousValues
+}
+
+input ProgressSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ProgressWhereInput
+  AND: [ProgressSubscriptionWhereInput!]
+  OR: [ProgressSubscriptionWhereInput!]
+  NOT: [ProgressSubscriptionWhereInput!]
+}
+
+input ProgressUpdateInput {
+  duration: Float
+  completion: Float
+}
+
+input ProgressUpdateManyMutationInput {
+  duration: Float
+  completion: Float
+}
+
+input ProgressWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  duration: Float
+  duration_not: Float
+  duration_in: [Float!]
+  duration_not_in: [Float!]
+  duration_lt: Float
+  duration_lte: Float
+  duration_gt: Float
+  duration_gte: Float
+  completion: Float
+  completion_not: Float
+  completion_in: [Float!]
+  completion_not_in: [Float!]
+  completion_lt: Float
+  completion_lte: Float
+  completion_gt: Float
+  completion_gte: Float
+  AND: [ProgressWhereInput!]
+  OR: [ProgressWhereInput!]
+  NOT: [ProgressWhereInput!]
+}
+
+input ProgressWhereUniqueInput {
+  id: ID
+}
+
 type Query {
+  days(where: DaysWhereUniqueInput!): Days
+  dayses(where: DaysWhereInput, orderBy: DaysOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Days]!
+  daysesConnection(where: DaysWhereInput, orderBy: DaysOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DaysConnection!
   feature(where: FeatureWhereUniqueInput!): Feature
   features(where: FeatureWhereInput, orderBy: FeatureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Feature]!
   featuresConnection(where: FeatureWhereInput, orderBy: FeatureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FeatureConnection!
   geoPoint(where: GeoPointWhereUniqueInput!): GeoPoint
   geoPoints(where: GeoPointWhereInput, orderBy: GeoPointOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [GeoPoint]!
   geoPointsConnection(where: GeoPointWhereInput, orderBy: GeoPointOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): GeoPointConnection!
+  goal(where: GoalWhereUniqueInput!): Goal
+  goals(where: GoalWhereInput, orderBy: GoalOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Goal]!
+  goalsConnection(where: GoalWhereInput, orderBy: GoalOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): GoalConnection!
   location(where: LocationWhereUniqueInput!): Location
   locations(where: LocationWhereInput, orderBy: LocationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Location]!
   locationsConnection(where: LocationWhereInput, orderBy: LocationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LocationConnection!
+  progress(where: ProgressWhereUniqueInput!): Progress
+  progresses(where: ProgressWhereInput, orderBy: ProgressOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Progress]!
+  progressesConnection(where: ProgressWhereInput, orderBy: ProgressOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProgressConnection!
   session(where: SessionWhereUniqueInput!): Session
   sessions(where: SessionWhereInput, orderBy: SessionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Session]!
   sessionsConnection(where: SessionWhereInput, orderBy: SessionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SessionConnection!
+  user(where: UserWhereUniqueInput!): User
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   node(id: ID!): Node
 }
 
 type Session {
   id: ID!
-  timeStart: String!
-  timeEnd: String!
+  timeStart: DateTime!
+  timeEnd: DateTime!
   locations(where: LocationWhereInput, orderBy: LocationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Location!]
-  mood: Int
+  mood: Float
   journal: String
 }
 
@@ -682,10 +1072,10 @@ type SessionConnection {
 
 input SessionCreateInput {
   id: ID
-  timeStart: String!
-  timeEnd: String!
+  timeStart: DateTime!
+  timeEnd: DateTime!
   locations: LocationCreateManyInput
-  mood: Int
+  mood: Float
   journal: String
 }
 
@@ -709,9 +1099,9 @@ enum SessionOrderByInput {
 
 type SessionPreviousValues {
   id: ID!
-  timeStart: String!
-  timeEnd: String!
-  mood: Int
+  timeStart: DateTime!
+  timeEnd: DateTime!
+  mood: Float
   journal: String
 }
 
@@ -734,17 +1124,17 @@ input SessionSubscriptionWhereInput {
 }
 
 input SessionUpdateInput {
-  timeStart: String
-  timeEnd: String
+  timeStart: DateTime
+  timeEnd: DateTime
   locations: LocationUpdateManyInput
-  mood: Int
+  mood: Float
   journal: String
 }
 
 input SessionUpdateManyMutationInput {
-  timeStart: String
-  timeEnd: String
-  mood: Int
+  timeStart: DateTime
+  timeEnd: DateTime
+  mood: Float
   journal: String
 }
 
@@ -763,45 +1153,33 @@ input SessionWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  timeStart: String
-  timeStart_not: String
-  timeStart_in: [String!]
-  timeStart_not_in: [String!]
-  timeStart_lt: String
-  timeStart_lte: String
-  timeStart_gt: String
-  timeStart_gte: String
-  timeStart_contains: String
-  timeStart_not_contains: String
-  timeStart_starts_with: String
-  timeStart_not_starts_with: String
-  timeStart_ends_with: String
-  timeStart_not_ends_with: String
-  timeEnd: String
-  timeEnd_not: String
-  timeEnd_in: [String!]
-  timeEnd_not_in: [String!]
-  timeEnd_lt: String
-  timeEnd_lte: String
-  timeEnd_gt: String
-  timeEnd_gte: String
-  timeEnd_contains: String
-  timeEnd_not_contains: String
-  timeEnd_starts_with: String
-  timeEnd_not_starts_with: String
-  timeEnd_ends_with: String
-  timeEnd_not_ends_with: String
+  timeStart: DateTime
+  timeStart_not: DateTime
+  timeStart_in: [DateTime!]
+  timeStart_not_in: [DateTime!]
+  timeStart_lt: DateTime
+  timeStart_lte: DateTime
+  timeStart_gt: DateTime
+  timeStart_gte: DateTime
+  timeEnd: DateTime
+  timeEnd_not: DateTime
+  timeEnd_in: [DateTime!]
+  timeEnd_not_in: [DateTime!]
+  timeEnd_lt: DateTime
+  timeEnd_lte: DateTime
+  timeEnd_gt: DateTime
+  timeEnd_gte: DateTime
   locations_every: LocationWhereInput
   locations_some: LocationWhereInput
   locations_none: LocationWhereInput
-  mood: Int
-  mood_not: Int
-  mood_in: [Int!]
-  mood_not_in: [Int!]
-  mood_lt: Int
-  mood_lte: Int
-  mood_gt: Int
-  mood_gte: Int
+  mood: Float
+  mood_not: Float
+  mood_in: [Float!]
+  mood_not_in: [Float!]
+  mood_lt: Float
+  mood_lte: Float
+  mood_gt: Float
+  mood_gte: Float
   journal: String
   journal_not: String
   journal_in: [String!]
@@ -826,10 +1204,132 @@ input SessionWhereUniqueInput {
 }
 
 type Subscription {
+  days(where: DaysSubscriptionWhereInput): DaysSubscriptionPayload
   feature(where: FeatureSubscriptionWhereInput): FeatureSubscriptionPayload
   geoPoint(where: GeoPointSubscriptionWhereInput): GeoPointSubscriptionPayload
+  goal(where: GoalSubscriptionWhereInput): GoalSubscriptionPayload
   location(where: LocationSubscriptionWhereInput): LocationSubscriptionPayload
+  progress(where: ProgressSubscriptionWhereInput): ProgressSubscriptionPayload
   session(where: SessionSubscriptionWhereInput): SessionSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
+
+type User {
+  id: ID!
+  email: String!
+  password: String!
+}
+
+type UserConnection {
+  pageInfo: PageInfo!
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  id: ID
+  email: String!
+  password: String!
+}
+
+type UserEdge {
+  node: User!
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  email: String!
+  password: String!
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+  AND: [UserSubscriptionWhereInput!]
+  OR: [UserSubscriptionWhereInput!]
+  NOT: [UserSubscriptionWhereInput!]
+}
+
+input UserUpdateInput {
+  email: String
+  password: String
+}
+
+input UserUpdateManyMutationInput {
+  email: String
+  password: String
+}
+
+input UserWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+}
+
+input UserWhereUniqueInput {
+  id: ID
 }
 `
       }

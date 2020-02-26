@@ -7,14 +7,47 @@ type Session {
     journal: String
   }
 
-  type Location {
+  type User {
     id: ID! @id
-    title: String!
-    address: String!
-    features: [Feature]!
-    boundaries: [GeoPoint]!
+    email: String!
+    password: String!
+  }
+  
+  type Map {
+    id: ID! @id
+    name: String!
+    vicinity: String!
+    plus_code: PlusCode
+    photos: Array
+    opening_hours: Boolean
+    features: [Feature]
+    boundaries: [GeoPoint]
   }
 
+  type Geometry {
+    location: Location!
+    viewport: Viewport!
+  }
+  type Location {
+    lat: Float!
+    lng: Float!
+  }
+  type Viewport {
+    northeast: NorthEast!
+    southwest: SouthWest!
+  }
+  type NorthEast{
+    lat: Float!
+    lng: Float!
+  }
+  type SouthWest{
+    lat: Float!
+    lng: Float!
+  }
+  type PlusCode{
+    compound_code:String
+    global_code: String
+  }
   type Feature {
     id: ID! @id
     title: String!
@@ -37,6 +70,7 @@ type Session {
   }
 
   type Progress {
+    id: ID! @id
     duration: Float!
     completion: Float!
   }
