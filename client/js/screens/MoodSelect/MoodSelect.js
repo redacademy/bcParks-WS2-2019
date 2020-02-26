@@ -8,7 +8,9 @@ const MoodSelectScreen = () => {
             <Text>Amazing!</Text>
             <Text>How are you feeling?</Text>
             <Text>Face</Text>
-            <Text>-------</Text>
+            <Text>----slider---</Text>
+            <Text>Next</Text>
+            <Text>Skip</Text>
         </View>
     );
 }
