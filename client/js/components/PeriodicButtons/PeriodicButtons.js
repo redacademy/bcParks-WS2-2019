@@ -8,30 +8,19 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import styles from './styles';
 
 
-class TimePeriods extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
+const PeriodicButtons = () => {
+    return (
+        <View style={styles.mainContainer}>
+            <TouchableOpacity>
+                <Text>Daily</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <Text>Weekly</Text>
+            </TouchableOpacity>
 
-        };
-    }
-
-    render() {
-        return (
-            <View style={styles.mainContainer}>
-                <TouchableOpacity>
-                    <Text>Daily</Text>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <Text>Weekly</Text>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <Text>Monthly</Text>
-                </TouchableOpacity>
-            </View>
-        )
-    };
-
+        </View>
+    )
 };
 
-export default TimePeriods;
+
+export default PeriodicButtons;
