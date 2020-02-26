@@ -2,13 +2,14 @@ import React from 'react';
 import {
     ScrollView,
     View,
-    Text
+    Text,
+    FlatList
 } from 'react-native';
 import styles from './styles';
 import PeriodicButtons from '../../components/PeriodicButtons/PeriodicButtons';
 import ActivityChart from '../../components/ActivityChart/ActivityChart';
 
-const ActivityScreen = ({ navigation }) => {
+const ActivityScreen = ({ data }) => {
     return (
         <ScrollView>
 
@@ -16,8 +17,18 @@ const ActivityScreen = ({ navigation }) => {
                 <PeriodicButtons />
 
             </View>
+
+            <FlatList
+                data={data.progresses}
+                renderItem={({ item }) => (
+                    <Text>{item.duration}</Text>
+                )}
+            />
+
+
             <View>
                 <ActivityChart />
+
             </View>
 
         </ScrollView >
