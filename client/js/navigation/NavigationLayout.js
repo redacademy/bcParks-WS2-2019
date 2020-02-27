@@ -4,6 +4,8 @@ import HomeScreen from '../screens/Home';
 import ActivityScreen from '../screens/Activity';
 import TimerScreen from '../screens/Timer';
 import ExploreScreen from '../screens/Explore';
+import MoodSelectScreen from '../screens/MoodSelect';
+import TextInputScreen from '../screens/TextInput';
 
 const HomeStack = createStackNavigator({
     Home: HomeScreen
@@ -12,7 +14,9 @@ const ActivityStack = createStackNavigator({
     Activity: ActivityScreen
 });
 const TimerStack = createStackNavigator({
-    Timer: TimerScreen
+    Timer: TimerScreen,
+    MoodSelect: MoodSelectScreen,
+    TextInput: TextInputScreen
 });
 const ExploreStack = createStackNavigator({
     Explore: ExploreScreen
