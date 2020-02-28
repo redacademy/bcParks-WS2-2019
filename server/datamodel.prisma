@@ -16,10 +16,12 @@ type Session {
   
   type Map {
     id: ID! @id
+    exernalId: String!
     name: String!
+    geomatry: Geometry!
     vicinity: String!
     plus_code: PlusCode
-    photos: Array
+    photos: [String]
     opening_hours: Boolean
     features: [Feature]
     boundaries: [GeoPoint]
