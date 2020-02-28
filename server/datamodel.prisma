@@ -2,7 +2,7 @@ type Session {
     id: ID! @id
     timeStart: DateTime!
     timeEnd: DateTime!
-    locations: [Location]!
+    locations: [Map]!
     mood: Float
     journal: String
     date: DateTime!
@@ -16,9 +16,9 @@ type Session {
   
   type Map {
     id: ID! @id
-    exernalId: String!
+    externalId: String!
     name: String!
-    geomatry: Geometry!
+    geometry: Geometry!
     vicinity: String!
     plus_code: PlusCode
     photos: [String]
