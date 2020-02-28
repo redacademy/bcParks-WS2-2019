@@ -5,6 +5,7 @@ type Session {
     locations: [Location]!
     mood: Float
     journal: String
+    date: DateTime!
   }
 
   type User {
@@ -25,27 +26,33 @@ type Session {
   }
 
   type Geometry {
+    id: ID! @id
     location: Location!
     viewport: Viewport!
   }
   type Location {
+    id: ID! @id
     lat: Float!
     lng: Float!
   }
   type Viewport {
+    id: ID! @id
     northeast: NorthEast!
     southwest: SouthWest!
   }
-  type NorthEast{
+  type NorthEast {
+    id: ID! @id
     lat: Float!
     lng: Float!
   }
-  type SouthWest{
+  type SouthWest {
+    id: ID! @id
     lat: Float!
     lng: Float!
   }
-  type PlusCode{
-    compound_code:String
+  type PlusCode {
+    id: ID! @id
+    compound_code: String
     global_code: String
   }
   type Feature {
@@ -73,4 +80,5 @@ type Session {
     id: ID! @id
     duration: Float!
     completion: Float!
+    date: String!
   }

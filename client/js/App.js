@@ -6,9 +6,11 @@ import RootStackNavigator from './navigation/RootStackNavigator';
 
 const App = () => {
   return (
-    < ApolloProvider client={client} >
-      <RootStackNavigator />
-    </ApolloProvider >
+    <>
+      <ApolloProvider client={client}>
+        <RootStackNavigator />
+      </ApolloProvider>
+    </>
   );
 };
 
