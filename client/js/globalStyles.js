@@ -7,6 +7,7 @@ export const theme = {
     bodyTextColor: "#000",
     disabledColor: "#9d9d9d",
     headlineFont: "Comfortaa-Regular",
+    boldHeadlineFont: "Comfortaa-Bold",
     bodyFont: "OpenSans-Regular",
     h1FontSize: "34px",
     h2FontSize: "28px",
