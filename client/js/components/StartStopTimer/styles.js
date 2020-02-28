@@ -6,7 +6,8 @@ export const StartStopCont = styled.View`
 `
 export const TimerDisplay = styled.Text`
     color: ${theme.grayColor};
-    font-family: ${theme.boldHeadlineFont};
+    font-family: ${theme.headlineFont};
+    font-weight: 600;
     font-size: 50px;
     margin: 20px auto;
 `
