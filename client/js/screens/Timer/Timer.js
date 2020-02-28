@@ -1,35 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { withNavigation } from "react-navigation";
 import { View, Text, TouchableOpacity } from 'react-native';
+import StartStopTimer from '../../components/StartStopTimer/StartStopTimer';
+import styled from 'styled-components';
+
+const Placeholder = styled.View`
+    height: 350px;
+`
 
 const TimerScreen = ({ navigation }) => {
 
-    const [startStop, setStartStop] = useState(true);
-
-    startStopPress = () => {
-        setStartStop(!startStop)
-    }
-
     return (
         <View>
+            <Placeholder />
             <View>
-                <Text>pic</Text>
-            </View>
-            <View>
-                <Text>00:00:00</Text>
-                <Text>Spending more time in nature contributes to a better sleep cycle and helps in lowering anxiety</Text>
-                <TouchableOpacity onPress={this.startStopPress}>
-                    {startStop ?
-                        <Text>
-                            Start Green Time
-                        </Text> :
-                        <Text>
-                            Stop Green Time
-                        </Text>
-                    }
-                </TouchableOpacity>
+                <StartStopTimer />
                 <TouchableOpacity onPress={() => navigation.push('MoodSelect')}>
-                    <Text>00:00:00</Text>
+                    <Text>next slide</Text>
 
                 </TouchableOpacity>
             </View>
