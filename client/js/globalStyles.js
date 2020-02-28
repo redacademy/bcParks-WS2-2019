@@ -38,6 +38,7 @@ export const PrimaryBtn = styled.Text`
     background-color: ${theme.primaryColor};
     color: ${theme.invertTextColor};
     text-align: center;
+    text-transform: capitalize;
     padding: 10px 80px;
     width: 100%;
     border-radius: 25px;
@@ -49,5 +50,6 @@ export const InputSkipText = styled.Text`
     font-size: ${theme.bodyFontSize};
     color: ${theme.invertTextColor};
     text-align: center;
+    text-transform: capitalize;
     margin: 0 0 80px;
 `
