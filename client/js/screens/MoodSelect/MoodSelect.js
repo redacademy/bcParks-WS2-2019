@@ -1,22 +1,39 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import { withNavigation } from 'react-navigation';
+import { theme, Heading, ScreenBkgCont, PrimaryBtn, InputSkipText } from '../../globalStyles';
+import styled from 'styled-components';
+
+const SubHeading = styled.Text`
+    font-size:${theme.bodyFontSize};
+    font-family: ${theme.headlineFont};
+    text-align: center;
+`
+const MoodIcon = styled.Text`
+    margin: 40px 0;
+    text-align: center;
+`
+const NextBtnCont = styled.View`
+    margin: 50px auto;
+`
 
 const MoodSelectScreen = ({ navigation }) => {
 
     return (
-        <View>
-            <Text>Amazing!</Text>
-            <Text>How are you feeling?</Text>
-            <Text>Face</Text>
+        <ScreenBkgCont>
+            <Heading>Amazing!</Heading>
+            <SubHeading>How are you feeling?</SubHeading>
+            <MoodIcon>Face</MoodIcon>
             <Text>----slider---</Text>
+            <NextBtnCont>
+                <TouchableOpacity onPress={() => navigation.push('TextInput')}>
+                    <PrimaryBtn>Next</PrimaryBtn>
+                </TouchableOpacity>
+            </NextBtnCont>
             <TouchableOpacity onPress={() => navigation.push('TextInput')}>
-                <Text>Next</Text>
+                <InputSkipText>Skip</InputSkipText>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.push('TextInput')}>
-                <Text>Skip</Text>
-            </TouchableOpacity>
-        </View>
+        </ScreenBkgCont>
     );
 }
 
