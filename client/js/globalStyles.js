@@ -28,6 +28,10 @@ export const Heading = styled.Text`
     margin: 50px 0;
 `
 
+export const NextBtnCont = styled.View`
+    margin: 50px auto;
+`
+
 export const PrimaryBtn = styled.Text`
     font-family: ${theme.bodyFont};
     font-size: ${theme.h2FontSize};

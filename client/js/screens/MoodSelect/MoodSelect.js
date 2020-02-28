@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { withNavigation } from 'react-navigation';
-import { theme, Heading, ScreenBkgCont, PrimaryBtn, InputSkipText } from '../../globalStyles';
+import { theme, Heading, ScreenBkgCont, NextBtnCont, PrimaryBtn, InputSkipText } from '../../globalStyles';
 import styled from 'styled-components';
 import MoodSlider from '../../components/MoodSlider/MoodSlider';
 
@@ -9,9 +9,6 @@ const SubHeading = styled.Text`
     font-size:${theme.bodyFontSize};
     font-family: ${theme.headlineFont};
     text-align: center;
-`
-const NextBtnCont = styled.View`
-    margin: 50px auto;
 `
 
 const MoodSelectScreen = ({ navigation }) => {
