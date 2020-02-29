@@ -1,32 +1,39 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { withNavigation } from 'react-navigation';
+import { theme, ScreenBkgCont, PrimaryBtn, NextBtnCont, InputSkipText } from '../../globalStyles';
+import styled from 'styled-components';
+import InputTextBox from '../../components/InputText/InputText';
+
+const SubHeading = styled.Text`
+    font-size:${theme.bodyFontSize};
+    font-family: ${theme.headlineFont};
+    width: 70%
+    margin: 70px 35px 40px;
+    line-height: 30px;
+`
 
 const TextInputScreen = ({ navigation }) => {
 
     return (
-        <View>
-            <View>
-                <Text>Write about your experience on Green Time</Text>
-                <TextInput
-                    multiline={true}
-                    numberOfLines={5} />
-            </View>
-            <View>
+        <ScreenBkgCont>
+            <SubHeading>Write about your experience with Green Time.</SubHeading>
+            <InputTextBox />
+            <NextBtnCont>
                 <TouchableOpacity onPress={() => {
                     navigation.popToTop()
                     navigation.navigate('Home')
                 }}>
-                    <Text>done</Text>
+                    <PrimaryBtn>done</PrimaryBtn>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => {
-                    navigation.popToTop()
-                    navigation.navigate('Home')
-                }}>
-                    <Text>skip</Text>
-                </TouchableOpacity>
-            </View>
-        </View>
+            </NextBtnCont>
+            <TouchableOpacity onPress={() => {
+                navigation.popToTop()
+                navigation.navigate('Home')
+            }}>
+                <InputSkipText>skip</InputSkipText>
+            </TouchableOpacity>
+        </ScreenBkgCont>
     );
 }
 
