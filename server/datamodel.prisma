@@ -69,8 +69,8 @@ type Session {
 
   type Goal {
     id : ID! @id
-    hours: Int!
-    days: [Days]
+    hours: Float!
+    days: Days!
   }
 
   type Days {
