@@ -23,10 +23,10 @@ const chartConfig = {
 const ActivityChart = ({ data, labels }) => {
     let displayData = (chartData) => {
         if (chartData !== false) {
-            const durations = chartData.progresses.map(progress => progress.duration)
+            const durations = chartData.graphValues.progresses.map(progress => progress.duration)
 
             const barData = {
-                labels: labels,
+                labels: chartData.graphLabels,
                 datasets: [
                     {
                         data: durations,

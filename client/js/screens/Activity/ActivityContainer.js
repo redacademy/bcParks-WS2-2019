@@ -22,29 +22,45 @@ const PROGRESSES_QUERY = gql`
 
 const ActivityContainer = () => {
     const { loading, error, data } = useQuery(PROGRESSES_QUERY);
+    const [graphData, setGraphData] = useState(
+        {
+            graphValues: null,
+            graphLabels: null
+        }
+    );
 
     if (loading) return null;
     if (error) return <Text>Error!</Text>;
 
-    const [graphData, setGraphData] = useState(data);
-    const [graphLabels, setGraphLabels] = useState(['8AM', '12PM', '4PM', '8PM']);
+
+
 
     return (
         <View>
             <TouchableOpacity onPress={() => {
-                setGraphLabels(['8AM', '12PM', '4PM', '8PM']);
-                setGraphData(data);
+                setGraphData(
+                    {
+                        graphValues: data,
+                        graphLabels: ['8AM', '12PM', '4PM', '8PM']
+                    }
+
+                );
             }}>
                 <Text>Daily</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => {
-                setGraphLabels(['M', 'T', 'W', 'F'])
+                setGraphData(
+                    {
+                        graphValues: data,
+                        graphLabels: ['M', 'T', 'W', 'TH']
+                    }
+                );
 
             }}>
                 <Text>Weekly</Text>
             </TouchableOpacity>
-            {graphData && <Activity data={graphData} labels={graphLabels} />}
+            {graphData.graphValues && <Activity data={graphData} />}
 
         </View>
 
