@@ -9,25 +9,11 @@ import styles from './styles';
 import PeriodicButtons from '../../components/PeriodicButtons/PeriodicButtons';
 import ActivityChart from '../../components/ActivityChart/ActivityChart';
 
-const ActivityScreen = ({ data }) => {
+const ActivityScreen = ({ data, labels }) => {
     return (
         <ScrollView>
-
-            <View >
-                <PeriodicButtons />
-
-            </View>
-
-            <FlatList
-                data={data.progresses}
-                renderItem={({ item }) => (
-                    <Text>{item.duration}</Text>
-                )}
-            />
-
-
             <View>
-                <ActivityChart />
+                <ActivityChart data={data} labels={labels} />
 
             </View>
 
