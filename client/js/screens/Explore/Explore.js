@@ -1,10 +1,11 @@
+
 import React, {useEffect, useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import fetchData from '../../config/fetchData';
 import MapSwiper from '../../components/MapSwiper';
 
-const dataURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=49.2479999,-123.1300971&radius=1500&type=park&fields=place_id,name,opening_hours,formatted_address,geometry&key=${GOOGLE_API_KEY}`;
+const dataURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=49.2479999,-123.1300971&radius=1500&type=park&fields=place_id,name,opening_hours,formatted_address,geometry&key=`;
 const ExploreScreen = () => {
   const [mapData, setMapData] = useState([]);
 

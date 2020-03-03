@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Activity from './Activity';
-import { Query } from '@apollo/react-components';
+import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import {
-    Text
+    Text,
+    View,
 } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
 
 const PROGRESSES_QUERY = gql`
   {
@@ -12,23 +15,38 @@ const PROGRESSES_QUERY = gql`
         id
         duration
         completion
+        date
       }
   }
 `
 
 const ActivityContainer = () => {
+    const { loading, error, data } = useQuery(PROGRESSES_QUERY);
+
+    if (loading) return null;
+    if (error) return <Text>Error!</Text>;
+
+    const [graphData, setGraphData] = useState(data);
+    const [graphLabels, setGraphLabels] = useState(['8AM', '12PM', '4PM', '8PM']);
 
     return (
-        <Query query={PROGRESSES_QUERY}>
-            {({ loading, error, data }) => {
-                if (loading) return <Text>Loading...</Text>;
-                if (error) return <Text>Error :(</Text>;
+        <View>
+            <TouchableOpacity onPress={() => {
+                setGraphLabels(['8AM', '12PM', '4PM', '8PM']);
+                setGraphData(data);
+            }}>
+                <Text>Daily</Text>
+            </TouchableOpacity>
 
-                return (
-                    <Activity data={data} />
-                )
-            }}
-        </Query>
+            <TouchableOpacity onPress={() => {
+                setGraphLabels(['M', 'T', 'W', 'F'])
+
+            }}>
+                <Text>Weekly</Text>
+            </TouchableOpacity>
+            {graphData && <Activity data={graphData} labels={graphLabels} />}
+
+        </View>
 
     )
 }
