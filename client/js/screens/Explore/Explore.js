@@ -1,3 +1,4 @@
+
 import React, {useEffect, useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
@@ -11,6 +12,7 @@ const Containter = styled.View`
   height: 333px;
   background: #fff;
 `;
+
 const ExploreScreen = () => {
   const [mapData, setMapData] = useState([]);
   const [APIData, setAPIData] = useState([]);

@@ -11,7 +11,7 @@ import styles from './styles';
 const PeriodicButtons = () => {
     return (
         <View style={styles.mainContainer}>
-            <TouchableOpacity>
+            <TouchableOpacity >
                 <Text>Daily</Text>
             </TouchableOpacity>
             <TouchableOpacity>

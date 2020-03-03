@@ -12,22 +12,8 @@ import ActivityChart from '../../components/ActivityChart/ActivityChart';
 const ActivityScreen = ({ data }) => {
     return (
         <ScrollView>
-
-            <View >
-                <PeriodicButtons />
-
-            </View>
-
-            <FlatList
-                data={data.progresses}
-                renderItem={({ item }) => (
-                    <Text>{item.duration}</Text>
-                )}
-            />
-
-
             <View>
-                <ActivityChart />
+                <ActivityChart data={data} />
 
             </View>
 
