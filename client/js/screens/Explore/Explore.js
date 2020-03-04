@@ -1,10 +1,12 @@
 
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import fetchData from '../../config/fetchData';
 import MapSwiper from '../../components/MapSwiper';
 import styled from 'styled-components';
+import {results} from './googleAPI.json';
+import {addMapMutation} from './helper/mutation';
 
 const GOOGLE_API_KEY = '';
 const dataURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=49.2479999,-123.1300971&radius=1500&type=park&fields=place_id,name,opening_hours,formatted_address,geometry&key=${GOOGLE_API_KEY}`;
@@ -12,10 +14,15 @@ const Containter = styled.View`
   height: 333px;
   background: #fff;
 `;
-
+const SearchButton = styled.TouchableOpacity`
+  position: absolute;
+  top: 12px;
+  height: 40px;
+  background: #fff;
+`;
 const ExploreScreen = () => {
   const [mapData, setMapData] = useState([]);
-  const [APIData, setAPIData] = useState([]);
+  const [APIData, setAPIData] = useState(results);
   const [region, setRegion] = useState();
   const getImages = reference => {
     const photoURL = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${reference}&key=${GOOGLE_API_KEY}`;
@@ -27,7 +34,20 @@ const ExploreScreen = () => {
   };
   const AddDataFromGoogleAPI = () => {
     APIData.map(APIMap => {
-      mapData.filter(map => map.externalId === APIMap.id);
+      mapData.filter(map => {
+        if (map.externalId !== APIMap.id) {
+          const mutation = addMapMutation(
+            APIMap.id,
+            APIMap.name,
+            APIMap.vicinity,
+            APIMap.plus_code,
+            APIMap.geometry.location,
+            APIMap.geometry.viewport.northeast,
+            APIMap.geometry.viewport.southwest,
+          );
+          fetchData(mutation);
+        }
+      });
     });
   };
   const query = `query {
@@ -78,6 +98,9 @@ const ExploreScreen = () => {
         showsUserLocation={true}>
         {getMarkers()}
       </MapView>
+      <SearchButton onPress={() => AddDataFromGoogleAPI()}>
+        <Text>Search Area</Text>
+      </SearchButton>
       <Containter>
         <MapSwiper mapData={mapData} />
       </Containter>
