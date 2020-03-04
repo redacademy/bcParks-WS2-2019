@@ -20,16 +20,21 @@ const chartConfig = {
     decimalPlaces: 0
 };
 
-const ActivityChart = ({ data, labels }) => {
+const ActivityChart = ({ data }) => {
     let displayData = (chartData) => {
         if (chartData !== false) {
-            const durations = chartData.graphValues.progresses.map(progress => progress.duration)
+            const duration = chartData.graphValues.progresses ? (chartData.graphValues.progresses.map(progress =>
+                progress.duration)) :
+                (chartData.graphValues.sessions.map(session => session.id))
+            console.log("duration", duration)
+            // const duration = chartData.graphValues.progresses.map(progress => progress.duration)
+            // const sessionsDuration = chartData.graphValues.sessions.map(session => session.id)
 
             const barData = {
                 labels: chartData.graphLabels,
                 datasets: [
                     {
-                        data: durations,
+                        data: duration,
                     },
                 ],
             };

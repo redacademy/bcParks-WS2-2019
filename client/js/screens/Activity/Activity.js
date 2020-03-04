@@ -10,11 +10,11 @@ import PeriodicButtons from '../../components/PeriodicButtons/PeriodicButtons';
 import ActivityChart from '../../components/ActivityChart/ActivityChart';
 
 const ActivityScreen = ({ data }) => {
+    console.log('activity', data)
     return (
         <ScrollView>
             <View>
                 <ActivityChart data={data} />
-
             </View>
 
         </ScrollView >
