@@ -1,0 +1,922 @@
+{
+  "html_attributions": [],
+  "next_page_token": "CqQCGwEAAPLuDcL0cq2HWWsCpg08u4B3W0K0o_r-EjyZINqeo9Uw8hqZmGJDEN9v5YHH0gLIC_pO8axs4MYePkz2NREOWfLR1Pq2k5zIS7m8F6mXoSF7rI1o5-uOddNq84qCZ3hvSfUIaNHqr3xxHs-fGu4CbS8HGoExOBcaqMz2ntwuqjs1Yu_lmxme3loWkghOWHn-oXOUHwJP7SNbaWu1WBU7eqYMf9bO1QN_Qp2Ool5FcJg_vFR7ZNFTT-Uk_KXa0zWmtq43rTE3Uni7hG8mHJ-cijxxmFRVXO016eNyYBPGLBWg-ykZ9i5d8ryrkeFWTqcHUw7zYeaioKaYtWOdRS6eRNFxGNToAjQRcOQYO6y9RdBMIDThf3TUn0TXKXWiozdlIxIQi0p9RqeFTKOhNL2eHI26LRoUK7T5MP-FTm8DkZywHXKgNvXylQU",
+  "results": [
+    {
+      "geometry": {
+        "location": {
+          "lat": 49.2394052,
+          "lng": -123.1288986
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 49.2407541802915,
+            "lng": -123.1275496197085
+          },
+          "southwest": {
+            "lat": 49.2380562197085,
+            "lng": -123.1302475802915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "6cef22a76079cabbba7008e5e50634cb4227cfcc",
+      "name": "VanDusen Botanical Garden",
+      "opening_hours": {
+        "open_now": false
+      },
+      "photos": [
+        {
+          "height": 3696,
+          "html_attributions": [
+            "\u003ca href=\"https://maps.google.com/maps/contrib/101506400271390830980\"\u003eMariko Ishikawa\u003c/a\u003e"
+          ],
+          "photo_reference": "CmRaAAAA8-ZoXRlfiRnb8IOvC50yG9FvRN73Z7aFaJ-xyUNNuAYNgMvJiXI0HX1Cwc9jX83IR1Slp10x6cCsX9zJFlXn_kGWQfs_8pKkOsNwpT9Kyo5epyMvkv1h0h_VjyJyohWQEhAcpqzP3bFh-R2dQ3wPn9mmGhQYAiyv4Hll7SNmhEaKGLjBFG8iMQ",
+          "width": 5544
+        }
+      ],
+      "place_id": "ChIJwW3HeIZzhlQRVxJgWI8VjAg",
+      "plus_code": {
+        "compound_code": "6VQC+QC Vancouver, British Columbia, Canada",
+        "global_code": "84XR6VQC+QC"
+      },
+      "rating": 4.6,
+      "reference": "ChIJwW3HeIZzhlQRVxJgWI8VjAg",
+      "scope": "GOOGLE",
+      "types": [
+        "tourist_attraction",
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 6367,
+      "vicinity": "5251 Oak Street, Vancouver"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 49.241757,
+          "lng": -123.1126193
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 49.24674145000001,
+            "lng": -123.09962195
+          },
+          "southwest": {
+            "lat": 49.23406325,
+            "lng": -123.12313375
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "0060681017b1c68a0907b632cfb3f3237628d9b4",
+      "name": "Queen Elizabeth Park",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "\u003ca href=\"https://maps.google.com/maps/contrib/112334301577874646783\"\u003eKelly Vaishnav\u003c/a\u003e"
+          ],
+          "photo_reference": "CmRaAAAA0QsEASFpDjzA1rT-TNLDBtRAnDUPv-EYeAYQhzKcV7Vx2hiXtcsWSMi104a8GTHfWRBdDGPjyIbxzw37ZRBhyfcV2BdtEiTHj0_5USremIzTyDLxVXscWMc2Lsi_exJeEhCiVbZNx6_JNv7UgSvjBTRUGhRqv0Igm-PBXLgN3B9BC2k8wGGEqw",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJIcZrTvVzhlQRiKTnD03vt7Q",
+      "plus_code": {
+        "compound_code": "6VRP+PX Vancouver, British Columbia, Canada",
+        "global_code": "84XR6VRP+PX"
+      },
+      "rating": 4.6,
+      "reference": "ChIJIcZrTvVzhlQRiKTnD03vt7Q",
+      "scope": "GOOGLE",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 8588,
+      "vicinity": "4600 Cambie Street, Vancouver"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 49.2556589,
+          "lng": -123.1351262
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 49.2566841302915,
+            "lng": -123.1337905197085
+          },
+          "southwest": {
+            "lat": 49.2539861697085,
+            "lng": -123.1364884802915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "af120a2db19233a6ecc52c1f317fb86b3dc06a78",
+      "name": "Shaughnessy Park",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "\u003ca href=\"https://maps.google.com/maps/contrib/113141950370604677564\"\u003eVladimir Sumarov\u003c/a\u003e"
+          ],
+          "photo_reference": "CmRaAAAAYEHxZ48iCTvTeX_WDa_D2loj9gES4UmWOCo2UzrFOV89EwfZHJ2T-djMg2GmnULSkvvStRQ3YQi2REeO1eXUlIIMe1EMXiO4YOOJQIKFnYFukNnf16W_8KbUCo5hnrMiEhDIR8cliV0d7ppA67Wf6rBqGhRAuQNIQSo5o2hMQo_g7ziIrGvteA",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJSbuugZVzhlQRTdS00C0zXyY",
+      "plus_code": {
+        "compound_code": "7V47+7W Vancouver, British Columbia, Canada",
+        "global_code": "84XR7V47+7W"
+      },
+      "rating": 4.3,
+      "reference": "ChIJSbuugZVzhlQRTdS00C0zXyY",
+      "scope": "GOOGLE",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 97,
+      "vicinity": "1300 The Crescent, Vancouver"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 49.2420477,
+          "lng": -123.1137986
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 49.24683090000001,
+            "lng": -123.1014128
+          },
+          "southwest": {
+            "lat": 49.23402849999999,
+            "lng": -123.122396
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "0baccd45c1c983bdd056872371e4ef795a1ee684",
+      "name": "Bloedel Conservatory",
+      "opening_hours": {
+        "open_now": false
+      },
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "\u003ca href=\"https://maps.google.com/maps/contrib/105591854976784236062\"\u003eYan Huang\u003c/a\u003e"
+          ],
+          "photo_reference": "CmRaAAAA4NXESviLtzicBzMZJXk1liafDli2devKlSAZYZnmMJ7_5pqM0tyzGad8wiuMqfJAbmvYO8-MT7go21P3cW7Ko8jstNiGdVrQ0SwmNBxjaXYuDlnN8VyrU7tCcjbkbjBJEhBahCo8kxGGmdih3eTVM6LBGhSZp6DbP5jy_aKFVd4m18zaoeFkMA",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJnwmhxIpzhlQRr3heOBl69fg",
+      "plus_code": {
+        "compound_code": "6VRP+RF Vancouver, British Columbia, Canada",
+        "global_code": "84XR6VRP+RF"
+      },
+      "rating": 4.6,
+      "reference": "ChIJnwmhxIpzhlQRr3heOBl69fg",
+      "scope": "GOOGLE",
+      "types": [
+        "tourist_attraction",
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 3947,
+      "vicinity": "4600 Cambie Street, Vancouver"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 49.251974,
+          "lng": -123.1224676
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 49.2531434302915,
+            "lng": -123.1211295697085
+          },
+          "southwest": {
+            "lat": 49.2504454697085,
+            "lng": -123.1238275302915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+      "id": "37c096dd3a1df20bd1e33d2c3c44fe018b784dfd",
+      "name": "Douglas Park Community Centre",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 250,
+          "html_attributions": [
+            "\u003ca href=\"https://maps.google.com/maps/contrib/118110474233235638110\"\u003eDouglas Park Community Centre\u003c/a\u003e"
+          ],
+          "photo_reference": "CmRaAAAAH0eVChEplsZqUNNzhxa8UzyX2JofhEdkxz84TUG5SEEvbAxFdKlltMkhOgDT4hprAM7WKnJugQGHYGQPGMd1DJ-3JFiyw_L2aSVqblmC8K_12XPjqhA7g84tEojpNvVREhBYL-T9tUyf5i4dJiJqP_DrGhSlY7neBZdPVL2xjeLL4skL3_RVmw",
+          "width": 715
+        }
+      ],
+      "place_id": "ChIJRegA3-xzhlQRXMcYpLI37ls",
+      "plus_code": {
+        "compound_code": "7V2H+Q2 Vancouver, British Columbia, Canada",
+        "global_code": "84XR7V2H+Q2"
+      },
+      "rating": 4.5,
+      "reference": "ChIJRegA3-xzhlQRXMcYpLI37ls",
+      "scope": "GOOGLE",
+      "types": [
+        "tourist_attraction",
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 372,
+      "vicinity": "801 West 22nd Avenue, Vancouver"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 49.2600448,
+          "lng": -123.1223423
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 49.26139378029149,
+            "lng": -123.1209933197085
+          },
+          "southwest": {
+            "lat": 49.25869581970849,
+            "lng": -123.1236912802915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "6d4c6dbdf026096aed6aff3dff86ac3e7fdfa5a3",
+      "name": "VGH Energy Centre Plaza",
+      "photos": [
+        {
+          "height": 3000,
+          "html_attributions": [
+            "\u003ca href=\"https://maps.google.com/maps/contrib/107752897393935703897\"\u003eEnrique Fernández\u003c/a\u003e"
+          ],
+          "photo_reference": "CmRaAAAAByVrM7VtZfTEJoQY0_53eDN8B9FpD8sTifu5NqCTHRDHxdbXArY7AkFhxWAdgbB1Snyreh1EKyICNC5if5NEVDTqkZSge8hd2-8UJmIRVpr5q4GVqZNP36HX4c0DjijFEhB2vlOz7PJqtZZzdYNfWxRyGhSYgiJrcVGvOnBiY4MxwoP_BGjhEQ",
+          "width": 4000
+        }
+      ],
+      "place_id": "ChIJRyYXdsJzhlQROtel64HsyMY",
+      "plus_code": {
+        "compound_code": "7V6H+23 Vancouver, British Columbia, Canada",
+        "global_code": "84XR7V6H+23"
+      },
+      "rating": 4.5,
+      "reference": "ChIJRyYXdsJzhlQROtel64HsyMY",
+      "scope": "GOOGLE",
+      "types": ["park", "point_of_interest", "establishment"],
+      "user_ratings_total": 2,
+      "vicinity": "Vancouver"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 49.2547586,
+          "lng": -123.1214565
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 49.2563410302915,
+            "lng": -123.1200962197085
+          },
+          "southwest": {
+            "lat": 49.2536430697085,
+            "lng": -123.1227941802915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "64c8fd6231f0cba64ecc66a9624d6f4390cae38b",
+      "name": "Heather Park",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "\u003ca href=\"https://maps.google.com/maps/contrib/113141950370604677564\"\u003eVladimir Sumarov\u003c/a\u003e"
+          ],
+          "photo_reference": "CmRaAAAA1W6jJS3RPMhp8tivTeYG6JeDDE3WPevJzDNWzXqLx2LKLN_c10IwHZppZTt3inHpOQ4Ewkvfv02RCY24vPLuW43yw_JvoCZr-g4TxEhCjluASL8RpRFuYEoE3fI3CnLCEhDYl9bp48-6LrN6cCVmkVBFGhQ3AQOpwz0gAQUXRvxwD9g9CMN9tA",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJmUG1iutzhlQRMbhW_oYYz6s",
+      "plus_code": {
+        "compound_code": "7V3H+WC Vancouver, British Columbia, Canada",
+        "global_code": "84XR7V3H+WC"
+      },
+      "rating": 4,
+      "reference": "ChIJmUG1iutzhlQRMbhW_oYYz6s",
+      "scope": "GOOGLE",
+      "types": ["park", "point_of_interest", "establishment"],
+      "user_ratings_total": 110,
+      "vicinity": "702 West 18th Avenue, Vancouver"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 49.2450366,
+          "lng": -123.1336642
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 49.2466000302915,
+            "lng": -123.1322045697085
+          },
+          "southwest": {
+            "lat": 49.2439020697085,
+            "lng": -123.1349025302915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "2fa2673d5dea83ef85d21cea0d15613fa9b09c8a",
+      "name": "Devonshire Park",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 2448,
+          "html_attributions": [
+            "\u003ca href=\"https://maps.google.com/maps/contrib/117146497783462872759\"\u003eYu Who\u003c/a\u003e"
+          ],
+          "photo_reference": "CmRaAAAAcQ_KmeY5ZYgqelC1K5h4vUxT-qwLQwi5p3TKLiYN6fQ9N-Eo8T3-ksukN1JCYuUum_Ngi9wv29Il5P_WAqE2BJWg0I7rI6JtNPxNhLJt1GT2gPm7XaE8SKZ1B5QTmKNdEhCJIbYMgbFx2dg6Yq3XbtccGhSIFgnp14S2bEBB5EVATn4Hg8nb0Q",
+          "width": 3264
+        }
+      ],
+      "place_id": "ChIJ4eZqHpBzhlQRbF5hkWtQPN8",
+      "plus_code": {
+        "compound_code": "6VW8+2G Vancouver, British Columbia, Canada",
+        "global_code": "84XR6VW8+2G"
+      },
+      "rating": 3.8,
+      "reference": "ChIJ4eZqHpBzhlQRbF5hkWtQPN8",
+      "scope": "GOOGLE",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 29,
+      "vicinity": "1250 Devonshire Crescent, Vancouver"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 49.2476245,
+          "lng": -123.1235798
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 49.2487489302915,
+            "lng": -123.1222433197085
+          },
+          "southwest": {
+            "lat": 49.2460509697085,
+            "lng": -123.1249412802915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "56a20af07dea978ab64a9ec598e71c5c49b4cd14",
+      "name": "Braemar Park",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 3036,
+          "html_attributions": [
+            "\u003ca href=\"https://maps.google.com/maps/contrib/111298932373278219619\"\u003eBojan Ramadanovic\u003c/a\u003e"
+          ],
+          "photo_reference": "CmRaAAAADZWrAF6f3d2wMzQTc9NmEK3Jhx7GxxsxcvT0IRZfLWF3B3Lfe9iVlZYcGJBwns0tHqOdXOvVmZOv9m0GImpBYdZC2GKniASTU2EYKTYvu2BrY-VRxOnN4X14R5zgYqs4EhAS94xYpoLZLPVq8CQ3m-9VGhSci3CQc_bPVatqoVa1YFkGeihzFw",
+          "width": 4048
+        }
+      ],
+      "place_id": "ChIJr5Ykeo1zhlQRxTFCPQi4ndQ",
+      "plus_code": {
+        "compound_code": "6VXG+2H Vancouver, British Columbia, Canada",
+        "global_code": "84XR6VXG+2H"
+      },
+      "rating": 4.1,
+      "reference": "ChIJr5Ykeo1zhlQRxTFCPQi4ndQ",
+      "scope": "GOOGLE",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 50,
+      "vicinity": "895 West 27th Avenue, Vancouver"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 49.2525503,
+          "lng": -123.1222012
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 49.25434733029149,
+            "lng": -123.1208858697085
+          },
+          "southwest": {
+            "lat": 49.2516493697085,
+            "lng": -123.1235838302915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "e21d099b14db7e0981f938b39a02a745336e8b5c",
+      "name": "Douglas Park",
+      "opening_hours": {
+        "open_now": false
+      },
+      "photos": [
+        {
+          "height": 2880,
+          "html_attributions": [
+            "\u003ca href=\"https://maps.google.com/maps/contrib/105666408396572017940\"\u003eSon Hoang\u003c/a\u003e"
+          ],
+          "photo_reference": "CmRaAAAAw25hqjNJHOb5zXtq1ZWOwV-tPV-VoPom4VIcPCXl1sCwbgCEK415TUC3llIwIUneWxroD_CrAZrxxn80fUNDr3kTJ2o6psJ_y5md2TMbFENqZs0Afr-kZUezZAEWv9w_EhDdVpJ9sHeBWlnqfW76FGJdGhQzRDoc49SbWf84jaGHixUTDjKl9A",
+          "width": 3840
+        }
+      ],
+      "place_id": "ChIJAUw1JNRzhlQRCnHVzI24sCs",
+      "plus_code": {
+        "compound_code": "7V3H+24 Vancouver, British Columbia, Canada",
+        "global_code": "84XR7V3H+24"
+      },
+      "rating": 4.6,
+      "reference": "ChIJAUw1JNRzhlQRCnHVzI24sCs",
+      "scope": "GOOGLE",
+      "types": ["park", "point_of_interest", "establishment"],
+      "user_ratings_total": 21,
+      "vicinity": "Douglas Park, Vancouver"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 49.2386777,
+          "lng": -123.1256347
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 49.2394794302915,
+            "lng": -123.1243266697085
+          },
+          "southwest": {
+            "lat": 49.2367814697085,
+            "lng": -123.1270246302915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "823e1785c8787e61ea852f78e080620153389615",
+      "name": "Oak Meadows Park",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 3264,
+          "html_attributions": [
+            "\u003ca href=\"https://maps.google.com/maps/contrib/113471599550822126520\"\u003eTricia-Kay Manhertz\u003c/a\u003e"
+          ],
+          "photo_reference": "CmRaAAAABA-wwn9o011hZmcxBx8to-w4cvbzemxaHLHy4efADA1up3iYsF4WoNihO4VOq1x59eyBUy55u2YnwWTG3nIs9hVVlpbVC4P9snH2XndGLrEUK_SCtIwAvlWZJFtdrbBPEhD50SYqpZOVsFc_ZIZ5FupvGhRJCzcxJye-tcQsHtPVWnQqcIAv-g",
+          "width": 2448
+        }
+      ],
+      "place_id": "ChIJafAXZYhzhlQRZ1X6Zx94FeU",
+      "plus_code": {
+        "compound_code": "6VQF+FP Vancouver, British Columbia, Canada",
+        "global_code": "84XR6VQF+FP"
+      },
+      "rating": 4,
+      "reference": "ChIJafAXZYhzhlQRZ1X6Zx94FeU",
+      "scope": "GOOGLE",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 74,
+      "vicinity": "899 West 37th Avenue, Vancouver"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 49.239482,
+          "lng": -123.1297975
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 49.2408185302915,
+            "lng": -123.1269094
+          },
+          "southwest": {
+            "lat": 49.2381205697085,
+            "lng": -123.1307602
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "8c8c53b09a82424b646562a8cea6ac7f2a1770cd",
+      "name": "Livingstone Lake",
+      "photos": [
+        {
+          "height": 4000,
+          "html_attributions": [
+            "\u003ca href=\"https://maps.google.com/maps/contrib/101909360331679351202\"\u003eGee king Chen\u003c/a\u003e"
+          ],
+          "photo_reference": "CmRaAAAA4NWpxzn5I1YQXp2X8ixk9___oryFlLV-JJcD8xhtb-rarIi4bN9CqU4n3J8nYDckZ_4Ew1iYvJaxTrPZwhWKJrzQd334Tm9Fhf2jZh5yxKy3aGAcsviD7EBhPjYC6m4ZEhAtohTNQTpmooPPXelgd1m8GhQIySXM0ddvWFVoYb6cqtU-98q6mg",
+          "width": 6000
+        }
+      ],
+      "place_id": "ChIJ_WcBGoZzhlQRHAGKUiIetuU",
+      "plus_code": {
+        "compound_code": "6VQC+Q3 Vancouver, British Columbia, Canada",
+        "global_code": "84XR6VQC+Q3"
+      },
+      "rating": 4.4,
+      "reference": "ChIJ_WcBGoZzhlQRHAGKUiIetuU",
+      "scope": "GOOGLE",
+      "types": ["park", "point_of_interest", "establishment"],
+      "user_ratings_total": 7,
+      "vicinity": "5251 Oak Street, Vancouver"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 49.25674979999999,
+          "lng": -123.1276152
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 49.2582300802915,
+            "lng": -123.1262829697085
+          },
+          "southwest": {
+            "lat": 49.2555321197085,
+            "lng": -123.1289809302915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "bfe2ad7bc3a4ec78fa7ba1d7eb30907bf6f48661",
+      "name": "16 Oaks Community Garden",
+      "place_id": "ChIJg9OnzdNzhlQRhHQGqScNxJs",
+      "plus_code": {
+        "compound_code": "7V4C+MX Vancouver, British Columbia, Canada",
+        "global_code": "84XR7V4C+MX"
+      },
+      "reference": "ChIJg9OnzdNzhlQRhHQGqScNxJs",
+      "scope": "GOOGLE",
+      "types": ["park", "point_of_interest", "establishment"],
+      "vicinity": "1018 West 16th Avenue, Vancouver"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 49.2386922,
+          "lng": -123.1349322
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 49.2396443302915,
+            "lng": -123.1336199697085
+          },
+          "southwest": {
+            "lat": 49.23694636970851,
+            "lng": -123.1363179302915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "71b8ffcbbd6bf88884162ac7c835b7d566c12270",
+      "name": "Meditation Garden",
+      "photos": [
+        {
+          "height": 2814,
+          "html_attributions": [
+            "\u003ca href=\"https://maps.google.com/maps/contrib/101583903065771815297\"\u003eGeorg Theiler\u003c/a\u003e"
+          ],
+          "photo_reference": "CmRaAAAA_d6Rux1L1bYIVMFwhg9kTs0lmUDCDB9Hs3YwKWAgUgLqJkeXftaeuWsaKPIrSqFKOeKBc6NQ9ZOZqYmJ04NiYIpMugZiyeQEWJa4l-Huo80_GzTGrgcCVqSobimkDHlpEhDoxIOtfFUZJrzP1mnLWG-kGhRfs34sjHSlKGrJ4Akfb8-cFHS6vA",
+          "width": 3746
+        }
+      ],
+      "place_id": "ChIJAWeomIZzhlQRa_bfGM-yUU8",
+      "plus_code": {
+        "compound_code": "6VQ8+F2 Vancouver, British Columbia, Canada",
+        "global_code": "84XR6VQ8+F2"
+      },
+      "rating": 4.8,
+      "reference": "ChIJAWeomIZzhlQRa_bfGM-yUU8",
+      "scope": "GOOGLE",
+      "types": ["park", "point_of_interest", "establishment"],
+      "user_ratings_total": 4,
+      "vicinity": "1308 West 37th Avenue, Vancouver"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 49.2539272,
+          "lng": -123.1438193
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 49.2553934802915,
+            "lng": -123.1425982697085
+          },
+          "southwest": {
+            "lat": 49.2526955197085,
+            "lng": -123.1452962302915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "2153394e78d600605df39ded10bfe28ed30c12c1",
+      "name": "Angus Park",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 3211,
+          "html_attributions": [
+            "\u003ca href=\"https://maps.google.com/maps/contrib/105336194367447314579\"\u003eFarokh Elmieh\u003c/a\u003e"
+          ],
+          "photo_reference": "CmRaAAAAGdXuM3xx3M8VP-DVnbWcneuL8TtMPlK707exf7jo0kkfFsjI5FrfiDPZBgWKovbhiHM8LG9uYYdh9rnuliE7D_ik7XWOEKLY3ishjAafYP85tYwIakIw8iP3IyBVpSqeEhBpdSiUPWfBK5F9Gj7CZCTjGhRCL04ZTwMzyfzlX75DVtf1ojpz3Q",
+          "width": 3024
+        }
+      ],
+      "place_id": "ChIJOTyt_ZdzhlQRszXvVBYi0ws",
+      "plus_code": {
+        "compound_code": "7V34+HF Vancouver, British Columbia, Canada",
+        "global_code": "84XR7V34+HF"
+      },
+      "rating": 4.6,
+      "reference": "ChIJOTyt_ZdzhlQRszXvVBYi0ws",
+      "scope": "GOOGLE",
+      "types": ["park", "point_of_interest", "establishment"],
+      "user_ratings_total": 11,
+      "vicinity": "3600 Angus Drive, Vancouver"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 49.242325,
+          "lng": -123.1149951
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 49.2431230302915,
+            "lng": -123.1138130697085
+          },
+          "southwest": {
+            "lat": 49.2404250697085,
+            "lng": -123.1165110302915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "2053e74eb382c7efe4eecf092a86e74fed241129",
+      "name": "Queen Elizabeth Quarry Gardens",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 2976,
+          "html_attributions": [
+            "\u003ca href=\"https://maps.google.com/maps/contrib/105486300913362505811\"\u003eRachel Windsor\u003c/a\u003e"
+          ],
+          "photo_reference": "CmRaAAAAVI9FMz66L0egQ-mcDJ5mSn-Rh_ru_i8_oUKM2POx_dfIFyZ-fQfznV31pCoFENbgbGRg4QsybtNYvlqpS4ivYxFhSmBcXm6DM4CrcYBFsezUNAzpgHhT-PGVU_80O7ZnEhDAr6nOW96-Q2owzbt13h3lGhSrkZ67kd_bWbwzC5ibcXENhmkauA",
+          "width": 3968
+        }
+      ],
+      "place_id": "ChIJNZNa4IpzhlQRjc2KkYm9ZJs",
+      "plus_code": {
+        "compound_code": "6VRP+W2 Vancouver, British Columbia, Canada",
+        "global_code": "84XR6VRP+W2"
+      },
+      "rating": 4.7,
+      "reference": "ChIJNZNa4IpzhlQRjc2KkYm9ZJs",
+      "scope": "GOOGLE",
+      "types": [
+        "tourist_attraction",
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 96,
+      "vicinity": "Queen Elizabeth Park, Vancouver"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 49.2414917,
+          "lng": -123.1134585
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 49.2428876302915,
+            "lng": -123.1116701197085
+          },
+          "southwest": {
+            "lat": 49.24018966970851,
+            "lng": -123.1143680802915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "36f536d4c3b5d3a27394ab01e10e0892f954b20b",
+      "name": "Dancing Waters Fountain",
+      "photos": [
+        {
+          "height": 2988,
+          "html_attributions": [
+            "\u003ca href=\"https://maps.google.com/maps/contrib/107804826184111275354\"\u003eMurielle Lavoie\u003c/a\u003e"
+          ],
+          "photo_reference": "CmRaAAAAQ2MoUmMqRLtwwT4zbpYi9gBhFPIVTiPTj1jSj_wjVJcu6WGFltPT7zG9quKb3CM0bLI6RYASUU6YD2d7EQt6etOL7lkfPKbXIe2W2XSYEnp59519jS5P6V_m42b7-IPsEhD2E3T1_vJIkMdUgkQoRQjeGhQ2XZo7CiIIYSVcA4IN8qVNSr1oLg",
+          "width": 5312
+        }
+      ],
+      "place_id": "ChIJMcmRv4pzhlQRafFSJqo68aI",
+      "plus_code": {
+        "compound_code": "6VRP+HJ Vancouver, British Columbia, Canada",
+        "global_code": "84XR6VRP+HJ"
+      },
+      "rating": 4.6,
+      "reference": "ChIJMcmRv4pzhlQRafFSJqo68aI",
+      "scope": "GOOGLE",
+      "types": ["park", "point_of_interest", "establishment"],
+      "user_ratings_total": 8,
+      "vicinity": "4600 Cambie Street, Vancouver"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 49.24341889999999,
+          "lng": -123.1119018
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 49.24476788029149,
+            "lng": -123.1105528197085
+          },
+          "southwest": {
+            "lat": 49.24206991970849,
+            "lng": -123.1132507802915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "a2239aba596083e0e8a30d808f9c6be0556df277",
+      "name": "The Duck Pond",
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "\u003ca href=\"https://maps.google.com/maps/contrib/105486300913362505811\"\u003eRachel Windsor\u003c/a\u003e"
+          ],
+          "photo_reference": "CmRaAAAAueRq5c1mVJGHm0TXc4VzlacooofmClTLzYV-NVZ0pa4-H2PrCTCN45un4x_WC3I1izVIo_8oM_rYHG17xTymx633tUrM2PlfiViwI-L87KWVduI0RxTgb67jbXONefBuEhCrs3C25hqTbh4fWMo9TBDDGhTNNW5C6dqnG4yT31Y74OY6P35Nnw",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJBey1x7BzhlQRgu0vdaeeUJM",
+      "plus_code": {
+        "compound_code": "6VVQ+96 Vancouver, British Columbia, Canada",
+        "global_code": "84XR6VVQ+96"
+      },
+      "rating": 4.5,
+      "reference": "ChIJBey1x7BzhlQRgu0vdaeeUJM",
+      "scope": "GOOGLE",
+      "types": ["park", "point_of_interest", "establishment"],
+      "user_ratings_total": 4,
+      "vicinity": "Vancouver"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 49.24378059999999,
+          "lng": -123.1494159
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 49.24491698029149,
+            "lng": -123.1486184697085
+          },
+          "southwest": {
+            "lat": 49.2422190197085,
+            "lng": -123.1513164302915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "3500f1ee2e525115e6f07d6b70697e009bf67045",
+      "name": "Quilchena Park",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "\u003ca href=\"https://maps.google.com/maps/contrib/113630154924080769618\"\u003erichy lau\u003c/a\u003e"
+          ],
+          "photo_reference": "CmRaAAAASECk8djAp_ra3LWHDWfd11qYcE06OzVnhhcy6KOZanzwT_pQAM13DTk9IKxCW9_SVI3hO9hW3AUIIRxqvP3scckWh0vy5YwAfbDCLOBufY-6t5u3N7_xdl9CaIYeSnCOEhCwlkw1I3jSXrNx_4hwDO-5GhSzt1kQDDAzNg_KJQ8acqdTRxXs9g",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJQR19tJ1zhlQRHjXiVUw7YjQ",
+      "plus_code": {
+        "compound_code": "6VV2+G6 Vancouver, British Columbia, Canada",
+        "global_code": "84XR6VV2+G6"
+      },
+      "rating": 4.4,
+      "reference": "ChIJQR19tJ1zhlQRHjXiVUw7YjQ",
+      "scope": "GOOGLE",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 254,
+      "vicinity": "4590 Magnolia Street, Vancouver"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": 49.256813,
+          "lng": -123.1148907
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 49.25816363029151,
+            "lng": -123.1136024197085
+          },
+          "southwest": {
+            "lat": 49.25546566970851,
+            "lng": -123.1163003802915
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      "id": "6e7500c5a56b9f3f6a1abf8891cc54adebd1740d",
+      "name": "Cambie & 16th Temporary Community Garden",
+      "photos": [
+        {
+          "height": 3456,
+          "html_attributions": [
+            "\u003ca href=\"https://maps.google.com/maps/contrib/110125537767839276061\"\u003eChris Reid\u003c/a\u003e"
+          ],
+          "photo_reference": "CmRaAAAAJ1K-6coxViS3JWva2z5ApyuXcuuXUv2jQ2uh-U8bgZd2xJGQPLGXF87Z0bEwV0kBVQUh-29d8_8P_q1UX4xHNodnSNBsXuUrjWAzBw9OIBXSidcde0sgw8pgckEKTBLNEhBNP8yuGmxtpdpUG4SAzNyxGhRwHp68Jb52UyaGHRzJpKgB7iPVJw",
+          "width": 4608
+        }
+      ],
+      "place_id": "ChIJr2J2bDRzhlQRMvaL9BKbn-s",
+      "plus_code": {
+        "compound_code": "7V4P+P2 Vancouver, British Columbia, Canada",
+        "global_code": "84XR7V4P+P2"
+      },
+      "reference": "ChIJr2J2bDRzhlQRMvaL9BKbn-s",
+      "scope": "GOOGLE",
+      "types": ["park", "point_of_interest", "establishment"],
+      "vicinity": "3220 Cambie Street, Vancouver"
+    }
+  ],
+  "status": "OK"
+}

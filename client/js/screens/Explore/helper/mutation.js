@@ -1,4 +1,15 @@
-const addMap = ({id, name, vicinity}) => `
+const stringifyAndReplace = jsonObject =>
+  JSON.stringify(jsonObject).replace(/\"([^(\")"]+)\":/g, '$1:');
+
+export const addMapMutation = (
+  id,
+  name,
+  vicinity,
+  plus_code,
+  location,
+  northeast,
+  southwest,
+) => `
   mutation {
     createMap(
       data: {
@@ -6,21 +17,18 @@ const addMap = ({id, name, vicinity}) => `
         name: ${name}
         vicinity: ${vicinity}
         plus_code: {
-          create: {
-            compound_code: "6VQC+QC Vancouver, British Columbia, Canada"
-            global_code: "84XR6VQC+QC"
-          }
+          create: ${stringifyAndReplace(plus_code)}
         }
         geometry: {
           create: {
-            location: {create: {lat: 49.2394052, lng: -123.1288986}}
+            location: {create: ${stringifyAndReplace(location)}}
             viewport: {
               create: {
                 northeast: {
-                  create: {lat: 49.2407541802915, lng: -123.1275496197085}
+                  create: ${stringifyAndReplace(northeast)}
                 }
                 southwest: {
-                  create: {lat: 49.2380562197085, lng: -123.1302475802915}
+                  create: ${stringifyAndReplace(southwest)}
                 }
               }
             }
