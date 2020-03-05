@@ -11,3 +11,8 @@ export const DayButton = styled.TouchableOpacity`
     padding: 10px;
     margin: 10px
 `
+export const ToggleMenu = styled.View`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+`
