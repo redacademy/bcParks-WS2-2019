@@ -3,6 +3,8 @@ import { View, Text, Button, TouchableOpacity, TextInput } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
+import { DayButtonContainer, DayButton } from './style';
+import DaysButton from '../../components/DaysButton/DaysButton';
 
 const Mutation_UpdateGoals = gql`
     mutation UpdateGoals($hours: Int!, $title: [String!]) {
@@ -29,12 +31,11 @@ const GoalScreen = () => {
 
     const addDays = (day) => {
         days.includes(day) ?
-        setDays(days.filter(name => 
-            name !== day
-        )) :
-        setDays([...days, day])
+            setDays(days.filter(name =>
+                name !== day
+            )) :
+            setDays([...days, day])
     }
-    
     return (
         <View>
             <Text>
@@ -42,55 +43,62 @@ const GoalScreen = () => {
             </Text>
             <View>
                 <Button title="Daily"
-                        onPress={() => {
-                            setType("daily");
-                        }}
+                    onPress={() => {
+                        setType("daily");
+                    }}
                 />
                 <Button title="Weekly"
-                        onPress={() => {
-                            setType("weekly");
-                            setDays("weekly");
-                        }}
+                    onPress={() => {
+                        setType("weekly");
+                        setDays("weekly");
+                    }}
                 />
             </View>
 
-            {type.includes("daily") ? 
+            {type.includes("daily") ?
 
-            <View>
-                <Button title="S" onPress={() => {addDays("Sunday")}} />
-                <Button title="M" onPress={() => {addDays("Monday")}} />
-                <Button title="T" onPress={() => {addDays("Tuesday")}} />
-                <Button title="W" onPress={() => {addDays("Wednesday")}} />
-                <Button title="T" onPress={() => {addDays("Thursday")}} />
-                <Button title="F" onPress={() => {addDays("Friday")}} />
-                <Button title="S" onPress={() => {addDays("Saturday")}} />
-                             
-                <Button title="everyday" 
-                        onPress={() => { days.length === 7 ? 
+                <View>
+                    <DayButtonContainer>
+                        <DaysButton addDays={addDays} days={days} setDays={setDays} short="S" long="Sunday"/>
+                        <DaysButton addDays={addDays} days={days} setDays={setDays} short="M" long="Monday"/>
+                        <DaysButton addDays={addDays} days={days} setDays={setDays} short="T" long="Tuesday"/>
+                        <DaysButton addDays={addDays} days={days} setDays={setDays} short="W" long="Wednesday"/>
+                        <DaysButton addDays={addDays} days={days} setDays={setDays} short="T" long="Thursday"/>
+                        <DaysButton addDays={addDays} days={days} setDays={setDays} short="F" long="Friday"/>
+                        <DaysButton addDays={addDays} days={days} setDays={setDays} short="S" long="Saturday"/>
+                    </DayButtonContainer>
+                    <Button title="everyday"
+                        onPress={() => {
+                        days.length === 7 ?
                             setDays([]) :
                             setDays(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
-                        }}/>
-
-                <TextInput  style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-                            onChangeText={text => setHours(parseInt(text))} />
-            </View> :
-
-            <TextInput  style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+                        }} />
+                    <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
                         onChangeText={text => setHours(parseInt(text))} />
+                </View> :
+
+                <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+                    onChangeText={text => setHours(parseInt(text))} />
             }
 
-            <TouchableOpacity onPress={() => {isNaN(hours) ? alert("Please enter a number") :
-                UpdateGoals({
-                    variables: {
-                        hours: hours,
-                        title: days
-                    }
-                })
-            }}>
-                <Text>
-                    UpdateGoal
-                </Text>
-            </TouchableOpacity>
+            <Button title="Update goal" onPress={() => {
+                if(days.length === 0) {
+                    alert("Please select at least one day")
+                } else if(isNaN(hours)) {
+                    alert("Please enter a number")
+                } else if(hours<=1) {
+                    alert("Please enter more than 1 hour")
+                } else {
+                    UpdateGoals({
+                        variables: {
+                            hours: hours,
+                            title: days
+                        }
+                    });
+                    setHours(1);
+                    alert("Goal has been updated")
+                }
+            }} />
         </View>
     )
 }
