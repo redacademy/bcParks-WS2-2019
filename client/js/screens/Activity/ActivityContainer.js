@@ -9,6 +9,17 @@ import {
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
+const SESSIONS_QUERY = gql`
+  {
+    sessions {
+        id
+        timeStart
+        timeEnd
+        date
+      }
+  }
+`
+
 const PROGRESSES_QUERY = gql`
   {
     progresses {
@@ -21,7 +32,13 @@ const PROGRESSES_QUERY = gql`
 `
 
 const ActivityContainer = () => {
-    const { loading, error, data } = useQuery(PROGRESSES_QUERY);
+    // const { loading, error, data } =
+    //     useQuery(PROGRESSES_QUERY);
+    const { loading: progressesQueryLoading, error: progressesQueryError, data: progresses } =
+        useQuery(PROGRESSES_QUERY);
+    const { loading: sessionsQueryLoading, error: sessionsQueryError, data: sessions } =
+        useQuery(SESSIONS_QUERY);
+
     const [graphData, setGraphData] = useState(
         {
             graphValues: null,
@@ -29,18 +46,18 @@ const ActivityContainer = () => {
         }
     );
 
-    if (loading) return null;
-    if (error) return <Text>Error!</Text>;
+    if (progressesQueryLoading || sessionsQueryLoading) return null;
+    if (progressesQueryError || sessionsQueryError) return <Text>Error!</Text>;
 
 
 
-
+    console.log('activity container', sessions, progresses)
     return (
         <View>
             <TouchableOpacity onPress={() => {
                 setGraphData(
                     {
-                        graphValues: data,
+                        graphValues: sessions,
                         graphLabels: ['8AM', '12PM', '4PM', '8PM']
                     }
 
@@ -52,8 +69,8 @@ const ActivityContainer = () => {
             <TouchableOpacity onPress={() => {
                 setGraphData(
                     {
-                        graphValues: data,
-                        graphLabels: ['M', 'T', 'W', 'TH']
+                        graphValues: progresses,
+                        graphLabels: ['M', 'T', 'W', 'T']
                     }
                 );
 
