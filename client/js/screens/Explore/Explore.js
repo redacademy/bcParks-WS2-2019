@@ -1,6 +1,5 @@
-
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, Animated} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import fetchData from '../../config/fetchData';
 import MapSwiper from '../../components/MapSwiper';
@@ -19,10 +18,30 @@ const SearchButton = styled.TouchableOpacity`
   height: 40px;
   background: #fff;
 `;
+const CustomMarker = styled.View`
+  width: 33px;
+  height: 33px;
+  border-radius: 100px;
+  background: #2ba31d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const CustomMarkerOpacity = styled.View`
+  width: 55px;
+  height: 55px;
+  background: rgba(88, 139, 74, 0.4);
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 const ExploreScreen = () => {
   const [mapData, setMapData] = useState([]);
   const [APIData, setAPIData] = useState([]);
-  const [region, setRegion] = useState();
+  const [animation, setAnimation] = useState(new Animated.Value(0));
+
+  const cardWidth = 291;
   const getImages = reference => {
     const photoURL = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${reference}&key=${GOOGLE_API_KEY}`;
   };
@@ -70,8 +89,24 @@ const ExploreScreen = () => {
       setMapData(data.maps);
     });
   }, []);
+  const interpolations = mapData.map((marker, index) => {
+    const inputRange = [
+      (index - 1) * cardWidth,
+      index * cardWidth,
+      (index + 1) * cardWidth,
+    ];
+    const opacity = animation.interpolate({
+      inputRange,
+      outputRange: [0.5, 1, 0.5],
+      extrapolate: 'clamp',
+    });
+    return {opacity};
+  });
   const getMarkers = () =>
-    mapData.map(map => {
+    mapData.map((map, index) => {
+      const opacityStyle = {
+        opacity: interpolations[index].opacity,
+      };
       return (
         <Marker
           coordinate={{
@@ -80,8 +115,13 @@ const ExploreScreen = () => {
           }}
           title={map.name}
           description={map.vicinity}
-          key={map.id}
-        />
+          key={map.id}>
+          <CustomMarkerOpacity style={opacityStyle}>
+            <CustomMarker>
+              <Text>{index + 1}</Text>
+            </CustomMarker>
+          </CustomMarkerOpacity>
+        </Marker>
       );
     });
   return (
@@ -102,7 +142,11 @@ const ExploreScreen = () => {
         <Text>Search Area</Text>
       </SearchButton>
       <Containter>
-        <MapSwiper mapData={mapData} />
+        <MapSwiper
+          mapData={mapData}
+          cardWidth={cardWidth}
+          animation={animation}
+        />
       </Containter>
     </View>
   );

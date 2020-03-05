@@ -6,9 +6,7 @@ import styled from 'styled-components';
 const Box = styled.View`
   padding: 15px;
 `;
-const MapSwiper = ({mapData}) => {
-  const [animation, setAnimation] = useState(new Animated.Value(0));
-  const cardWidth = 291;
+const MapSwiper = ({mapData, cardWidth, animation}) => {
   const Slides = () => mapData.map(map => <Card detail={map} key={map.id} />);
   return (
     <Box>
