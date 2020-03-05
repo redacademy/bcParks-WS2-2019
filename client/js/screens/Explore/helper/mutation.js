@@ -13,9 +13,9 @@ export const addMapMutation = (
   mutation {
     createMap(
       data: {
-        externalId: ${id}
-        name: ${name}
-        vicinity: ${vicinity}
+        externalId: "${id}"
+        name: "${name}"
+        vicinity: "${vicinity}"
         plus_code: {
           create: ${stringifyAndReplace(plus_code)}
         }

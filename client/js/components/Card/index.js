@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import styled from 'styled-components';
+import Carousel from 'react-native-snap-carousel';
 
 const ImageFrame = styled.Image`
   background: #333;

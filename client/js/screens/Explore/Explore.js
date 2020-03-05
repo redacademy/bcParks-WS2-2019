@@ -5,7 +5,6 @@ import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import fetchData from '../../config/fetchData';
 import MapSwiper from '../../components/MapSwiper';
 import styled from 'styled-components';
-import {results} from './googleAPI.json';
 import {addMapMutation} from './helper/mutation';
 
 const GOOGLE_API_KEY = '';
@@ -22,7 +21,7 @@ const SearchButton = styled.TouchableOpacity`
 `;
 const ExploreScreen = () => {
   const [mapData, setMapData] = useState([]);
-  const [APIData, setAPIData] = useState(results);
+  const [APIData, setAPIData] = useState([]);
   const [region, setRegion] = useState();
   const getImages = reference => {
     const photoURL = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${reference}&key=${GOOGLE_API_KEY}`;
@@ -30,7 +29,8 @@ const ExploreScreen = () => {
   const GoogleAPIFetch = () => {
     fetch(dataURL)
       .then(response => response.json())
-      .then(data => setAPIData(data.result));
+      .then(data => setAPIData(data.result))
+      .then(() => AddDataFromGoogleAPI());
   };
   const AddDataFromGoogleAPI = () => {
     APIData.map(APIMap => {
@@ -98,7 +98,7 @@ const ExploreScreen = () => {
         showsUserLocation={true}>
         {getMarkers()}
       </MapView>
-      <SearchButton onPress={() => AddDataFromGoogleAPI()}>
+      <SearchButton onPress={() => GoogleAPIFetch()}>
         <Text>Search Area</Text>
       </SearchButton>
       <Containter>
