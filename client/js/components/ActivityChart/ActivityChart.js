@@ -7,6 +7,7 @@ import {
 import styles from './styles';
 import { BarChart } from 'react-native-chart-kit';
 import { Dimensions } from "react-native";
+import moment from "moment";
 
 const screenWidth = Dimensions.get("window").width;
 const chartConfig = {
@@ -23,12 +24,15 @@ const chartConfig = {
 const ActivityChart = ({ data }) => {
     let displayData = (chartData) => {
         if (chartData !== false) {
-            const duration = chartData.graphValues.progresses ? (chartData.graphValues.progresses.map(progress =>
-                progress.duration)) :
-                (chartData.graphValues.sessions.map(session => session.id))
+            const duration = chartData.graphValues.progresses ?
+                (chartData.graphValues.progresses.map(progress => progress.duration)) :
+                (chartData.graphValues.sessions.map(session => {
+                    let start = moment.utc(session.timeStart);
+                    let end = moment.utc(session.timeEnd);
+                    return end.diff(start, 'hours', true)
+                }));
             console.log("duration", duration)
-            // const duration = chartData.graphValues.progresses.map(progress => progress.duration)
-            // const sessionsDuration = chartData.graphValues.sessions.map(session => session.id)
+
 
             const barData = {
                 labels: chartData.graphLabels,
