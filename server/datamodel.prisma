@@ -82,5 +82,6 @@ type Session {
     id: ID! @id
     duration: Float!
     completion: Float!
-    date: String!
+    date: DateTime!
+    weekday: String!
   }
