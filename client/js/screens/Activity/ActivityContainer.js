@@ -7,6 +7,9 @@ import {
     View,
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import moment from 'moment';
+import ActivityDisplay from '../../components/ActivityDisplay/ActivityDisplay';
+
 
 
 const SESSIONS_QUERY = gql`
@@ -32,8 +35,6 @@ const PROGRESSES_QUERY = gql`
 `
 
 const ActivityContainer = () => {
-    // const { loading, error, data } =
-    //     useQuery(PROGRESSES_QUERY);
     const { loading: progressesQueryLoading, error: progressesQueryError, data: progresses } =
         useQuery(PROGRESSES_QUERY);
     const { loading: sessionsQueryLoading, error: sessionsQueryError, data: sessions } =
@@ -46,9 +47,9 @@ const ActivityContainer = () => {
         }
     );
 
+
     if (progressesQueryLoading || sessionsQueryLoading) return null;
     if (progressesQueryError || sessionsQueryError) return <Text>Error!</Text>;
-
 
 
     console.log('activity container', sessions, progresses)
@@ -58,7 +59,7 @@ const ActivityContainer = () => {
                 setGraphData(
                     {
                         graphValues: sessions,
-                        graphLabels: ['8AM', '12PM', '4PM', '8PM']
+                        graphLabels: sessions
                     }
 
                 );
@@ -70,14 +71,27 @@ const ActivityContainer = () => {
                 setGraphData(
                     {
                         graphValues: progresses,
-                        graphLabels: ['M', 'T', 'W', 'T']
+                        graphLabels: progresses
                     }
                 );
 
             }}>
                 <Text>Weekly</Text>
             </TouchableOpacity>
-            {graphData.graphValues && <Activity data={graphData} />}
+
+            {/* <TouchableOpacity onPress={() => {
+                setGraphData(
+                    {
+                        graphValues: 
+                        graphLabels: 
+                    }
+                );
+            }}>
+                <Text>></Text>
+            </TouchableOpacity> */}
+            {graphData.graphValues && graphData.graphLabels && <Activity data={graphData} />}
+            {/* <ActivityDisplay data={graphData} /> */}
+
 
         </View>
 

@@ -1,8 +1,9 @@
-import { StyleSheet } from 'react-native';
+import styled from 'styled-components';
+import { theme } from '../../globalStyles';
 
-const styles = StyleSheet.create({
-
-
-});
-
-export default styles;
+export const DayButtonContainer = styled.View`
+    
+`
+export const DayButton = styled.TouchableOpacity`
+  
+`

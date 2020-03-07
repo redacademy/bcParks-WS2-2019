@@ -24,6 +24,9 @@ const chartConfig = {
 const ActivityChart = ({ data }) => {
     let displayData = (chartData) => {
         if (chartData !== false) {
+            const timeLabel = chartData.graphLabels.sessions ?
+                (chartData.graphLabels.sessions.map(session => moment.utc(session.timeStart).format('HH:mm'))) :
+                chartData.graphLabels.progresses.map(progress => moment.utc(progress.date).format('dd'));
             const duration = chartData.graphValues.progresses ?
                 (chartData.graphValues.progresses.map(progress => progress.duration)) :
                 (chartData.graphValues.sessions.map(session => {
@@ -35,7 +38,7 @@ const ActivityChart = ({ data }) => {
 
 
             const barData = {
-                labels: chartData.graphLabels,
+                labels: timeLabel,
                 datasets: [
                     {
                         data: duration,
@@ -50,7 +53,7 @@ const ActivityChart = ({ data }) => {
 
     return (
         <ScrollView>
-            <View style={styles.mainContainer}>
+            <View >
                 <BarChart
                     // style={graphStyle}
                     data={transformedData}
@@ -61,6 +64,12 @@ const ActivityChart = ({ data }) => {
                     withInnerLines={false}
                     fromZero
                 />
+
+                <Text>You have spent</Text>
+
+                {/* <DurationDisplay></DurationDisplay> */}
+
+                <Text>Average mood</Text>
 
             </View>
         </ScrollView>

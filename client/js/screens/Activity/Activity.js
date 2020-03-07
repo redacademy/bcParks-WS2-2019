@@ -5,7 +5,6 @@ import {
     Text,
     FlatList
 } from 'react-native';
-import styles from './styles';
 import PeriodicButtons from '../../components/PeriodicButtons/PeriodicButtons';
 import ActivityChart from '../../components/ActivityChart/ActivityChart';
 
@@ -15,6 +14,7 @@ const ActivityScreen = ({ data }) => {
         <ScrollView>
             <View>
                 <ActivityChart data={data} />
+
             </View>
 
         </ScrollView >
