@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="328px" height="328px" viewBox="0 0 328 328" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>Group 4</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="164" cy="164" r="164"></circle>
+        <filter x="-5.4%" y="-8.7%" width="110.7%" height="117.4%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="wireframes" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Onboarding-/-Tracking_location" transform="translate(-27.000000, -242.000000)">
+            <g id="Group-4" transform="translate(27.000000, 242.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill="#8CBE82" xlink:href="#path-1"></use>
+                <g id="9" filter="url(#filter-3)" mask="url(#mask-2)">
+                    <g transform="translate(35.000000, 87.000000)">
+                        <path d="M165.921,96.74 C167.218533,97.0703684 168.552071,97.2383203 169.891,97.24 C176.164,97.24 181.466,93.6 181.466,89.28 C181.466,84.96 176.166,81.33 169.891,81.33 C163.636,81.33 158.35,84.97 158.35,89.28 C158.35,92.59 161.394,95.58 165.921,96.74 Z" id="Color_Fill_26" fill="#C7D0D9"></path>
+                        <path d="M190.067,84.83 C187.615,77.66 179.525,72.37 169.906,72.37 C158.376,72.37 148.98,79.95 148.98,89.29 C148.98,95.31 152.898,100.69 159.013,103.68 L155.541,114.61 L84.803,114.61 L91.013,66.93 L94.453,66.93 C103.69,78.27 114.774,88.52 126.526,98.43 C128.533,100.08 130.412,100.72 132.514,98.3 C141.814,87.53 152.614,78.23 161.434,66.93 L231.154,66.93 L235.354,84.83 L190.067,84.83 L190.067,84.83 Z" id="Color_Fill_27" fill="#B7FFB6"></path>
+                        <polygon id="Color_Fill_28" fill="#FFFFFF" points="10.236 114.62 75.364 114.62 81.578 66.93 21.432 66.93"></polygon>
+                        <polygon id="Color_Fill_29" fill="#F5F5F5" points="157.976 123.56 83.63 123.56 79.66 154.02 228.128 154.02"></polygon>
+                        <polygon id="Color_Fill_30" fill="#F5F5F5" points="74.198 123.56 8.137 123.56 0.986 154.02 70.228 154.02"></polygon>
+                        <path d="M82.733,57.98 L23.524,57.98 L29.862,31.06 L74.102,31.06 C76.507847,38.1938865 79.6906297,45.0416817 83.593,51.48 L82.733,57.98 Z" id="Color_Fill_31" fill="#F5F5F5"></path>
+                        <path d="M167.995,57.98 C173.852877,49.6302887 178.655975,40.588373 182.295,31.06 L222.745,31.06 L229.051,57.98 L167.995,57.98 L167.995,57.98 Z" id="Color_Fill_32" fill="#F5F5F5"></path>
+                        <path d="M190.059,93.76 C187.622,100.91 179.516,106.18 169.891,106.18 C169.265,106.18 168.642,106.11 168.018,106.07 L164.669,116.64 L250.753,154.02 L251.612,154.02 L237.463,93.76 L190.063,93.76 L190.059,93.76 Z" id="Color_Fill_33" fill="#F5F5F5"></path>
+                        <path d="M111.647175,4.66293259 C108.135469,6.81026802 104.985221,9.49973277 102.313145,12.6316856 C97.7652481,18.5299381 94.9758818,25.1845727 95.0001572,33.2679291 C95.0766746,58.1979781 109.905444,74.4258126 127.405225,89.1714438 C128.520055,90.103551 129.579144,90.4626415 130.764987,89.1026818 C136.091738,82.9675824 142.253847,77.6423466 147.277456,71.1481567 C156.179299,59.6419803 162.270395,47.2571781 161.990924,32.4045838 C161.685491,16.1614688 148.655722,1.28595384 130.531331,0.0711583178 C123.590367,-0.39489531 117.398478,1.46167898 111.647175,4.66293259 Z M109.000157,34.0010425 C109.000157,26.316233 113.628868,19.3879617 120.728647,16.4469695 C127.828426,13.5059773 136.000731,15.1314642 141.434712,20.5654452 C146.868693,25.9994261 148.49418,34.1717309 145.553188,41.27151 C142.612196,48.371289 135.683924,53 127.999115,53 C117.5073,52.9987328 109.002794,44.4928573 109.003217,34.0010425 L109.000157,34.0010425 Z" id="Color_Fill_34" fill="#DA6645"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
