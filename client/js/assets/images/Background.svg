@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="375px" height="812px" viewBox="0 0 375 812" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>FONDOVERDE</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#8CBE82" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="wireframes" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home-/-Daily" fill="url(#linearGradient-1)" stroke="#979797">
+            <rect id="FONDOVERDE" x="-1" y="0" width="376" height="813"></rect>
+        </g>
+    </g>
+</svg>
