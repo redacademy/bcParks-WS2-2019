@@ -9,12 +9,12 @@ import styles from './styles';
 import PeriodicButtons from '../../components/PeriodicButtons/PeriodicButtons';
 import ActivityChart from '../../components/ActivityChart/ActivityChart';
 
-const ActivityScreen = ({ data, labels }) => {
+const ActivityScreen = ({ data }) => {
+    console.log('activity', data)
     return (
         <ScrollView>
             <View>
-                <ActivityChart data={data} labels={labels} />
-
+                <ActivityChart data={data} />
             </View>
 
         </ScrollView >

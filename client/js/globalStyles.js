@@ -9,6 +9,7 @@ export const theme = {
     bodyTextColor: "#000",
     invertTextColor: "#fff",
     disabledColor: "#9d9d9d",
+    dayBtnColor: "#9B9A30",
     headlineFont: "Comfortaa-Regular",
     bodyFont: "OpenSans-Regular",
     h1FontSize: "34px",

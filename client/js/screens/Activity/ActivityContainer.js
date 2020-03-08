@@ -9,6 +9,17 @@ import {
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
+const SESSIONS_QUERY = gql`
+  {
+    sessions {
+        id
+        timeStart
+        timeEnd
+        date
+      }
+  }
+`
+
 const PROGRESSES_QUERY = gql`
   {
     progresses {
@@ -21,30 +32,52 @@ const PROGRESSES_QUERY = gql`
 `
 
 const ActivityContainer = () => {
-    const { loading, error, data } = useQuery(PROGRESSES_QUERY);
+    // const { loading, error, data } =
+    //     useQuery(PROGRESSES_QUERY);
+    const { loading: progressesQueryLoading, error: progressesQueryError, data: progresses } =
+        useQuery(PROGRESSES_QUERY);
+    const { loading: sessionsQueryLoading, error: sessionsQueryError, data: sessions } =
+        useQuery(SESSIONS_QUERY);
 
-    if (loading) return null;
-    if (error) return <Text>Error!</Text>;
+    const [graphData, setGraphData] = useState(
+        {
+            graphValues: null,
+            graphLabels: null
+        }
+    );
 
-    const [graphData, setGraphData] = useState(data);
-    const [graphLabels, setGraphLabels] = useState(['8AM', '12PM', '4PM', '8PM']);
+    if (progressesQueryLoading || sessionsQueryLoading) return null;
+    if (progressesQueryError || sessionsQueryError) return <Text>Error!</Text>;
 
+
+
+    console.log('activity container', sessions, progresses)
     return (
         <View>
             <TouchableOpacity onPress={() => {
-                setGraphLabels(['8AM', '12PM', '4PM', '8PM']);
-                setGraphData(data);
+                setGraphData(
+                    {
+                        graphValues: sessions,
+                        graphLabels: ['8AM', '12PM', '4PM', '8PM']
+                    }
+
+                );
             }}>
                 <Text>Daily</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => {
-                setGraphLabels(['M', 'T', 'W', 'F'])
+                setGraphData(
+                    {
+                        graphValues: progresses,
+                        graphLabels: ['M', 'T', 'W', 'T']
+                    }
+                );
 
             }}>
                 <Text>Weekly</Text>
             </TouchableOpacity>
-            {graphData && <Activity data={graphData} labels={graphLabels} />}
+            {graphData.graphValues && <Activity data={graphData} />}
 
         </View>
 

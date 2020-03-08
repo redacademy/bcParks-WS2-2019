@@ -1,10 +1,36 @@
-import React from 'react';
-import {View, Text} from 'react-native';
-const MapSwiper = () => {
+import React, {useState} from 'react';
+import {Text, Animated, ScrollView} from 'react-native';
+import Card from '../Card';
+import styled from 'styled-components';
+
+const Box = styled.View`
+  padding: 15px;
+`;
+const MapSwiper = ({mapData, cardWidth, animation}) => {
+  const Slides = () => mapData.map(map => <Card detail={map} key={map.id} />);
   return (
-    <View>
-      <Text>MapSwiper</Text>
-    </View>
+    <Box>
+      <Text>Near By Green Spaces</Text>
+      <Animated.ScrollView
+        horizontal
+        scrollEventThrottle={1}
+        showsHorizontalScrollIndicator={false}
+        snapToInterval={cardWidth}
+        onScroll={Animated.event(
+          [
+            {
+              nativeEvent: {
+                contentOffset: {
+                  x: animation,
+                },
+              },
+            },
+          ],
+          {useNativeDriver: true},
+        )}>
+        {Slides()}
+      </Animated.ScrollView>
+    </Box>
   );
 };
 

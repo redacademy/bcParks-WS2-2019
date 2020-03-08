@@ -21,7 +21,7 @@ const HomeScreen = ({ navigation, data }) => {
                 <Text>{progress.duration + 'hours'}</Text>
             </ProgressCircle>
             <Button
-                title="Set goals"
+                title="Edit goals"
                 onPress={() => navigation.push('Goal')}
                 />
             <Button
