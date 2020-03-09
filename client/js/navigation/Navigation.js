@@ -1,6 +1,10 @@
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/tabs';
+import Explore from '../assets/images/Explore';
+import Timer from '../assets/images/Timer';
+import Activity from '../assets/images/Activity';
 import HomeScreen from '../screens/Home';
 import ActivityScreen from '../screens/Activity';
 import TimerScreen from '../screens/Timer';
@@ -55,7 +59,7 @@ const NavTabs = () => {
                 tabBarIcon: () => {
                     const { name } = route
                     if (name === 'HomeScreen') {
-                        return <Home />
+                        return <Explore />
                     } else if (name === 'ExploreScreen') {
                         return <Explore />
                     } else if (name === 'TimerScreen') {
