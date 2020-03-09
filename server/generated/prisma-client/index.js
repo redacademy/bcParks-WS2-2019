@@ -13,7 +13,31 @@ var models = [
     embedded: false
   },
   {
+    name: "Map",
+    embedded: false
+  },
+  {
+    name: "Geometry",
+    embedded: false
+  },
+  {
     name: "Location",
+    embedded: false
+  },
+  {
+    name: "Viewport",
+    embedded: false
+  },
+  {
+    name: "NorthEast",
+    embedded: false
+  },
+  {
+    name: "SouthWest",
+    embedded: false
+  },
+  {
+    name: "PlusCode",
     embedded: false
   },
   {
