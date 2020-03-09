@@ -7,10 +7,6 @@ import {
     View,
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import moment from 'moment';
-import ActivityDisplay from '../../components/ActivityDisplay/ActivityDisplay';
-
-
 
 const SESSIONS_QUERY = gql`
   {
@@ -18,6 +14,10 @@ const SESSIONS_QUERY = gql`
         id
         timeStart
         timeEnd
+        locations {
+            id
+        }
+        mood
         date
       }
   }
@@ -79,19 +79,7 @@ const ActivityContainer = () => {
                 <Text>Weekly</Text>
             </TouchableOpacity>
 
-            {/* <TouchableOpacity onPress={() => {
-                setGraphData(
-                    {
-                        graphValues: 
-                        graphLabels: 
-                    }
-                );
-            }}>
-                <Text>></Text>
-            </TouchableOpacity> */}
             {graphData.graphValues && graphData.graphLabels && <Activity data={graphData} />}
-            {/* <ActivityDisplay data={graphData} /> */}
-
 
         </View>
 

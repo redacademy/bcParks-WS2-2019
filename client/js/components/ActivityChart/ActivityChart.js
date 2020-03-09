@@ -2,7 +2,8 @@ import React, { Component, useState } from 'react';
 import {
     ScrollView,
     View,
-    Text
+    Text,
+    FlatList
 } from 'react-native';
 import styles from './styles';
 import { BarChart } from 'react-native-chart-kit';
@@ -50,7 +51,7 @@ const ActivityChart = ({ data }) => {
     }
 
     let transformedData = displayData(data);
-
+    console.log('data graphvalues', data.graphValues.sessions)
     return (
         <ScrollView>
             <View >
@@ -64,12 +65,6 @@ const ActivityChart = ({ data }) => {
                     withInnerLines={false}
                     fromZero
                 />
-
-                <Text>You have spent</Text>
-
-                {/* <DurationDisplay></DurationDisplay> */}
-
-                <Text>Average mood</Text>
 
             </View>
         </ScrollView>

@@ -7,6 +7,9 @@ import {
 } from 'react-native';
 import PeriodicButtons from '../../components/PeriodicButtons/PeriodicButtons';
 import ActivityChart from '../../components/ActivityChart/ActivityChart';
+import ActivityList from '../../components/ActivityList/ActivityList';
+import ActivityDisplay from '../../components/ActivityDisplay/ActivityDisplay'
+
 
 const ActivityScreen = ({ data }) => {
     console.log('activity', data)
@@ -14,6 +17,8 @@ const ActivityScreen = ({ data }) => {
         <ScrollView>
             <View>
                 <ActivityChart data={data} />
+                <ActivityDisplay data={data} />
+                <ActivityList data={data} />
 
             </View>
 
