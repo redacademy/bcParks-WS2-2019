@@ -16,69 +16,75 @@ import GoalScreen from '../screens/Goal';
 
 const HomeStack = createStackNavigator()
 
-const HomeStackScreen = () => (
-    <HomeStack.Navigator headerMode="none">
-        <HomeStack.Screen name="Home" component={HomeScreen} />
-        <HomeStack.Screen name="Goal" component={GoalScreen} />
-    </HomeStack.Navigator>
-)
+const HomeStackScreen = () => {
+    return (
+        <HomeStack.Navigator>
+            <HomeStack.Screen name="Home" component={HomeScreen} />
+            <HomeStack.Screen name="Goal" component={GoalScreen} />
+        </HomeStack.Navigator>
+    );
+}
 
 const ExploreStack = createStackNavigator()
 
-const ExploreStackScreen = () => (
-    <ExploreStack.Navigator headerMode="none">
-        <ExploreStack.Screen name="Explore" component={ExploreScreen} />
-    </ExploreStack.Navigator>
-)
+const ExploreStackScreen = () => {
+    return (
+        <ExploreStack.Navigator>
+            <ExploreStack.Screen name="Explore" component={ExploreScreen} />
+        </ExploreStack.Navigator>
+    );
+}
 
 const TimerStack = createStackNavigator()
 
-const TimerStackScreen = () => (
-    <TimerStack.Navigator headerMode="none">
-        <TimerStack.Screen name="Timer" component={TimerScreen} />
-        <TimerStack.Screen name="MoodSelect" component={MoodSelectScreen} />
-        <TimerStack.Screen name="TextInput" component={TextInputScreen} />
-    </TimerStack.Navigator>
-)
+const TimerStackScreen = () => {
+    return (
+        <TimerStack.Navigator>
+            <TimerStack.Screen name="Timer" component={TimerScreen} />
+            <TimerStack.Screen name="MoodSelect" component={MoodSelectScreen} />
+            <TimerStack.Screen name="TextInput" component={TextInputScreen} />
+        </TimerStack.Navigator>
+    );
+}
 
 const ActivityStack = createStackNavigator()
 
-const ActivityStackScreen = () => (
-    <ActivityStack.Navigator headerMode="none">
-        <ActivityStack.Screen name="Activity" component={ActivityScreen} />
-    </ActivityStack.Navigator>
-)
+const ActivityStackScreen = () => {
+    return (
+        <ActivityStack.Navigator>
+            <ActivityStack.Screen name="Activity" component={ActivityScreen} />
+        </ActivityStack.Navigator>
+    );
+}
 
 const Tab = createBottomTabNavigator()
 
 const NavTabs = () => {
     return (
         <Tab.Navigator
-            initialRouteName="HomeScreen"
+            initialRouteName="Home"
             screenOptions={({ route }) => ({
                 tabBarIcon: () => {
                     const { name } = route
-                    if (name === 'HomeScreen') {
+                    if (name === 'Home') {
                         return <Explore />
-                    } else if (name === 'ExploreScreen') {
+                    } else if (name === 'Explore') {
                         return <Explore />
-                    } else if (name === 'TimerScreen') {
+                    } else if (name === 'Timer') {
                         return <Timer />
-                    } else if (name === 'ActivityScreen') {
+                    } else if (name === 'Activity') {
                         return <Activity />
                     }
                 },
             })}
             tabBarOptions={{
-                showLabel: false,
-                inactiveTintColor: '#fff',
-                activeTintColor: '#fff',
+                inactiveTintColor: 'grey',
+                activeTintColor: 'grey',
                 style: {
                     height: 95,
                     backgroundColor: '#fff',
                 },
             }}
-            initialRouteName="Register"
         >
             <Tab.Screen
                 name="Home"
