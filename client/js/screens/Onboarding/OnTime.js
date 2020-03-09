@@ -1,12 +1,24 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { withNavigation } from "react-navigation";
+import { TouchableOpacity } from 'react-native';
+import { Heading } from '../../globalStyles';
+import { Subheading, Background, Flex, BtnText } from './styles';
 
-const OnTime = () => {
+const OnTime = ({ navigation }) => {
     return (
-        <>
-            <Text>Onboarding: Time</Text>
-        </>
+        <Background>
+            <Heading>Track your green time</Heading>
+            <Subheading>When you get to a green space, just start your timer!</Subheading>
+            <Flex>
+                <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                    <BtnText isSkip>skip</BtnText>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.push('OnActivity')}>
+                    <BtnText>next slide</BtnText>
+                </TouchableOpacity>
+            </Flex>
+        </Background>
     )
 }
 
-export default OnTime;
+export default withNavigation(OnTime);

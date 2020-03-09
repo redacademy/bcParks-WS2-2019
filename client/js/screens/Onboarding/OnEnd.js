@@ -1,12 +1,24 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { withNavigation } from "react-navigation";
+import { TouchableOpacity } from 'react-native';
+import { Heading, PrimaryBtn, NextBtnCont } from '../../globalStyles';
+import { Subheading, Background } from './styles';
 
-const OnEnd = () => {
+const OnEnd = ({ navigation }) => {
     return (
-        <>
-            <Text>Onboarding: End</Text>
-        </>
+        <Background>
+            <Heading>Let's get started!</Heading>
+            <Subheading>You are all set. Start your journey!</Subheading>
+            <NextBtnCont>
+                <TouchableOpacity onPress={() => {
+                    navigation.popToTop()
+                    navigation.navigate('Home')
+                }}>
+                    <PrimaryBtn>start</PrimaryBtn>
+                </TouchableOpacity>
+            </NextBtnCont>
+        </Background>
     )
 }
 
-export default OnEnd;
+export default withNavigation(OnEnd);
