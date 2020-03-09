@@ -104,9 +104,9 @@ const RootStack = createStackNavigator()
 
 const Navigation = () => (
     <NavigationContainer>
-        <RootStack.Navigator initialRouteName="Welcome" headerMode="none">
-            <RootStack.Screen name="NavTabs" component={NavTabs} />
-            <RootStack.Screen name="Onboarding" component={OnboardingStackScreen} />
+        <RootStack.Navigator initialRouteName="Tabs">
+            <RootStack.Screen name="Tabs" component={NavTabs} />
+            {/* <RootStack.Screen name="Onboarding" component={OnboardingStackScreen} /> */}
         </RootStack.Navigator>
     </NavigationContainer>
 )
