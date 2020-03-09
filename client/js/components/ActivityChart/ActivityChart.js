@@ -2,7 +2,8 @@ import React, { Component, useState } from 'react';
 import {
     ScrollView,
     View,
-    Text
+    Text,
+    FlatList
 } from 'react-native';
 import styles from './styles';
 import { BarChart } from 'react-native-chart-kit';
@@ -24,6 +25,9 @@ const chartConfig = {
 const ActivityChart = ({ data }) => {
     let displayData = (chartData) => {
         if (chartData !== false) {
+            const timeLabel = chartData.graphLabels.sessions ?
+                (chartData.graphLabels.sessions.map(session => moment.utc(session.timeStart).format('HH:mm'))) :
+                chartData.graphLabels.progresses.map(progress => moment.utc(progress.date).format('dd'));
             const duration = chartData.graphValues.progresses ?
                 (chartData.graphValues.progresses.map(progress => progress.duration)) :
                 (chartData.graphValues.sessions.map(session => {
@@ -35,7 +39,7 @@ const ActivityChart = ({ data }) => {
 
 
             const barData = {
-                labels: chartData.graphLabels,
+                labels: timeLabel,
                 datasets: [
                     {
                         data: duration,
@@ -47,10 +51,10 @@ const ActivityChart = ({ data }) => {
     }
 
     let transformedData = displayData(data);
-
+    console.log('data graphvalues', data.graphValues.sessions)
     return (
         <ScrollView>
-            <View style={styles.mainContainer}>
+            <View >
                 <BarChart
                     // style={graphStyle}
                     data={transformedData}
