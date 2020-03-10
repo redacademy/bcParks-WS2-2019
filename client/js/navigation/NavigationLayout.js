@@ -12,6 +12,7 @@ import OnLandingScreen from '../screens/Onboarding/OnLanding';
 import OnLocationScreen from '../screens/Onboarding/OnLocation';
 import OnTimeScreen from '../screens/Onboarding/OnTime';
 import OnActivityScreen from '../screens/Onboarding/OnActivity';
+import OnGoalScreen from '../screens/Onboarding/OnGoal';
 import OnEndScreen from '../screens/Onboarding/OnEnd';
 
 const HomeStack = createStackNavigator({
@@ -34,6 +35,7 @@ const OnboardingStack = createStackNavigator({
     OnLocation: OnLocationScreen,
     OnTime: OnTimeScreen,
     OnActivity: OnActivityScreen,
+    OnGoal: OnGoalScreen,
     OnEnd: OnEndScreen
 });
 

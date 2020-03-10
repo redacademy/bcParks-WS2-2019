@@ -10,7 +10,7 @@ export const Subheading = styled.Text`
     font-size: ${theme.bodyFontSize};
     color: ${theme.bodyTextColor};
     text-align: center;
-    width: 65%;
+    width: 80%;
     margin: 0 auto;
 `
 export const Flex = styled.View`
@@ -30,6 +30,6 @@ export const BtnText = styled.Text`
 export const styles = StyleSheet.create({
     image: {
         marginHorizontal: 45,
-        marginVertical: 45
+        marginVertical: 75
     }
 });

@@ -27,7 +27,7 @@ export const Heading = styled.Text`
     font-size: ${theme.h1FontSize};
     color: ${theme.accentColor};
     text-align: center;
-    margin: 50px 0;
+    margin: 40px 0 20px 0;
 `
 
 export const NextBtnCont = styled.View`
