@@ -1,13 +1,11 @@
 import React from "react";
-import { View } from "react-native";
+import { withNavigation } from 'react-navigation';
 import TextInput from "./TextInput";
 
-const TextInputContainer = () => {
+const TextInputContainer = ({ navigation }) => {
     return (
-        <View>
-            <TextInput />
-        </View>
+        <TextInput navigation={navigation} />
     )
 }
 
-export default TextInputContainer;
+export default withNavigation(TextInputContainer);

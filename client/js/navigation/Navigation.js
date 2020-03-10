@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Explore from '../assets/images/Explore';
 import Timer from '../assets/images/Timer';
 import Activity from '../assets/images/Activity';
@@ -79,9 +79,10 @@ const NavTabs = () => {
             })}
             tabBarOptions={{
                 inactiveTintColor: 'grey',
-                activeTintColor: 'grey',
+                activeTintColor: '#49773A',
                 style: {
-                    height: 95,
+                    height: 110,
+                    padding: 10,
                     backgroundColor: '#fff',
                 },
             }}
@@ -114,7 +115,7 @@ const RootStack = createStackNavigator()
 
 const Navigation = () => (
     <NavigationContainer>
-        <RootStack.Navigator initialRouteName="Tabs">
+        <RootStack.Navigator initialRouteName="Tabs" headerMode="none">
             <RootStack.Screen name="Tabs" component={NavTabs} />
             {/* <RootStack.Screen name="Onboarding" component={OnboardingStackScreen} /> */}
         </RootStack.Navigator>

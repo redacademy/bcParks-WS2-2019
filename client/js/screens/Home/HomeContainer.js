@@ -1,4 +1,5 @@
 import React from "react"
+import { withNavigation } from 'react-navigation';
 import { Text } from "react-native"
 import Home from "./Home"
 import { gql } from 'apollo-boost';
@@ -15,7 +16,7 @@ const QUERY_PROGRESS = gql`
     }
 `;
 
-const HomeContainer = () => {
+const HomeContainer = ({ navigation }) => {
     const { loading, error, data } = useQuery(QUERY_PROGRESS);
     if (loading) {
         return (
@@ -27,9 +28,9 @@ const HomeContainer = () => {
         )
     } else {
         return (
-            <Home data={data} />
+            <Home data={data} navigation={navigation} />
         )
     }
 }
 
-export default HomeContainer
+export default withNavigation(HomeContainer)

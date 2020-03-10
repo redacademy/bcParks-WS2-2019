@@ -1,5 +1,4 @@
 import React from 'react';
-import { withNavigation } from "react-navigation";
 import { View, Text, TouchableOpacity } from 'react-native';
 import StartStopTimer from '../../components/StartStopTimer/StartStopTimer';
 import styled from 'styled-components';
@@ -24,4 +23,4 @@ const TimerScreen = ({ navigation }) => {
     );
 }
 
-export default withNavigation(TimerScreen);
+export default TimerScreen;

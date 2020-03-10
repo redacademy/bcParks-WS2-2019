@@ -1,13 +1,11 @@
 import React from "react";
-import { View } from "react-native";
 import Timer from "./Timer";
+import { withNavigation } from "react-navigation";
 
-const TimerContainer = () => {
+const TimerContainer = ({ navigation }) => {
     return (
-        <View>
-            <Timer />
-        </View>
+        <Timer navigation={navigation} />
     )
 }
 
-export default TimerContainer;
+export default withNavigation(TimerContainer);

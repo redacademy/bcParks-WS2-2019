@@ -1,13 +1,11 @@
 import React from "react";
-import { View } from "react-native";
+import { withNavigation } from 'react-navigation';
 import MoodSelect from "./MoodSelect";
 
-const MoodSelectContainer = () => {
+const MoodSelectContainer = ({ navigation }) => {
     return (
-        <View>
-            <MoodSelect />
-        </View>
+        <MoodSelect navigation={navigation} />
     )
 }
 
-export default MoodSelectContainer;
+export default withNavigation(MoodSelectContainer);
