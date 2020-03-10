@@ -1,6 +1,5 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { withNavigation } from 'react-navigation';
 import { theme, Heading, ScreenBkgCont, NextBtnCont, PrimaryBtn, InputSkipText } from '../../globalStyles';
 import styled from 'styled-components';
 import MoodSlider from '../../components/MoodSlider/MoodSlider';
@@ -30,4 +29,4 @@ const MoodSelectScreen = ({ navigation }) => {
     );
 }
 
-export default withNavigation(MoodSelectScreen);
+export default MoodSelectScreen;

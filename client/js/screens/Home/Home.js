@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, Button, TouchableOpacity } from 'react-native';
-import { withNavigation } from 'react-navigation';
+import { View, Text, Button } from 'react-native';
 import ProgressCircle from 'react-native-progress-circle';
 
 const HomeScreen = ({ navigation, data }) => {
@@ -23,7 +22,7 @@ const HomeScreen = ({ navigation, data }) => {
             <Button
                 title="Edit goals"
                 onPress={() => navigation.push('Goal')}
-                />
+            />
             <Button
                 title="Go to Activity"
                 onPress={() => navigation.navigate('Activity')}
@@ -34,4 +33,4 @@ const HomeScreen = ({ navigation, data }) => {
 }
 
 
-export default withNavigation(HomeScreen);
+export default HomeScreen;

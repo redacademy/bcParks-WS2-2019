@@ -1,6 +1,5 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { withNavigation } from 'react-navigation';
 import { theme, ScreenBkgCont, PrimaryBtn, NextBtnCont, InputSkipText } from '../../globalStyles';
 import styled from 'styled-components';
 import InputTextBox from '../../components/InputText/InputText';
@@ -37,4 +36,4 @@ const TextInputScreen = ({ navigation }) => {
     );
 }
 
-export default withNavigation(TextInputScreen);
+export default TextInputScreen;

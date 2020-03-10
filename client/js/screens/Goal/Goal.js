@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, Button, TouchableOpacity, TextInput } from 'react-native';
-import { withNavigation } from 'react-navigation';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { DayButtonContainer, ToggleMenu } from './style';
@@ -23,7 +22,7 @@ const Mutation_UpdateGoals = gql`
     }
 `
 
-const GoalScreen = () => {
+const GoalScreen = ({ navigation }) => {
     const [type, setType] = useState("daily");
     const [days, setDays] = useState([]);
     const [hours, setHours] = useState(1);
@@ -116,4 +115,4 @@ const GoalScreen = () => {
     )
 }
 
-export default withNavigation(GoalScreen);
+export default GoalScreen;
