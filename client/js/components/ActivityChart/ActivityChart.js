@@ -35,8 +35,6 @@ const ActivityChart = ({ data }) => {
                     let end = moment.utc(session.timeEnd);
                     return end.diff(start, 'hours', true)
                 }));
-            console.log("duration", duration)
-
 
             const barData = {
                 labels: timeLabel,
@@ -51,19 +49,24 @@ const ActivityChart = ({ data }) => {
     }
 
     let transformedData = displayData(data);
-    console.log('data graphvalues', data.graphValues.sessions)
     return (
         <ScrollView>
             <View >
+                <Text>{data.graphValues.sessions ?
+                    (moment.utc(data.graphValues.sessions[0].timeStart).format('dddd')) :
+                    ((moment.utc(data.graphValues.progresses[0].date).startOf('week').format('YYYY-MM-DD')) +
+                        (moment.utc(data.graphValues.progresses[0].date).endOf('week').format('YYYY-MM-DD')))}
+                </Text>
                 <BarChart
                     // style={graphStyle}
                     data={transformedData}
                     width={screenWidth}
                     height={220}
                     chartConfig={chartConfig}
-                    yAxisSuffix={'m'}
+                    yAxisSuffix={'h'}
                     withInnerLines={false}
                     fromZero
+
                 />
 
             </View>

@@ -5,7 +5,6 @@ import {
     Text,
     FlatList
 } from 'react-native';
-import PeriodicButtons from '../../components/PeriodicButtons/PeriodicButtons';
 import ActivityChart from '../../components/ActivityChart/ActivityChart';
 import ActivityList from '../../components/ActivityList/ActivityList';
 import ActivityDisplay from '../../components/ActivityDisplay/ActivityDisplay'

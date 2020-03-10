@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import moment from "moment";
+import styled from 'styled-components';
+
 
 const SESSIONS_QUERY = gql`
   query Sessions($where: SessionWhereInput){
@@ -36,6 +38,11 @@ const PROGRESSES_QUERY = gql`
       }
   }
 `
+const ButtonsContainer = styled.View`
+    display: flex
+    flexDirection: row
+    justifyContent: space-around
+`
 
 const ActivityContainer = () => {
     let focusedDay = new Date();
@@ -55,10 +62,13 @@ const ActivityContainer = () => {
 
     updateQueryDates(focusedDayMoment.subtract(1, 'w'));
 
+    console.log(sessionQueryStartDate, sessionQueryEndDate);
+    console.log(progressQueryStartDate, progressQueryEndDate);
+
+
     const [graphData, setGraphData] = useState(
         {
-            graphValues: null,
-            graphLabels: null
+            graphValues: null
         }
     );
 
@@ -70,7 +80,7 @@ const ActivityContainer = () => {
                 }
             }
         });
-    const { loading: sessionsQueryLoading, error: sessionsQueryError, data: sessions, refetch: refetchSessions } =
+    const { loading: sessionsQueryLoading, error: sessionsQueryError, data: sessions } =
         useQuery(SESSIONS_QUERY, {
             variables: {
                 where: {
@@ -79,12 +89,6 @@ const ActivityContainer = () => {
             }
         });
 
-    const [graphData, setGraphData] = useState(
-        {
-            graphValues: null,
-            graphLabels: null
-        }
-    );
 
 
     if (progressesQueryLoading || sessionsQueryLoading) return null;
@@ -94,27 +98,29 @@ const ActivityContainer = () => {
     console.log('activity container', sessions, progresses)
     return (
         <View>
-            <TouchableOpacity onPress={() => {
-                setGraphData(
-                    {
-                        graphValues: sessions
-                    }
+            <ButtonsContainer>
+                <TouchableOpacity onPress={() => {
+                    setGraphData(
+                        {
+                            graphValues: sessions
+                        }
 
-                );
-            }}>
-                <Text>Daily</Text>
-            </TouchableOpacity>
+                    );
+                }}>
+                    <Text>Daily</Text>
+                </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => {
-                setGraphData(
-                    {
-                        graphValues: progresses
-                    }
-                );
+                <TouchableOpacity onPress={() => {
+                    setGraphData(
+                        {
+                            graphValues: progresses
+                        }
+                    );
 
-            }}>
-                <Text>Weekly</Text>
-            </TouchableOpacity>
+                }}>
+                    <Text>Weekly</Text>
+                </TouchableOpacity>
+            </ButtonsContainer>
 
             {graphData.graphValues && <Activity data={graphData} />}
 
