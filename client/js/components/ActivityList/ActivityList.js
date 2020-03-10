@@ -17,12 +17,13 @@ const ActivityList = ({ data }) => {
                 data={data.graphValues.sessions}
                 renderItem={({ item }) => {
                     let duration = (moment.utc(item.timeEnd)).diff((moment.utc(item.timeStart)), 'hours', true);
+                    console.log('name', item.locations)
                     return (
                         <View>
                             <Text> {item.mood} </Text>
                             <Text> {moment.utc(item.timeStart).format('HH:mm a')} </Text>
                             <Text> {duration}h </Text>
-                            <Text> {item.locations} </Text>
+                            <Text> {item.locations.name} </Text>
                         </View>
                     )
                 }}

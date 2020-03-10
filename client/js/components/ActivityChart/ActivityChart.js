@@ -25,9 +25,9 @@ const chartConfig = {
 const ActivityChart = ({ data }) => {
     let displayData = (chartData) => {
         if (chartData !== false) {
-            const timeLabel = chartData.graphLabels.sessions ?
-                (chartData.graphLabels.sessions.map(session => moment.utc(session.timeStart).format('HH:mm'))) :
-                chartData.graphLabels.progresses.map(progress => moment.utc(progress.date).format('dd'));
+            const timeLabel = chartData.graphValues.sessions ?
+                (chartData.graphValues.sessions.map(session => moment.utc(session.timeStart).format('HH:mm'))) :
+                chartData.graphValues.progresses.map(progress => moment.utc(progress.date).format('dd'));
             const duration = chartData.graphValues.progresses ?
                 (chartData.graphValues.progresses.map(progress => progress.duration)) :
                 (chartData.graphValues.sessions.map(session => {
