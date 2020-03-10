@@ -10,7 +10,7 @@ const OnLanding = ({ navigation }) => {
         <Background>
             <Heading>Welcome to PaRx</Heading>
             <Subheading>Connecting to nature is one of the most powerful ways to improve your health</Subheading>
-            <OnboardingLanding style={styles.image} />
+            <OnboardingLanding style={styles.imageLanding} />
             <Flex>
                 <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                     <BtnText isSkip>skip</BtnText>

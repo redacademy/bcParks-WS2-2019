@@ -31,5 +31,9 @@ export const styles = StyleSheet.create({
     image: {
         marginHorizontal: 45,
         marginVertical: 75
+    },
+    imageLanding: {
+        marginHorizontal: 45,
+        marginVertical: 60
     }
 });
