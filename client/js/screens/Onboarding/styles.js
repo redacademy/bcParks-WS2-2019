@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { theme } from '../../globalStyles';
+import { StyleSheet } from 'react-native';
 
 export const Background = styled.View`
     background-color: ${theme.screenBkgColor};
@@ -25,3 +26,10 @@ export const BtnText = styled.Text`
     text-transform: capitalize;
     margin: 60px 20px 60px;
 `
+
+export const styles = StyleSheet.create({
+    image: {
+        marginHorizontal: 45,
+        marginVertical: 45
+    }
+});
