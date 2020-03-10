@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, Text, Animated} from 'react-native';
+import React, {useEffect, useState, useRef} from 'react';
+import {View, StyleSheet, Text} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import fetchData from '../../config/fetchData';
 import MapSwiper from '../../components/MapSwiper';
@@ -35,11 +35,13 @@ const CustomMarkerOpacity = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: ${({selected}) => (selected ? 1 : 0.5)};
 `;
 const ExploreScreen = () => {
   const [mapData, setMapData] = useState([]);
   const [APIData, setAPIData] = useState([]);
-  const [animation, setAnimation] = useState(new Animated.Value(0));
+  const [selectedMap, setSelectedMap] = useState();
+  const _carousel = useRef();
 
   const cardWidth = 291;
   const getImages = reference => {
@@ -89,26 +91,20 @@ const ExploreScreen = () => {
       setMapData(data.maps);
     });
   }, []);
-  const interpolations = mapData.map((marker, index) => {
-    const inputRange = [
-      (index - 1) * cardWidth,
-      index * cardWidth,
-      (index + 1) * cardWidth,
-    ];
-    const opacity = animation.interpolate({
-      inputRange,
-      outputRange: [0.5, 1, 0.5],
-      extrapolate: 'clamp',
-    });
-    return {opacity};
-  });
+  const matchSelected = map => {
+    if (selectedMap) {
+      return selectedMap.id === map.id ? true : false;
+    }
+  };
+  const onPress = (map, index) => {
+    setSelectedMap(map);
+    _carousel.current.snapToItem(index);
+  };
   const getMarkers = () =>
     mapData.map((map, index) => {
-      const opacityStyle = {
-        opacity: interpolations[index].opacity,
-      };
       return (
         <Marker
+          onPress={() => onPress(map, index)}
           coordinate={{
             latitude: map.geometry.location.lat,
             longitude: map.geometry.location.lng,
@@ -116,7 +112,8 @@ const ExploreScreen = () => {
           title={map.name}
           description={map.vicinity}
           key={map.id}>
-          <CustomMarkerOpacity style={opacityStyle}>
+          <MapView.Callout tooltip={true} />
+          <CustomMarkerOpacity selected={matchSelected(map)}>
             <CustomMarker>
               <Text>{index + 1}</Text>
             </CustomMarker>
@@ -145,7 +142,8 @@ const ExploreScreen = () => {
         <MapSwiper
           mapData={mapData}
           cardWidth={cardWidth}
-          animation={animation}
+          setSelectedMap={setSelectedMap}
+          _carousel={_carousel}
         />
       </Containter>
     </View>
