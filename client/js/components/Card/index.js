@@ -10,7 +10,7 @@ const ImageFrame = styled.Image`
 `;
 const Card = ({detail}) => {
   return (
-    <View style={style.card}>
+    <View>
       <ImageFrame />
       <View>
         <Text>{detail.name}</Text>
@@ -19,9 +19,5 @@ const Card = ({detail}) => {
     </View>
   );
 };
-const style = StyleSheet.create({
-  card: {
-    width: 291,
-  },
-});
+
 export default Card;
