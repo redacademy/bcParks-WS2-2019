@@ -1,7 +1,7 @@
 import React from 'react';
 import client from './config/api'
 import { ApolloProvider } from '@apollo/react-hooks';
-import RootStackNavigator from './navigation/RootStackNavigator';
+import Navigation from './navigation/Navigation';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './globalStyles';
 
@@ -10,7 +10,7 @@ const App = () => {
     <>
       <ApolloProvider client={client}>
         <ThemeProvider theme={theme}>
-          <RootStackNavigator />
+          <Navigation />
         </ThemeProvider>
       </ApolloProvider>
     </>
