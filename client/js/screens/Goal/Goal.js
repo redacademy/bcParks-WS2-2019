@@ -7,13 +7,13 @@ import { DayButtonContainer, ToggleMenu } from './style';
 import DaysButton from '../../components/DaysButton/DaysButton';
 
 const Mutation_UpdateGoals = gql`
-    mutation UpdateGoals($hours: Int!, $title: [String!]) {
+    mutation UpdateGoals($hours: Float!, $title: [String!]) {
         updateManyGoals(
             data: {
                 hours: $hours
             },
             where: {
-                days_every: {
+                days: {
                     title_in: $title
                 }
             }
