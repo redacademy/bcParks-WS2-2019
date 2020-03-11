@@ -5,7 +5,7 @@ export const theme = {
     primaryColor: "#49773A",
     accentColor: "#DA6645",
     grayColor: "#767676",
-    screenBkgColor: "#8CBE82",
+    screenBkgColor: "#A3CB9B",
     bodyTextColor: "#000",
     invertTextColor: "#fff",
     disabledColor: "#9d9d9d",
@@ -15,6 +15,7 @@ export const theme = {
     h1FontSize: "34px",
     h2FontSize: "24px",
     bodyFontSize: "18px"
+    // #8cbe82
 }
 
 export const ScreenBkgCont = styled.View`
@@ -26,7 +27,7 @@ export const Heading = styled.Text`
     font-size: ${theme.h1FontSize};
     color: ${theme.accentColor};
     text-align: center;
-    margin: 50px 0;
+    margin: 40px 0 20px 0;
 `
 
 export const NextBtnCont = styled.View`

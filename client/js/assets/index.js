@@ -1,7 +1,7 @@
 
 export const OnboardingLanding = require('./images/OnboardingLanding.svg');
 export const OnboardingLocation = require('./images/OnboardingLocation.svg');
-export const OnboardingTimer = require('./images/OnboardingTimer.svg');
+export const OnboardingTime = require('./images/OnboardingTime.svg');
 export const OnboardingEnd = require('./images/OnboardingEnd.svg');
 
 export const Timer = require('./images/Timer.svg');
