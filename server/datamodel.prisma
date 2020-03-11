@@ -21,7 +21,7 @@ type Session {
     geometry: Geometry!
     vicinity: String!
     plus_code: PlusCode
-    photos: [String] @scalarList(strategy: RELATION)
+    photo_reference: String
     opening_hours: Boolean
     features: [Feature]
     boundaries: [GeoPoint]
