@@ -12,7 +12,7 @@ const OnActivity = ({ navigation }) => {
             <Subheading>Find out how well you are doing!</Subheading>
             <OnboardingTime style={styles.image} />
             <Flex>
-                <TouchableOpacity onPress={() => { navigation.popToTop(), navigation.navigate('Home') }}>
+                <TouchableOpacity onPress={() => navigation.navigate('Tabs')}>
                     <BtnText isSkip>skip</BtnText>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.push('OnGoal')}>

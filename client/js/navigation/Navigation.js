@@ -126,11 +126,6 @@ const NavTabs = () => {
                 component={ActivityStackScreen}
                 options={{ title: 'Activity' }}
             />
-            <Tab.Screen
-                name="Onboarding"
-                component={OnboardingStackScreen}
-                options={{ title: 'Onboarding' }}
-            />
         </Tab.Navigator>
     )
 }
@@ -139,9 +134,9 @@ const RootStack = createStackNavigator()
 
 const Navigation = () => (
     <NavigationContainer>
-        <RootStack.Navigator initialRouteName="Tabs" headerMode="none">
+        <RootStack.Navigator initialRouteName="Onboarding" headerMode="none">
+            <RootStack.Screen name="Onboarding" component={OnboardingStackScreen} />
             <RootStack.Screen name="Tabs" component={NavTabs} />
-            {/* <RootStack.Screen name="Onboarding" component={OnboardingStackScreen} /> */}
         </RootStack.Navigator>
     </NavigationContainer>
 )

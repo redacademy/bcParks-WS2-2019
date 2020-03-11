@@ -12,7 +12,7 @@ const OnGoal = ({ navigation }) => {
             <Subheading>2 hours in nature each week, and at least 20mins each time is recommended. Of course, more the better! </Subheading>
             <Goal />
             <Flex>
-                <TouchableOpacity onPress={() => { navigation.popToTop(), navigation.navigate('Home') }}>
+                <TouchableOpacity onPress={() => navigation.navigate('Tabs')}>
                     <BtnText isSkip>skip</BtnText>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.push('OnEnd')}>
