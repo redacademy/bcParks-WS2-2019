@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import styled from 'styled-components';
-import Carousel from 'react-native-snap-carousel';
+import {GOOGLE_API_KEY} from '../../.config.js';
 
 const ImageFrame = styled.Image`
   background: #333;
@@ -9,9 +9,17 @@ const ImageFrame = styled.Image`
   border-radius: 4px;
 `;
 const Card = ({detail}) => {
+  const getImages = reference => {
+    return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=${reference}&key=${GOOGLE_API_KEY}`;
+  };
+  const noImage = '';
   return (
-    <View>
-      <ImageFrame />
+    <View style={styles.card}>
+      <ImageFrame
+        source={{
+          url: detail.photos ? getImages(detail.photos) : noImage,
+        }}
+      />
       <View>
         <Text>{detail.name}</Text>
         <Text>distance</Text>
@@ -19,5 +27,9 @@ const Card = ({detail}) => {
     </View>
   );
 };
-
+const styles = StyleSheet.create({
+  card: {
+    marginRight: 16,
+  },
+});
 export default Card;

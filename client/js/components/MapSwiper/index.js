@@ -1,5 +1,5 @@
-import React, {useRef} from 'react';
-import {Text, View, StyleSheet, ScrollView} from 'react-native';
+import React from 'react';
+import {Text} from 'react-native';
 import Card from '../Card';
 import styled from 'styled-components';
 import Carousel from 'react-native-snap-carousel';
@@ -17,7 +17,7 @@ const MapSwiper = ({mapData, cardWidth, setSelectedMap, _carousel}) => {
         ref={_carousel}
         data={mapData}
         renderItem={_renderItem}
-        sliderWidth={375}
+        sliderWidth={1000}
         itemWidth={cardWidth}
         snapOnAndroid={true}
         showsHorizontalScrollIndicator={false}
