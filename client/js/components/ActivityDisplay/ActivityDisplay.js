@@ -6,6 +6,8 @@ import {
 } from 'react-native';
 // import styles from './styles';
 import moment from "moment";
+import { DisplayContainer, SubDisplayContainer } from './styles';
+
 
 
 const ActivityDisplay = ({ data }) => {
@@ -19,19 +21,19 @@ const ActivityDisplay = ({ data }) => {
         }));
     const totalDuration = durationDisplay.reduce((result, number) => result + number);
 
-    console.log('session duration', durationDisplay)
-
     return (
-        <View>
-            <Text>You have spent</Text>
+        <DisplayContainer>
+            <SubDisplayContainer>
+                <Text>You have spent</Text>
 
-            <Text>{totalDuration}h</Text>
+                <Text>{totalDuration}h</Text>
+            </SubDisplayContainer>
+            <SubDisplayContainer>
+                <Text>Average mood</Text>
+                <Text>Great!</Text>
 
-            <Text>Average mood</Text>
-
-
-
-        </View>
+            </SubDisplayContainer>
+        </DisplayContainer>
     )
 
 

@@ -10,7 +10,6 @@ import moment from "moment";
 
 
 const ActivityList = ({ data }) => {
-    console.log('activity list', data);
     return (
         <View>
             <FlatList
@@ -22,7 +21,7 @@ const ActivityList = ({ data }) => {
                             <Text> {item.mood} </Text>
                             <Text> {moment.utc(item.timeStart).format('HH:mm a')} </Text>
                             <Text> {duration}h </Text>
-                            <Text> {item.locations} </Text>
+                            <Text> {item.locations[0].name} </Text>
                         </View>
                     )
                 }}

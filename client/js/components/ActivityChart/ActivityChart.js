@@ -25,9 +25,9 @@ const chartConfig = {
 const ActivityChart = ({ data }) => {
     let displayData = (chartData) => {
         if (chartData !== false) {
-            const timeLabel = chartData.graphLabels.sessions ?
-                (chartData.graphLabels.sessions.map(session => moment.utc(session.timeStart).format('HH:mm'))) :
-                chartData.graphLabels.progresses.map(progress => moment.utc(progress.date).format('dd'));
+            const timeLabel = chartData.graphValues.sessions ?
+                (chartData.graphValues.sessions.map(session => moment.utc(session.timeStart).format('HH:mm'))) :
+                chartData.graphValues.progresses.map(progress => moment.utc(progress.date).format('dd'));
             const duration = chartData.graphValues.progresses ?
                 (chartData.graphValues.progresses.map(progress => progress.duration)) :
                 (chartData.graphValues.sessions.map(session => {
@@ -35,8 +35,6 @@ const ActivityChart = ({ data }) => {
                     let end = moment.utc(session.timeEnd);
                     return end.diff(start, 'hours', true)
                 }));
-            console.log("duration", duration)
-
 
             const barData = {
                 labels: timeLabel,
@@ -51,19 +49,25 @@ const ActivityChart = ({ data }) => {
     }
 
     let transformedData = displayData(data);
-    console.log('data graphvalues', data.graphValues.sessions)
     return (
         <ScrollView>
             <View >
+                <Text>
+                    {data.graphValues.sessions ?
+                        (moment.utc(data.graphValues.sessions[0].timeStart).format('YYYY-MM-DD')) :
+                        ((moment.utc(data.graphValues.progresses[0].date).startOf('week').add(1, 'd').format('YYYY-MM-DD')) + " - " +
+                            (moment.utc(data.graphValues.progresses[0].date).endOf('week').add(1, 'd').format('YYYY-MM-DD')))}
+                </Text>
                 <BarChart
                     // style={graphStyle}
                     data={transformedData}
                     width={screenWidth}
                     height={220}
                     chartConfig={chartConfig}
-                    yAxisSuffix={'m'}
+                    yAxisSuffix={'h'}
                     withInnerLines={false}
                     fromZero
+
                 />
 
             </View>
