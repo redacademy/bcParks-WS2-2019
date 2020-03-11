@@ -52,10 +52,11 @@ const ActivityChart = ({ data }) => {
     return (
         <ScrollView>
             <View >
-                <Text>{data.graphValues.sessions ?
-                    (moment.utc(data.graphValues.sessions[0].timeStart).format('dddd')) :
-                    ((moment.utc(data.graphValues.progresses[0].date).startOf('week').format('YYYY-MM-DD')) +
-                        (moment.utc(data.graphValues.progresses[0].date).endOf('week').format('YYYY-MM-DD')))}
+                <Text>
+                    {data.graphValues.sessions ?
+                        (moment.utc(data.graphValues.sessions[0].timeStart).format('YYYY-MM-DD')) :
+                        ((moment.utc(data.graphValues.progresses[0].date).startOf('week').add(1, 'd').format('YYYY-MM-DD')) + " - " +
+                            (moment.utc(data.graphValues.progresses[0].date).endOf('week').add(1, 'd').format('YYYY-MM-DD')))}
                 </Text>
                 <BarChart
                     // style={graphStyle}

@@ -9,6 +9,8 @@ import {
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import moment from "moment";
 import styled from 'styled-components';
+import { PrimaryBtn } from '../../globalStyles';
+
 
 
 const SESSIONS_QUERY = gql`
@@ -45,8 +47,8 @@ const ButtonsContainer = styled.View`
 `
 
 const ActivityContainer = () => {
-    let focusedDay = new Date();
-    let focusedDayMoment = moment(focusedDay);
+    // let focusedDay = new Date();
+    let focusedDayMoment = moment(new Date());
 
     let sessionQueryStartDate = null;
     let sessionQueryEndDate = null;
