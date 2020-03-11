@@ -12,10 +12,7 @@ const OnEnd = ({ navigation }) => {
             <Subheading>You are all set. Start your journey!</Subheading>
             <OnboardingEnd style={styles.image} />
             <NextBtnCont>
-                <TouchableOpacity onPress={() => {
-                    navigation.popToTop()
-                    navigation.navigate('Home')
-                }}>
+                <TouchableOpacity onPress={() => navigation.navigate('Tabs')}>
                     <PrimaryBtn>start</PrimaryBtn>
                 </TouchableOpacity>
             </NextBtnCont>

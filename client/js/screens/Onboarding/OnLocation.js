@@ -12,7 +12,7 @@ const OnLocation = ({ navigation }) => {
             <Subheading>You can search for green spaces near you</Subheading>
             <OnboardingLocation style={styles.image} />
             <Flex>
-                <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Tabs')}>
                     <BtnText isSkip>skip</BtnText>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.push('OnTime')}>
