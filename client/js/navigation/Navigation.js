@@ -12,7 +12,26 @@ import ExploreScreen from '../screens/Explore';
 import MoodSelectScreen from '../screens/MoodSelect';
 import TextInputScreen from '../screens/TextInput';
 import GoalScreen from '../screens/Goal';
+import OnLanding from '../screens/Onboarding/OnLanding';
+import OnLocation from '../screens/Onboarding/OnLocation';
+import OnTime from '../screens/Onboarding/OnTime';
+import OnActivity from '../screens/Onboarding/OnActivity';
+import OnGoal from '../screens/Onboarding/OnGoal';
+import OnEnd from '../screens/Onboarding/OnEnd';
 
+const OnboardingStack = createStackNavigator();
+const OnboardingStackScreen = () => {
+    return (
+        <OnboardingStack.Navigator initialRouteName="OnLanding">
+            <OnboardingStack.Screen name="OnLanding" component={OnLanding} />
+            <OnboardingStack.Screen name="OnLocation" component={OnLocation} />
+            <OnboardingStack.Screen name="OnTime" component={OnTime} />
+            <OnboardingStack.Screen name="OnActivity" component={OnActivity} />
+            <OnboardingStack.Screen name="OnGoal" component={OnGoal} />
+            <OnboardingStack.Screen name="OnEnd" component={OnEnd} />
+        </OnboardingStack.Navigator>
+    );
+}
 
 const HomeStack = createStackNavigator()
 
@@ -106,6 +125,11 @@ const NavTabs = () => {
                 name="Activity"
                 component={ActivityStackScreen}
                 options={{ title: 'Activity' }}
+            />
+            <Tab.Screen
+                name="Onboarding"
+                component={OnboardingStackScreen}
+                options={{ title: 'Onboarding' }}
             />
         </Tab.Navigator>
     )

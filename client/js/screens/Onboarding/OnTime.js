@@ -12,7 +12,7 @@ const OnTime = ({ navigation }) => {
             <Subheading>When you get to a green space, just start your timer!</Subheading>
             <OnboardingTime style={styles.image} />
             <Flex>
-                <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                <TouchableOpacity onPress={() => { navigation.popToTop(), navigation.navigate('Home') }}>
                     <BtnText isSkip>skip</BtnText>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.push('OnActivity')}>

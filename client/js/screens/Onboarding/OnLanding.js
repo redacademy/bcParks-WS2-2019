@@ -12,7 +12,7 @@ const OnLanding = ({ navigation }) => {
             <Subheading>Connecting to nature is one of the most powerful ways to improve your health</Subheading>
             <OnboardingLanding style={styles.imageLanding} />
             <Flex>
-                <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                <TouchableOpacity onPress={() => { navigation.popToTop(), navigation.navigate('Home') }}>
                     <BtnText isSkip>skip</BtnText>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.push('OnLocation')}>
