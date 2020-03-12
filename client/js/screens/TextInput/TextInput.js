@@ -1,12 +1,13 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { theme, ScreenBkgCont, PrimaryBtn, NextBtnCont, InputSkipText } from '../../globalStyles';
-import styled from 'styled-components';
+import { theme, ScreenBkgCont, PrimaryBtn } from '../../globalStyles';
+import { NextBtnCont, InputSkipText } from '../Timer/styles';
 import InputTextBox from '../../components/InputText/InputText';
+import styled from 'styled-components';
 
-const SubHeading = styled.Text`
+const InputHeading = styled.Text`
     font-size:${theme.bodyFontSize};
-    font-family: ${theme.headlineFont};
+    font-family: ${theme.bodyFont};
     width: 70%
     margin: 70px 35px 40px;
     line-height: 30px;
@@ -16,7 +17,7 @@ const TextInputScreen = ({ navigation }) => {
 
     return (
         <ScreenBkgCont>
-            <SubHeading>Write about your experience with Green Time.</SubHeading>
+            <InputHeading>Write about your experience with Green Time.</InputHeading>
             <InputTextBox />
             <NextBtnCont>
                 <TouchableOpacity onPress={() => {

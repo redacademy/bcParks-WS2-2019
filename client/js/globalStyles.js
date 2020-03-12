@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 export const theme = {
     primaryColor: "#49773A",
     accentColor: "#DA6645",
@@ -21,6 +20,7 @@ export const theme = {
 
 export const ScreenBkgCont = styled.View`
     background-color: ${theme.screenBkgColor};
+    padding: 80px 0 0;
 `
 export const Heading = styled.Text`
     font-family: ${theme.headlineFont};
@@ -37,14 +37,10 @@ export const SubHeading = styled.Text`
     width: 80%;
     margin: 0 auto;
 `
-export const NextBtnCont = styled.View`
-    margin: 50px auto;
-`
-
 export const PrimaryBtn = styled.Text`
     font-family: ${theme.bodyFont};
     font-size: ${theme.h2FontSize};
-    background-color: ${theme.primaryColor};
+    background-color: ${props => props.isStop ? theme.accentColor : theme.primaryColor};
     color: ${theme.invertTextColor};
     text-align: center;
     text-transform: capitalize;
@@ -52,13 +48,4 @@ export const PrimaryBtn = styled.Text`
     width: 100%;
     border-radius: 25px;
     overflow:hidden;
-`
-
-export const InputSkipText = styled.Text`
-    font-family: ${theme.headlineFont};
-    font-size: ${theme.bodyFontSize};
-    color: ${theme.invertTextColor};
-    text-align: center;
-    text-transform: capitalize;
-    margin: 0 0 80px;
 `

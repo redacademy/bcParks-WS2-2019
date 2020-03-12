@@ -5,4 +5,11 @@ import Login from "./Login/Login";
 import SignUpContainer from "./SignUp/SignUpContainer";
 import SignUp from "./SignUp/SignUp";
 
-export { ForgotPwContainer, ForgotPw, LoginContainer, Login, SignUpContainer, SignUp };
+export {
+    ForgotPwContainer,
+    ForgotPw,
+    LoginContainer,
+    Login,
+    SignUpContainer,
+    SignUp
+};

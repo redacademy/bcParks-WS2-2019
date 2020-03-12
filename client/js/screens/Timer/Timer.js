@@ -4,7 +4,7 @@ import StartStopTimer from '../../components/StartStopTimer/StartStopTimer';
 import styled from 'styled-components';
 
 const Placeholder = styled.View`
-    height: 350px;
+    height: 320px;
 `
 
 const TimerScreen = ({ navigation }) => {
@@ -16,7 +16,6 @@ const TimerScreen = ({ navigation }) => {
                 <StartStopTimer />
                 <TouchableOpacity onPress={() => navigation.push('MoodSelect')}>
                     <Text>next slide</Text>
-
                 </TouchableOpacity>
             </View>
         </View>

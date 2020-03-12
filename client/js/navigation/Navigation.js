@@ -34,7 +34,7 @@ const UserStack = createStackNavigator()
 
 const UserStackScreen = () => {
     return (
-        <UserStack.Navigator initialRouteName="Login">
+        <UserStack.Navigator initialRouteName="Login" headerMode="none">
             <UserStack.Screen name="Login" component={LoginContainer} />
             <UserStack.Screen name="SignUp" component={SignUpContainer} />
             <UserStack.Screen name="ForgotPw" component={ForgotPwContainer} />
