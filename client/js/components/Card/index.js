@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import styled from 'styled-components';
-import {GOOGLE_API_KEY} from '../../.config.js';
+import {GOOGLE_API_KEY} from '../../config';
 
 const ImageFrame = styled.Image`
   background: #333;
@@ -17,7 +17,9 @@ const Card = ({detail}) => {
     <View style={styles.card}>
       <ImageFrame
         source={{
-          url: detail.photos ? getImages(detail.photos) : noImage,
+          url: detail.photo_reference
+            ? getImages(detail.photo_reference)
+            : noImage,
         }}
       />
       <View>
