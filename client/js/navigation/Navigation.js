@@ -12,12 +12,7 @@ import ExploreScreen from '../screens/Explore';
 import MoodSelectScreen from '../screens/MoodSelect';
 import TextInputScreen from '../screens/TextInput';
 import GoalScreen from '../screens/Goal';
-import OnLanding from '../screens/Onboarding/OnLanding';
-import OnLocation from '../screens/Onboarding/OnLocation';
-import OnTime from '../screens/Onboarding/OnTime';
-import OnActivity from '../screens/Onboarding/OnActivity';
-import OnGoal from '../screens/Onboarding/OnGoal';
-import OnEnd from '../screens/Onboarding/OnEnd';
+import { OnLanding, OnLocation, OnTime, OnActivity, OnGoal, OnEnd } from '../screens/Onboarding';
 import { LoginContainer, SignUpContainer, ForgotPwContainer } from '../screens/User';
 
 
