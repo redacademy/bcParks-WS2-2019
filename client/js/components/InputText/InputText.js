@@ -2,12 +2,15 @@ import React from 'react';
 import { InputText } from './styles';
 
 
-const InputTextBox = () => {
+const InputTextBox = (props) => {
 
     return (
         <InputText
             multiline={true}
-            numberOfLines={5} />
+            numberOfLines={5} 
+            onChangeText={ txt => {props.update(txt)}}
+            value={props.journal}
+        />
     );
 }
 

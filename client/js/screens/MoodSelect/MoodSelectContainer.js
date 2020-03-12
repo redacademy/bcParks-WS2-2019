@@ -2,9 +2,9 @@ import React from "react";
 import { withNavigation } from 'react-navigation';
 import MoodSelect from "./MoodSelect";
 
-const MoodSelectContainer = ({ navigation }) => {
+const MoodSelectContainer = ({ navigation, route }) => {
     return (
-        <MoodSelect navigation={navigation} />
+        <MoodSelect navigation={navigation} params={route.params}/>
     )
 }
 
