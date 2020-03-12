@@ -3,7 +3,8 @@ import {
     ScrollView,
     View,
     Text,
-    FlatList
+    FlatList,
+    TouchableOpacity
 } from 'react-native';
 import styles from './styles';
 import { BarChart } from 'react-native-chart-kit';
@@ -24,17 +25,13 @@ const chartConfig = {
 
 const ActivityChart = ({ data }) => {
     let displayData = (chartData) => {
-        if (chartData !== false) {
-            const timeLabel = chartData.graphValues.sessions ?
-                (chartData.graphValues.sessions.map(session => moment.utc(session.timeStart).format('HH:mm'))) :
-                chartData.graphValues.progresses.map(progress => moment.utc(progress.date).format('dd'));
-            const duration = chartData.graphValues.progresses ?
-                (chartData.graphValues.progresses.map(progress => progress.duration)) :
-                (chartData.graphValues.sessions.map(session => {
-                    let start = moment.utc(session.timeStart);
-                    let end = moment.utc(session.timeEnd);
-                    return end.diff(start, 'hours', true)
-                }));
+        if (chartData) {
+            const timeLabel = chartData.map(session => moment.utc(session.timeStart).format('HH:mm'));
+            const duration = chartData.map(session => {
+                let start = moment.utc(session.timeStart);
+                let end = moment.utc(session.timeEnd);
+                return end.diff(start, 'hours', true)
+            })
 
             const barData = {
                 labels: timeLabel,
@@ -53,10 +50,7 @@ const ActivityChart = ({ data }) => {
         <ScrollView>
             <View >
                 <Text>
-                    {data.graphValues.sessions ?
-                        (moment.utc(data.graphValues.sessions[0].timeStart).format('YYYY-MM-DD')) :
-                        ((moment.utc(data.graphValues.progresses[0].date).startOf('week').add(1, 'd').format('YYYY-MM-DD')) + " - " +
-                            (moment.utc(data.graphValues.progresses[0].date).endOf('week').add(1, 'd').format('YYYY-MM-DD')))}
+                    {moment.utc(data[0].timeStart).format('YYYY-MM-DD')}
                 </Text>
                 <BarChart
                     // style={graphStyle}

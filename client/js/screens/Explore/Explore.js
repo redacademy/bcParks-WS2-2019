@@ -1,12 +1,14 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
-import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
+import MapView, {PROVIDER_GOOGLE, Marker, Polygon} from 'react-native-maps';
 import fetchData from '../../config/fetchData';
 import MapSwiper from '../../components/MapSwiper';
 import styled from 'styled-components';
 import {addMapMutation} from './helper/mutation';
+import {GOOGLE_API_KEY} from '../../config';
+import {results} from './googleAPI.json';
+import {QueenElizabeth, VanDusen} from './utils/PolygonSample';
 
-const GOOGLE_API_KEY = '';
 const dataURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=49.2479999,-123.1300971&radius=1500&type=park&fields=place_id,name,opening_hours,formatted_address,geometry&key=${GOOGLE_API_KEY}`;
 const Containter = styled.View`
   height: 333px;
@@ -44,9 +46,6 @@ const ExploreScreen = () => {
   const _carousel = useRef();
 
   const cardWidth = 291;
-  const getImages = reference => {
-    const photoURL = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${reference}&key=${GOOGLE_API_KEY}`;
-  };
   const GoogleAPIFetch = () => {
     fetch(dataURL)
       .then(response => response.json())
@@ -61,6 +60,7 @@ const ExploreScreen = () => {
             APIMap.id,
             APIMap.name,
             APIMap.vicinity,
+            APIMap.photos ? APIMap.photos[0].photo_reference : '',
             APIMap.plus_code,
             APIMap.geometry.location,
             APIMap.geometry.viewport.northeast,
@@ -71,12 +71,36 @@ const ExploreScreen = () => {
       });
     });
   };
+  const photoReference = (photo_reference, id) => `
+  mutation{
+    updateMap(data:{
+      photo_reference:"${photo_reference}"
+    } where:{id:"${id}"}){
+      id
+      name
+      photo_reference
+    }
+  }
+  `;
+  const addPhoto = () =>
+    results.map(APIMap =>
+      mapData.filter(map => {
+        if (map.externalId === APIMap.id) {
+          const mutation = photoReference(
+            APIMap.photos ? APIMap.photos[0].photo_reference : '',
+            map.id,
+          );
+          fetchData(mutation);
+        }
+      }),
+    );
   const query = `query {
     maps {
       id
       name
       externalId
       vicinity
+      photo_reference
       geometry {
         location {
           lat
@@ -91,6 +115,9 @@ const ExploreScreen = () => {
       setMapData(data.maps);
     });
   }, []);
+  useEffect(() => {
+    navigator.geolocation;
+  });
   const matchSelected = map => {
     if (selectedMap) {
       return selectedMap.id === map.id ? true : false;
@@ -134,6 +161,8 @@ const ExploreScreen = () => {
         }}
         showsUserLocation={true}>
         {getMarkers()}
+        <Polygon coordinates={QueenElizabeth} />
+        <Polygon coordinates={VanDusen} />
       </MapView>
       <SearchButton onPress={() => GoogleAPIFetch()}>
         <Text>Search Area</Text>

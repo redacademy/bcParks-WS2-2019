@@ -6,40 +6,12 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import moment from 'moment';
 
-const Mutation_CreateSession = gql`
-    mutation CreateSession($timeStart: DateTime!, $timeEnd: DateTime!, $date: DateTime!) {
-        createSession(
-            data:{
-                timeStart: $timeStart, 
-                timeEnd: $timeEnd,
-                date: $date
-            }
-        ){
-        id
-        timeEnd
-        timeStart
-        date
-        }
-    }
-`
 
-const StartStopTimer = () => {
+const StartStopTimer = ({navigation}) => {
 
     const [startStop, setStartStop] = useState(true);
     const [startTime, setStartTime] = useState("");
-    const [endTime, setEndTime] = useState("");
     const [date, setDate] = useState("");
-
-    const [CreateSession] = useMutation(Mutation_CreateSession);
-    const create = () => {
-        CreateSession({
-            variables: {
-                timeStart: startTime,
-                timeEnd: endTime,
-                date: date
-            }
-        })
-    }
 
     const startTimer = () => {
         setStartStop(!startStop);
@@ -49,7 +21,8 @@ const StartStopTimer = () => {
 
     const stopTimer = () => {
         setStartStop(!startStop);
-        setEndTime(moment().format());
+        const endTime = moment().format()
+        navigation.push('MoodSelect', {startTime, endTime, date})
     }
 
 

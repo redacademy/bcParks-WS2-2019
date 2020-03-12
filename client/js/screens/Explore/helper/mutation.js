@@ -5,6 +5,7 @@ export const addMapMutation = (
   id,
   name,
   vicinity,
+  photo_reference,
   plus_code,
   location,
   northeast,
@@ -16,6 +17,7 @@ export const addMapMutation = (
         externalId: "${id}"
         name: "${name}"
         vicinity: "${vicinity}"
+        photo_reference: "${photo_reference}"
         plus_code: {
           create: ${stringifyAndReplace(plus_code)}
         }
