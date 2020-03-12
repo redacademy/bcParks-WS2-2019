@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text, TextInput, CheckBox } from 'react-native';
 import { Heading, ScreenBkgCont } from '../../../globalStyles';
 
 const LoginScreen = ({ navigation }) => {
@@ -7,11 +7,21 @@ const LoginScreen = ({ navigation }) => {
     return (
         <ScreenBkgCont>
             <Heading>Login</Heading>
-            <TouchableOpacity onPress={() => navigation.push('SignUp')}>
-                <Text>SignUp</Text>
-            </TouchableOpacity>
+            <Text>Email</Text>
+            <TextInput />
+            <Text>Password</Text>
+            <TextInput />
+            <Text>Remember me</Text>
+            <CheckBox />
             <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                <Text>Home</Text>
+                <Text>Login</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => navigation.push('SignUp')}>
+                <Text>Create Account</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.push('ForgotPw')}>
+                <Text>Forgot Password</Text>
             </TouchableOpacity>
         </ScreenBkgCont>
     );
