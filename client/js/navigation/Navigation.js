@@ -18,6 +18,8 @@ import OnTime from '../screens/Onboarding/OnTime';
 import OnActivity from '../screens/Onboarding/OnActivity';
 import OnGoal from '../screens/Onboarding/OnGoal';
 import OnEnd from '../screens/Onboarding/OnEnd';
+import { LoginContainer, SignUpContainer, ForgotPwContainer } from '../screens/User';
+
 
 const OnboardingStack = createStackNavigator();
 const OnboardingStackScreen = () => {
@@ -30,6 +32,18 @@ const OnboardingStackScreen = () => {
             <OnboardingStack.Screen name="OnGoal" component={OnGoal} />
             <OnboardingStack.Screen name="OnEnd" component={OnEnd} />
         </OnboardingStack.Navigator>
+    );
+}
+
+const UserStack = createStackNavigator()
+
+const UserStackScreen = () => {
+    return (
+        <UserStack.Navigator initialRouteName="Login">
+            <UserStack.Screen name="Login" component={LoginContainer} />
+            <UserStack.Screen name="SignUp" component={SignUpContainer} />
+            <UserStack.Screen name="ForgotPw" component={ForgotPwContainer} />
+        </UserStack.Navigator>
     );
 }
 
@@ -136,6 +150,7 @@ const Navigation = () => (
     <NavigationContainer>
         <RootStack.Navigator initialRouteName="Onboarding" headerMode="none">
             <RootStack.Screen name="Onboarding" component={OnboardingStackScreen} />
+            <RootStack.Screen name="User" component={UserStackScreen} />
             <RootStack.Screen name="Tabs" component={NavTabs} />
         </RootStack.Navigator>
     </NavigationContainer>
