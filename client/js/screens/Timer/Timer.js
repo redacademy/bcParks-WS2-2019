@@ -13,11 +13,7 @@ const TimerScreen = ({ navigation }) => {
         <View>
             <Placeholder />
             <View>
-                <StartStopTimer />
-                <TouchableOpacity onPress={() => navigation.push('MoodSelect')}>
-                    <Text>next slide</Text>
-
-                </TouchableOpacity>
+                <StartStopTimer navigation={navigation} />
             </View>
         </View>
     );

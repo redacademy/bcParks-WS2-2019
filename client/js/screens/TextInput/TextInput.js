@@ -1,8 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
+import { useMutation } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 import { theme, ScreenBkgCont, PrimaryBtn, NextBtnCont, InputSkipText } from '../../globalStyles';
 import styled from 'styled-components';
 import InputTextBox from '../../components/InputText/InputText';
+
+const Mutation_CreateSession = gql`
+    mutation CreateSession($timeStart: DateTime!, $timeEnd: DateTime!, $date: DateTime!, $mood: Float, $journal: String){
+        createSession(
+            data: {
+                timeStart: $timeStart,
+                timeEnd: $timeEnd,
+                date: $date,
+                mood: $mood,
+                journal: $journal,
+            }
+        ){
+            id
+            timeEnd
+            timeStart
+            date
+            mood
+            journal
+        }
+    }
+`
 
 const SubHeading = styled.Text`
     font-size:${theme.bodyFontSize};
@@ -12,14 +35,30 @@ const SubHeading = styled.Text`
     line-height: 30px;
 `
 
-const TextInputScreen = ({ navigation }) => {
+const TextInputScreen = ({ navigation, params }) => {
+
+    const [journal, setJournal] = useState("");
+    const [CreateSession] = useMutation(Mutation_CreateSession);
+
+    const updateJournal = text => {
+        setJournal(text)
+    }
 
     return (
         <ScreenBkgCont>
             <SubHeading>Write about your experience with Green Time.</SubHeading>
-            <InputTextBox />
+            <InputTextBox update={updateJournal} journal={journal}/>
             <NextBtnCont>
                 <TouchableOpacity onPress={() => {
+                    CreateSession({
+                        variables: {
+                            timeStart: params.startTime,
+                            timeEnd: params.endTime,
+                            date: params.date,
+                            mood: params.mood,
+                            journal: journal,
+                        }
+                    })
                     navigation.popToTop()
                     navigation.navigate('Home')
                 }}>
@@ -27,6 +66,14 @@ const TextInputScreen = ({ navigation }) => {
                 </TouchableOpacity>
             </NextBtnCont>
             <TouchableOpacity onPress={() => {
+                CreateSession({
+                    variables: {
+                        timeStart: params.startTime,
+                        timeEnd: params.endTime,
+                        date: params.date,
+                        mood: params.mood,
+                    }
+                })
                 navigation.popToTop()
                 navigation.navigate('Home')
             }}>

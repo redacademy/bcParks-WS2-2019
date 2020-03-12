@@ -9,22 +9,17 @@ const StyledSlider = styled.Slider`
     margin: 0 auto 120px;
 `
 
-const MoodSlider = () => {
-    const [changeFace, setChangeFace] = useState(0);
-
-    changeFaceSlide = () => {
-        setChangeFace(changeFace + 0.5)
-    }
+const MoodSlider = (props) => {
 
     return (
         <View>
-            <MoodIcon>Face test:{changeFace}</MoodIcon>
+            <MoodIcon>Face test:{props.mood}</MoodIcon>
             <StyledSlider
-                step={0.5}
-                value={2.5}
+                step={1}
+                value={props.mood}
                 minimumValue={0}
                 maximumValue={5}
-                onValueChange={this.changeFaceSlide}
+                onValueChange={value => props.update(value)}
                 thumbTintColor={theme.accentColor}
                 minimumTrackTintColor={theme.accentColor}
                 maximumTrackTintColor={theme.invertTextColor}
