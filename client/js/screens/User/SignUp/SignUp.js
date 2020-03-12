@@ -1,8 +1,8 @@
 import React from 'react';
-import { TouchableOpacity, Text, TextInput } from 'react-native';
-import { Heading, ScreenBkgCont } from '../../../globalStyles';
-import styled from 'styled-components';
+import { TouchableOpacity } from 'react-native';
+import { Heading, ScreenBkgCont, PrimaryBtn } from '../../../globalStyles';
 import { Subheading } from '../../Onboarding/styles';
+import { FormCont, InputCont, InputLabel, StyledInput, TextLink, BtnCont, LinkCont, SubmitBtnCont } from '../styles';
 
 
 const SignUpScreen = ({ navigation }) => {
@@ -11,19 +11,30 @@ const SignUpScreen = ({ navigation }) => {
         <ScreenBkgCont>
             <Heading>Create your Account</Heading>
             <Subheading>Having an account will help save your personal tracking data.</Subheading>
-            <Text>Email</Text>
-            <TextInput />
-            <Text>Password</Text>
-            <TextInput />
-            <Text>Confirm Password</Text>
-            <TextInput />
-            <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                <Text>Submit</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                <Text>I have a login</Text>
-            </TouchableOpacity>
+            <FormCont>
+                <InputCont>
+                    <InputLabel>Email</InputLabel>
+                    <StyledInput />
+                </InputCont>
+                <InputCont>
+                    <InputLabel>Password</InputLabel>
+                    <StyledInput />
+                </InputCont>
+                <InputCont>
+                    <InputLabel>Confirm Password</InputLabel>
+                    <StyledInput />
+                </InputCont>
+            </FormCont>
+            <SubmitBtnCont>
+                <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                    <PrimaryBtn>Submit</PrimaryBtn>
+                </TouchableOpacity>
+            </SubmitBtnCont>
+            <LinkCont>
+                <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                    <TextLink>I have a login</TextLink>
+                </TouchableOpacity>
+            </LinkCont>
         </ScreenBkgCont>
     );
 }

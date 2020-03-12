@@ -6,6 +6,7 @@ export const theme = {
     accentColor: "#DA6645",
     grayColor: "#767676",
     screenBkgColor: "#A3CB9B",
+    txtInputBkg: "#fff",
     bodyTextColor: "#000",
     invertTextColor: "#fff",
     disabledColor: "#9d9d9d",
