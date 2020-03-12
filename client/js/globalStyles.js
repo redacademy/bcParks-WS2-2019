@@ -22,7 +22,6 @@ export const theme = {
 export const ScreenBkgCont = styled.View`
     background-color: ${theme.screenBkgColor};
 `
-
 export const Heading = styled.Text`
     font-family: ${theme.headlineFont};
     font-size: ${theme.h1FontSize};
@@ -30,7 +29,14 @@ export const Heading = styled.Text`
     text-align: center;
     margin: 40px 0 20px 0;
 `
-
+export const SubHeading = styled.Text`
+    font-family: ${theme.bodyFont};
+    font-size: ${theme.bodyFontSize};
+    color: ${theme.bodyTextColor};
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+`
 export const NextBtnCont = styled.View`
     margin: 50px auto;
 `

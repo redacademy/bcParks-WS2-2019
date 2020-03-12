@@ -1,8 +1,7 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { Heading, ScreenBkgCont, PrimaryBtn } from '../../../globalStyles';
-import { Subheading } from '../../Onboarding/styles';
-import { FormCont, InputCont, InputLabel, StyledInput, TextLink, BtnCont, LinkCont, SubmitBtnCont } from '../styles';
+import { Heading, ScreenBkgCont, PrimaryBtn, SubHeading } from '../../../globalStyles';
+import { FormCont, InputCont, InputLabel, StyledInput, TextLink, SignBtnCont, LinkCont, SubmitBtnCont } from '../styles';
 
 
 const SignUpScreen = ({ navigation }) => {
@@ -10,7 +9,7 @@ const SignUpScreen = ({ navigation }) => {
     return (
         <ScreenBkgCont>
             <Heading>Create your Account</Heading>
-            <Subheading>Having an account will help save your personal tracking data.</Subheading>
+            <SubHeading>Having an account will help save your personal tracking data.</SubHeading>
             <FormCont>
                 <InputCont>
                     <InputLabel>Email</InputLabel>
@@ -25,11 +24,11 @@ const SignUpScreen = ({ navigation }) => {
                     <StyledInput />
                 </InputCont>
             </FormCont>
-            <SubmitBtnCont>
+            <SignBtnCont>
                 <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                    <PrimaryBtn>Submit</PrimaryBtn>
+                    <PrimaryBtn>submit</PrimaryBtn>
                 </TouchableOpacity>
-            </SubmitBtnCont>
+            </SignBtnCont>
             <LinkCont>
                 <TouchableOpacity onPress={() => navigation.navigate('Login')}>
                     <TextLink>I have a login</TextLink>

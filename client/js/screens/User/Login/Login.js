@@ -1,14 +1,14 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { Heading, ScreenBkgCont, PrimaryBtn } from '../../../globalStyles';
-import { InputLabel, StyledInput, TextLink, FormCont, InputCont, Flex, LinkCont, BtnCont } from '../styles';
+import { ScreenBkgCont, Heading, SubHeading, PrimaryBtn } from '../../../globalStyles';
+import { FormCont, InputCont, InputLabel, StyledInput, Flex, LoginBtnCont, LinkCont, TextLink } from '../styles';
 
 const LoginScreen = ({ navigation }) => {
 
     return (
         <ScreenBkgCont>
             <Heading>Login</Heading>
-
+            <SubHeading>Log into your account to start your journey!</SubHeading>
             <FormCont>
                 <InputCont>
                     <InputLabel>Email</InputLabel>
@@ -22,11 +22,11 @@ const LoginScreen = ({ navigation }) => {
                     <InputLabel>Remember me</InputLabel>
                 </Flex>
             </FormCont>
-            <BtnCont>
+            <LoginBtnCont>
                 <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                    <PrimaryBtn>Login</PrimaryBtn>
+                    <PrimaryBtn>login</PrimaryBtn>
                 </TouchableOpacity>
-            </BtnCont>
+            </LoginBtnCont>
             <LinkCont>
                 <TouchableOpacity onPress={() => navigation.push('SignUp')}>
                     <TextLink>Create an Account</TextLink>

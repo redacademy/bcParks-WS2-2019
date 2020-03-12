@@ -1,10 +1,7 @@
 import React from 'react';
-import { TouchableOpacity, Text, TextInput } from 'react-native';
-import { Heading, ScreenBkgCont, PrimaryBtn } from '../../../globalStyles';
-import styled from 'styled-components';
-import { Subheading } from '../../Onboarding/styles';
-import { Btn } from '../../../components/StartStopTimer/styles';
-import { FormCont, InputCont, InputLabel, StyledInput, BtnCont, LinkCont, TextLink } from '../styles';
+import { TouchableOpacity } from 'react-native';
+import { ScreenBkgCont, Heading, SubHeading, PrimaryBtn } from '../../../globalStyles';
+import { FormCont, InputCont, InputLabel, StyledInput, PwBtnCont, PwLinkCont, TextLink } from '../styles';
 
 
 const ForgotPwScreen = ({ navigation }) => {
@@ -12,23 +9,23 @@ const ForgotPwScreen = ({ navigation }) => {
     return (
         <ScreenBkgCont>
             <Heading>Forgot Password</Heading>
-            <Subheading>Please enter your email so we can send you a password reset link.</Subheading>
+            <SubHeading>Please enter your email so we can send you a password reset link.</SubHeading>
             <FormCont>
                 <InputCont>
                     <InputLabel>Email</InputLabel>
                     <StyledInput />
                 </InputCont>
             </FormCont>
-            <BtnCont>
+            <PwBtnCont>
                 <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                    <PrimaryBtn>Submit</PrimaryBtn>
+                    <PrimaryBtn>submit</PrimaryBtn>
                 </TouchableOpacity>
-            </BtnCont>
-            <LinkCont>
+            </PwBtnCont>
+            <PwLinkCont>
                 <TouchableOpacity onPress={() => navigation.navigate('Login')}>
                     <TextLink>Back to login</TextLink>
                 </TouchableOpacity>
-            </LinkCont>
+            </PwLinkCont>
         </ScreenBkgCont>
     );
 }

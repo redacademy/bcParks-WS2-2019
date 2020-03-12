@@ -1,44 +1,51 @@
 import styled from 'styled-components';
 import { theme } from '../../globalStyles';
 
-export const InputLabel = styled.Text`
-    font-size:${theme.bodyFontSize};
-    font-family: ${theme.headlineFont};
-    color ${theme.bodyTextColor};
-    line-height: 38px;
-`
-export const StyledInput = styled.TextInput`
-    background-color: ${theme.txtInputBkg};
-    opacity: 0.8;
-    color: ${theme.bodyTextColor};
-    border: 1px solid #000;
-    border-radius: 5px;
-    padding: 10px;
-    font-size: ${theme.bodyFontSize};
-`
-export const TextLink = styled.Text`
-    font-size:${theme.bodyFontSize};
-    font-family: ${theme.bodyFont};
-    color ${theme.bodyTextColor};
-    text-align: center;
-    margin: 0 0 20px;
-`
-export const BtnCont = styled.View`
-    margin: 40px auto 0;
-`
-export const SubmitBtnCont = styled.View`
-    margin: 0 auto;
-`
 export const FormCont = styled.View`
     margin: 50px;
 `
 export const InputCont = styled.View`
     margin: 20px 0;
 `
+export const InputLabel = styled.Text`
+    font-family: ${theme.headlineFont};
+    font-size:${theme.bodyFontSize};
+    color ${theme.bodyTextColor};
+    line-height: 38px;
+`
+export const StyledInput = styled.TextInput`
+    font-family: ${theme.bodyFont};
+    font-size: ${theme.bodyFontSize};
+    color: ${theme.bodyTextColor};
+    background-color: ${theme.txtInputBkg};
+    opacity: 0.8;
+    border: 2px solid ${theme.primaryColor};
+    border-radius: 5px;
+    padding: 10px;
+`
 export const Flex = styled.View`
     display: flex;
     flex-direction: row;
 `
+export const TextLink = styled.Text`
+    font-family: ${theme.bodyFont};
+    font-size:${theme.bodyFontSize};
+    color ${theme.bodyTextColor};
+    text-align: center;
+    margin: 0 0 20px;
+`
+export const LoginBtnCont = styled.View`
+    margin: 40px auto 0;
+`
+export const SignBtnCont = styled.View`
+    margin: 0 auto;
+`
+export const PwBtnCont = styled.View`
+    margin: 200px auto 0;
+`
 export const LinkCont = styled.View`
     margin: 50px 0;
+`
+export const PwLinkCont = styled.View`
+    margin: 50px 0 100px;
 `
