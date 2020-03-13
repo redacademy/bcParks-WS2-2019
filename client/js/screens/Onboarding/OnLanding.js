@@ -16,7 +16,7 @@ const OnLanding = ({ navigation }) => {
                     <BtnText isSkip>skip</BtnText>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.push('OnLocation')}>
-                    <BtnText>next slide</BtnText>
+                    <BtnText>next</BtnText>
                 </TouchableOpacity>
             </Flex>
         </Background>
