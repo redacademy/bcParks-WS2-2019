@@ -25,6 +25,10 @@ export const ScreenBkgCont = styled.View`
 export const HeaderCont = styled.View`
     display:flex;
     flex-direction: row;
+    margin: 40px 0 0;
+`
+export const NoFlexHeaderCont = styled.View`
+    margin: 40px 0 0;
 `
 export const Heading = styled.Text`
     font-family: ${theme.headlineFont};
@@ -32,8 +36,6 @@ export const Heading = styled.Text`
     color: ${theme.accentColor};
     text-align: center;
     margin: 40px 0 20px 0;
-    display:flex;
-    flex-wrap: wrap;
 `
 export const SubHeading = styled.Text`
     font-family: ${theme.bodyFont};

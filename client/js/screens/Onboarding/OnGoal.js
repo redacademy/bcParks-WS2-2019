@@ -23,7 +23,7 @@ const OnGoal = ({ navigation }) => {
                     <BtnText isSkip>skip</BtnText>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.push('OnEnd')}>
-                    <BtnText>next slide</BtnText>
+                    <BtnText>next</BtnText>
                 </TouchableOpacity>
             </Flex>
         </Background>

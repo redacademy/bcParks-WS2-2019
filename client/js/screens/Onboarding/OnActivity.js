@@ -17,13 +17,13 @@ const OnActivity = ({ navigation }) => {
                 <Heading>Check your progress</Heading>
             </HeaderCont>
             <SubHeading>Find out how well you are doing!</SubHeading>
-            <OnboardingTime style={styles.image} />
+            <OnboardingTime style={styles.imageActivity} />
             <Flex>
                 <TouchableOpacity onPress={() => navigation.navigate('Tabs')}>
                     <BtnText isSkip>skip</BtnText>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.push('OnGoal')}>
-                    <BtnText>next slide</BtnText>
+                    <BtnText>next</BtnText>
                 </TouchableOpacity>
             </Flex>
         </Background>

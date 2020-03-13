@@ -11,7 +11,7 @@ export const Flex = styled.View`
     justify-content: space-between;
 `
 export const StartBtnCont = styled.View`
-    margin: 40px auto;
+    margin: 40px auto 100px;
 `
 export const BtnText = styled.Text`
     font-family: ${theme.bodyFont};
@@ -24,11 +24,11 @@ export const BtnText = styled.Text`
 export const styles = StyleSheet.create({
     image: {
         marginHorizontal: 45,
-        marginVertical: 75
+        marginVertical: 100
     },
-    imageLanding: {
+    imageActivity: {
         marginHorizontal: 45,
-        marginVertical: 60
+        marginVertical: 120
     },
     backIcon: {
         marginLeft: 10,
