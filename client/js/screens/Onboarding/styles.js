@@ -10,6 +10,9 @@ export const Flex = styled.View`
     flex-direction: row;
     justify-content: space-between;
 `
+export const StartBtnCont = styled.View`
+    margin: 40px auto 100px;
+`
 export const BtnText = styled.Text`
     font-family: ${theme.bodyFont};
     font-size: ${theme.bodyFontSize};
@@ -21,10 +24,25 @@ export const BtnText = styled.Text`
 export const styles = StyleSheet.create({
     image: {
         marginHorizontal: 45,
-        marginVertical: 75
+        marginVertical: 100
     },
-    imageLanding: {
+    imageActivity: {
         marginHorizontal: 45,
-        marginVertical: 60
+        marginVertical: 120
+    },
+    backIcon: {
+        marginLeft: 10,
+        marginRight: 40,
+        marginVertical: 40
+    },
+    longTxtBackIcon: {
+        marginLeft: 10,
+        marginRight: 15,
+        marginVertical: 40
+    },
+    shortTxtBackIcon: {
+        marginLeft: 10,
+        marginRight: 50,
+        marginVertical: 40
     }
 });

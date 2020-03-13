@@ -19,7 +19,7 @@ import { LoginContainer, SignUpContainer, ForgotPwContainer } from '../screens/U
 const OnboardingStack = createStackNavigator();
 const OnboardingStackScreen = () => {
     return (
-        <OnboardingStack.Navigator initialRouteName="OnLanding">
+        <OnboardingStack.Navigator initialRouteName="OnLanding" headerMode="none">
             <OnboardingStack.Screen name="OnLanding" component={OnLanding} />
             <OnboardingStack.Screen name="OnLocation" component={OnLocation} />
             <OnboardingStack.Screen name="OnTime" component={OnTime} />

@@ -12,7 +12,7 @@ export const theme = {
     dayBtnColor: "#9B9A30",
     headlineFont: "Comfortaa-Regular",
     bodyFont: "OpenSans-Regular",
-    h1FontSize: "34px",
+    h1FontSize: "30px",
     h2FontSize: "24px",
     bodyFontSize: "18px"
     // #8cbe82
@@ -21,6 +21,14 @@ export const theme = {
 export const ScreenBkgCont = styled.View`
     background-color: ${theme.screenBkgColor};
     padding: 80px 0 0;
+`
+export const HeaderCont = styled.View`
+    display:flex;
+    flex-direction: row;
+    margin: 40px 0 0;
+`
+export const NoFlexHeaderCont = styled.View`
+    margin: 40px 0 0;
 `
 export const Heading = styled.Text`
     font-family: ${theme.headlineFont};

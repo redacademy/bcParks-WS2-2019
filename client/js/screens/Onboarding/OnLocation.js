@@ -1,14 +1,21 @@
 import React from 'react';
 import { withNavigation } from "react-navigation";
 import { TouchableOpacity } from 'react-native';
-import { Heading, SubHeading } from '../../globalStyles';
+import { theme, HeaderCont, Heading, SubHeading } from '../../globalStyles';
 import { Background, Flex, BtnText, styles } from './styles';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import OnboardingLocation from '../../assets/images/OnboardingLocation';
 
 const OnLocation = ({ navigation }) => {
     return (
         <Background>
-            <Heading>Find green space</Heading>
+            <HeaderCont>
+                <TouchableOpacity onPress={() => navigation.goBack('OnLanding')}>
+                    <FontAwesomeIcon icon={faChevronLeft} color={theme.primaryColor} size={30} style={styles.backIcon} />
+                </TouchableOpacity>
+                <Heading>Find green space</Heading>
+            </HeaderCont>
             <SubHeading>You can search for green spaces near you</SubHeading>
             <OnboardingLocation style={styles.image} />
             <Flex>
@@ -16,7 +23,7 @@ const OnLocation = ({ navigation }) => {
                     <BtnText isSkip>skip</BtnText>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.push('OnTime')}>
-                    <BtnText>next slide</BtnText>
+                    <BtnText>next</BtnText>
                 </TouchableOpacity>
             </Flex>
         </Background>
