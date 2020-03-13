@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {Text, StyleSheet} from 'react-native';
 import Card from '../Card';
 import styled from 'styled-components';
 import Carousel from 'react-native-snap-carousel';
@@ -12,7 +12,7 @@ const MapSwiper = ({mapData, cardWidth, setSelectedMap, _carousel}) => {
   };
   return (
     <Box>
-      <Text>Near By Green Spaces</Text>
+      <Text style={styles.title}>Near By Green Spaces</Text>
       <Carousel
         ref={_carousel}
         data={mapData}
@@ -29,5 +29,12 @@ const MapSwiper = ({mapData, cardWidth, setSelectedMap, _carousel}) => {
     </Box>
   );
 };
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 20,
+    letterSpacing: -0.14,
+    marginBottom: 14,
+  },
+});
 
 export default MapSwiper;
