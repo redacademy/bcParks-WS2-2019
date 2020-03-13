@@ -5,14 +5,6 @@ import { StyleSheet } from 'react-native';
 export const Background = styled.View`
     background-color: ${theme.screenBkgColor};
 `
-export const Subheading = styled.Text`
-    font-family: ${theme.bodyFont};
-    font-size: ${theme.bodyFontSize};
-    color: ${theme.bodyTextColor};
-    text-align: center;
-    width: 80%;
-    margin: 0 auto;
-`
 export const Flex = styled.View`
     display: flex;
     flex-direction: row;
@@ -26,7 +18,6 @@ export const BtnText = styled.Text`
     text-transform: capitalize;
     margin: 60px 20px 60px;
 `
-
 export const styles = StyleSheet.create({
     image: {
         marginHorizontal: 45,

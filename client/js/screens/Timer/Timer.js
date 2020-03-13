@@ -4,7 +4,7 @@ import StartStopTimer from '../../components/StartStopTimer/StartStopTimer';
 import styled from 'styled-components';
 
 const Placeholder = styled.View`
-    height: 350px;
+    height: 320px;
 `
 
 const TimerScreen = ({ navigation }) => {
