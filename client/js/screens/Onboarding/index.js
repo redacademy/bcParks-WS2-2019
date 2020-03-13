@@ -5,9 +5,11 @@ import OnActivity from "./OnActivity";
 import OnGoal from "./OnGoal";
 import OnEnd from "./OnEnd";
 
-export { OnLanding };
-export { OnLocation };
-export { OnTime };
-export { OnActivity };
-export { OnGoal };
-export { OnEnd };
+export {
+    OnLanding,
+    OnLocation,
+    OnTime,
+    OnActivity,
+    OnGoal,
+    OnEnd
+};

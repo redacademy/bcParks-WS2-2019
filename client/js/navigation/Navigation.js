@@ -12,17 +12,14 @@ import ExploreScreen from '../screens/Explore';
 import MoodSelectScreen from '../screens/MoodSelect';
 import TextInputScreen from '../screens/TextInput';
 import GoalScreen from '../screens/Goal';
-import OnLanding from '../screens/Onboarding/OnLanding';
-import OnLocation from '../screens/Onboarding/OnLocation';
-import OnTime from '../screens/Onboarding/OnTime';
-import OnActivity from '../screens/Onboarding/OnActivity';
-import OnGoal from '../screens/Onboarding/OnGoal';
-import OnEnd from '../screens/Onboarding/OnEnd';
+import { OnLanding, OnLocation, OnTime, OnActivity, OnGoal, OnEnd } from '../screens/Onboarding';
+import { LoginContainer, SignUpContainer, ForgotPwContainer } from '../screens/User';
+
 
 const OnboardingStack = createStackNavigator();
 const OnboardingStackScreen = () => {
     return (
-        <OnboardingStack.Navigator initialRouteName="OnLanding">
+        <OnboardingStack.Navigator initialRouteName="OnLanding" headerMode="none">
             <OnboardingStack.Screen name="OnLanding" component={OnLanding} />
             <OnboardingStack.Screen name="OnLocation" component={OnLocation} />
             <OnboardingStack.Screen name="OnTime" component={OnTime} />
@@ -30,6 +27,18 @@ const OnboardingStackScreen = () => {
             <OnboardingStack.Screen name="OnGoal" component={OnGoal} />
             <OnboardingStack.Screen name="OnEnd" component={OnEnd} />
         </OnboardingStack.Navigator>
+    );
+}
+
+const UserStack = createStackNavigator()
+
+const UserStackScreen = () => {
+    return (
+        <UserStack.Navigator initialRouteName="Login" headerMode="none">
+            <UserStack.Screen name="Login" component={LoginContainer} />
+            <UserStack.Screen name="SignUp" component={SignUpContainer} />
+            <UserStack.Screen name="ForgotPw" component={ForgotPwContainer} />
+        </UserStack.Navigator>
     );
 }
 
@@ -136,6 +145,7 @@ const Navigation = () => (
     <NavigationContainer>
         <RootStack.Navigator initialRouteName="Onboarding" headerMode="none">
             <RootStack.Screen name="Onboarding" component={OnboardingStackScreen} />
+            <RootStack.Screen name="User" component={UserStackScreen} />
             <RootStack.Screen name="Tabs" component={NavTabs} />
         </RootStack.Navigator>
     </NavigationContainer>

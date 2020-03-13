@@ -1,21 +1,23 @@
 import React from 'react';
 import { withNavigation } from "react-navigation";
 import { TouchableOpacity } from 'react-native';
-import { Heading, PrimaryBtn, NextBtnCont } from '../../globalStyles';
-import { Subheading, Background, styles } from './styles';
+import { NoFlexHeaderCont, Heading, SubHeading, PrimaryBtn } from '../../globalStyles';
+import { Background, StartBtnCont, styles } from './styles';
 import OnboardingEnd from '../../assets/images/OnboardingEnd';
 
 const OnEnd = ({ navigation }) => {
     return (
         <Background>
-            <Heading>Let's get started!</Heading>
-            <Subheading>You are all set. Start your journey!</Subheading>
+            <NoFlexHeaderCont>
+                <Heading>Let's get started!</Heading>
+            </NoFlexHeaderCont>
+            <SubHeading>You are all set. Start your journey!</SubHeading>
             <OnboardingEnd style={styles.image} />
-            <NextBtnCont>
+            <StartBtnCont>
                 <TouchableOpacity onPress={() => navigation.navigate('Tabs')}>
                     <PrimaryBtn>start</PrimaryBtn>
                 </TouchableOpacity>
-            </NextBtnCont>
+            </StartBtnCont>
         </Background>
     )
 }

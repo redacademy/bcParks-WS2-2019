@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, Text } from 'react-native';
-import { StartStopCont, TimerDisplay, InfoTextCont, InfoText, Btn } from './styles.js';
-import { theme } from '../../globalStyles';
+import { TouchableOpacity } from 'react-native';
+import { StartStopCont, TimerDisplay, InfoTextCont, InfoText, BtnCont } from './styles.js';
+import { theme, PrimaryBtn } from '../../globalStyles';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import moment from 'moment';
@@ -32,21 +32,25 @@ const StartStopTimer = ({navigation}) => {
             <InfoTextCont>
                 <InfoText>Spending more time in nature contributes to a better sleep cycle and helps with lowering anxiety</InfoText>
             </InfoTextCont>
-            <TouchableOpacity onPress={ 
-                startStop ? 
-                    startTimer : 
-                    stopTimer
-            }>
-                {startStop ?
-                    <Btn isStart theme={theme}>
-                        Start Green Time
-                    </Btn>
-                    :
-                    <Btn>
-                        Stop Green Time
-                    </Btn>
-                }
-            </TouchableOpacity>
+            <BtnCont>
+                <TouchableOpacity onPress={
+                    startStop ? () => {
+                        startTimer()
+                    } : () => {
+                        stopTimer();
+
+                    }}>
+                    {startStop ?
+                        <PrimaryBtn>
+                            Start Green Time
+                    </PrimaryBtn>
+                        :
+                        <PrimaryBtn isStop theme={theme}>
+                            Stop Green Time
+                    </PrimaryBtn>
+                    }
+                </TouchableOpacity>
+            </BtnCont>
         </StartStopCont>
     );
 }

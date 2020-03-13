@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
-import { theme, Heading, ScreenBkgCont, NextBtnCont, PrimaryBtn, InputSkipText } from '../../globalStyles';
-import styled from 'styled-components';
+import { ScreenBkgCont, Heading, SubHeading, PrimaryBtn } from '../../globalStyles';
+import { NextBtnCont, InputSkipText } from '../Timer/styles';
 import MoodSlider from '../../components/MoodSlider/MoodSlider';
 
-const SubHeading = styled.Text`
-    font-size:${theme.bodyFontSize};
-    font-family: ${theme.headlineFont};
-    text-align: center;
-`
 
 const MoodSelectScreen = ({ navigation, params }) => {
     const [mood, updateMood] = useState(2.5)
     const [newParams, updateParams] = useState(params)
+    
     return (
         <ScreenBkgCont>
             <Heading>Amazing!</Heading>
