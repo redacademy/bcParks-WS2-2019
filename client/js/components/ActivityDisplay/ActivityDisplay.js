@@ -7,6 +7,7 @@ import {
 // import styles from './styles';
 import moment from "moment";
 import { DisplayContainer, SubDisplayContainer } from './styles';
+import MoodConverter from '../../assets/MoodConverter';
 
 
 
@@ -19,6 +20,7 @@ const ActivityDisplay = ({ data }) => {
     });
     const totalDuration = durationDisplay.reduce((result, number) => result + number);
 
+
     return (
         <DisplayContainer>
             <SubDisplayContainer>
@@ -28,7 +30,7 @@ const ActivityDisplay = ({ data }) => {
             </SubDisplayContainer>
             <SubDisplayContainer>
                 <Text>Average mood</Text>
-                <Text>Great!</Text>
+                {/* <MoodConverter /> */}
 
             </SubDisplayContainer>
         </DisplayContainer>

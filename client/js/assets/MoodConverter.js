@@ -18,35 +18,30 @@ const SESSIONS_QUERY = gql`
 
 
 const MoodConverter = () => {
+    // let mood = undefined;
     const { data } = useQuery(SESSIONS_QUERY);
     const moodNum = data && data.sessions.map(session => session.mood);
-
     if (data) {
         // console.log('mood num', moodNum)
-        for (let i = 0; i < moodNum.length; i++) {
-            const number = moodNum[i];
-            // console.log('number', number)
-            if (number > 0 && number <= 1) {
-                return <Text>Very Sad</Text>;
-            } else if (number > 1 && number <= 2) {
-                return <Text>Sad</Text>;
-            } else if (number > 2 && number <= 3) {
-                return <Text>Neutral</Text>;
-            } else if (number > 3 && number <= 4) {
-                return <Text>Happy</Text>;
-            } else if (number > 4 && number <= 5) {
-                return <Text>Very Happy</Text>;
-            }
-
-
-        }
+        // for (let i = 0; i <= moodNum.length; i++) {
+        //     let number = moodNum[i];
+        //     // console.log('number', number)
+        //     if (number > 0 && number <= 1) {
+        //         mood = <Text>Very Sad</Text>;
+        //     } else if (number > 1 && number <= 2) {
+        //         mood = <Text>Sad</Text>;
+        //     } else if (number > 2 && number <= 3) {
+        //         mood = <Text>Neutral</Text>;
+        //     } else if (number > 3 && number <= 4) {
+        //         mood = <Text>Happy</Text>;
+        //     } else if (number > 4 && number <= 5) {
+        //         mood = <Text>Very Happy</Text>;
+        //     }
+        // }
 
     }
+    return mood;
 
-    return (
-
-        <Text>hello</Text>
-    )
 
 
 }
