@@ -5,7 +5,7 @@ import { StyleSheet } from 'react-native';
 
 export const FlatListContainer = styled.FlatList`
     background-color: #8cbe82;
-    height: 50%;
+    height: 45%;
 `
 export const ListContainer = styled.View`
     display: flex;
@@ -23,9 +23,14 @@ export const ListContainer = styled.View`
 export const ActivityDetails = styled.View`
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    width: 55%;
+    width: 60%;
     
+`
+export const DetailRow = styled.View`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 4px;
 `
 
 export const ListItem = styled.Text`
@@ -33,6 +38,11 @@ export const ListItem = styled.Text`
     font-size: 15px; 
     color: ${theme.greyColor};
 `
+
+export const NotebookIcon = styled.View`
+    padding-right: 20px;
+`
+
 
 export const styles = StyleSheet.create({
     image: {

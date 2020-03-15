@@ -6,9 +6,10 @@ import {
 } from 'react-native';
 // import styles from './styles';
 import moment from "moment";
-import { DisplayContainer, SubDisplayContainer } from './styles';
+import { DisplayContainer, SubDisplayContainer, styles, DisplayTitle, DisplayContent, DisplayRow } from './styles';
 import MoodConverter from '../../assets/MoodConverter';
-
+import MoodFace from '../../assets/images/MoodVeryHappy';
+import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 const ActivityDisplay = ({ data }) => {
@@ -20,17 +21,23 @@ const ActivityDisplay = ({ data }) => {
     });
     const totalDuration = durationDisplay.reduce((result, number) => result + number);
 
-
+    let moodDisplay = data.map(s => s.mood);
+    const sum = moodDisplay.reduce((a, b) => a + b, 0);
+    const avg = (sum / moodDisplay.length) || 0;
+    console.log('moodDisplay', moodDisplay)
     return (
         <DisplayContainer>
             <SubDisplayContainer>
-                <Text>You have spent</Text>
-
-                <Text>{totalDuration}h</Text>
+                <DisplayTitle>You have spent</DisplayTitle>
+                <DisplayRow>
+                    <Icon2 name='leaf' size={22} color='green'></Icon2>
+                    <DisplayContent>{totalDuration}h</DisplayContent>
+                </DisplayRow>
             </SubDisplayContainer>
             <SubDisplayContainer>
-                <Text>Average mood</Text>
+                <DisplayTitle>Average mood</DisplayTitle>
                 {/* <MoodConverter /> */}
+                <DisplayContent>{avg}</DisplayContent>
 
             </SubDisplayContainer>
         </DisplayContainer>

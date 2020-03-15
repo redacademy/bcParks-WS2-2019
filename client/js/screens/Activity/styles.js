@@ -8,10 +8,10 @@ export const ButtonsContainer = styled.View`
     margin-top: 10px;
 `
 export const PeriodButtons = styled.TouchableOpacity`
-    width: 120px;
+    width: 152px;
     height: 32px;
     border-radius: 16px;
-    background-color: #5a8a4d; 
+    background-color: #66b17e; 
 `
 export const PeriodText = styled.Text`
     color: #fff;
@@ -37,4 +37,6 @@ export const GraphDate = styled.Text`
     text-align: center;
     font-family: ${theme.bodyFont};
     font-size: ${theme.bodyFontSize};
+    color: #559c56;
+    font-weight: 600;
 `
