@@ -2,25 +2,28 @@ import React, { Component, useState } from 'react';
 import {
     ScrollView,
     View,
-    Text,
-    FlatList,
-    TouchableOpacity
+    Text
 } from 'react-native';
 import styles from './styles';
 import { BarChart } from 'react-native-chart-kit';
 import { Dimensions } from "react-native";
 import moment from "moment";
+import { GraphContainer } from './styles';
+import { GraphDate } from '../../screens/Activity/styles'
 
 const screenWidth = Dimensions.get("window").width;
 const chartConfig = {
-    backgroundGradientFrom: "#1E2923",
+    backgroundColor: "#ffffff",
+    // backgroundGradientFrom: "#DA6645",
     backgroundGradientFromOpacity: 0,
-    backgroundGradientTo: "#08130D",
-    backgroundGradientToOpacity: 0.5,
-    color: (opacity = 1) => `rgba( 190 ,87 ,62 , ${opacity})`,
-    strokeWidth: 2,
-    barPercentage: 0.5,
-    decimalPlaces: 0
+    // backgroundGradientTo: "#DA6645",
+    backgroundGradientToOpacity: 0,
+    color: (opacity = 0.5) => `rgba( 218, 102, 69, ${opacity})`,
+    barPercentage: 0.7,
+    barRadius: 7,
+    decimalPlaces: 0,
+
+
 };
 
 const ActivityChart = ({ data }) => {
@@ -45,13 +48,14 @@ const ActivityChart = ({ data }) => {
         }
     }
 
+
     let transformedData = displayData(data);
     return (
         <ScrollView>
-            <View >
-                <Text>
+            <GraphContainer >
+                <GraphDate >
                     {moment.utc(data[0].timeStart).format('YYYY-MM-DD')}
-                </Text>
+                </GraphDate>
                 <BarChart
                     // style={graphStyle}
                     data={transformedData}
@@ -61,10 +65,11 @@ const ActivityChart = ({ data }) => {
                     yAxisSuffix={'h'}
                     withInnerLines={false}
                     fromZero
+                    showBarTops={false}
 
                 />
 
-            </View>
+            </GraphContainer>
         </ScrollView>
     )
 };

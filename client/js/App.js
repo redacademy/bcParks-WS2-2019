@@ -4,7 +4,6 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import Navigation from './navigation/Navigation';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './globalStyles';
-import MoodConverter from './assets/MoodConverter';
 
 
 const App = () => {
@@ -13,7 +12,6 @@ const App = () => {
       <ApolloProvider client={client}>
         <ThemeProvider theme={theme}>
           <Navigation />
-          <MoodConverter />
         </ThemeProvider>
       </ApolloProvider>
     </>

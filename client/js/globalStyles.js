@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const theme = {
     primaryColor: "#49773A",
     accentColor: "#DA6645",
-    grayColor: "#767676",
+    greyColor: "#767676",
     screenBkgColor: "#A3CB9B",
     txtInputBkg: "#fff",
     bodyTextColor: "#000",
@@ -14,8 +14,9 @@ export const theme = {
     bodyFont: "OpenSans-Regular",
     h1FontSize: "30px",
     h2FontSize: "24px",
-    bodyFontSize: "18px"
+    bodyFontSize: "18px",
     // #8cbe82
+
 }
 
 export const ScreenBkgCont = styled.View`
