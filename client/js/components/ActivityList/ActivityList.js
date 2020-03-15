@@ -3,7 +3,8 @@ import {
     ScrollView,
     View,
     Text,
-    FlatList
+    FlatList,
+    TouchableOpacity
 } from 'react-native';
 import moment from "moment";
 import MoodConverter from '../../assets/MoodConverter';
@@ -13,7 +14,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon3 from 'react-native-vector-icons/SimpleLineIcons';
 
-const ActivityList = ({ data }) => {
+
+const ActivityList = ({ data, navigation }) => {
     return (
         <View>
             <FlatListContainer
@@ -25,6 +27,7 @@ const ActivityList = ({ data }) => {
                         <ListContainer>
                             {/* <MoodFace style={styles.image} /> */}
                             <Text> {item.mood}</Text>
+                            {/* <MoodConverter /> */}
                             <ActivityDetails>
                                 <DetailRow>
                                     <Icon name='access-time' size={22} color='green'></Icon>
@@ -40,7 +43,9 @@ const ActivityList = ({ data }) => {
                                 </DetailRow>
                             </ActivityDetails>
                             <NotebookIcon>
-                                <Icon3 name='notebook' size={18}></Icon3>
+                                <TouchableOpacity onPress={() => navigation.navigate('Journal', { item })}>
+                                    <Icon3 name='notebook' size={18}></Icon3>
+                                </TouchableOpacity>
                             </NotebookIcon>
                         </ListContainer>
                     )

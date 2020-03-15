@@ -20,7 +20,8 @@ import {
     ArrowText,
     ActivityView,
     GraphDate
-} from './styles'
+} from './styles';
+
 
 const SESSIONS_QUERY = gql`
   query Sessions($where: SessionWhereInput){
@@ -97,7 +98,7 @@ const ActivityScreen = ({ focusDay, setFocusDay, period, setPeriod }) => {
                 <>
                     <ActivityChart data={data.sessions} />
                     <ActivityDisplay data={data.sessions} />
-                    <ActivityList data={data.sessions} />
+                    <ActivityList data={data.sessions} navigation />
                 </>
             }
 

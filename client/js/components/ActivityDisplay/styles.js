@@ -19,7 +19,7 @@ export const SubDisplayContainer = styled.View`
 export const DisplayTitle = styled.Text`
     font-family: ${theme.bodyFont};
     font-size: 14px; 
-    color: ${theme.greyColor}; 
+    color: ${theme.grayColor}; 
 `
 export const DisplayContent = styled.Text`
     font-family: ${theme.bodyFont};

@@ -24,7 +24,6 @@ const ActivityDisplay = ({ data }) => {
     let moodDisplay = data.map(s => s.mood);
     const sum = moodDisplay.reduce((a, b) => a + b, 0);
     const avg = (sum / moodDisplay.length) || 0;
-    console.log('moodDisplay', moodDisplay)
     return (
         <DisplayContainer>
             <SubDisplayContainer>
