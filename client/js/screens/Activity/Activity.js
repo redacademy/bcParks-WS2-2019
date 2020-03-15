@@ -40,7 +40,7 @@ const SESSIONS_QUERY = gql`
 `
 
 
-const ActivityScreen = ({ focusDay, setFocusDay, period, setPeriod }) => {
+const ActivityScreen = ({ focusDay, setFocusDay, period, setPeriod, navigation }) => {
 
     let start = focusDay.format('YYYY-MM-DD');
     let end = focusDay.clone().add(1, 'd').format('YYYY-MM-DD');
@@ -98,7 +98,7 @@ const ActivityScreen = ({ focusDay, setFocusDay, period, setPeriod }) => {
                 <>
                     <ActivityChart data={data.sessions} />
                     <ActivityDisplay data={data.sessions} />
-                    <ActivityList data={data.sessions} navigation />
+                    <ActivityList data={data.sessions} navigation={navigation} />
                 </>
             }
 
