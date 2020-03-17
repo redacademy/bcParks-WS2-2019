@@ -7,7 +7,7 @@ import {
 // import styles from './styles';
 import moment from "moment";
 import { DisplayContainer, SubDisplayContainer, styles, DisplayTitle, DisplayContent, DisplayRow } from './styles';
-import MoodConverter from '../../assets/MoodConverter';
+import MoodConverter from '../Mood/Mood';
 import MoodFace from '../../assets/images/MoodVeryHappy';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 

@@ -7,7 +7,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 import moment from "moment";
-import MoodConverter from '../../assets/MoodConverter';
+import Mood from '../Mood/Mood';
 import { ListContainer, ActivityDetails, FlatListContainer, ListItem, styles, DetailRow, NotebookIcon } from './styles';
 import MoodFace from '../../assets/images/MoodVeryHappy';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -16,6 +16,7 @@ import Icon3 from 'react-native-vector-icons/SimpleLineIcons';
 
 
 const ActivityList = ({ data, navigation }) => {
+
     return (
         <View>
             <FlatListContainer
@@ -23,11 +24,26 @@ const ActivityList = ({ data, navigation }) => {
                 renderItem={({ item }) => {
                     let diff = (moment.utc(item.timeEnd)).diff((moment.utc(item.timeStart)));
                     let duration = moment.utc(diff).format('HH:mm:ss');
+                    let moodsData = item && item.map(session => session.mood);
+                    console.log('data', data);
                     return (
                         <ListContainer>
-                            {/* <MoodFace style={styles.image} /> */}
                             <Text> {item.mood}</Text>
-                            {/* <MoodConverter /> */}
+
+                            {moodsData.map((number) => {
+                                if (number > 0 && number <= 1) {
+                                    <Text>Very Sad</Text>;
+                                } else if (number > 1 && number <= 2) {
+                                    <Text>Sad</Text>;
+                                } else if (number > 2 && number <= 3) {
+                                    <Text>Neutral</Text>;
+                                } else if (number > 3 && number <= 4) {
+                                    <Text>Happy</Text>;
+                                } else if (number > 4 && number <= 5) {
+                                    <Text>Very Happy</Text>;
+                                }
+                            })}
+
                             <ActivityDetails>
                                 <DetailRow>
                                     <Icon name='access-time' size={22} color='green'></Icon>

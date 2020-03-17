@@ -14,11 +14,13 @@ import { GraphDate } from '../../screens/Activity/styles'
 const screenWidth = Dimensions.get("window").width;
 const chartConfig = {
     backgroundColor: "#ffffff",
-    // backgroundGradientFrom: "#DA6645",
+    backgroundGradientFrom: "#DA6645",
     backgroundGradientFromOpacity: 0,
-    // backgroundGradientTo: "#DA6645",
+    backgroundGradientTo: "#DA6645",
     backgroundGradientToOpacity: 0,
-    color: (opacity = 0.5) => `rgba( 218, 102, 69, ${opacity})`,
+    color: (opacity = 0) => `rgba( 218, 102, 69, ${opacity})`,
+    // labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+
     barPercentage: 0.7,
     barRadius: 7,
     decimalPlaces: 0,
@@ -43,6 +45,7 @@ const ActivityChart = ({ data }) => {
                         data: duration,
                     },
                 ],
+
             };
             return barData;
         }
