@@ -9,7 +9,12 @@ export const TimerDisplay = styled.Text`
     font-weight: 600;
     font-size: 50px;
     color: ${theme.grayColor};
-    margin: 20px auto;
+    
+`
+export const TimerContainer = styled.View`
+    display: flex;
+    flex-direction: row;
+    justify-content: center
 `
 export const InfoTextCont = styled.View`
     background-color: #fff;
