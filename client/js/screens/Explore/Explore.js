@@ -3,7 +3,7 @@ import {View, StyleSheet, Text} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker, Polygon} from 'react-native-maps';
 import polyline from '@mapbox/polyline';
 import fetchData from '../../config/fetchData';
-import MapSwiper from '../../components/MapSwiper';
+import MapSwiper from './components/MapSwiper';
 import styled from 'styled-components';
 import {addMapMutation} from './helper/mutation';
 import {GOOGLE_API_KEY} from '../../config';
