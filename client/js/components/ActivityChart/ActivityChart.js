@@ -19,7 +19,6 @@ const chartConfig = {
     backgroundGradientTo: "#DA6645",
     backgroundGradientToOpacity: 0,
     color: (opacity = 0) => `rgba( 218, 102, 69, ${opacity})`,
-    // labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
 
     barPercentage: 0.7,
     barRadius: 7,

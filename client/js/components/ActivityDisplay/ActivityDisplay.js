@@ -39,7 +39,7 @@ const ActivityDisplay = ({ data }) => {
             <SubDisplayContainer>
                 <DisplayTitle>Average mood</DisplayTitle>
                 <DisplayContent>{avg}</DisplayContent>
-                {/* <Mood /> */}
+                <Mood />
 
             </SubDisplayContainer>
         </DisplayContainer>
