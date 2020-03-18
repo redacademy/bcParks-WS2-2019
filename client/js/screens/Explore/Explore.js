@@ -1,11 +1,7 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
-import MapView, {
-  PROVIDER_GOOGLE,
-  Marker,
-  Polygon,
-  Polyline,
-} from 'react-native-maps';
+import MapView, {PROVIDER_GOOGLE, Marker, Polygon} from 'react-native-maps';
+import polyline from '@mapbox/polyline';
 import fetchData from '../../config/fetchData';
 import MapSwiper from '../../components/MapSwiper';
 import styled from 'styled-components';
@@ -103,14 +99,23 @@ const ExploreScreen = () => {
       setSelectedMap(data.maps[0]);
     });
     Geolocation.watchPosition(({coords}) => setUserLocation(coords));
-    getDirections('49.2479999, -123.1300971', '49.2394052, -123.1288986');
   }, []);
+  const mergeLot = (latitude, longitude) => `${latitude}, ${longitude}`;
+  useEffect(() => {
+    if (selectedMap && userLocation) {
+      const {location} = selectedMap.geometry;
+      getDirections(
+        mergeLot(userLocation.latitude, userLocation.longitude),
+        mergeLot(location.lat, location.lng),
+      );
+    }
+  }, [selectedMap]);
   const getDirections = (startLoc, destinationLoc) => {
     const directionAPI = `https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${destinationLoc}&key=${GOOGLE_API_KEY}`;
     fetch(directionAPI)
       .then(response => response.json())
       .then(data => {
-        const points = Polyline.decode(data.routes[0].overview_polyline.points);
+        const points = polyline.decode(data.routes[0].overview_polyline.points);
         const coords = points.map((point, index) => {
           return {
             latitude: point[0],
@@ -163,7 +168,11 @@ const ExploreScreen = () => {
         }}
         showsUserLocation={true}>
         {getMarkers()}
-        <Polyline coordinates={coords} strokeWidth={3} strokeColor="#588b4a" />
+        <MapView.Polyline
+          coordinates={coords}
+          strokeWidth={3}
+          strokeColor="#588b4a"
+        />
         <Polygon coordinates={QueenElizabeth} />
         <Polygon coordinates={VanDusen} />
       </MapView>
