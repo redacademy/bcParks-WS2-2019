@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const theme = {
     primaryColor: "#49773A",
     accentColor: "#DA6645",
-    greyColor: "#767676",
+    grayColor: "#767676",
     screenBkgColor: "#A3CB9B",
     txtInputBkg: "#fff",
     bodyTextColor: "#000",
