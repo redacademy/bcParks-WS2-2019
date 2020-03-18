@@ -112,7 +112,7 @@ const NavTabs = () => {
                     height: 110,
                     padding: 10,
                     backgroundColor: '#fff',
-                },
+                }
             }}
         >
             <Tab.Screen
@@ -123,17 +123,17 @@ const NavTabs = () => {
             <Tab.Screen
                 name="Explore"
                 component={ExploreStackScreen}
-                options={{ title: 'Explore' }}
+                options={{ title: 'Explore', tabBarVisible: false }}
             />
             <Tab.Screen
                 name="Timer"
                 component={TimerStackScreen}
-                options={{ title: 'Timer' }}
+                options={{ title: 'Timer', tabBarVisible: false }}
             />
             <Tab.Screen
                 name="Activity"
                 component={ActivityStackScreen}
-                options={{ title: 'Activity' }}
+                options={{ title: 'Activity', tabBarVisible: false }}
             />
         </Tab.Navigator>
     )
