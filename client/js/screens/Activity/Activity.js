@@ -12,6 +12,7 @@ import moment from "moment";
 import ActivityChart from '../../components/ActivityChart/ActivityChart';
 import ActivityList from '../../components/ActivityList/ActivityList';
 import ActivityDisplay from '../../components/ActivityDisplay/ActivityDisplay';
+import Mood from '../../components/Mood/Mood';
 import {
     ButtonsContainer,
     PeriodButtons,
@@ -35,6 +36,7 @@ const SESSIONS_QUERY = gql`
         }
         mood
         date
+        journal
     }
   }
 `
@@ -99,6 +101,7 @@ const ActivityScreen = ({ focusDay, setFocusDay, period, setPeriod, navigation }
                     <ActivityChart data={data.sessions} />
                     <ActivityDisplay data={data.sessions} />
                     <ActivityList data={data.sessions} navigation={navigation} />
+                    {/* <Mood data={data.sessions} /> */}
                 </>
             }
 

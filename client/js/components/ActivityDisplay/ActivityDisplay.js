@@ -10,6 +10,8 @@ import { DisplayContainer, SubDisplayContainer, styles, DisplayTitle, DisplayCon
 import MoodConverter from '../Mood/Mood';
 import MoodFace from '../../assets/images/MoodVeryHappy';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
+import Mood from '../Mood/Mood';
+
 
 
 const ActivityDisplay = ({ data }) => {
@@ -18,6 +20,7 @@ const ActivityDisplay = ({ data }) => {
         let start = moment.utc(session.timeStart);
         let end = moment.utc(session.timeEnd);
         return end.diff(start, 'hours', true)
+
     });
     const totalDuration = durationDisplay.reduce((result, number) => result + number);
 
@@ -30,13 +33,13 @@ const ActivityDisplay = ({ data }) => {
                 <DisplayTitle>You have spent</DisplayTitle>
                 <DisplayRow>
                     <Icon2 name='leaf' size={22} color='green'></Icon2>
-                    <DisplayContent>{totalDuration}h</DisplayContent>
+                    <DisplayContent>{totalDuration.toFixed(2)}h</DisplayContent>
                 </DisplayRow>
             </SubDisplayContainer>
             <SubDisplayContainer>
                 <DisplayTitle>Average mood</DisplayTitle>
-                {/* <MoodConverter /> */}
                 <DisplayContent>{avg}</DisplayContent>
+                {/* <Mood /> */}
 
             </SubDisplayContainer>
         </DisplayContainer>

@@ -14,47 +14,31 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon3 from 'react-native-vector-icons/SimpleLineIcons';
 
-
 const ActivityList = ({ data, navigation }) => {
-
     return (
         <View>
             <FlatListContainer
                 data={data}
                 renderItem={({ item }) => {
                     let diff = (moment.utc(item.timeEnd)).diff((moment.utc(item.timeStart)));
-                    let duration = moment.utc(diff).format('HH:mm:ss');
-                    let moodsData = item && item.map(session => session.mood);
-                    console.log('data', data);
+                    let duration = moment.utc(diff).format('HH:mm');
+
+                    // console.log('data', data);
                     return (
                         <ListContainer>
                             <Text> {item.mood}</Text>
-
-                            {moodsData.map((number) => {
-                                if (number > 0 && number <= 1) {
-                                    <Text>Very Sad</Text>;
-                                } else if (number > 1 && number <= 2) {
-                                    <Text>Sad</Text>;
-                                } else if (number > 2 && number <= 3) {
-                                    <Text>Neutral</Text>;
-                                } else if (number > 3 && number <= 4) {
-                                    <Text>Happy</Text>;
-                                } else if (number > 4 && number <= 5) {
-                                    <Text>Very Happy</Text>;
-                                }
-                            })}
-
+                            <Mood />
                             <ActivityDetails>
                                 <DetailRow>
-                                    <Icon name='access-time' size={22} color='green'></Icon>
+                                    <Icon name='access-time' size={22} color='#66b17e'></Icon>
                                     <ListItem> {moment.utc(item.timeStart).format('HH:mm a')} </ListItem>
                                 </DetailRow>
                                 <DetailRow>
-                                    <Icon2 name='leaf' size={22} color='green'></Icon2>
+                                    <Icon2 name='leaf' size={22} color='#66b17e'></Icon2>
                                     <ListItem> {duration} </ListItem>
                                 </DetailRow>
                                 <DetailRow>
-                                    <Icon2 name='map-marker' size={22} color='green'></Icon2>
+                                    <Icon2 name='map-marker' size={22} color='#66b17e'></Icon2>
                                     <ListItem> {item.locations && item.locations.length > 0 && item.locations[0].name} </ListItem>
                                 </DetailRow>
                             </ActivityDetails>
