@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import styled from 'styled-components';
 import {GOOGLE_API_KEY} from '../../../../config';
