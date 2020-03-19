@@ -3,44 +3,48 @@ import {
     ScrollView,
     View,
     Text,
-    FlatList
+    FlatList,
+    TouchableOpacity
 } from 'react-native';
 import moment from "moment";
-import MoodConverter from '../../assets/MoodConverter';
+import Mood from '../Mood/Mood';
 import { ListContainer, ActivityDetails, FlatListContainer, ListItem, styles, DetailRow, NotebookIcon } from './styles';
 import MoodFace from '../../assets/images/MoodVeryHappy';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon3 from 'react-native-vector-icons/SimpleLineIcons';
 
-const ActivityList = ({ data }) => {
+const ActivityList = ({ data, navigation }) => {
     return (
         <View>
             <FlatListContainer
                 data={data}
                 renderItem={({ item }) => {
                     let diff = (moment.utc(item.timeEnd)).diff((moment.utc(item.timeStart)));
-                    let duration = moment.utc(diff).format('HH:mm:ss');
+                    let duration = moment.utc(diff).format('HH:mm');
+
                     return (
                         <ListContainer>
-                            {/* <MoodFace style={styles.image} /> */}
                             <Text> {item.mood}</Text>
+                            <Mood />
                             <ActivityDetails>
                                 <DetailRow>
-                                    <Icon name='access-time' size={22} color='green'></Icon>
+                                    <Icon name='access-time' size={22} color='#66b17e'></Icon>
                                     <ListItem> {moment.utc(item.timeStart).format('HH:mm a')} </ListItem>
                                 </DetailRow>
                                 <DetailRow>
-                                    <Icon2 name='leaf' size={22} color='green'></Icon2>
+                                    <Icon2 name='leaf' size={22} color='#66b17e'></Icon2>
                                     <ListItem> {duration} </ListItem>
                                 </DetailRow>
                                 <DetailRow>
-                                    <Icon2 name='map-marker' size={22} color='green'></Icon2>
+                                    <Icon2 name='map-marker' size={22} color='#66b17e'></Icon2>
                                     <ListItem> {item.locations && item.locations.length > 0 && item.locations[0].name} </ListItem>
                                 </DetailRow>
                             </ActivityDetails>
                             <NotebookIcon>
-                                <Icon3 name='notebook' size={18}></Icon3>
+                                <TouchableOpacity onPress={() => navigation.navigate('Journal', { item })}>
+                                    <Icon3 name='notebook' size={18}></Icon3>
+                                </TouchableOpacity>
                             </NotebookIcon>
                         </ListContainer>
                     )

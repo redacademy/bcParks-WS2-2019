@@ -10,7 +10,7 @@ export const FlatListContainer = styled.FlatList`
 export const ListContainer = styled.View`
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     border: 1px solid white;
     border-radius: 10px;
@@ -36,11 +36,11 @@ export const DetailRow = styled.View`
 export const ListItem = styled.Text`
     font-family: ${theme.bodyFont};
     font-size: 15px; 
-    color: ${theme.greyColor};
+    color: ${theme.grayColor};
 `
 
 export const NotebookIcon = styled.View`
-    padding-right: 20px;
+    padding-right: 15px;
 `
 
 
