@@ -1,14 +1,14 @@
-import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import styled from 'styled-components';
-import {GOOGLE_API_KEY} from '../../../../config';
+import { GOOGLE_API_KEY } from '../../../../config';
 
 const ImageFrame = styled.Image`
   background: #333;
   height: 161px;
   border-radius: 4px;
 `;
-const Card = ({detail}) => {
+const Card = ({ detail }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleModal = () => {

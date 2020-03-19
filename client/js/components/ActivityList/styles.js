@@ -42,11 +42,3 @@ export const ListItem = styled.Text`
 export const NotebookIcon = styled.View`
     padding-right: 15px;
 `
-
-
-export const styles = StyleSheet.create({
-    image: {
-        marginHorizontal: 45,
-        marginVertical: 75
-    },
-});
