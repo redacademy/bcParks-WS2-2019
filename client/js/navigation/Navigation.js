@@ -46,7 +46,7 @@ const HomeStack = createStackNavigator()
 
 const HomeStackScreen = () => {
     return (
-        <HomeStack.Navigator>
+        <HomeStack.Navigator headerMode="none">
             <HomeStack.Screen name="Home" component={HomeScreen} />
             <HomeStack.Screen name="Goal" component={GoalScreen} />
         </HomeStack.Navigator>
@@ -57,7 +57,7 @@ const ExploreStack = createStackNavigator()
 
 const ExploreStackScreen = () => {
     return (
-        <ExploreStack.Navigator>
+        <ExploreStack.Navigator headerMode="none">
             <ExploreStack.Screen name="Explore" component={ExploreScreen} />
         </ExploreStack.Navigator>
     );
@@ -67,7 +67,7 @@ const TimerStack = createStackNavigator()
 
 const TimerStackScreen = () => {
     return (
-        <TimerStack.Navigator>
+        <TimerStack.Navigator headerMode="none">
             <TimerStack.Screen name="Timer" component={TimerScreen} />
             <TimerStack.Screen name="MoodSelect" component={MoodSelectScreen} />
             <TimerStack.Screen name="TextInput" component={TextInputScreen} />
@@ -79,7 +79,7 @@ const ActivityStack = createStackNavigator()
 
 const ActivityStackScreen = () => {
     return (
-        <ActivityStack.Navigator>
+        <ActivityStack.Navigator headerMode="none">
             <ActivityStack.Screen name="Activity" component={ActivityScreen} />
         </ActivityStack.Navigator>
     );
