@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { StyleSheet } from 'react-native';
 
 export const theme = {
     primaryColor: "#49773A",
@@ -26,7 +27,7 @@ export const ScreenBkgCont = styled.View`
 export const HeaderCont = styled.View`
     display:flex;
     flex-direction: row;
-    margin: 40px 0 0;
+    margin: 30px 0 0;
 `
 export const NoFlexHeaderCont = styled.View`
     margin: 40px 0 0;
@@ -58,3 +59,11 @@ export const PrimaryBtn = styled.Text`
     border-radius: 25px;
     overflow:hidden;
 `
+export const styles = StyleSheet.create({
+    backIcon: {
+        marginLeft: 10,
+        marginRight: 110,
+        marginTop: 40,
+        marginBottom: 20
+    }
+});

@@ -21,7 +21,9 @@ import {
     ArrowText,
     ActivityView,
     GraphDate
-} from './styles';
+} from './styles'
+import { theme, HeaderCont, Heading, styles } from '../../globalStyles';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 
 const SESSIONS_QUERY = gql`
@@ -65,6 +67,12 @@ const ActivityScreen = ({ focusDay, setFocusDay, period, setPeriod, navigation }
 
     return (
         <View>
+            <HeaderCont>
+                <TouchableOpacity onPress={() => navigation.goBack('Home')}>
+                    <Icon name='chevron-left' size={30} color={theme.bodyTextColor} style={styles.backIcon} />
+                </TouchableOpacity>
+                <Heading>Activity</Heading>
+            </HeaderCont>
             <ButtonsContainer>
 
                 <PeriodButtons onPress={() => {

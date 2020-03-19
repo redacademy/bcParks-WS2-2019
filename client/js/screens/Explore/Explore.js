@@ -1,14 +1,16 @@
-import React, {useEffect, useState, useRef} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import React, { useEffect, useState, useRef } from 'react';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { theme } from '../../globalStyles';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import MapView, {PROVIDER_GOOGLE, Marker, Polygon} from 'react-native-maps';
 import polyline from '@mapbox/polyline';
 import fetchData from '../../config/fetchData';
 import MapSwiper from './components/MapSwiper';
 import styled from 'styled-components';
-import {addMapMutation} from './helper/mutation';
-import {GOOGLE_API_KEY} from '../../config';
+import { addMapMutation } from './helper/mutation';
+import { GOOGLE_API_KEY } from '../../config';
 import Geolocation from '@react-native-community/geolocation';
-import {QueenElizabeth, VanDusen} from './utils/PolygonSample';
+import { QueenElizabeth, VanDusen } from './utils/PolygonSample';
 
 const Containter = styled.View`
   height: 333px;
@@ -17,7 +19,7 @@ const Containter = styled.View`
 `;
 const SearchButton = styled.TouchableOpacity`
   position: absolute;
-  top: 12px;
+  top: 30px;
   background: #fff;
   padding: 10px 30px;
   border-radius: 5px;
@@ -39,9 +41,9 @@ const CustomMarkerOpacity = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: ${({selected}) => (selected ? 1 : 0.5)};
+  opacity: ${({ selected }) => (selected ? 1 : 0.5)};
 `;
-const ExploreScreen = () => {
+const ExploreScreen = ({ navigation }) => {
   const [mapData, setMapData] = useState([]);
   const [APIData, setAPIData] = useState([]);
   const [selectedMap, setSelectedMap] = useState();
@@ -176,6 +178,9 @@ const ExploreScreen = () => {
         <Polygon coordinates={QueenElizabeth} />
         <Polygon coordinates={VanDusen} />
       </MapView>
+      <TouchableOpacity onPress={() => navigation.goBack('Home')}>
+        <Icon name='chevron-left' size={30} color={theme.bodyTextColor} />
+      </TouchableOpacity>
       <SearchButton onPress={() => GoogleAPIFetch()}>
         <Text style={styles.button}>Search in this area</Text>
       </SearchButton>

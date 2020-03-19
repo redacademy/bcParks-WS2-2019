@@ -47,7 +47,7 @@ const HomeStack = createStackNavigator()
 
 const HomeStackScreen = () => {
     return (
-        <HomeStack.Navigator>
+        <HomeStack.Navigator headerMode="none">
             <HomeStack.Screen name="Home" component={HomeScreen} />
             <HomeStack.Screen name="Goal" component={GoalScreen} />
         </HomeStack.Navigator>
@@ -58,7 +58,7 @@ const ExploreStack = createStackNavigator()
 
 const ExploreStackScreen = () => {
     return (
-        <ExploreStack.Navigator>
+        <ExploreStack.Navigator headerMode="none">
             <ExploreStack.Screen name="Explore" component={ExploreScreen} />
         </ExploreStack.Navigator>
     );
@@ -68,7 +68,7 @@ const TimerStack = createStackNavigator()
 
 const TimerStackScreen = () => {
     return (
-        <TimerStack.Navigator>
+        <TimerStack.Navigator headerMode="none">
             <TimerStack.Screen name="Timer" component={TimerScreen} />
             <TimerStack.Screen name="MoodSelect" component={MoodSelectScreen} />
             <TimerStack.Screen name="TextInput" component={TextInputScreen} />
@@ -80,7 +80,7 @@ const ActivityStack = createStackNavigator()
 
 const ActivityStackScreen = () => {
     return (
-        <ActivityStack.Navigator>
+        <ActivityStack.Navigator headerMode="none">
             <ActivityStack.Screen name="Activity" component={ActivityScreen} />
             <ActivityStack.Screen name="Journal" component={JournalScreen} />
         </ActivityStack.Navigator>
@@ -114,7 +114,7 @@ const NavTabs = () => {
                     height: 110,
                     padding: 10,
                     backgroundColor: '#fff',
-                },
+                }
             }}
         >
             <Tab.Screen
@@ -125,17 +125,17 @@ const NavTabs = () => {
             <Tab.Screen
                 name="Explore"
                 component={ExploreStackScreen}
-                options={{ title: 'Explore' }}
+                options={{ title: 'Explore', tabBarVisible: false }}
             />
             <Tab.Screen
                 name="Timer"
                 component={TimerStackScreen}
-                options={{ title: 'Timer' }}
+                options={{ title: 'Timer', tabBarVisible: false }}
             />
             <Tab.Screen
                 name="Activity"
                 component={ActivityStackScreen}
-                options={{ title: 'Activity' }}
+                options={{ title: 'Activity', tabBarVisible: false }}
             />
         </Tab.Navigator>
     )
