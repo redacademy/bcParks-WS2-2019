@@ -4,6 +4,8 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { DayButtonContainer, ToggleMenu } from './style';
 import DaysButton from '../../components/DaysButton/DaysButton';
+import { theme, HeaderCont, Heading, styles } from '../../globalStyles';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const Mutation_UpdateGoals = gql`
     mutation UpdateGoals($hours: Float!, $title: [String!]) {
@@ -38,9 +40,14 @@ const GoalScreen = ({ navigation }) => {
     }
     return (
         <View>
-            <Text>
-                GoalPage
-            </Text>
+            <HeaderCont>
+                <TouchableOpacity onPress={() => navigation.goBack('Home')}>
+                    <Icon name='chevron-left' size={30} color={theme.bodyTextColor} style={styles.backIcon} />
+                </TouchableOpacity>
+                <Heading>
+                    Settings
+            </Heading>
+            </HeaderCont>
             <ToggleMenu>
                 <Button title="Daily"
                     onPress={() => {
