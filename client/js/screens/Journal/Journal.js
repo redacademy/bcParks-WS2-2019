@@ -26,7 +26,7 @@ import Dash from 'react-native-dash';
 const JournalScreen = ({ params }) => {
 
     let diff = (moment.utc(params.item.timeEnd)).diff((moment.utc(params.item.timeStart)));
-    let duration = moment.utc(diff).format('HH:mm');
+    let duration = moment.utc(diff).format('H [Hour] mm [Minutes]');
     return (
         <HeadContainer >
             {/* <Background style={styles.image} /> */}
@@ -47,7 +47,7 @@ const JournalScreen = ({ params }) => {
                 <LogContainer>
                     <IconDurationRow>
                         <Text>{params.item.mood}</Text>
-                        <DurationText>{duration} hours</DurationText>
+                        <DurationText>{duration}</DurationText>
                     </IconDurationRow>
                     <IconLocationRow>
                         <Icon2 name='map-marker' size={24} color='#8cbe82'></Icon2>
