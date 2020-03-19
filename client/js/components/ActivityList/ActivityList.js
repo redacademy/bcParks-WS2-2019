@@ -21,7 +21,7 @@ const ActivityList = ({ data, navigation }) => {
                 data={data}
                 renderItem={({ item }) => {
                     let diff = (moment.utc(item.timeEnd)).diff((moment.utc(item.timeStart)));
-                    let duration = moment.utc(diff).format('HH:mm');
+                    let duration = moment.utc(diff).format('H [Hour] mm [Minutes]');
 
                     return (
                         <ListContainer>
