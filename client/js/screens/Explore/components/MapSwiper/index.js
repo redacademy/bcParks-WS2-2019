@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     letterSpacing: -0.14,
     marginBottom: 14,
+    color: '#303030',
   },
 });
 

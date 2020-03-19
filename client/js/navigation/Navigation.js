@@ -12,6 +12,7 @@ import ExploreScreen from '../screens/Explore';
 import MoodSelectScreen from '../screens/MoodSelect';
 import TextInputScreen from '../screens/TextInput';
 import GoalScreen from '../screens/Goal';
+import JournalScreen from '../screens/Journal';
 import { OnLanding, OnLocation, OnTime, OnActivity, OnGoal, OnEnd } from '../screens/Onboarding';
 import { LoginContainer, SignUpContainer, ForgotPwContainer } from '../screens/User';
 
@@ -81,6 +82,7 @@ const ActivityStackScreen = () => {
     return (
         <ActivityStack.Navigator headerMode="none">
             <ActivityStack.Screen name="Activity" component={ActivityScreen} />
+            <ActivityStack.Screen name="Journal" component={JournalScreen} />
         </ActivityStack.Navigator>
     );
 }

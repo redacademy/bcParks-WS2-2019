@@ -60,3 +60,5 @@ client/ios/Pods/
 client/js/screens/Explore/parkData.json
 client/config.js
 client/.env
+
+client/js/config.js
