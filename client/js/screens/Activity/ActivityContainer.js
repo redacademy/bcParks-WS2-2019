@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { withNavigation } from "react-navigation";
 import Activity from './Activity';
 import {
     Text,
@@ -6,7 +7,7 @@ import {
 } from 'react-native';
 import moment from "moment";
 
-function ActivityContainer() {
+function ActivityContainer({ navigation }) {
     const [focusDay, setFocusDay] = useState(moment());
     const [period, setPeriod] = useState(moment());
 
@@ -16,8 +17,9 @@ function ActivityContainer() {
             setFocusDay={setFocusDay}
             period={period}
             setPeriod={setPeriod}
+            navigation={navigation}
         />
     )
 }
 
-export default ActivityContainer;
+export default withNavigation(ActivityContainer);
