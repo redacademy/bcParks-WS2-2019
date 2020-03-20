@@ -37,6 +37,5 @@ export const GraphDate = styled.Text`
     text-align: center;
     font-family: ${theme.bodyFont};
     font-size: ${theme.bodyFontSize};
-    color: #559c56;
-    font-weight: 600;
+    color: #303030;
 `

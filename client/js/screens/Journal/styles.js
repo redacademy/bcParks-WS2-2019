@@ -33,14 +33,14 @@ export const TimesContainer = styled.View`
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    padding: 20px;
+    padding: 0 20px;
 
 `
 export const DurationText = styled.Text`
     font-family: ${theme.bodyFont};
     font-size: 20px;
     color: #303030;
-    padding-left: 40px;
+    padding-left: 25px;
 `
 export const TimeText = styled.Text`
     font-family: ${theme.bodyFont};

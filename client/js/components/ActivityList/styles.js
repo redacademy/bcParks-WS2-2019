@@ -16,7 +16,6 @@ export const ListContainer = styled.View`
     border-radius: 10px;
     background-color: #fff;
     width: 90%;
-    height: 100px;
     margin: 5px auto;
 `
 

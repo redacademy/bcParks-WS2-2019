@@ -24,8 +24,8 @@ import Mood from '../Mood/Mood';
 const ActivityDisplay = ({ data }) => {
 
     let durationDisplay = data.map(session => {
-        let start = moment.utc(session.timeStart);
-        let end = moment.utc(session.timeEnd);
+        let start = moment(session.timeStart);
+        let end = moment(session.timeEnd);
         return (end.diff(start, 'hours', true))
     });
     const totalDuration = durationDisplay.reduce((result, number) => result + number);
@@ -44,8 +44,7 @@ const ActivityDisplay = ({ data }) => {
             <SubDisplayContainer>
                 <DisplayTitle>Average mood</DisplayTitle>
                 <MoodDisplayContainer>
-                    <DisplayContent>{avg}</DisplayContent>
-                    <Mood />
+                    <Mood moodValue={avg} showText={true} iconSize={27} />
                 </MoodDisplayContainer>
             </SubDisplayContainer>
         </DisplayContainer>
