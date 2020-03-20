@@ -2,12 +2,13 @@ import React, {useEffect, useState, useRef, Children} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker, Polygon} from 'react-native-maps';
 import polyline from '@mapbox/polyline';
-import fetchData from '../../config/fetchData';
+import fetchData from '../../../../config/fetchData';
 import styled from 'styled-components';
-import {addMapMutation} from './helper/mutation';
-import {GOOGLE_API_KEY} from '../../config';
+import {addMapMutation} from '../../helper/mutation';
+import {GOOGLE_API_KEY} from '../../../../config';
 import Geolocation from '@react-native-community/geolocation';
-import {QueenElizabeth, VanDusen} from './utils/PolygonSample';
+import {QueenElizabeth, VanDusen} from '../../utils/PolygonSample';
+import BackButton from '../../../../components/BackButton';
 
 const Containter = styled.View`
   height: 333px;
@@ -174,10 +175,11 @@ const Maps = ({children}) => {
         <Polygon coordinates={QueenElizabeth} />
         <Polygon coordinates={VanDusen} />
       </MapView>
-      <Containter>{children}</Containter>
+      <BackButton navigation={navigation} />
       <SearchButton onPress={() => GoogleAPIFetch()}>
         <Text style={styles.button}>Search in this area</Text>
       </SearchButton>
+      <Containter>{children}</Containter>
     </View>
   );
 };

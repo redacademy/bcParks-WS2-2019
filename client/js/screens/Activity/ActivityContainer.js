@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import { withNavigation } from "react-navigation";
 import Activity from './Activity';
-import { withNavigation } from 'react-navigation';
 
 import {
     Text,
