@@ -6,6 +6,7 @@ import { Background, Flex, BtnText, styles } from './styles';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import Goal from '../Goal/Goal';
+import DotNav from '../../components/DotNav/DotNav';
 
 const OnGoal = ({ navigation }) => {
     return (
@@ -22,6 +23,7 @@ const OnGoal = ({ navigation }) => {
                 <TouchableOpacity onPress={() => navigation.navigate('Tabs')}>
                     <BtnText isSkip>skip</BtnText>
                 </TouchableOpacity>
+                <DotNav />
                 <TouchableOpacity onPress={() => navigation.push('OnEnd')}>
                     <BtnText>next</BtnText>
                 </TouchableOpacity>

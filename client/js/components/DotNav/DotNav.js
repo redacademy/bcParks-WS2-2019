@@ -5,21 +5,27 @@ import { theme } from '../../globalStyles';
 export const DotsCont = styled.View`
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 `
 export const Dot = styled.Text`
-    background-color: ${props => props.isActive ? theme.accentColor : theme.invertTxtColor};
+    background-color: ${props => props.isActive ? theme.accentColor : theme.invertTextColor};
     text-align: center;
-    padding: 10px;
-    width: 100%;
-    border-radius: 25px;
+    height: 9px;
+    width: 9px;
+    padding: 5px;
+    border-radius: 5px;
     overflow:hidden;
+    margin: 0 3px;
 `
 
 const DotNav = () => {
     return (
         <DotsCont>
-            <Dot isActive> </Dot>
-            <Dot> </Dot>
+            <Dot isActive></Dot>
+            <Dot></Dot>
+            <Dot></Dot>
+            <Dot></Dot>
+            <Dot></Dot>
         </DotsCont>
     )
 };

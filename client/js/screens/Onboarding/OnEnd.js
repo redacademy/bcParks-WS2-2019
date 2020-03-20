@@ -4,6 +4,7 @@ import { TouchableOpacity } from 'react-native';
 import { NoFlexHeaderCont, Heading, SubHeading, PrimaryBtn } from '../../globalStyles';
 import { Background, StartBtnCont, styles } from './styles';
 import OnboardingEnd from '../../assets/images/OnboardingEnd';
+import DotNav from '../../components/DotNav/DotNav';
 
 const OnEnd = ({ navigation }) => {
     return (
@@ -17,6 +18,7 @@ const OnEnd = ({ navigation }) => {
                 <TouchableOpacity onPress={() => navigation.navigate('Tabs')}>
                     <PrimaryBtn>start</PrimaryBtn>
                 </TouchableOpacity>
+                <DotNav />
             </StartBtnCont>
         </Background>
     )

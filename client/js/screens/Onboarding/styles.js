@@ -9,6 +9,7 @@ export const Flex = styled.View`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 `
 export const StartBtnCont = styled.View`
     margin: 40px auto 100px;
