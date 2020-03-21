@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -27,6 +27,8 @@ import {
   SignUpContainer,
   ForgotPwContainer,
 } from '../screens/User';
+import MapContext from '../context/MapContext';
+
 
 const OnboardingStack = createStackNavigator();
 const OnboardingStackScreen = () => {
@@ -80,7 +82,7 @@ const TimerStack = createStackNavigator();
 const TimerStackScreen = () => {
   return (
     <TimerStack.Navigator headerMode="none">
-      <TimerStack.Screen name="Timer" component={MapScreen} />
+      <TimerStack.Screen name="Timer" component={TimerScreen} />
       <TimerStack.Screen name="MoodSelect" component={MoodSelectScreen} />
       <TimerStack.Screen name="TextInput" component={TextInputScreen} />
     </TimerStack.Navigator>
@@ -101,6 +103,7 @@ const ActivityStackScreen = () => {
 const Tab = createBottomTabNavigator();
 
 const NavTabs = () => {
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
