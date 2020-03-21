@@ -53,6 +53,8 @@ const Maps = ({children, navigation, _carousel}) => {
     setCoords,
     selectedIndex,
     setSelectedIndex,
+    region,
+    setRegion,
   } = useContext(MapContext);
 
   const GoogleAPIFetch = () => {
@@ -153,6 +155,7 @@ const Maps = ({children, navigation, _carousel}) => {
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
+        onRegionChange={region => setRegion(region)}
         showsUserLocation={true}>
         {getMarkers()}
         <MapView.Polyline
