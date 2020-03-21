@@ -2,77 +2,49 @@ import React from 'react';
 import { Text } from 'react-native';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
+import styled from 'styled-components';
+import { theme } from '../../globalStyles';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
-const Mood = () => {
-    const SESSIONS_QUERY = gql`
-    {
-        sessions {
-            id
-            mood
-        }
-    }
-    `
-    const { data } = useQuery(SESSIONS_QUERY);
-    const moodsArray = data && data.sessions.map(session => session.mood);
-    console.log(moodsArray);
 
-    if (!moodsArray || !moodsArray.length) {
-        return <Text>no moods</Text>
-    }
+export const MoodText = styled.Text`
+    font-family: ${theme.bodyFont};
+    font-size: 16px;
+    color: #303030;
+`
 
-    // async let converter = await moodsArray.map(number => {
-    //     console.log('converter', converter);
-    //     if (number > 0 && number <= 1) {
-    //         return <Text>Very Sad</Text>
-    //     } else if (number > 1 && number <= 2) {
-    //         return <Text>Sad</Text>
-    //     } else if (number > 2 && number <= 3) {
-    //         return <Text>Neutral</Text>
-    //     } else if (number > 3 && number <= 4) {
-    //         return <Text>Happy</Text>
-    //     } else if (number > 4 && number <= 5) {
-    //         return <Text>Very Happy</Text>
-    //     }
-    // })
+const Mood = ({ moodValue, showText, iconSize }) => {
+    let text;
+    let iconName;
 
-    // let label = undefined;
-
-    // moodsArray && moodsArray.map(() => {
-    //     if (number > 0 && number <= 1) {
-    //         label = 'Very Sad';
-    //     } else if (number > 1 && number <= 2) {
-    //         label = 'Sad';
-    //     } else if (number > 2 && number <= 3) {
-    //         label = 'Neutral';
-    //     } else if (number > 3 && number <= 4) {
-    //         label = 'Happy';
-    //     } else if (number > 4 && number <= 5) {
-    //         label = 'Very Happy';
-    //     }
-
-    // });
-
-    // return (
-    //     <Text>{label}</Text>
-    // )
-
-    for (let i = 0; i < moodsArray.length; ++i) {
-        let number = moodsArray[i];
-        if (number > 0 && number <= 1) {
-            return <Text>Very Sad</Text>
-        } else if (number > 1 && number <= 2) {
-            return <Text>Sad</Text>
-        } else if (number > 2 && number <= 3) {
-            return <Text>Neutral</Text>
-        } else if (number > 3 && number <= 4) {
-            return <Text>Happy</Text>
-        } else if (number > 4 && number <= 5) {
-            return <Text>Very Happy</Text>
-        }
+    if (moodValue <= 1) {
+        text = 'Very Sad';
+        iconName = 'emoticon-dead';
+    } else if (moodValue > 1 && moodValue <= 2) {
+        text = 'Sad';
+        iconName = 'emoticon-sad';
+    } else if (moodValue > 2 && moodValue <= 3) {
+        text = 'Neutral';
+        iconName = 'emoticon-neutral';
+    } else if (moodValue > 3 && moodValue <= 4) {
+        text = 'Happy';
+        iconName = 'emoticon-happy';
+    } else {
+        text = 'Very Happy';
+        iconName = 'emoticon';
     }
 
-
+    return (
+        <>
+            <Icon2 name={iconName} size={iconSize} color='#f0ec79' ></Icon2>
+            {showText && <MoodText>{text}</MoodText>}
+        </>
+    )
 }
 
 export default Mood;
+
+
+

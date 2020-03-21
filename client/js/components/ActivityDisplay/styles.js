@@ -7,24 +7,30 @@ export const DisplayContainer = styled.View`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    height: 10%;
+    align-items: flex-start;
 `
-
 export const SubDisplayContainer = styled.View`
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     margin: 10px;
+`
+export const MoodDisplayContainer = styled.View`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
 `
 export const DisplayTitle = styled.Text`
     font-family: ${theme.bodyFont};
-    font-size: 14px; 
-    color: ${theme.grayColor}; 
+    font-size: 16px; 
+    font-weight: 300;
+    color: #303030; 
 `
 export const DisplayContent = styled.Text`
     font-family: ${theme.bodyFont};
     font-size: 16px; 
-    color: #636363; 
+    color: #303030; 
     margin-left: 5px;
 `
 export const DisplayRow = styled.View`

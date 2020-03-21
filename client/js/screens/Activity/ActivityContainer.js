@@ -10,16 +10,34 @@ import moment from "moment";
 
 function ActivityContainer({ navigation }) {
     const [focusDay, setFocusDay] = useState(moment());
-    const [period, setPeriod] = useState(moment());
+    const [focusWeek, setFocusWeek] = useState(moment().startOf('week'));
+    const [showWeekly, setShowWeekly] = useState(false)
+
 
     return (
-        <Activity
-            focusDay={focusDay}
-            setFocusDay={setFocusDay}
-            period={period}
-            setPeriod={setPeriod}
-            navigation={navigation}
-        />
+        <>
+            {showWeekly &&
+                <Activity
+                    focus={focusWeek}
+                    setFocus={setFocusWeek}
+                    period={7}
+                    navigation={navigation}
+                    showWeekly={showWeekly}
+                    setShowWeekly={setShowWeekly}
+                />
+            }
+
+            {!showWeekly &&
+                <Activity
+                    focus={focusDay}
+                    setFocus={setFocusDay}
+                    period={1}
+                    navigation={navigation}
+                    showWeekly={showWeekly}
+                    setShowWeekly={setShowWeekly}
+                />
+            }
+        </>
     )
 }
 

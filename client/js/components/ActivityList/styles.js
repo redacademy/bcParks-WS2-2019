@@ -16,7 +16,6 @@ export const ListContainer = styled.View`
     border-radius: 10px;
     background-color: #fff;
     width: 90%;
-    height: 100px;
     margin: 5px auto;
 `
 
@@ -42,11 +41,3 @@ export const ListItem = styled.Text`
 export const NotebookIcon = styled.View`
     padding-right: 15px;
 `
-
-
-export const styles = StyleSheet.create({
-    image: {
-        marginHorizontal: 45,
-        marginVertical: 75
-    },
-});
