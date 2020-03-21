@@ -9,7 +9,6 @@ import HomeScreen from '../screens/Home';
 import ActivityScreen from '../screens/Activity';
 import TimerScreen from '../screens/Timer';
 import ExploreScreen from '../screens/Explore';
-import MapScreen from '../screens/Maps';
 import MoodSelectScreen from '../screens/MoodSelect';
 import TextInputScreen from '../screens/TextInput';
 import GoalScreen from '../screens/Goal';
@@ -28,7 +27,6 @@ import {
   ForgotPwContainer,
 } from '../screens/User';
 import MapContext from '../context/MapContext';
-
 
 const OnboardingStack = createStackNavigator();
 const OnboardingStackScreen = () => {
@@ -103,6 +101,7 @@ const ActivityStackScreen = () => {
 const Tab = createBottomTabNavigator();
 
 const NavTabs = () => {
+  const MapState = useContext(MapContext);
 
   return (
     <Tab.Navigator
