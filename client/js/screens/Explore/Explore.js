@@ -1,7 +1,5 @@
-import React, {useEffect, useState, useRef, useContext} from 'react';
+import React, {useRef, useContext} from 'react';
 import Maps from '../../components/Maps';
-import polyline from '@mapbox/polyline';
-import fetchData from '../../config/fetchData';
 import MapSwiper from './components/MapSwiper';
 import MapContext from '../../context/MapContext';
 
