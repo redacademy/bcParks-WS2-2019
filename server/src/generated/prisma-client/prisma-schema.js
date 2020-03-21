@@ -836,7 +836,7 @@ type Map {
   geometry: Geometry!
   vicinity: String!
   plus_code: PlusCode
-  photos: [String!]!
+  photo_reference: String
   opening_hours: Boolean
   features(where: FeatureWhereInput, orderBy: FeatureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Feature!]
   boundaries(where: GeoPointWhereInput, orderBy: GeoPointOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [GeoPoint!]
@@ -855,7 +855,7 @@ input MapCreateInput {
   geometry: GeometryCreateOneInput!
   vicinity: String!
   plus_code: PlusCodeCreateOneInput
-  photos: MapCreatephotosInput
+  photo_reference: String
   opening_hours: Boolean
   features: FeatureCreateManyInput
   boundaries: GeoPointCreateManyInput
@@ -864,10 +864,6 @@ input MapCreateInput {
 input MapCreateManyInput {
   create: [MapCreateInput!]
   connect: [MapWhereUniqueInput!]
-}
-
-input MapCreatephotosInput {
-  set: [String!]
 }
 
 type MapEdge {
@@ -884,6 +880,8 @@ enum MapOrderByInput {
   name_DESC
   vicinity_ASC
   vicinity_DESC
+  photo_reference_ASC
+  photo_reference_DESC
   opening_hours_ASC
   opening_hours_DESC
 }
@@ -893,7 +891,7 @@ type MapPreviousValues {
   externalId: String!
   name: String!
   vicinity: String!
-  photos: [String!]!
+  photo_reference: String
   opening_hours: Boolean
 }
 
@@ -954,6 +952,20 @@ input MapScalarWhereInput {
   vicinity_not_starts_with: String
   vicinity_ends_with: String
   vicinity_not_ends_with: String
+  photo_reference: String
+  photo_reference_not: String
+  photo_reference_in: [String!]
+  photo_reference_not_in: [String!]
+  photo_reference_lt: String
+  photo_reference_lte: String
+  photo_reference_gt: String
+  photo_reference_gte: String
+  photo_reference_contains: String
+  photo_reference_not_contains: String
+  photo_reference_starts_with: String
+  photo_reference_not_starts_with: String
+  photo_reference_ends_with: String
+  photo_reference_not_ends_with: String
   opening_hours: Boolean
   opening_hours_not: Boolean
   AND: [MapScalarWhereInput!]
@@ -985,7 +997,7 @@ input MapUpdateDataInput {
   geometry: GeometryUpdateOneRequiredInput
   vicinity: String
   plus_code: PlusCodeUpdateOneInput
-  photos: MapUpdatephotosInput
+  photo_reference: String
   opening_hours: Boolean
   features: FeatureUpdateManyInput
   boundaries: GeoPointUpdateManyInput
@@ -997,7 +1009,7 @@ input MapUpdateInput {
   geometry: GeometryUpdateOneRequiredInput
   vicinity: String
   plus_code: PlusCodeUpdateOneInput
-  photos: MapUpdatephotosInput
+  photo_reference: String
   opening_hours: Boolean
   features: FeatureUpdateManyInput
   boundaries: GeoPointUpdateManyInput
@@ -1007,7 +1019,7 @@ input MapUpdateManyDataInput {
   externalId: String
   name: String
   vicinity: String
-  photos: MapUpdatephotosInput
+  photo_reference: String
   opening_hours: Boolean
 }
 
@@ -1027,17 +1039,13 @@ input MapUpdateManyMutationInput {
   externalId: String
   name: String
   vicinity: String
-  photos: MapUpdatephotosInput
+  photo_reference: String
   opening_hours: Boolean
 }
 
 input MapUpdateManyWithWhereNestedInput {
   where: MapScalarWhereInput!
   data: MapUpdateManyDataInput!
-}
-
-input MapUpdatephotosInput {
-  set: [String!]
 }
 
 input MapUpdateWithWhereUniqueNestedInput {
@@ -1110,6 +1118,20 @@ input MapWhereInput {
   vicinity_ends_with: String
   vicinity_not_ends_with: String
   plus_code: PlusCodeWhereInput
+  photo_reference: String
+  photo_reference_not: String
+  photo_reference_in: [String!]
+  photo_reference_not_in: [String!]
+  photo_reference_lt: String
+  photo_reference_lte: String
+  photo_reference_gt: String
+  photo_reference_gte: String
+  photo_reference_contains: String
+  photo_reference_not_contains: String
+  photo_reference_starts_with: String
+  photo_reference_not_starts_with: String
+  photo_reference_ends_with: String
+  photo_reference_not_ends_with: String
   opening_hours: Boolean
   opening_hours_not: Boolean
   features_every: FeatureWhereInput

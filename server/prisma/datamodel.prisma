@@ -1,0 +1,87 @@
+type Session {
+  id: ID! @id
+  timeStart: DateTime!
+  timeEnd: DateTime!
+  locations: [Map]!
+  mood: Float
+  journal: String
+  date: DateTime!
+}
+
+type User {
+  id: ID! @id
+  email: String!
+  password: String!
+}
+
+type Map {
+  id: ID! @id
+  externalId: String!
+  name: String!
+  geometry: Geometry!
+  vicinity: String!
+  plus_code: PlusCode
+  photo_reference: String
+  opening_hours: Boolean
+  features: [Feature]
+  boundaries: [GeoPoint]
+}
+
+type Geometry {
+  id: ID! @id
+  location: Location!
+  viewport: Viewport!
+}
+type Location {
+  id: ID! @id
+  lat: Float!
+  lng: Float!
+}
+type Viewport {
+  id: ID! @id
+  northeast: NorthEast!
+  southwest: SouthWest!
+}
+type NorthEast {
+  id: ID! @id
+  lat: Float!
+  lng: Float!
+}
+type SouthWest {
+  id: ID! @id
+  lat: Float!
+  lng: Float!
+}
+type PlusCode {
+  id: ID! @id
+  compound_code: String
+  global_code: String
+}
+type Feature {
+  id: ID! @id
+  title: String!
+}
+
+type GeoPoint {
+  id: ID! @id
+  boundary: Json!
+}
+
+type Goal {
+  id : ID! @id
+  hours: Float!
+  days: Days!
+}
+
+type Days {
+  id: ID! @id
+  title: String!
+}
+
+type Progress {
+  id: ID! @id
+  duration: Float!
+  completion: Float!
+  date: DateTime!
+  weekday: String!
+}

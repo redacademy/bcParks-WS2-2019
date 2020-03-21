@@ -633,6 +633,8 @@ export type MapOrderByInput =
   | "name_DESC"
   | "vicinity_ASC"
   | "vicinity_DESC"
+  | "photo_reference_ASC"
+  | "photo_reference_DESC"
   | "opening_hours_ASC"
   | "opening_hours_DESC";
 
@@ -708,24 +710,98 @@ export type SessionOrderByInput =
   | "date_ASC"
   | "date_DESC";
 
-export interface NorthEastCreateOneInput {
-  create?: Maybe<NorthEastCreateInput>;
-  connect?: Maybe<NorthEastWhereUniqueInput>;
+export interface ViewportCreateInput {
+  id?: Maybe<ID_Input>;
+  northeast: NorthEastCreateOneInput;
+  southwest: SouthWestCreateOneInput;
 }
 
 export type DaysWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
+export interface SessionWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  timeStart?: Maybe<DateTimeInput>;
+  timeStart_not?: Maybe<DateTimeInput>;
+  timeStart_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  timeStart_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  timeStart_lt?: Maybe<DateTimeInput>;
+  timeStart_lte?: Maybe<DateTimeInput>;
+  timeStart_gt?: Maybe<DateTimeInput>;
+  timeStart_gte?: Maybe<DateTimeInput>;
+  timeEnd?: Maybe<DateTimeInput>;
+  timeEnd_not?: Maybe<DateTimeInput>;
+  timeEnd_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  timeEnd_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  timeEnd_lt?: Maybe<DateTimeInput>;
+  timeEnd_lte?: Maybe<DateTimeInput>;
+  timeEnd_gt?: Maybe<DateTimeInput>;
+  timeEnd_gte?: Maybe<DateTimeInput>;
+  locations_every?: Maybe<MapWhereInput>;
+  locations_some?: Maybe<MapWhereInput>;
+  locations_none?: Maybe<MapWhereInput>;
+  mood?: Maybe<Float>;
+  mood_not?: Maybe<Float>;
+  mood_in?: Maybe<Float[] | Float>;
+  mood_not_in?: Maybe<Float[] | Float>;
+  mood_lt?: Maybe<Float>;
+  mood_lte?: Maybe<Float>;
+  mood_gt?: Maybe<Float>;
+  mood_gte?: Maybe<Float>;
+  journal?: Maybe<String>;
+  journal_not?: Maybe<String>;
+  journal_in?: Maybe<String[] | String>;
+  journal_not_in?: Maybe<String[] | String>;
+  journal_lt?: Maybe<String>;
+  journal_lte?: Maybe<String>;
+  journal_gt?: Maybe<String>;
+  journal_gte?: Maybe<String>;
+  journal_contains?: Maybe<String>;
+  journal_not_contains?: Maybe<String>;
+  journal_starts_with?: Maybe<String>;
+  journal_not_starts_with?: Maybe<String>;
+  journal_ends_with?: Maybe<String>;
+  journal_not_ends_with?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
+  date_not?: Maybe<DateTimeInput>;
+  date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_lt?: Maybe<DateTimeInput>;
+  date_lte?: Maybe<DateTimeInput>;
+  date_gt?: Maybe<DateTimeInput>;
+  date_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<SessionWhereInput[] | SessionWhereInput>;
+  OR?: Maybe<SessionWhereInput[] | SessionWhereInput>;
+  NOT?: Maybe<SessionWhereInput[] | SessionWhereInput>;
+}
+
+export interface GeometryCreateOneInput {
+  create?: Maybe<GeometryCreateInput>;
+  connect?: Maybe<GeometryWhereUniqueInput>;
+}
+
 export interface GeoPointUpdateWithWhereUniqueNestedInput {
   where: GeoPointWhereUniqueInput;
   data: GeoPointUpdateDataInput;
 }
 
-export interface PlusCodeCreateInput {
-  id?: Maybe<ID_Input>;
-  compound_code?: Maybe<String>;
-  global_code?: Maybe<String>;
+export interface LocationUpsertNestedInput {
+  update: LocationUpdateDataInput;
+  create: LocationCreateInput;
 }
 
 export interface GeoPointUpdateManyInput {
@@ -749,17 +825,6 @@ export interface GeoPointUpdateManyInput {
   >;
 }
 
-export interface ViewportUpdateOneRequiredInput {
-  create?: Maybe<ViewportCreateInput>;
-  update?: Maybe<ViewportUpdateDataInput>;
-  upsert?: Maybe<ViewportUpsertNestedInput>;
-  connect?: Maybe<ViewportWhereUniqueInput>;
-}
-
-export interface FeatureUpdateManyDataInput {
-  title?: Maybe<String>;
-}
-
 export interface ViewportSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
@@ -775,9 +840,8 @@ export interface ViewportSubscriptionWhereInput {
   >;
 }
 
-export interface FeatureUpdateManyWithWhereNestedInput {
-  where: FeatureScalarWhereInput;
-  data: FeatureUpdateManyDataInput;
+export interface FeatureUpdateManyDataInput {
+  title?: Maybe<String>;
 }
 
 export interface GeoPointWhereInput {
@@ -800,9 +864,10 @@ export interface GeoPointWhereInput {
   NOT?: Maybe<GeoPointWhereInput[] | GeoPointWhereInput>;
 }
 
-export type SouthWestWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
+export interface FeatureUpdateManyWithWhereNestedInput {
+  where: FeatureScalarWhereInput;
+  data: FeatureUpdateManyDataInput;
+}
 
 export interface SessionSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
@@ -813,6 +878,25 @@ export interface SessionSubscriptionWhereInput {
   AND?: Maybe<SessionSubscriptionWhereInput[] | SessionSubscriptionWhereInput>;
   OR?: Maybe<SessionSubscriptionWhereInput[] | SessionSubscriptionWhereInput>;
   NOT?: Maybe<SessionSubscriptionWhereInput[] | SessionSubscriptionWhereInput>;
+}
+
+export type SouthWestWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface PlusCodeSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<PlusCodeWhereInput>;
+  AND?: Maybe<
+    PlusCodeSubscriptionWhereInput[] | PlusCodeSubscriptionWhereInput
+  >;
+  OR?: Maybe<PlusCodeSubscriptionWhereInput[] | PlusCodeSubscriptionWhereInput>;
+  NOT?: Maybe<
+    PlusCodeSubscriptionWhereInput[] | PlusCodeSubscriptionWhereInput
+  >;
 }
 
 export interface FeatureScalarWhereInput {
@@ -849,27 +933,6 @@ export interface FeatureScalarWhereInput {
   NOT?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
 }
 
-export interface PlusCodeSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<PlusCodeWhereInput>;
-  AND?: Maybe<
-    PlusCodeSubscriptionWhereInput[] | PlusCodeSubscriptionWhereInput
-  >;
-  OR?: Maybe<PlusCodeSubscriptionWhereInput[] | PlusCodeSubscriptionWhereInput>;
-  NOT?: Maybe<
-    PlusCodeSubscriptionWhereInput[] | PlusCodeSubscriptionWhereInput
-  >;
-}
-
-export interface FeatureUpsertWithWhereUniqueNestedInput {
-  where: FeatureWhereUniqueInput;
-  update: FeatureUpdateDataInput;
-  create: FeatureCreateInput;
-}
-
 export interface NorthEastSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
@@ -887,8 +950,10 @@ export interface NorthEastSubscriptionWhereInput {
   >;
 }
 
-export interface FeatureUpdateDataInput {
-  title?: Maybe<String>;
+export interface FeatureUpsertWithWhereUniqueNestedInput {
+  where: FeatureWhereUniqueInput;
+  update: FeatureUpdateDataInput;
+  create: FeatureCreateInput;
 }
 
 export interface LocationSubscriptionWhereInput {
@@ -906,9 +971,8 @@ export interface LocationSubscriptionWhereInput {
   >;
 }
 
-export interface FeatureUpdateWithWhereUniqueNestedInput {
-  where: FeatureWhereUniqueInput;
-  data: FeatureUpdateDataInput;
+export interface FeatureUpdateDataInput {
+  title?: Maybe<String>;
 }
 
 export interface GeometrySubscriptionWhereInput {
@@ -926,9 +990,10 @@ export interface GeometrySubscriptionWhereInput {
   >;
 }
 
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
+export interface FeatureUpdateWithWhereUniqueNestedInput {
+  where: FeatureWhereUniqueInput;
+  data: FeatureUpdateDataInput;
+}
 
 export interface GeometryWhereInput {
   id?: Maybe<ID_Input>;
@@ -952,26 +1017,9 @@ export interface GeometryWhereInput {
   NOT?: Maybe<GeometryWhereInput[] | GeometryWhereInput>;
 }
 
-export interface FeatureUpdateManyInput {
-  create?: Maybe<FeatureCreateInput[] | FeatureCreateInput>;
-  update?: Maybe<
-    | FeatureUpdateWithWhereUniqueNestedInput[]
-    | FeatureUpdateWithWhereUniqueNestedInput
-  >;
-  upsert?: Maybe<
-    | FeatureUpsertWithWhereUniqueNestedInput[]
-    | FeatureUpsertWithWhereUniqueNestedInput
-  >;
-  delete?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
-  connect?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
-  set?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
-  disconnect?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
-  deleteMany?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
-  updateMany?: Maybe<
-    | FeatureUpdateManyWithWhereNestedInput[]
-    | FeatureUpdateManyWithWhereNestedInput
-  >;
-}
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
 
 export interface ViewportWhereInput {
   id?: Maybe<ID_Input>;
@@ -993,6 +1041,63 @@ export interface ViewportWhereInput {
   AND?: Maybe<ViewportWhereInput[] | ViewportWhereInput>;
   OR?: Maybe<ViewportWhereInput[] | ViewportWhereInput>;
   NOT?: Maybe<ViewportWhereInput[] | ViewportWhereInput>;
+}
+
+export interface FeatureUpdateManyInput {
+  create?: Maybe<FeatureCreateInput[] | FeatureCreateInput>;
+  update?: Maybe<
+    | FeatureUpdateWithWhereUniqueNestedInput[]
+    | FeatureUpdateWithWhereUniqueNestedInput
+  >;
+  upsert?: Maybe<
+    | FeatureUpsertWithWhereUniqueNestedInput[]
+    | FeatureUpsertWithWhereUniqueNestedInput
+  >;
+  delete?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
+  connect?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
+  set?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
+  disconnect?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
+  deleteMany?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
+  updateMany?: Maybe<
+    | FeatureUpdateManyWithWhereNestedInput[]
+    | FeatureUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface SouthWestWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  lat?: Maybe<Float>;
+  lat_not?: Maybe<Float>;
+  lat_in?: Maybe<Float[] | Float>;
+  lat_not_in?: Maybe<Float[] | Float>;
+  lat_lt?: Maybe<Float>;
+  lat_lte?: Maybe<Float>;
+  lat_gt?: Maybe<Float>;
+  lat_gte?: Maybe<Float>;
+  lng?: Maybe<Float>;
+  lng_not?: Maybe<Float>;
+  lng_in?: Maybe<Float[] | Float>;
+  lng_not_in?: Maybe<Float[] | Float>;
+  lng_lt?: Maybe<Float>;
+  lng_lte?: Maybe<Float>;
+  lng_gt?: Maybe<Float>;
+  lng_gte?: Maybe<Float>;
+  AND?: Maybe<SouthWestWhereInput[] | SouthWestWhereInput>;
+  OR?: Maybe<SouthWestWhereInput[] | SouthWestWhereInput>;
+  NOT?: Maybe<SouthWestWhereInput[] | SouthWestWhereInput>;
 }
 
 export interface UserWhereInput {
@@ -1043,40 +1148,15 @@ export interface UserWhereInput {
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
 }
 
-export interface SouthWestWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  lat?: Maybe<Float>;
-  lat_not?: Maybe<Float>;
-  lat_in?: Maybe<Float[] | Float>;
-  lat_not_in?: Maybe<Float[] | Float>;
-  lat_lt?: Maybe<Float>;
-  lat_lte?: Maybe<Float>;
-  lat_gt?: Maybe<Float>;
-  lat_gte?: Maybe<Float>;
-  lng?: Maybe<Float>;
-  lng_not?: Maybe<Float>;
-  lng_in?: Maybe<Float[] | Float>;
-  lng_not_in?: Maybe<Float[] | Float>;
-  lng_lt?: Maybe<Float>;
-  lng_lte?: Maybe<Float>;
-  lng_gt?: Maybe<Float>;
-  lng_gte?: Maybe<Float>;
-  AND?: Maybe<SouthWestWhereInput[] | SouthWestWhereInput>;
-  OR?: Maybe<SouthWestWhereInput[] | SouthWestWhereInput>;
-  NOT?: Maybe<SouthWestWhereInput[] | SouthWestWhereInput>;
+export interface FeatureSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<FeatureWhereInput>;
+  AND?: Maybe<FeatureSubscriptionWhereInput[] | FeatureSubscriptionWhereInput>;
+  OR?: Maybe<FeatureSubscriptionWhereInput[] | FeatureSubscriptionWhereInput>;
+  NOT?: Maybe<FeatureSubscriptionWhereInput[] | FeatureSubscriptionWhereInput>;
 }
 
 export interface DaysWhereInput {
@@ -1113,21 +1193,6 @@ export interface DaysWhereInput {
   NOT?: Maybe<DaysWhereInput[] | DaysWhereInput>;
 }
 
-export interface FeatureSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<FeatureWhereInput>;
-  AND?: Maybe<FeatureSubscriptionWhereInput[] | FeatureSubscriptionWhereInput>;
-  OR?: Maybe<FeatureSubscriptionWhereInput[] | FeatureSubscriptionWhereInput>;
-  NOT?: Maybe<FeatureSubscriptionWhereInput[] | FeatureSubscriptionWhereInput>;
-}
-
-export interface MapUpdatephotosInput {
-  set?: Maybe<String[] | String>;
-}
-
 export interface ViewportUpdateInput {
   northeast?: Maybe<NorthEastUpdateOneRequiredInput>;
   southwest?: Maybe<SouthWestUpdateOneRequiredInput>;
@@ -1153,15 +1218,6 @@ export interface UserUpdateInput {
   password?: Maybe<String>;
 }
 
-export type ViewportWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface SouthWestUpdateManyMutationInput {
-  lat?: Maybe<Float>;
-  lng?: Maybe<Float>;
-}
-
 export interface PlusCodeUpdateOneInput {
   create?: Maybe<PlusCodeCreateInput>;
   update?: Maybe<PlusCodeUpdateDataInput>;
@@ -1170,6 +1226,15 @@ export interface PlusCodeUpdateOneInput {
   disconnect?: Maybe<Boolean>;
   connect?: Maybe<PlusCodeWhereUniqueInput>;
 }
+
+export interface SouthWestUpdateManyMutationInput {
+  lat?: Maybe<Float>;
+  lng?: Maybe<Float>;
+}
+
+export type ViewportWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
 
 export type LocationWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
@@ -1262,11 +1327,37 @@ export interface MapScalarWhereInput {
   vicinity_not_starts_with?: Maybe<String>;
   vicinity_ends_with?: Maybe<String>;
   vicinity_not_ends_with?: Maybe<String>;
+  photo_reference?: Maybe<String>;
+  photo_reference_not?: Maybe<String>;
+  photo_reference_in?: Maybe<String[] | String>;
+  photo_reference_not_in?: Maybe<String[] | String>;
+  photo_reference_lt?: Maybe<String>;
+  photo_reference_lte?: Maybe<String>;
+  photo_reference_gt?: Maybe<String>;
+  photo_reference_gte?: Maybe<String>;
+  photo_reference_contains?: Maybe<String>;
+  photo_reference_not_contains?: Maybe<String>;
+  photo_reference_starts_with?: Maybe<String>;
+  photo_reference_not_starts_with?: Maybe<String>;
+  photo_reference_ends_with?: Maybe<String>;
+  photo_reference_not_ends_with?: Maybe<String>;
   opening_hours?: Maybe<Boolean>;
   opening_hours_not?: Maybe<Boolean>;
   AND?: Maybe<MapScalarWhereInput[] | MapScalarWhereInput>;
   OR?: Maybe<MapScalarWhereInput[] | MapScalarWhereInput>;
   NOT?: Maybe<MapScalarWhereInput[] | MapScalarWhereInput>;
+}
+
+export interface MapUpdateInput {
+  externalId?: Maybe<String>;
+  name?: Maybe<String>;
+  geometry?: Maybe<GeometryUpdateOneRequiredInput>;
+  vicinity?: Maybe<String>;
+  plus_code?: Maybe<PlusCodeUpdateOneInput>;
+  photo_reference?: Maybe<String>;
+  opening_hours?: Maybe<Boolean>;
+  features?: Maybe<FeatureUpdateManyInput>;
+  boundaries?: Maybe<GeoPointUpdateManyInput>;
 }
 
 export interface MapWhereInput {
@@ -1328,6 +1419,20 @@ export interface MapWhereInput {
   vicinity_ends_with?: Maybe<String>;
   vicinity_not_ends_with?: Maybe<String>;
   plus_code?: Maybe<PlusCodeWhereInput>;
+  photo_reference?: Maybe<String>;
+  photo_reference_not?: Maybe<String>;
+  photo_reference_in?: Maybe<String[] | String>;
+  photo_reference_not_in?: Maybe<String[] | String>;
+  photo_reference_lt?: Maybe<String>;
+  photo_reference_lte?: Maybe<String>;
+  photo_reference_gt?: Maybe<String>;
+  photo_reference_gte?: Maybe<String>;
+  photo_reference_contains?: Maybe<String>;
+  photo_reference_not_contains?: Maybe<String>;
+  photo_reference_starts_with?: Maybe<String>;
+  photo_reference_not_starts_with?: Maybe<String>;
+  photo_reference_ends_with?: Maybe<String>;
+  photo_reference_not_ends_with?: Maybe<String>;
   opening_hours?: Maybe<Boolean>;
   opening_hours_not?: Maybe<Boolean>;
   features_every?: Maybe<FeatureWhereInput>;
@@ -1347,15 +1452,10 @@ export interface MapUpdateDataInput {
   geometry?: Maybe<GeometryUpdateOneRequiredInput>;
   vicinity?: Maybe<String>;
   plus_code?: Maybe<PlusCodeUpdateOneInput>;
-  photos?: Maybe<MapUpdatephotosInput>;
+  photo_reference?: Maybe<String>;
   opening_hours?: Maybe<Boolean>;
   features?: Maybe<FeatureUpdateManyInput>;
   boundaries?: Maybe<GeoPointUpdateManyInput>;
-}
-
-export interface DaysCreateInput {
-  id?: Maybe<ID_Input>;
-  title: String;
 }
 
 export interface MapUpdateManyInput {
@@ -1376,15 +1476,16 @@ export interface MapUpdateManyInput {
   >;
 }
 
-export interface DaysUpdateInput {
-  title?: Maybe<String>;
+export interface DaysCreateInput {
+  id?: Maybe<ID_Input>;
+  title: String;
 }
 
 export type NorthEastWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
-export interface DaysUpdateManyMutationInput {
+export interface DaysUpdateInput {
   title?: Maybe<String>;
 }
 
@@ -1398,16 +1499,8 @@ export interface SessionCreateInput {
   date: DateTimeInput;
 }
 
-export interface MapUpdateInput {
-  externalId?: Maybe<String>;
-  name?: Maybe<String>;
-  geometry?: Maybe<GeometryUpdateOneRequiredInput>;
-  vicinity?: Maybe<String>;
-  plus_code?: Maybe<PlusCodeUpdateOneInput>;
-  photos?: Maybe<MapUpdatephotosInput>;
-  opening_hours?: Maybe<Boolean>;
-  features?: Maybe<FeatureUpdateManyInput>;
-  boundaries?: Maybe<GeoPointUpdateManyInput>;
+export interface DaysUpdateManyMutationInput {
+  title?: Maybe<String>;
 }
 
 export interface ProgressUpdateInput {
@@ -1430,9 +1523,9 @@ export interface ProgressCreateInput {
   weekday: String;
 }
 
-export interface FeatureCreateInput {
-  id?: Maybe<ID_Input>;
-  title: String;
+export interface FeatureCreateManyInput {
+  create?: Maybe<FeatureCreateInput[] | FeatureCreateInput>;
+  connect?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
 }
 
 export interface PlusCodeUpdateInput {
@@ -1440,15 +1533,16 @@ export interface PlusCodeUpdateInput {
   global_code?: Maybe<String>;
 }
 
-export interface FeatureUpdateInput {
-  title?: Maybe<String>;
+export interface FeatureCreateInput {
+  id?: Maybe<ID_Input>;
+  title: String;
 }
 
 export type ProgressWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
-export interface FeatureUpdateManyMutationInput {
+export interface FeatureUpdateInput {
   title?: Maybe<String>;
 }
 
@@ -1456,21 +1550,21 @@ export interface MapUpdateManyMutationInput {
   externalId?: Maybe<String>;
   name?: Maybe<String>;
   vicinity?: Maybe<String>;
-  photos?: Maybe<MapUpdatephotosInput>;
+  photo_reference?: Maybe<String>;
   opening_hours?: Maybe<Boolean>;
 }
 
-export interface GeoPointCreateInput {
-  id?: Maybe<ID_Input>;
-  boundary: Json;
+export interface FeatureUpdateManyMutationInput {
+  title?: Maybe<String>;
 }
 
 export interface GeoPointUpdateManyDataInput {
   boundary?: Maybe<Json>;
 }
 
-export interface GeoPointUpdateInput {
-  boundary?: Maybe<Json>;
+export interface GeoPointCreateInput {
+  id?: Maybe<ID_Input>;
+  boundary: Json;
 }
 
 export interface GeoPointScalarWhereInput {
@@ -1493,11 +1587,19 @@ export interface GeoPointScalarWhereInput {
   NOT?: Maybe<GeoPointScalarWhereInput[] | GeoPointScalarWhereInput>;
 }
 
-export interface GeoPointUpdateManyMutationInput {
+export interface GeoPointUpdateInput {
   boundary?: Maybe<Json>;
 }
 
 export type SessionWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface GeoPointUpdateManyMutationInput {
+  boundary?: Maybe<Json>;
+}
+
+export type GeoPointWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
@@ -1507,73 +1609,21 @@ export interface GeometryCreateInput {
   viewport: ViewportCreateOneInput;
 }
 
-export interface SessionWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  timeStart?: Maybe<DateTimeInput>;
-  timeStart_not?: Maybe<DateTimeInput>;
-  timeStart_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  timeStart_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  timeStart_lt?: Maybe<DateTimeInput>;
-  timeStart_lte?: Maybe<DateTimeInput>;
-  timeStart_gt?: Maybe<DateTimeInput>;
-  timeStart_gte?: Maybe<DateTimeInput>;
-  timeEnd?: Maybe<DateTimeInput>;
-  timeEnd_not?: Maybe<DateTimeInput>;
-  timeEnd_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  timeEnd_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  timeEnd_lt?: Maybe<DateTimeInput>;
-  timeEnd_lte?: Maybe<DateTimeInput>;
-  timeEnd_gt?: Maybe<DateTimeInput>;
-  timeEnd_gte?: Maybe<DateTimeInput>;
-  locations_every?: Maybe<MapWhereInput>;
-  locations_some?: Maybe<MapWhereInput>;
-  locations_none?: Maybe<MapWhereInput>;
-  mood?: Maybe<Float>;
-  mood_not?: Maybe<Float>;
-  mood_in?: Maybe<Float[] | Float>;
-  mood_not_in?: Maybe<Float[] | Float>;
-  mood_lt?: Maybe<Float>;
-  mood_lte?: Maybe<Float>;
-  mood_gt?: Maybe<Float>;
-  mood_gte?: Maybe<Float>;
-  journal?: Maybe<String>;
-  journal_not?: Maybe<String>;
-  journal_in?: Maybe<String[] | String>;
-  journal_not_in?: Maybe<String[] | String>;
-  journal_lt?: Maybe<String>;
-  journal_lte?: Maybe<String>;
-  journal_gt?: Maybe<String>;
-  journal_gte?: Maybe<String>;
-  journal_contains?: Maybe<String>;
-  journal_not_contains?: Maybe<String>;
-  journal_starts_with?: Maybe<String>;
-  journal_not_starts_with?: Maybe<String>;
-  journal_ends_with?: Maybe<String>;
-  journal_not_ends_with?: Maybe<String>;
-  date?: Maybe<DateTimeInput>;
-  date_not?: Maybe<DateTimeInput>;
-  date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  date_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  date_lt?: Maybe<DateTimeInput>;
-  date_lte?: Maybe<DateTimeInput>;
-  date_gt?: Maybe<DateTimeInput>;
-  date_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<SessionWhereInput[] | SessionWhereInput>;
-  OR?: Maybe<SessionWhereInput[] | SessionWhereInput>;
-  NOT?: Maybe<SessionWhereInput[] | SessionWhereInput>;
+export interface SouthWestSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<SouthWestWhereInput>;
+  AND?: Maybe<
+    SouthWestSubscriptionWhereInput[] | SouthWestSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    SouthWestSubscriptionWhereInput[] | SouthWestSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    SouthWestSubscriptionWhereInput[] | SouthWestSubscriptionWhereInput
+  >;
 }
 
 export interface LocationCreateOneInput {
@@ -1581,16 +1631,9 @@ export interface LocationCreateOneInput {
   connect?: Maybe<LocationWhereUniqueInput>;
 }
 
-export interface UserSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<UserWhereInput>;
-  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-}
+export type GeometryWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
 
 export interface LocationCreateInput {
   id?: Maybe<ID_Input>;
@@ -1598,19 +1641,15 @@ export interface LocationCreateInput {
   lng: Float;
 }
 
-export interface ProgressSubscriptionWhereInput {
+export interface GoalSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<ProgressWhereInput>;
-  AND?: Maybe<
-    ProgressSubscriptionWhereInput[] | ProgressSubscriptionWhereInput
-  >;
-  OR?: Maybe<ProgressSubscriptionWhereInput[] | ProgressSubscriptionWhereInput>;
-  NOT?: Maybe<
-    ProgressSubscriptionWhereInput[] | ProgressSubscriptionWhereInput
-  >;
+  node?: Maybe<GoalWhereInput>;
+  AND?: Maybe<GoalSubscriptionWhereInput[] | GoalSubscriptionWhereInput>;
+  OR?: Maybe<GoalSubscriptionWhereInput[] | GoalSubscriptionWhereInput>;
+  NOT?: Maybe<GoalSubscriptionWhereInput[] | GoalSubscriptionWhereInput>;
 }
 
 export interface ViewportCreateOneInput {
@@ -1618,44 +1657,7 @@ export interface ViewportCreateOneInput {
   connect?: Maybe<ViewportWhereUniqueInput>;
 }
 
-export interface MapSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<MapWhereInput>;
-  AND?: Maybe<MapSubscriptionWhereInput[] | MapSubscriptionWhereInput>;
-  OR?: Maybe<MapSubscriptionWhereInput[] | MapSubscriptionWhereInput>;
-  NOT?: Maybe<MapSubscriptionWhereInput[] | MapSubscriptionWhereInput>;
-}
-
-export interface ViewportCreateInput {
-  id?: Maybe<ID_Input>;
-  northeast: NorthEastCreateOneInput;
-  southwest: SouthWestCreateOneInput;
-}
-
-export interface GeoPointSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<GeoPointWhereInput>;
-  AND?: Maybe<
-    GeoPointSubscriptionWhereInput[] | GeoPointSubscriptionWhereInput
-  >;
-  OR?: Maybe<GeoPointSubscriptionWhereInput[] | GeoPointSubscriptionWhereInput>;
-  NOT?: Maybe<
-    GeoPointSubscriptionWhereInput[] | GeoPointSubscriptionWhereInput
-  >;
-}
-
-export interface FeatureCreateManyInput {
-  create?: Maybe<FeatureCreateInput[] | FeatureCreateInput>;
-  connect?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
-}
-
-export interface NorthEastWhereInput {
+export interface LocationWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -1686,15 +1688,260 @@ export interface NorthEastWhereInput {
   lng_lte?: Maybe<Float>;
   lng_gt?: Maybe<Float>;
   lng_gte?: Maybe<Float>;
-  AND?: Maybe<NorthEastWhereInput[] | NorthEastWhereInput>;
-  OR?: Maybe<NorthEastWhereInput[] | NorthEastWhereInput>;
-  NOT?: Maybe<NorthEastWhereInput[] | NorthEastWhereInput>;
+  AND?: Maybe<LocationWhereInput[] | LocationWhereInput>;
+  OR?: Maybe<LocationWhereInput[] | LocationWhereInput>;
+  NOT?: Maybe<LocationWhereInput[] | LocationWhereInput>;
 }
+
+export interface PlusCodeCreateInput {
+  id?: Maybe<ID_Input>;
+  compound_code?: Maybe<String>;
+  global_code?: Maybe<String>;
+}
+
+export interface FeatureWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  AND?: Maybe<FeatureWhereInput[] | FeatureWhereInput>;
+  OR?: Maybe<FeatureWhereInput[] | FeatureWhereInput>;
+  NOT?: Maybe<FeatureWhereInput[] | FeatureWhereInput>;
+}
+
+export interface NorthEastCreateOneInput {
+  create?: Maybe<NorthEastCreateInput>;
+  connect?: Maybe<NorthEastWhereUniqueInput>;
+}
+
+export type GoalWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
 
 export interface NorthEastCreateInput {
   id?: Maybe<ID_Input>;
   lat: Float;
   lng: Float;
+}
+
+export interface UserCreateInput {
+  id?: Maybe<ID_Input>;
+  email: String;
+  password: String;
+}
+
+export interface SouthWestCreateOneInput {
+  create?: Maybe<SouthWestCreateInput>;
+  connect?: Maybe<SouthWestWhereUniqueInput>;
+}
+
+export type FeatureWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface SouthWestCreateInput {
+  id?: Maybe<ID_Input>;
+  lat: Float;
+  lng: Float;
+}
+
+export type MapWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface GeometryUpdateInput {
+  location?: Maybe<LocationUpdateOneRequiredInput>;
+  viewport?: Maybe<ViewportUpdateOneRequiredInput>;
+}
+
+export interface PlusCodeWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  compound_code?: Maybe<String>;
+  compound_code_not?: Maybe<String>;
+  compound_code_in?: Maybe<String[] | String>;
+  compound_code_not_in?: Maybe<String[] | String>;
+  compound_code_lt?: Maybe<String>;
+  compound_code_lte?: Maybe<String>;
+  compound_code_gt?: Maybe<String>;
+  compound_code_gte?: Maybe<String>;
+  compound_code_contains?: Maybe<String>;
+  compound_code_not_contains?: Maybe<String>;
+  compound_code_starts_with?: Maybe<String>;
+  compound_code_not_starts_with?: Maybe<String>;
+  compound_code_ends_with?: Maybe<String>;
+  compound_code_not_ends_with?: Maybe<String>;
+  global_code?: Maybe<String>;
+  global_code_not?: Maybe<String>;
+  global_code_in?: Maybe<String[] | String>;
+  global_code_not_in?: Maybe<String[] | String>;
+  global_code_lt?: Maybe<String>;
+  global_code_lte?: Maybe<String>;
+  global_code_gt?: Maybe<String>;
+  global_code_gte?: Maybe<String>;
+  global_code_contains?: Maybe<String>;
+  global_code_not_contains?: Maybe<String>;
+  global_code_starts_with?: Maybe<String>;
+  global_code_not_starts_with?: Maybe<String>;
+  global_code_ends_with?: Maybe<String>;
+  global_code_not_ends_with?: Maybe<String>;
+  AND?: Maybe<PlusCodeWhereInput[] | PlusCodeWhereInput>;
+  OR?: Maybe<PlusCodeWhereInput[] | PlusCodeWhereInput>;
+  NOT?: Maybe<PlusCodeWhereInput[] | PlusCodeWhereInput>;
+}
+
+export interface LocationUpdateOneRequiredInput {
+  create?: Maybe<LocationCreateInput>;
+  update?: Maybe<LocationUpdateDataInput>;
+  upsert?: Maybe<LocationUpsertNestedInput>;
+  connect?: Maybe<LocationWhereUniqueInput>;
+}
+
+export interface SessionUpdateInput {
+  timeStart?: Maybe<DateTimeInput>;
+  timeEnd?: Maybe<DateTimeInput>;
+  locations?: Maybe<MapUpdateManyInput>;
+  mood?: Maybe<Float>;
+  journal?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
+}
+
+export interface LocationUpdateDataInput {
+  lat?: Maybe<Float>;
+  lng?: Maybe<Float>;
+}
+
+export interface ProgressUpdateManyMutationInput {
+  duration?: Maybe<Float>;
+  completion?: Maybe<Float>;
+  date?: Maybe<DateTimeInput>;
+  weekday?: Maybe<String>;
+}
+
+export interface PlusCodeCreateOneInput {
+  create?: Maybe<PlusCodeCreateInput>;
+  connect?: Maybe<PlusCodeWhereUniqueInput>;
+}
+
+export interface PlusCodeUpdateManyMutationInput {
+  compound_code?: Maybe<String>;
+  global_code?: Maybe<String>;
+}
+
+export interface ViewportUpdateOneRequiredInput {
+  create?: Maybe<ViewportCreateInput>;
+  update?: Maybe<ViewportUpdateDataInput>;
+  upsert?: Maybe<ViewportUpsertNestedInput>;
+  connect?: Maybe<ViewportWhereUniqueInput>;
+}
+
+export interface NorthEastUpdateInput {
+  lat?: Maybe<Float>;
+  lng?: Maybe<Float>;
+}
+
+export interface ViewportUpdateDataInput {
+  northeast?: Maybe<NorthEastUpdateOneRequiredInput>;
+  southwest?: Maybe<SouthWestUpdateOneRequiredInput>;
+}
+
+export interface GeoPointUpdateManyWithWhereNestedInput {
+  where: GeoPointScalarWhereInput;
+  data: GeoPointUpdateManyDataInput;
+}
+
+export interface NorthEastUpdateOneRequiredInput {
+  create?: Maybe<NorthEastCreateInput>;
+  update?: Maybe<NorthEastUpdateDataInput>;
+  upsert?: Maybe<NorthEastUpsertNestedInput>;
+  connect?: Maybe<NorthEastWhereUniqueInput>;
+}
+
+export interface GeoPointUpdateDataInput {
+  boundary?: Maybe<Json>;
+}
+
+export interface NorthEastUpdateDataInput {
+  lat?: Maybe<Float>;
+  lng?: Maybe<Float>;
+}
+
+export interface ProgressSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ProgressWhereInput>;
+  AND?: Maybe<
+    ProgressSubscriptionWhereInput[] | ProgressSubscriptionWhereInput
+  >;
+  OR?: Maybe<ProgressSubscriptionWhereInput[] | ProgressSubscriptionWhereInput>;
+  NOT?: Maybe<
+    ProgressSubscriptionWhereInput[] | ProgressSubscriptionWhereInput
+  >;
+}
+
+export interface NorthEastUpsertNestedInput {
+  update: NorthEastUpdateDataInput;
+  create: NorthEastCreateInput;
+}
+
+export interface GeoPointSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<GeoPointWhereInput>;
+  AND?: Maybe<
+    GeoPointSubscriptionWhereInput[] | GeoPointSubscriptionWhereInput
+  >;
+  OR?: Maybe<GeoPointSubscriptionWhereInput[] | GeoPointSubscriptionWhereInput>;
+  NOT?: Maybe<
+    GeoPointSubscriptionWhereInput[] | GeoPointSubscriptionWhereInput
+  >;
+}
+
+export interface SouthWestUpdateOneRequiredInput {
+  create?: Maybe<SouthWestCreateInput>;
+  update?: Maybe<SouthWestUpdateDataInput>;
+  upsert?: Maybe<SouthWestUpsertNestedInput>;
+  connect?: Maybe<SouthWestWhereUniqueInput>;
 }
 
 export interface DaysSubscriptionWhereInput {
@@ -1708,9 +1955,80 @@ export interface DaysSubscriptionWhereInput {
   NOT?: Maybe<DaysSubscriptionWhereInput[] | DaysSubscriptionWhereInput>;
 }
 
-export interface SouthWestCreateOneInput {
-  create?: Maybe<SouthWestCreateInput>;
-  connect?: Maybe<SouthWestWhereUniqueInput>;
+export interface SouthWestUpdateDataInput {
+  lat?: Maybe<Float>;
+  lng?: Maybe<Float>;
+}
+
+export interface SouthWestUpdateInput {
+  lat?: Maybe<Float>;
+  lng?: Maybe<Float>;
+}
+
+export interface SouthWestUpsertNestedInput {
+  update: SouthWestUpdateDataInput;
+  create: SouthWestCreateInput;
+}
+
+export interface MapUpsertWithWhereUniqueNestedInput {
+  where: MapWhereUniqueInput;
+  update: MapUpdateDataInput;
+  create: MapCreateInput;
+}
+
+export interface ViewportUpsertNestedInput {
+  update: ViewportUpdateDataInput;
+  create: ViewportCreateInput;
+}
+
+export interface MapCreateManyInput {
+  create?: Maybe<MapCreateInput[] | MapCreateInput>;
+  connect?: Maybe<MapWhereUniqueInput[] | MapWhereUniqueInput>;
+}
+
+export interface GoalCreateInput {
+  id?: Maybe<ID_Input>;
+  hours: Float;
+  days: DaysCreateOneInput;
+}
+
+export interface NorthEastUpdateManyMutationInput {
+  lat?: Maybe<Float>;
+  lng?: Maybe<Float>;
+}
+
+export interface DaysCreateOneInput {
+  create?: Maybe<DaysCreateInput>;
+  connect?: Maybe<DaysWhereUniqueInput>;
+}
+
+export interface GeoPointUpsertWithWhereUniqueNestedInput {
+  where: GeoPointWhereUniqueInput;
+  update: GeoPointUpdateDataInput;
+  create: GeoPointCreateInput;
+}
+
+export interface GoalUpdateInput {
+  hours?: Maybe<Float>;
+  days?: Maybe<DaysUpdateOneRequiredInput>;
+}
+
+export interface MapSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<MapWhereInput>;
+  AND?: Maybe<MapSubscriptionWhereInput[] | MapSubscriptionWhereInput>;
+  OR?: Maybe<MapSubscriptionWhereInput[] | MapSubscriptionWhereInput>;
+  NOT?: Maybe<MapSubscriptionWhereInput[] | MapSubscriptionWhereInput>;
+}
+
+export interface DaysUpdateOneRequiredInput {
+  create?: Maybe<DaysCreateInput>;
+  update?: Maybe<DaysUpdateDataInput>;
+  upsert?: Maybe<DaysUpsertNestedInput>;
+  connect?: Maybe<DaysWhereUniqueInput>;
 }
 
 export interface GoalWhereInput {
@@ -1742,46 +2060,8 @@ export interface GoalWhereInput {
   NOT?: Maybe<GoalWhereInput[] | GoalWhereInput>;
 }
 
-export interface SouthWestCreateInput {
-  id?: Maybe<ID_Input>;
-  lat: Float;
-  lng: Float;
-}
-
-export interface SouthWestUpdateInput {
-  lat?: Maybe<Float>;
-  lng?: Maybe<Float>;
-}
-
-export interface GeometryUpdateInput {
-  location?: Maybe<LocationUpdateOneRequiredInput>;
-  viewport?: Maybe<ViewportUpdateOneRequiredInput>;
-}
-
-export interface MapUpdateManyDataInput {
-  externalId?: Maybe<String>;
-  name?: Maybe<String>;
-  vicinity?: Maybe<String>;
-  photos?: Maybe<MapUpdatephotosInput>;
-  opening_hours?: Maybe<Boolean>;
-}
-
-export interface LocationUpdateOneRequiredInput {
-  create?: Maybe<LocationCreateInput>;
-  update?: Maybe<LocationUpdateDataInput>;
-  upsert?: Maybe<LocationUpsertNestedInput>;
-  connect?: Maybe<LocationWhereUniqueInput>;
-}
-
-export interface MapUpsertWithWhereUniqueNestedInput {
-  where: MapWhereUniqueInput;
-  update: MapUpdateDataInput;
-  create: MapCreateInput;
-}
-
-export interface LocationUpdateDataInput {
-  lat?: Maybe<Float>;
-  lng?: Maybe<Float>;
+export interface DaysUpdateDataInput {
+  title?: Maybe<String>;
 }
 
 export interface MapUpdateWithWhereUniqueNestedInput {
@@ -1789,39 +2069,9 @@ export interface MapUpdateWithWhereUniqueNestedInput {
   data: MapUpdateDataInput;
 }
 
-export interface LocationUpsertNestedInput {
-  update: LocationUpdateDataInput;
-  create: LocationCreateInput;
-}
-
-export interface MapCreateManyInput {
-  create?: Maybe<MapCreateInput[] | MapCreateInput>;
-  connect?: Maybe<MapWhereUniqueInput[] | MapWhereUniqueInput>;
-}
-
-export interface MapCreatephotosInput {
-  set?: Maybe<String[] | String>;
-}
-
-export type PlusCodeWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface ViewportUpdateDataInput {
-  northeast?: Maybe<NorthEastUpdateOneRequiredInput>;
-  southwest?: Maybe<SouthWestUpdateOneRequiredInput>;
-}
-
-export interface NorthEastUpdateManyMutationInput {
-  lat?: Maybe<Float>;
-  lng?: Maybe<Float>;
-}
-
-export interface NorthEastUpdateOneRequiredInput {
-  create?: Maybe<NorthEastCreateInput>;
-  update?: Maybe<NorthEastUpdateDataInput>;
-  upsert?: Maybe<NorthEastUpsertNestedInput>;
-  connect?: Maybe<NorthEastWhereUniqueInput>;
+export interface DaysUpsertNestedInput {
+  update: DaysUpdateDataInput;
+  create: DaysCreateInput;
 }
 
 export interface ProgressWhereInput {
@@ -1882,43 +2132,57 @@ export interface ProgressWhereInput {
   NOT?: Maybe<ProgressWhereInput[] | ProgressWhereInput>;
 }
 
-export interface NorthEastUpdateDataInput {
+export interface MapCreateInput {
+  id?: Maybe<ID_Input>;
+  externalId: String;
+  name: String;
+  geometry: GeometryCreateOneInput;
+  vicinity: String;
+  plus_code?: Maybe<PlusCodeCreateOneInput>;
+  photo_reference?: Maybe<String>;
+  opening_hours?: Maybe<Boolean>;
+  features?: Maybe<FeatureCreateManyInput>;
+  boundaries?: Maybe<GeoPointCreateManyInput>;
+}
+
+export interface LocationUpdateManyMutationInput {
   lat?: Maybe<Float>;
   lng?: Maybe<Float>;
 }
 
-export interface GeoPointUpsertWithWhereUniqueNestedInput {
-  where: GeoPointWhereUniqueInput;
-  update: GeoPointUpdateDataInput;
-  create: GeoPointCreateInput;
-}
-
-export interface NorthEastUpsertNestedInput {
-  update: NorthEastUpdateDataInput;
-  create: NorthEastCreateInput;
-}
-
-export type GeoPointWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface SouthWestUpdateOneRequiredInput {
-  create?: Maybe<SouthWestCreateInput>;
-  update?: Maybe<SouthWestUpdateDataInput>;
-  upsert?: Maybe<SouthWestUpsertNestedInput>;
-  connect?: Maybe<SouthWestWhereUniqueInput>;
-}
-
-export type GeometryWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface SouthWestUpdateDataInput {
+export interface LocationUpdateInput {
   lat?: Maybe<Float>;
   lng?: Maybe<Float>;
 }
 
-export interface LocationWhereInput {
+export interface GoalUpdateManyMutationInput {
+  hours?: Maybe<Float>;
+}
+
+export interface UserSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<UserWhereInput>;
+  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+}
+
+export type PlusCodeWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface MapUpdateManyDataInput {
+  externalId?: Maybe<String>;
+  name?: Maybe<String>;
+  vicinity?: Maybe<String>;
+  photo_reference?: Maybe<String>;
+  opening_hours?: Maybe<Boolean>;
+}
+
+export interface NorthEastWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -1949,251 +2213,9 @@ export interface LocationWhereInput {
   lng_lte?: Maybe<Float>;
   lng_gt?: Maybe<Float>;
   lng_gte?: Maybe<Float>;
-  AND?: Maybe<LocationWhereInput[] | LocationWhereInput>;
-  OR?: Maybe<LocationWhereInput[] | LocationWhereInput>;
-  NOT?: Maybe<LocationWhereInput[] | LocationWhereInput>;
-}
-
-export interface SouthWestUpsertNestedInput {
-  update: SouthWestUpdateDataInput;
-  create: SouthWestCreateInput;
-}
-
-export type GoalWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface ViewportUpsertNestedInput {
-  update: ViewportUpdateDataInput;
-  create: ViewportCreateInput;
-}
-
-export type FeatureWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface GoalCreateInput {
-  id?: Maybe<ID_Input>;
-  hours: Float;
-  days: DaysCreateOneInput;
-}
-
-export interface PlusCodeWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  compound_code?: Maybe<String>;
-  compound_code_not?: Maybe<String>;
-  compound_code_in?: Maybe<String[] | String>;
-  compound_code_not_in?: Maybe<String[] | String>;
-  compound_code_lt?: Maybe<String>;
-  compound_code_lte?: Maybe<String>;
-  compound_code_gt?: Maybe<String>;
-  compound_code_gte?: Maybe<String>;
-  compound_code_contains?: Maybe<String>;
-  compound_code_not_contains?: Maybe<String>;
-  compound_code_starts_with?: Maybe<String>;
-  compound_code_not_starts_with?: Maybe<String>;
-  compound_code_ends_with?: Maybe<String>;
-  compound_code_not_ends_with?: Maybe<String>;
-  global_code?: Maybe<String>;
-  global_code_not?: Maybe<String>;
-  global_code_in?: Maybe<String[] | String>;
-  global_code_not_in?: Maybe<String[] | String>;
-  global_code_lt?: Maybe<String>;
-  global_code_lte?: Maybe<String>;
-  global_code_gt?: Maybe<String>;
-  global_code_gte?: Maybe<String>;
-  global_code_contains?: Maybe<String>;
-  global_code_not_contains?: Maybe<String>;
-  global_code_starts_with?: Maybe<String>;
-  global_code_not_starts_with?: Maybe<String>;
-  global_code_ends_with?: Maybe<String>;
-  global_code_not_ends_with?: Maybe<String>;
-  AND?: Maybe<PlusCodeWhereInput[] | PlusCodeWhereInput>;
-  OR?: Maybe<PlusCodeWhereInput[] | PlusCodeWhereInput>;
-  NOT?: Maybe<PlusCodeWhereInput[] | PlusCodeWhereInput>;
-}
-
-export interface DaysCreateOneInput {
-  create?: Maybe<DaysCreateInput>;
-  connect?: Maybe<DaysWhereUniqueInput>;
-}
-
-export interface ProgressUpdateManyMutationInput {
-  duration?: Maybe<Float>;
-  completion?: Maybe<Float>;
-  date?: Maybe<DateTimeInput>;
-  weekday?: Maybe<String>;
-}
-
-export interface GoalUpdateInput {
-  hours?: Maybe<Float>;
-  days?: Maybe<DaysUpdateOneRequiredInput>;
-}
-
-export interface NorthEastUpdateInput {
-  lat?: Maybe<Float>;
-  lng?: Maybe<Float>;
-}
-
-export interface DaysUpdateOneRequiredInput {
-  create?: Maybe<DaysCreateInput>;
-  update?: Maybe<DaysUpdateDataInput>;
-  upsert?: Maybe<DaysUpsertNestedInput>;
-  connect?: Maybe<DaysWhereUniqueInput>;
-}
-
-export interface GeoPointUpdateDataInput {
-  boundary?: Maybe<Json>;
-}
-
-export interface DaysUpdateDataInput {
-  title?: Maybe<String>;
-}
-
-export interface GoalSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<GoalWhereInput>;
-  AND?: Maybe<GoalSubscriptionWhereInput[] | GoalSubscriptionWhereInput>;
-  OR?: Maybe<GoalSubscriptionWhereInput[] | GoalSubscriptionWhereInput>;
-  NOT?: Maybe<GoalSubscriptionWhereInput[] | GoalSubscriptionWhereInput>;
-}
-
-export interface DaysUpsertNestedInput {
-  update: DaysUpdateDataInput;
-  create: DaysCreateInput;
-}
-
-export interface UserCreateInput {
-  id?: Maybe<ID_Input>;
-  email: String;
-  password: String;
-}
-
-export interface GoalUpdateManyMutationInput {
-  hours?: Maybe<Float>;
-}
-
-export interface SessionUpdateInput {
-  timeStart?: Maybe<DateTimeInput>;
-  timeEnd?: Maybe<DateTimeInput>;
-  locations?: Maybe<MapUpdateManyInput>;
-  mood?: Maybe<Float>;
-  journal?: Maybe<String>;
-  date?: Maybe<DateTimeInput>;
-}
-
-export interface LocationUpdateInput {
-  lat?: Maybe<Float>;
-  lng?: Maybe<Float>;
-}
-
-export interface GeoPointUpdateManyWithWhereNestedInput {
-  where: GeoPointScalarWhereInput;
-  data: GeoPointUpdateManyDataInput;
-}
-
-export interface PlusCodeCreateOneInput {
-  create?: Maybe<PlusCodeCreateInput>;
-  connect?: Maybe<PlusCodeWhereUniqueInput>;
-}
-
-export interface GeometryCreateOneInput {
-  create?: Maybe<GeometryCreateInput>;
-  connect?: Maybe<GeometryWhereUniqueInput>;
-}
-
-export interface MapCreateInput {
-  id?: Maybe<ID_Input>;
-  externalId: String;
-  name: String;
-  geometry: GeometryCreateOneInput;
-  vicinity: String;
-  plus_code?: Maybe<PlusCodeCreateOneInput>;
-  photos?: Maybe<MapCreatephotosInput>;
-  opening_hours?: Maybe<Boolean>;
-  features?: Maybe<FeatureCreateManyInput>;
-  boundaries?: Maybe<GeoPointCreateManyInput>;
-}
-
-export interface LocationUpdateManyMutationInput {
-  lat?: Maybe<Float>;
-  lng?: Maybe<Float>;
-}
-
-export interface SouthWestSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<SouthWestWhereInput>;
-  AND?: Maybe<
-    SouthWestSubscriptionWhereInput[] | SouthWestSubscriptionWhereInput
-  >;
-  OR?: Maybe<
-    SouthWestSubscriptionWhereInput[] | SouthWestSubscriptionWhereInput
-  >;
-  NOT?: Maybe<
-    SouthWestSubscriptionWhereInput[] | SouthWestSubscriptionWhereInput
-  >;
-}
-
-export interface PlusCodeUpdateManyMutationInput {
-  compound_code?: Maybe<String>;
-  global_code?: Maybe<String>;
-}
-
-export type MapWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface FeatureWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  title?: Maybe<String>;
-  title_not?: Maybe<String>;
-  title_in?: Maybe<String[] | String>;
-  title_not_in?: Maybe<String[] | String>;
-  title_lt?: Maybe<String>;
-  title_lte?: Maybe<String>;
-  title_gt?: Maybe<String>;
-  title_gte?: Maybe<String>;
-  title_contains?: Maybe<String>;
-  title_not_contains?: Maybe<String>;
-  title_starts_with?: Maybe<String>;
-  title_not_starts_with?: Maybe<String>;
-  title_ends_with?: Maybe<String>;
-  title_not_ends_with?: Maybe<String>;
-  AND?: Maybe<FeatureWhereInput[] | FeatureWhereInput>;
-  OR?: Maybe<FeatureWhereInput[] | FeatureWhereInput>;
-  NOT?: Maybe<FeatureWhereInput[] | FeatureWhereInput>;
+  AND?: Maybe<NorthEastWhereInput[] | NorthEastWhereInput>;
+  OR?: Maybe<NorthEastWhereInput[] | NorthEastWhereInput>;
+  NOT?: Maybe<NorthEastWhereInput[] | NorthEastWhereInput>;
 }
 
 export interface NodeNode {
@@ -3472,7 +3494,7 @@ export interface MapPreviousValues {
   externalId: String;
   name: String;
   vicinity: String;
-  photos: String[];
+  photo_reference?: String;
   opening_hours?: Boolean;
 }
 
@@ -3483,7 +3505,7 @@ export interface MapPreviousValuesPromise
   externalId: () => Promise<String>;
   name: () => Promise<String>;
   vicinity: () => Promise<String>;
-  photos: () => Promise<String[]>;
+  photo_reference: () => Promise<String>;
   opening_hours: () => Promise<Boolean>;
 }
 
@@ -3494,7 +3516,7 @@ export interface MapPreviousValuesSubscription
   externalId: () => Promise<AsyncIterator<String>>;
   name: () => Promise<AsyncIterator<String>>;
   vicinity: () => Promise<AsyncIterator<String>>;
-  photos: () => Promise<AsyncIterator<String[]>>;
+  photo_reference: () => Promise<AsyncIterator<String>>;
   opening_hours: () => Promise<AsyncIterator<Boolean>>;
 }
 
@@ -3883,7 +3905,7 @@ export interface Map {
   externalId: String;
   name: String;
   vicinity: String;
-  photos: String[];
+  photo_reference?: String;
   opening_hours?: Boolean;
 }
 
@@ -3894,7 +3916,7 @@ export interface MapPromise extends Promise<Map>, Fragmentable {
   geometry: <T = GeometryPromise>() => T;
   vicinity: () => Promise<String>;
   plus_code: <T = PlusCodePromise>() => T;
-  photos: () => Promise<String[]>;
+  photo_reference: () => Promise<String>;
   opening_hours: () => Promise<Boolean>;
   features: <T = FragmentableArray<Feature>>(args?: {
     where?: FeatureWhereInput;
@@ -3925,7 +3947,7 @@ export interface MapSubscription
   geometry: <T = GeometrySubscription>() => T;
   vicinity: () => Promise<AsyncIterator<String>>;
   plus_code: <T = PlusCodeSubscription>() => T;
-  photos: () => Promise<AsyncIterator<String[]>>;
+  photo_reference: () => Promise<AsyncIterator<String>>;
   opening_hours: () => Promise<AsyncIterator<Boolean>>;
   features: <T = Promise<AsyncIterator<FeatureSubscription>>>(args?: {
     where?: FeatureWhereInput;
@@ -3954,7 +3976,7 @@ export interface MapNullablePromise extends Promise<Map | null>, Fragmentable {
   geometry: <T = GeometryPromise>() => T;
   vicinity: () => Promise<String>;
   plus_code: <T = PlusCodePromise>() => T;
-  photos: () => Promise<String[]>;
+  photo_reference: () => Promise<String>;
   opening_hours: () => Promise<Boolean>;
   features: <T = FragmentableArray<Feature>>(args?: {
     where?: FeatureWhereInput;
