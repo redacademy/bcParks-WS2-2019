@@ -14,7 +14,6 @@ const Arrow = styled.View`
 `;
 
 const BackButton = ({navigation}) => {
-  console.log(navigation);
   return (
     <Arrow>
       <TouchableOpacity onPress={() => navigation.goBack('Home')}>

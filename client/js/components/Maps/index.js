@@ -6,7 +6,6 @@ import fetchData from '../../config/fetchData';
 import styled from 'styled-components';
 import {addMapMutation} from './helper/mutation';
 import {GOOGLE_API_KEY} from '../../config';
-import Geolocation from '@react-native-community/geolocation';
 import {QueenElizabeth, VanDusen} from './utils/PolygonSample';
 import BackButton from '../BackButton';
 import MapContext from '../../context/MapContext';
@@ -45,15 +44,15 @@ const CustomMarkerOpacity = styled.View`
 const Maps = ({children, navigation, _carousel}) => {
   const {
     mapData,
-    setMapData,
     APIData,
     setAPIData,
     selectedMap,
     setSelectedMap,
     userLocation,
-    setUserLocation,
     coords,
     setCoords,
+    selectedIndex,
+    setSelectedIndex,
   } = useContext(MapContext);
 
   const GoogleAPIFetch = () => {
@@ -83,29 +82,6 @@ const Maps = ({children, navigation, _carousel}) => {
     });
   };
 
-  const query = `query {
-    maps {
-      id
-      name
-      externalId
-      vicinity
-      photo_reference
-      geometry {
-        location {
-          lat
-          lng
-        }
-      }
-    }
-  }`;
-
-  useEffect(() => {
-    fetchData(query).then(data => {
-      setMapData(data.maps);
-      setSelectedMap(data.maps[0]);
-    });
-    Geolocation.watchPosition(({coords}) => setUserLocation(coords));
-  }, []);
   const mergeLot = (latitude, longitude) => `${latitude}, ${longitude}`;
   useEffect(() => {
     if (selectedMap && userLocation) {
@@ -138,10 +114,13 @@ const Maps = ({children, navigation, _carousel}) => {
   };
   const onPress = (map, index) => {
     setSelectedMap(map);
-    if (_carousel) {
-      _carousel.current.snapToItem(index);
-    }
+    setSelectedIndex(index);
   };
+  useEffect(() => {
+    if (_carousel) {
+      _carousel.current.snapToItem(selectedIndex);
+    }
+  }, [selectedIndex]);
   const getMarkers = () =>
     mapData.map((map, index) => {
       return (
