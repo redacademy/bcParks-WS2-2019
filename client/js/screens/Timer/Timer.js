@@ -9,5 +9,4 @@ const TimerScreen = ({navigation}) => {
     </Maps>
   );
 };
-
 export default TimerScreen;
