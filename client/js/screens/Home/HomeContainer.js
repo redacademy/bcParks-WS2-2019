@@ -6,29 +6,40 @@ import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 
 
-const QUERY_PROGRESS = gql`
+const QUERY_GOALS = gql`
     query {
-        progress(where:{id:1}) {
+        goals{
             id
-            duration
-            completion
+            hours
+            days{
+                title
+            }
         }
     }
 `;
-
+export const QUERY_SESSIONS = gql `
+    query {
+        sessions{
+            timeStart
+            timeEnd
+            date
+        }
+    }
+`
 const HomeContainer = ({ navigation }) => {
-    const { loading, error, data } = useQuery(QUERY_PROGRESS);
-    if (loading) {
+    const { loading : sessionLoading, error : sessionError, data : sessionData } = useQuery(QUERY_SESSIONS);
+    const { loading : goalLoading, error : goalError, data : goalData } = useQuery(QUERY_GOALS);
+    if (sessionLoading || goalLoading) {
         return (
             <Text>Loading</Text>
         )
-    } else if (error) {
+    } else if (sessionError || goalError) {
         return (
             <Text>Error</Text>
         )
-    } else {
+    } else if(sessionData && goalData){
         return (
-            <Home data={data} navigation={navigation} />
+            <Home sessionData={sessionData} goalData={goalData} navigation={navigation} />
         )
     }
 }
