@@ -62,6 +62,7 @@ const ActivityList = ({ data, navigation, weekly }) => {
         }).filter(item => item);
 
     } else {
+        console.log('listData', data)
         transformedData = data.map(session => {
             const start = moment(session.timeStart).tz("America/Los_Angeles");
             const timeDisplay = start.format('HH:mm a');
@@ -80,6 +81,7 @@ const ActivityList = ({ data, navigation, weekly }) => {
             }
         });
     }
+    console.log('transformedData', transformedData)
     return (
         <View>
             <FlatListContainer

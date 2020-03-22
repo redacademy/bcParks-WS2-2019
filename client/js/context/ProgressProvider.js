@@ -3,6 +3,7 @@ import ProgressContext from './ProgressContext';
 import AsyncStorage from '@react-native-community/async-storage';
 import fetchData from '../config/fetchData';
 import moment from 'moment-timezone';
+import helper from './helperFunction'
 
 const QUERY_SESSIONS = `
     query {
@@ -16,37 +17,6 @@ const QUERY_SESSIONS = `
 
 const ProgressProvider = ({children}) => {
     const [sample, setSample] = useState([])
-    let arr = []
-
-    const helper = (sessions) => {
-        const group = (session, date) => {
-            return session.reduce(function (acc, obj) {
-                let key = moment(obj[date]).format('YYYY-MM-DD');
-                if (!acc[key]) {
-                    acc[key] = []
-                }
-                acc[key].push(obj)
-                return acc
-            }, {})
-        }
-        let grouped = group(sessions, 'timeStart');
-        
-        Object.keys(grouped).forEach((groupedDate) => {
-            let diff = 0;
-            let data = grouped[groupedDate];
-            data.forEach((session) => {
-                let newDiff = moment(session.timeEnd).diff(moment(session.timeStart));
-                diff += newDiff
-                return diff
-            })
-            arr.push({
-                groupedDate,
-                data,
-                diff
-            })
-            // console.log('day of the week', moment(groupedDate).format('dddd'))
-        })
-    }
 
     const update = async () => {
         const items = await getItem();
@@ -65,11 +35,8 @@ const ProgressProvider = ({children}) => {
     useEffect(() => {
         fetchData(QUERY_SESSIONS).then(data => {
             let sessions = data.sessions;
-            helper(sessions)
-            AsyncStorage.setItem('grouped', JSON.stringify(arr))
-            console.log('contextData', arr)
+            setSample(helper(sessions))
         })
-        update();
     },[])
 
     return (

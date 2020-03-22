@@ -18,7 +18,7 @@ const HomeScreen = ({ navigation, sessionData, goalData }) => {
     const [ today, setToday] = useState(0);
 
     console.log('goals', goals)
-    console.log('currentTime', moment.tz("2020-03-21 14:10", "America/Vancouver").format())
+    console.log('currentTime', moment.tz(moment(), "America/Vancouver").format())
     console.log('sessions',sessions)
     let changedTime = moment.tz(sessions[29].timeStart, "America/Vancouver").format();
     console.log('changedTime', changedTime)
@@ -31,8 +31,6 @@ const HomeScreen = ({ navigation, sessionData, goalData }) => {
 
     const display = () => {
         for(let i=0; i<sample.length; i++) {
-            console.log('num', num)
-            console.log('date', sample[i].groupedDate)
             if(sample[i].groupedDate === num){
                 setToday(sample[i].diff)
                 break;
@@ -88,7 +86,7 @@ const HomeScreen = ({ navigation, sessionData, goalData }) => {
                                     <Text
                                         onPress={() => { 
                                             setNum(date.dateString)
-                                            console.log('prog', sample)}}
+                                        }}
                                     >
                                         {date.day}</Text>
                                 </ProgressCircle>
