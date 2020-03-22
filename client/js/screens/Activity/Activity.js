@@ -12,6 +12,7 @@ import moment from "moment";
 import ActivityChart from '../../components/ActivityChart/ActivityChart';
 import ActivityList from '../../components/ActivityList/ActivityList';
 import ActivityDisplay from '../../components/ActivityDisplay/ActivityDisplay';
+import Mood from '../../components/Mood/Mood';
 import {
     ButtonsContainer,
     PeriodButtons,
@@ -21,10 +22,13 @@ import {
     ActivityView,
     GraphDate
 } from './styles'
+import { theme, HeaderCont, Heading, styles } from '../../globalStyles';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
 
 const SESSIONS_QUERY = gql`
   query Sessions($where: SessionWhereInput){
-    sessions(where: $where) {
+    sessions(where: $where, orderBy:timeStart_ASC) {
         id
         timeStart
         timeEnd
@@ -34,24 +38,21 @@ const SESSIONS_QUERY = gql`
         }
         mood
         date
+        journal
     }
   }
 `
 
 
-const ActivityScreen = ({ focusDay, setFocusDay, period, setPeriod }) => {
+const ActivityScreen = ({ focus, setFocus, navigation, period, showWeekly, setShowWeekly }) => {
 
-    let start = focusDay.format('YYYY-MM-DD');
-    let end = focusDay.clone().add(1, 'd').format('YYYY-MM-DD');
-
-    // let startWeek = period.format('YYYY-MM-DD');
-    // let endWeek = period.clone().add(7, 'd').format('YYYY-MM-DD');
+    let start = focus.format('YYYY-MM-DD');
+    let end = focus.clone().add(period, 'd').format('YYYY-MM-DD');
 
     const { loading, data, error, networkStatus } = useQuery(SESSIONS_QUERY, {
         variables: {
             where: {
                 timeStart_gt: start, timeEnd_lt: end,
-                // timeStart_gt: startWeek, timeEnd_lt: endWeek
             }
         }
     });
@@ -62,29 +63,36 @@ const ActivityScreen = ({ focusDay, setFocusDay, period, setPeriod }) => {
 
     return (
         <View>
+            <HeaderCont>
+                <TouchableOpacity onPress={() => navigation.goBack('Home')}>
+                    <Icon name='chevron-left' size={30} color={theme.bodyTextColor} style={styles.backIcon} />
+                </TouchableOpacity>
+                <Heading>Journal</Heading>
+            </HeaderCont>
             <ButtonsContainer>
 
                 <PeriodButtons onPress={() => {
+                    setShowWeekly(false)
 
                 }}>
                     <PeriodText>Daily</PeriodText>
                 </PeriodButtons>
 
                 <PeriodButtons onPress={() => {
-
+                    setShowWeekly(true)
                 }}>
                     <PeriodText>Weekly</PeriodText>
                 </PeriodButtons>
             </ButtonsContainer>
             <ArrowsContainer>
                 <TouchableOpacity onPress={() => {
-                    setFocusDay(focusDay.clone().subtract(1, 'd'))
+                    setFocus(focus.clone().subtract(period, 'd'))
                 }}
                 >
                     <ArrowText>&lt;</ArrowText>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => {
-                    setFocusDay(focusDay.clone().add(1, 'd'))
+                    setFocus(focus.clone().add(period, 'd'))
                 }}
                 >
                     <ArrowText>&gt;</ArrowText>
@@ -95,9 +103,10 @@ const ActivityScreen = ({ focusDay, setFocusDay, period, setPeriod }) => {
             </GraphDate>}
             {(data.sessions.length > 0) &&
                 <>
-                    <ActivityChart data={data.sessions} />
+                    <ActivityChart data={data.sessions} focus={focus} weekly={showWeekly} />
                     <ActivityDisplay data={data.sessions} />
-                    <ActivityList data={data.sessions} />
+                    <ActivityList data={data.sessions} navigation={navigation} weekly={showWeekly} />
+                    {/* <Mood data={data.sessions} /> */}
                 </>
             }
 

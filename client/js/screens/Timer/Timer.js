@@ -1,22 +1,12 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
 import StartStopTimer from '../../components/StartStopTimer/StartStopTimer';
-import styled from 'styled-components';
+import Maps from '../../components/Maps';
 
-const Placeholder = styled.View`
-    height: 320px;
-`
-
-const TimerScreen = ({ navigation }) => {
-
-    return (
-        <View>
-            <Placeholder />
-            <View>
-                <StartStopTimer navigation={navigation} />
-            </View>
-        </View>
-    );
-}
-
+const TimerScreen = ({navigation}) => {
+  return (
+    <Maps navigation={navigation} _carousel={false}>
+      <StartStopTimer navigation={navigation} />
+    </Maps>
+  );
+};
 export default TimerScreen;

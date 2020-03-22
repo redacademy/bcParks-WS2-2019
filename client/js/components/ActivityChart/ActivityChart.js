@@ -14,51 +14,61 @@ import { GraphDate } from '../../screens/Activity/styles'
 const screenWidth = Dimensions.get("window").width;
 const chartConfig = {
     backgroundColor: "#ffffff",
-    // backgroundGradientFrom: "#DA6645",
+    backgroundGradientFrom: "#DA6645",
     backgroundGradientFromOpacity: 0,
-    // backgroundGradientTo: "#DA6645",
+    backgroundGradientTo: "#DA6645",
     backgroundGradientToOpacity: 0,
-    color: (opacity = 0.5) => `rgba( 218, 102, 69, ${opacity})`,
+    color: (opacity = 0) => `rgba( 218, 102, 69, ${opacity})`,
     barPercentage: 0.7,
     barRadius: 7,
-    decimalPlaces: 0,
-
-
+    decimalPlaces: 1,
 };
 
-const ActivityChart = ({ data }) => {
-    let displayData = (chartData) => {
-        if (chartData) {
-            const timeLabel = chartData.map(session => moment.utc(session.timeStart).format('HH:mm'));
-            const duration = chartData.map(session => {
-                let start = moment.utc(session.timeStart);
-                let end = moment.utc(session.timeEnd);
-                return end.diff(start, 'hours', true)
-            })
+const ActivityChart = ({ data, focus, weekly }) => {
 
-            const barData = {
-                labels: timeLabel,
-                datasets: [
-                    {
-                        data: duration,
-                    },
-                ],
-            };
-            return barData;
-        }
+    const labels = weekly ? ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] : data.map(session => moment(session.timeStart).format('HH:mm'));
+
+    let duration;
+
+    if (weekly) {
+        let times = [0, 0, 0, 0, 0, 0, 0];
+
+        data.map(session => {
+            let start = moment(session.timeStart);
+            let end = moment(session.timeEnd);
+            let dayOfTheWeek = start.format('d');
+            let time = end.diff(start, 'hours');
+            times[dayOfTheWeek] = times[dayOfTheWeek] + time;
+        })
+
+
+        duration = times;
+    } else {
+        duration = data.map(session => {
+            let start = moment(session.timeStart);
+            let end = moment(session.timeEnd);
+            return end.diff(start, 'hours', true)
+        })
     }
 
+    const graphData = {
+        labels,
+        datasets: [
+            {
+                data: duration,
+            },
+        ],
 
-    let transformedData = displayData(data);
+    };
     return (
         <ScrollView>
             <GraphContainer >
                 <GraphDate >
-                    {moment.utc(data[0].timeStart).format('YYYY-MM-DD')}
+                    {weekly ? `${focus.format('YYYY-MM-DD')} - ${focus.clone().add(6, 'd').format('YYYY-MM-DD')}` : focus.format('YYYY-MM-DD')}
                 </GraphDate>
                 <BarChart
                     // style={graphStyle}
-                    data={transformedData}
+                    data={graphData}
                     width={screenWidth}
                     height={220}
                     chartConfig={chartConfig}

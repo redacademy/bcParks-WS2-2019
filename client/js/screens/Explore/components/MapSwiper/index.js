@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Text, StyleSheet} from 'react-native';
 import Card from '../Card';
 import styled from 'styled-components';
 import Carousel from 'react-native-snap-carousel';
+import Details from '../Details';
 const Box = styled.View`
   padding: 15px;
 `;
@@ -34,6 +35,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     letterSpacing: -0.14,
     marginBottom: 14,
+    color: '#303030',
   },
 });
 
