@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     ScrollView,
     View,
@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import moment from "moment";
+import moment from "moment-timezone";
 import ActivityChart from '../../components/ActivityChart/ActivityChart';
 import ActivityList from '../../components/ActivityList/ActivityList';
 import ActivityDisplay from '../../components/ActivityDisplay/ActivityDisplay';
@@ -24,12 +24,11 @@ import {
 } from './styles'
 import { theme, HeaderCont, Heading, styles } from '../../globalStyles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
+import helper from '../../context/helperFunction';
 
 const SESSIONS_QUERY = gql`
-  query Sessions($where: SessionWhereInput){
-    sessions(where: $where, orderBy:timeStart_ASC) {
-        id
+  query Sessions{
+    sessions{
         timeStart
         timeEnd
         locations {
@@ -45,22 +44,33 @@ const SESSIONS_QUERY = gql`
 
 
 const ActivityScreen = ({ focus, setFocus, navigation, period, showWeekly, setShowWeekly }) => {
-
+    console.log('focus', focus.format())
+    // let newFocus = moment.tz(focus.format(), "America/Vancouver").format();
+    // console.log('newFocus', newFocus)
     let start = focus.format('YYYY-MM-DD');
+    console.log('start', start)
     let end = focus.clone().add(period, 'd').format('YYYY-MM-DD');
+    console.log('end', end)
 
-    const { loading, data, error, networkStatus } = useQuery(SESSIONS_QUERY, {
-        variables: {
-            where: {
-                timeStart_gt: start, timeEnd_lt: end,
-            }
-        }
-    });
+    const { loading, data, error, networkStatus } = useQuery(SESSIONS_QUERY);
 
     if (networkStatus === 4) return <Text>Refetching!</Text>
     if (loading) return <Text>Loading!</Text>;
     if (error) return <Text>Error!</Text>;
+    if (data) {
+        let arr = []
+        arr = helper(data.sessions)
+        let newArr = []
 
+        for(let i = 0; i<arr.length; i++) {
+            if(arr[i].groupedDate === focus.format("YYYY-MM-DD")){
+                newArr = arr[i].data;
+                break;
+            } else {
+                console.log(false)
+            }
+        }
+        console.log('arr', newArr)
     return (
         <View>
             <HeaderCont>
@@ -103,15 +113,15 @@ const ActivityScreen = ({ focus, setFocus, navigation, period, showWeekly, setSh
             </GraphDate>}
             {(data.sessions.length > 0) &&
                 <>
-                    <ActivityChart data={data.sessions} focus={focus} weekly={showWeekly} />
-                    <ActivityDisplay data={data.sessions} />
-                    <ActivityList data={data.sessions} navigation={navigation} weekly={showWeekly} />
+                    <ActivityChart data={newArr} focus={focus} weekly={showWeekly} />
+                    <ActivityDisplay data={newArr} />
+                    <ActivityList data={newArr} navigation={navigation} weekly={showWeekly} />
                 </>
             }
 
 
         </View>
-    );
+    )}
 };
 
 export default ActivityScreen;

@@ -7,61 +7,42 @@ import ProgressContext from '../../context/ProgressContext';
 import moment from 'moment-timezone';
 
 const HomeScreen = ({ navigation, sessionData, goalData }) => {
+    
     const { goals } = goalData;
     const { sessions } = sessionData;
     const { sample, setSample, update, getItem } = useContext(ProgressContext);
     console.log('sample', sample)
     console.log('sampelData', sample[0])
-    console.log('nav', navigation)
     const [goal, setGoal] = useState(360000);
-    // const [progress, setProgress] = useState(0)
+    const [ num, setNum] = useState('')
+    const [ today, setToday] = useState(0);
 
     console.log('goals', goals)
-    console.log('currentTime', moment.tz("2020-03-21 14:10", "America/Vancouver").format())
-    console.log(sessions)
+    console.log('currentTime', moment.tz(moment(), "America/Vancouver").format())
+    console.log('sessions',sessions)
     let changedTime = moment.tz(sessions[29].timeStart, "America/Vancouver").format();
     console.log('changedTime', changedTime)
-
-    const group = (session, date) => {
-        return session.reduce(function (acc, obj) {
-            let key = moment(obj[date]).format('YYYY-MM-DD');
-            if (!acc[key]) {
-                acc[key] = []
-            }
-            acc[key].push(obj)
-            return acc
-        }, {})
-    }
-
-    let grouped = group(sessions, 'timeStart');
-    let newArr = [];
-    console.log('grouped', grouped);
-
+    
     let day;
     for (let i = 0; i < goals.length; i++) {
         day = goals[i].days.title;
         console.log('day', day)
     }
 
-    Object.keys(grouped).forEach((groupedDate) => {
-        let diff = 0;
-        let data = grouped[groupedDate];
-        data.forEach((session) => {
-            let newDiff = moment(session.timeEnd).diff(moment(session.timeStart));
-            diff += newDiff
-            return diff
-        })
-        newArr.push({
-            groupedDate,
-            data,
-            diff
-        })
-        // console.log('day of the week', moment(groupedDate).format('dddd'))
+    const display = () => {
+        for(let i=0; i<sample.length; i++) {
+            if(sample[i].groupedDate === num){
+                setToday(sample[i].diff)
+                break;
+            } else {
+                setToday(0)
+            }
+        }
+    }
+
+    useEffect(() => {
+        display()    
     })
-    // useEffect(() => {
-    //     setArr(newArr)
-    // }, [sessions])
-    console.log('pushed arr', newArr)
 
     return (
         <View>
@@ -75,28 +56,24 @@ const HomeScreen = ({ navigation, sessionData, goalData }) => {
                     minDate={'2020-03-15'}
                     maxDate={'2020-03-21'}
                     hideExtraDays={true}
-                    dayComponent={({ date, state, marking, }) => {
+                    dayComponent={({ date, state, marking}) => {
                         // console.log('date', date)
                         // console.log('state', state)
                         // console.log('mark', marking)
                         // console.log('grouped', grouped)
-
+                        
                         const [progress, setProgress] = useState();
 
                         useEffect(() => {
 
-                            for (let i = 0; i < newArr.length; i++) {
-                                if (newArr[i].groupedDate === date.dateString) {
-                                    console.log('test', newArr[i])
-                                    // update(25)
-                                    setProgress(newArr[i].diff)
+                            for (let i = 0; i < sample.length; i++) {
+                                if (sample[i].groupedDate === date.dateString) {
+                                    setProgress(sample[i].diff)
                                     break;
-                                } else {
-                                    console.log('false', false)
                                 }
                             }
                             
-                        }, [sample])
+                        }, [])
                             return (
                                 <ProgressCircle
                                     percent={(progress/goal)*100}
@@ -107,8 +84,9 @@ const HomeScreen = ({ navigation, sessionData, goalData }) => {
                                     bgColor="white"
                                 >
                                     <Text
-                                        onPress={() => { /* setProgress(arr[14].diff) */
-                                        console.log('prog', getItem())}}
+                                        onPress={() => { 
+                                            setNum(date.dateString)
+                                        }}
                                     >
                                         {date.day}</Text>
                                 </ProgressCircle>
@@ -125,7 +103,7 @@ const HomeScreen = ({ navigation, sessionData, goalData }) => {
             </View> */}
             <Text>Home Screen</Text>
             <ProgressCircle
-                percent={sample[0]}
+                percent={today/goal*100}
                 radius={50}
                 borderWidth={10}
                 color="green"
