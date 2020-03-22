@@ -60,19 +60,33 @@ const ActivityScreen = ({ focus, setFocus, navigation, period, showWeekly, setSh
     if (loading) return <Text>Loading!</Text>;
     if (error) return <Text>Error!</Text>;
     if (data) {
-        let arr = []
-        arr = helper(data.sessions)
+        let arr = helper(data.sessions)
         let newArr = []
-
-        for(let i = 0; i<arr.length; i++) {
-            if(arr[i].groupedDate === focus.format("YYYY-MM-DD")){
-                newArr = arr[i].data;
-                break;
-            } else {
-                console.log(false)
+        if(!showWeekly){
+            console.log('arr', arr)
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].groupedDate === focus.clone().format("YYYY-MM-DD")) {
+                    newArr = arr[i].data;
+                    break;
+                } else {
+                    console.log(false)
+                }
             }
+            console.log('newArr', newArr)
+        } else {
+            for (let i = 0; i < arr.length; i++) {
+                if (+moment(arr[i].groupedDate) >= +focus.clone() && +moment(arr[i].groupedDate) < +moment(focus.clone().add(period, 'd'))) {
+                    for (let j = 0; j < arr[i].data.length; j++){
+                        newArr.push(arr[i].data[j])
+                    }
+                } else {
+                    console.log(false)
+                }
+            }
+            console.log('newArr', newArr)
+            console.log('milsec', +focus.clone())
+            console.log('todaymil', +moment(arr[15].groupedDate))
         }
-        console.log('arr', newArr)
     return (
         <View>
             <HeaderCont>
