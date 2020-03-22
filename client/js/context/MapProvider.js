@@ -10,7 +10,12 @@ const MapProvider = ({children}) => {
   const [userLocation, setUserLocation] = useState();
   const [coords, setCoords] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(1);
-
+  const [region, setRegion] = useState({
+    latitude: 49.2479999,
+    longitude: -123.1300971,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  });
   const query = `query {
     maps {
       id
@@ -24,6 +29,7 @@ const MapProvider = ({children}) => {
           lng
         }
       }
+      features{title}
     }
   }`;
 
@@ -48,6 +54,8 @@ const MapProvider = ({children}) => {
         setCoords,
         selectedIndex,
         setSelectedIndex,
+        region,
+        setRegion,
       }}>
       {children}
     </MapContext.Provider>

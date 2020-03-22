@@ -60,6 +60,7 @@ type Session {
   type Feature {
     id: ID! @id
     title: String!
+    maps: [Map!]! @relation(link: TABLE, name: "MapFeature")
   }
 
   type GeoPoint {
