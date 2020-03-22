@@ -28,15 +28,15 @@ const chartConfig = {
 const ActivityChart = ({ data, focus, weekly }) => {
     const labels = weekly ?
         ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] :
-        data.map(session => moment(session.timeStart).tz("America/Los_Angeles").format('h A'));
+        data.map(session => moment.tz(session.timeStart, "America/Los_Angeles").format('h A'));
 
     let duration;
 
     if (weekly) {
         let times = [0, 0, 0, 0, 0, 0, 0];
         data.map(session => {
-            let start = moment(session.timeStart).tz("America/Los_Angeles");
-            let end = moment(session.timeEnd).tz("America/Los_Angeles");
+            let start = moment.tz(session.timeStart, "America/Los_Angeles");
+            let end = moment.tz(session.timeEnd, "America/Los_Angeles");
             let dayOfTheWeek = start.format('d');
             let time = end.diff(start, 'hours');
             times[dayOfTheWeek] = times[dayOfTheWeek] + time;
@@ -45,8 +45,8 @@ const ActivityChart = ({ data, focus, weekly }) => {
         duration = times;
     } else {
         duration = data.map(session => {
-            let start = moment(session.timeStart).tz("America/Los_Angeles");
-            let end = moment(session.timeEnd).tz("America/Los_Angeles");
+            let start = moment.tz(session.timeStart, "America/Los_Angeles");
+            let end = moment.tz(session.timeEnd, "America/Los_Angeles");
             return end.diff(start, 'hours', true)
         })
     }

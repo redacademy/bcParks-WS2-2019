@@ -47,7 +47,9 @@ const SESSIONS_QUERY = gql`
 const ActivityScreen = ({ focus, setFocus, navigation, period, showWeekly, setShowWeekly }) => {
 
     let start = focus.format('YYYY-MM-DD');
+    console.log('start', start);
     let end = focus.clone().add(period, 'd').format('YYYY-MM-DD');
+    console.log('end', end);
 
     const { loading, data, error, networkStatus } = useQuery(SESSIONS_QUERY, {
         variables: {
