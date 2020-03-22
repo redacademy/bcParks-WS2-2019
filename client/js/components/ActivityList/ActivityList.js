@@ -21,14 +21,13 @@ import Icon3 from 'react-native-vector-icons/SimpleLineIcons';
 
 const ActivityList = ({ data, navigation, weekly }) => {
     let transformedData;
-
     if (weekly) {
         let groupedSessions = [];
         data.map(session => {
-            const start = moment(session.timeStart).tz("America/Los_Angeles");
+            const start = moment.tz(session.timeStart, "America/Los_Angeles");
             let timeDisplay = start.format('dddd');
             let dayOfTheWeekIndex = start.format('d');
-            let duration = moment(session.timeEnd).tz("America/Los_Angeles").diff(start, 'minutes');
+            let duration = moment.tz(session.timeEnd, "America/Los_Angeles").diff(start, 'minutes');
 
             let { mood, locations } = session;
             if (groupedSessions[dayOfTheWeekIndex]) {
@@ -64,13 +63,14 @@ const ActivityList = ({ data, navigation, weekly }) => {
     } else {
         console.log('listData', data)
         transformedData = data.map(session => {
-            const start = moment(session.timeStart).tz("America/Los_Angeles");
+            const start = moment.tz(session.timeStart, "America/Los_Angeles");
             const timeDisplay = start.format('HH:mm a');
-            let diff = moment(session.timeEnd).tz("America/Los_Angeles").diff(start, 'minutes');
+            let diff = moment.tz(session.timeEnd, "America/Los_Angeles").diff(start, 'minutes');
             let hours = Math.floor(diff / 60);
             let min = diff % 60;
             let duration = `${hours ? hours + 'h ' : ''}${min}min`;
             let { mood, locations, journal } = session;
+            console.log('start', start);
 
             return {
                 duration,

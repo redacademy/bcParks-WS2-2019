@@ -22,8 +22,8 @@ import Mood from '../Mood/Mood';
 const ActivityDisplay = ({ data }) => {
 
     let durationDisplay = data.map(session => {
-        let start = moment(session.timeStart).tz("America/Los_Angeles");
-        let end = moment(session.timeEnd).tz("America/Los_Angeles");
+        let start = moment.tz(session.timeStart, "America/Los_Angeles");
+        let end = moment.tz(session.timeEnd, "America/Los_Angeles");
         return (end.diff(start, 'hours', true))
     });
     let totalDuration;
