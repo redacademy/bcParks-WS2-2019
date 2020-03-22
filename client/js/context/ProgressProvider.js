@@ -15,7 +15,7 @@ const QUERY_SESSIONS = `
 `
 
 const ProgressProvider = ({children}) => {
-    const [sample, setSample] = useState([50])
+    const [sample, setSample] = useState([])
     let arr = []
 
     const helper = (sessions) => {
@@ -48,8 +48,9 @@ const ProgressProvider = ({children}) => {
         })
     }
 
-    const update = async (p) => {
-        setSample([p])
+    const update = async () => {
+        const items = await getItem();
+        setSample(items);
     }
     const getItem = async () => {
         const item = await AsyncStorage.getItem('grouped');
@@ -68,6 +69,7 @@ const ProgressProvider = ({children}) => {
             AsyncStorage.setItem('grouped', JSON.stringify(arr))
             console.log('contextData', arr)
         })
+        update();
     },[])
 
     return (
