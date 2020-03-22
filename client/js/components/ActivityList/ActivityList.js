@@ -21,6 +21,7 @@ import Icon3 from 'react-native-vector-icons/SimpleLineIcons';
 
 const ActivityList = ({ data, navigation, weekly }) => {
     let transformedData;
+    console.log('listData', data)
     if (weekly) {
         let groupedSessions = [];
         data.map(session => {
@@ -34,7 +35,7 @@ const ActivityList = ({ data, navigation, weekly }) => {
                 groupedSessions[dayOfTheWeekIndex].totalMood += mood;
                 groupedSessions[dayOfTheWeekIndex].totalDuration += duration;
                 groupedSessions[dayOfTheWeekIndex].count += 1;
-                groupedSessions[dayOfTheWeekIndex].locations.push(...locations);
+                // groupedSessions[dayOfTheWeekIndex].locations.push(...locations);
             } else {
                 groupedSessions[dayOfTheWeekIndex] = {
                     timeDisplay,
@@ -61,7 +62,6 @@ const ActivityList = ({ data, navigation, weekly }) => {
         }).filter(item => item);
 
     } else {
-        console.log('listData', data)
         transformedData = data.map(session => {
             const start = moment.tz(session.timeStart, "America/Los_Angeles");
             const timeDisplay = start.format('HH:mm a');
