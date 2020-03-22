@@ -6,6 +6,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import InputTextBox from '../../components/InputText/InputText';
 import styled from 'styled-components';
+import QUERY_SESSIONS from '../Home/HomeContainer';
 
 const InputHeading = styled.Text`
     font-size:${theme.bodyFontSize};
@@ -44,7 +45,7 @@ const TextInputScreen = ({ navigation, params }) => {
     const updateJournal = text => {
         setJournal(text)
     }
-
+    
     return (
         <ScreenBkgCont>
             <InputHeading>Write about your experience with Green Time.</InputHeading>
@@ -58,7 +59,18 @@ const TextInputScreen = ({ navigation, params }) => {
                             date: params.date,
                             mood: params.mood,
                             journal: journal,
-                        }
+                        },
+                        refetchQueries: [{
+                            query: gql `
+                            query {
+                                sessions{
+                                    timeStart
+                                    timeEnd
+                                    date
+                                }
+                            }
+                        `
+                        }]
                     })
                     navigation.popToTop()
                     navigation.navigate('Home')

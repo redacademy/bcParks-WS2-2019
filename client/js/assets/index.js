@@ -1,4 +1,3 @@
-
 export const OnboardingLanding = require('./images/OnboardingLanding.svg');
 export const OnboardingLocation = require('./images/OnboardingLocation.svg');
 export const OnboardingTime = require('./images/OnboardingTime.svg');
@@ -21,3 +20,5 @@ export const TreeLeft = require('./images/TreeLeft.svg');
 export const TreeRight = require('./images/TreeRight.svg');
 
 export const Background = require('./images/Background.svg');
+
+export const Placeholder = require('./images/Placeholder.svg');

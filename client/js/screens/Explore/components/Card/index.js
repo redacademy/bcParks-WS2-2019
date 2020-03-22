@@ -1,38 +1,35 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import GetImages from '../utils/GetImages';
+import Details from '../Details';
 import styled from 'styled-components';
-import { GOOGLE_API_KEY } from '../../../../config';
+import Brief from '../Brief';
 
-const ImageFrame = styled.Image`
-  background: #333;
+const ImageWrap = styled.View`
   height: 161px;
   border-radius: 4px;
+  overflow: hidden;
 `;
-const Card = ({ detail }) => {
+
+const Card = ({detail}) => {
   const [modalVisible, setModalVisible] = useState(false);
 
-  const handleModal = () => {
-    setModalVisible(!modalVisible);
-  };
-
-  const getImages = reference => {
-    return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=${reference}&key=${GOOGLE_API_KEY}`;
-  };
-  const noImage = '';
   return (
-    <TouchableOpacity style={styles.card}>
-      <ImageFrame
-        source={{
-          url: detail.photo_reference
-            ? getImages(detail.photo_reference)
-            : noImage,
-        }}
+    <>
+      <Details
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        detail={detail}
       />
-      <View>
-        <Text>{detail.name}</Text>
-        <Text>distance</Text>
-      </View>
-    </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.card}
+        onPress={() => setModalVisible(true)}>
+        <ImageWrap>
+          <GetImages reference={detail.photo_reference} />
+        </ImageWrap>
+        <Brief detail={detail} />
+      </TouchableOpacity>
+    </>
   );
 };
 const styles = StyleSheet.create({

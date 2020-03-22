@@ -6,13 +6,13 @@ import {
     Text,
     View,
 } from 'react-native';
-// import moment from "moment";
+
 import moment from "moment-timezone";
 
 
 function ActivityContainer({ navigation }) {
-    const [focusDay, setFocusDay] = useState(moment().tz('America/Los_Angeles'));
-    const [focusWeek, setFocusWeek] = useState(moment().tz('America/Los_Angeles').startOf('week'));
+    const [focusDay, setFocusDay] = useState(moment.tz("America/Vancouver"));
+    const [focusWeek, setFocusWeek] = useState(moment().startOf('week'));
     const [showWeekly, setShowWeekly] = useState(false)
     return (
         <>

@@ -45,9 +45,14 @@ const ActivityChart = ({ data, focus, weekly }) => {
         duration = times;
     } else {
         duration = data.map(session => {
-            let start = moment.tz(session.timeStart, "America/Los_Angeles");
-            let end = moment.tz(session.timeEnd, "America/Los_Angeles");
+
+            let start = moment.tz(session.timeStart, "America/Vancouver");
+            let end = moment.tz(session.timeEnd, "America/Vancouver");
+            // console.log('start', start.format());
+            // console.log('end', end.format())
+
             return end.diff(start, 'hours', true)
+            // return 100000
         })
     }
 

@@ -26,10 +26,20 @@ const ActivityDisplay = ({ data }) => {
         let end = moment.tz(session.timeEnd, "America/Los_Angeles");
         return (end.diff(start, 'hours', true))
     });
-    const totalDuration = durationDisplay.reduce((result, number) => result + number);
-    let moodDisplay = data.map(s => s.mood);
-    const sum = moodDisplay.reduce((a, b) => a + b, 0);
-    const avg = (sum / moodDisplay.length) || 0;
+    let totalDuration;
+    let moodDisplay;
+    let sum
+    let avg
+    if(durationDisplay.length === 0){
+        totalDuration = 0
+        sum = 0
+        avg = 0
+    } else {
+        totalDuration = durationDisplay.reduce((result, number) => result + number )
+        moodDisplay = data.map(s => s.mood);
+        sum = moodDisplay.reduce((a, b) => a + b, 0 );
+        avg = (sum / moodDisplay.length) || 0;
+    }
     return (
         <DisplayContainer>
             <SubDisplayContainer>
