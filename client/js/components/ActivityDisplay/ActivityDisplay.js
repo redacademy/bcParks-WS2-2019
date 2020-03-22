@@ -5,27 +5,25 @@ import {
     Text
 } from 'react-native';
 // import styles from './styles';
-import moment from "moment";
+// import moment from "moment";
+import moment from "moment-timezone";
+
 import {
     DisplayContainer,
     SubDisplayContainer,
-    styles,
     DisplayTitle,
     DisplayContent,
     DisplayRow,
     MoodDisplayContainer
 } from './styles';
-import MoodFace from '../../assets/images/MoodVeryHappy';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Mood from '../Mood/Mood';
-
-
 
 const ActivityDisplay = ({ data }) => {
 
     let durationDisplay = data.map(session => {
-        let start = moment(session.timeStart);
-        let end = moment(session.timeEnd);
+        let start = moment(session.timeStart).tz("America/Los_Angeles");
+        let end = moment(session.timeEnd).tz("America/Los_Angeles");
         return (end.diff(start, 'hours', true))
     });
     const totalDuration = durationDisplay.reduce((result, number) => result + number);
