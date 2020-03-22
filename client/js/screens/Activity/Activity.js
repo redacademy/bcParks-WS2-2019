@@ -67,7 +67,7 @@ const ActivityScreen = ({ focus, setFocus, navigation, period, showWeekly, setSh
                 <TouchableOpacity onPress={() => navigation.goBack('Home')}>
                     <Icon name='chevron-left' size={30} color={theme.bodyTextColor} style={styles.backIcon} />
                 </TouchableOpacity>
-                <Heading>Journal</Heading>
+                <Heading>Activity</Heading>
             </HeaderCont>
             <ButtonsContainer>
 
@@ -106,7 +106,6 @@ const ActivityScreen = ({ focus, setFocus, navigation, period, showWeekly, setSh
                     <ActivityChart data={data.sessions} focus={focus} weekly={showWeekly} />
                     <ActivityDisplay data={data.sessions} />
                     <ActivityList data={data.sessions} navigation={navigation} weekly={showWeekly} />
-                    {/* <Mood data={data.sessions} /> */}
                 </>
             }
 

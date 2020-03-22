@@ -7,7 +7,8 @@ import {
 import styles from './styles';
 import { BarChart } from 'react-native-chart-kit';
 import { Dimensions } from "react-native";
-import moment from "moment";
+// import moment from "moment";
+import moment from "moment-timezone";
 import { GraphContainer } from './styles';
 import { GraphDate } from '../../screens/Activity/styles'
 
@@ -25,28 +26,27 @@ const chartConfig = {
 };
 
 const ActivityChart = ({ data, focus, weekly }) => {
-
-    const labels = weekly ? ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] : data.map(session => moment(session.timeStart).format('HH:mm'));
+    const labels = weekly ?
+        ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] :
+        data.map(session => moment(session.timeStart).tz("America/Los_Angeles").format('h A'));
 
     let duration;
 
     if (weekly) {
         let times = [0, 0, 0, 0, 0, 0, 0];
-
         data.map(session => {
-            let start = moment(session.timeStart);
-            let end = moment(session.timeEnd);
+            let start = moment(session.timeStart).tz("America/Los_Angeles");
+            let end = moment(session.timeEnd).tz("America/Los_Angeles");
             let dayOfTheWeek = start.format('d');
             let time = end.diff(start, 'hours');
             times[dayOfTheWeek] = times[dayOfTheWeek] + time;
         })
 
-
         duration = times;
     } else {
         duration = data.map(session => {
-            let start = moment(session.timeStart);
-            let end = moment(session.timeEnd);
+            let start = moment(session.timeStart).tz("America/Los_Angeles");
+            let end = moment(session.timeEnd).tz("America/Los_Angeles");
             return end.diff(start, 'hours', true)
         })
     }
@@ -64,7 +64,9 @@ const ActivityChart = ({ data, focus, weekly }) => {
         <ScrollView>
             <GraphContainer >
                 <GraphDate >
-                    {weekly ? `${focus.format('YYYY-MM-DD')} - ${focus.clone().add(6, 'd').format('YYYY-MM-DD')}` : focus.format('YYYY-MM-DD')}
+                    {weekly ?
+                        `${focus.format('YYYY-MM-DD')} - ${focus.clone().add(6, 'd').format('YYYY-MM-DD')}` :
+                        focus.format('YYYY-MM-DD')}
                 </GraphDate>
                 <BarChart
                     // style={graphStyle}

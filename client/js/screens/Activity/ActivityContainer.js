@@ -8,11 +8,11 @@ import {
 } from 'react-native';
 import moment from "moment";
 
+
 function ActivityContainer({ navigation }) {
     const [focusDay, setFocusDay] = useState(moment());
     const [focusWeek, setFocusWeek] = useState(moment().startOf('week'));
     const [showWeekly, setShowWeekly] = useState(false)
-
 
     return (
         <>
