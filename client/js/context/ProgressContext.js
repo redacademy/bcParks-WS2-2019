@@ -1,5 +1,5 @@
-import React, {createContext} from 'react';
+import {createContext} from 'react';
 
-const ProgressContext = createContext(75);
+const ProgressContext = createContext();
 
 export default ProgressContext;

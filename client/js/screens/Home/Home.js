@@ -3,21 +3,23 @@ import { View, Text, Button } from 'react-native';
 import ProgressCircle from 'react-native-progress-circle';
 import { Calendar } from 'react-native-calendars';
 import ProgressContext from '../../context/ProgressContext';
-import moment from 'moment';
+// import moment from 'moment';
+import moment from 'moment-timezone';
 
 const HomeScreen = ({ navigation, sessionData, goalData }) => {
     const { goals } = goalData;
     const { sessions } = sessionData;
-    const { sample } = useContext(ProgressContext);
-
-    const [goal, setGoal] = useState(3600000);
+    const { sample, setSample, update, getItem } = useContext(ProgressContext);
+    console.log('sample', sample)
+    console.log('sampelData', sample[0])
+    console.log('nav', navigation)
+    const [goal, setGoal] = useState(360000);
     // const [progress, setProgress] = useState(0)
-    const [arr, setArr] = useState([])
 
     console.log('goals', goals)
-    console.log(moment().format('YYYY-MM-DD'))
+    console.log('currentTime', moment.tz("2020-03-21 14:10", "America/Vancouver").format())
     console.log(sessions)
-    let changedTime = moment(sessions[27].timeStart).format('YYYY-MM-DD');
+    let changedTime = moment.tz(sessions[29].timeStart, "America/Vancouver").format();
     console.log('changedTime', changedTime)
 
     const group = (session, date) => {
@@ -54,17 +56,12 @@ const HomeScreen = ({ navigation, sessionData, goalData }) => {
             data,
             diff
         })
-        // console.log('groupedDate', groupedDate);
         // console.log('day of the week', moment(groupedDate).format('dddd'))
-        // console.log('data', grouped[groupedDate]);
-
-
-        // console.log('diff', diff)
     })
-    useEffect(() => {
-        setArr(newArr)
-    }, [sessions])
-    console.log('pushed arr', arr)
+    // useEffect(() => {
+    //     setArr(newArr)
+    // }, [sessions])
+    console.log('pushed arr', newArr)
 
     return (
         <View>
@@ -84,13 +81,14 @@ const HomeScreen = ({ navigation, sessionData, goalData }) => {
                         // console.log('mark', marking)
                         // console.log('grouped', grouped)
 
-                        const [progress, setProgress] = useState(0);
+                        const [progress, setProgress] = useState();
 
                         useEffect(() => {
 
                             for (let i = 0; i < newArr.length; i++) {
                                 if (newArr[i].groupedDate === date.dateString) {
                                     console.log('test', newArr[i])
+                                    // update(25)
                                     setProgress(newArr[i].diff)
                                     break;
                                 } else {
@@ -98,10 +96,10 @@ const HomeScreen = ({ navigation, sessionData, goalData }) => {
                                 }
                             }
                             
-                        }, [arr])
+                        }, [sample])
                             return (
                                 <ProgressCircle
-                                    percent={10}
+                                    percent={(progress/goal)*100}
                                     radius={15}
                                     borderWidth={3}
                                     color="green"
@@ -109,7 +107,8 @@ const HomeScreen = ({ navigation, sessionData, goalData }) => {
                                     bgColor="white"
                                 >
                                     <Text
-                                        onPress={() => { console.log('date', date.dateString) }}
+                                        onPress={() => { /* setProgress(arr[14].diff) */
+                                        console.log('prog', getItem())}}
                                     >
                                         {date.day}</Text>
                                 </ProgressCircle>
@@ -126,7 +125,7 @@ const HomeScreen = ({ navigation, sessionData, goalData }) => {
             </View> */}
             <Text>Home Screen</Text>
             <ProgressCircle
-                percent={30}
+                percent={sample[0]}
                 radius={50}
                 borderWidth={10}
                 color="green"
