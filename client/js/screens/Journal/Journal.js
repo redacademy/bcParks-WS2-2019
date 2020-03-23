@@ -45,6 +45,7 @@ const JournalScreen = ({ params, navigation }) => {
             let { mood, locations, journal } = session;
             console.log('start', timeStart);
 
+
             return {
                 duration,
                 mood,
@@ -61,6 +62,7 @@ const JournalScreen = ({ params, navigation }) => {
         listData.push(params.item)
     }
     let diff = (moment(listData.timeEnd)).diff((moment(listData.timeStart)));
+
     let duration = moment(diff).format('H [Hour] mm [Minutes]');
     console.log('listData', listData)
     return (
@@ -69,7 +71,7 @@ const JournalScreen = ({ params, navigation }) => {
                 <TouchableOpacity onPress={() => navigation.goBack('Activity')}>
                     <Icon3 name='chevron-left' size={30} color={theme.bodyTextColor} style={styles.backIcon} />
                 </TouchableOpacity>
-                <Day>{moment(params.item.timeStart).format('dddd')}</Day>
+                <Day>{moment.tz(params.item.timeStart, "America/Los_Angeles").format('dddd')}</Day>
             </HeaderCont>
             <HeadContainer
                 data={listData}

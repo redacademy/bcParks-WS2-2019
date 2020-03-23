@@ -15,15 +15,17 @@ import { GraphDate } from '../../screens/Activity/styles'
 const screenWidth = Dimensions.get("window").width;
 const chartConfig = {
     backgroundColor: "#ffffff",
-    backgroundGradientFrom: "#DA6645",
+    // backgroundGradientFrom: "#DA6645",
     backgroundGradientFromOpacity: 0,
-    backgroundGradientTo: "#DA6645",
+    // backgroundGradientTo: "#DA6645",
     backgroundGradientToOpacity: 0,
-    color: (opacity = 0) => `rgba( 218, 102, 69, ${opacity})`,
-    barPercentage: 0.7,
-    barRadius: 7,
+    color: () => `#DA6645`,
+    labelColor: (opacity = 0.6) => `rgba(65, 65, 63, ${opacity})`,
+    barPercentage: 0.5,
+    barRadius: 2,
     decimalPlaces: 1,
 };
+
 
 const ActivityChart = ({ data, focus, weekly }) => {
     const labels = weekly ?

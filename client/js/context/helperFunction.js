@@ -29,6 +29,6 @@ export default helper = (sessions) => {
         })
         // console.log('day of the week', moment(groupedDate).format('dddd'))
     })
-
+    console.log('arr', arr)
     return arr;
 }

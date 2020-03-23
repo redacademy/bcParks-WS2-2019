@@ -49,6 +49,7 @@ const ActivityList = ({ data, navigation, weekly }) => {
                 }
             }
         });
+
         console.log('grouped', groupedSessions)
         transformedData = groupedSessions.map(session => {
             let { locations, timeStartDisplay, totalMood, count, totalDuration, dayData } = session;
@@ -98,7 +99,6 @@ const ActivityList = ({ data, navigation, weekly }) => {
             <FlatListContainer
                 data={transformedData}
                 renderItem={({ item }) => {
-
                     return (
                         <ListContainer>
                             <Mood moodValue={item.mood} iconSize={50} />

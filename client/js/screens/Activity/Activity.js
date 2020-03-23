@@ -44,14 +44,10 @@ const SESSIONS_QUERY = gql`
 
 
 const ActivityScreen = ({ focus, setFocus, navigation, period, showWeekly, setShowWeekly }) => {
-    console.log('focus', focus.format())
-    // let newFocus = moment.tz(focus.format(), "America/Vancouver").format();
-    // console.log('newFocus', newFocus)
-    let start = focus.format('YYYY-MM-DD');
 
-    console.log('start', start)
+    // console.log('focus', focus.format())
+    let start = focus.format('YYYY-MM-DD');
     let end = focus.clone().add(period, 'd').format('YYYY-MM-DD');
-    console.log('end', end)
 
 
     const { loading, data, error, networkStatus } = useQuery(SESSIONS_QUERY);
@@ -62,6 +58,7 @@ const ActivityScreen = ({ focus, setFocus, navigation, period, showWeekly, setSh
     if (data) {
         let arr = helper(data.sessions)
         let newArr = []
+
         if(!showWeekly){
             console.log('arr', arr)
             for (let i = 0; i < arr.length; i++) {
@@ -82,11 +79,13 @@ const ActivityScreen = ({ focus, setFocus, navigation, period, showWeekly, setSh
                 } else {
                     console.log(false)
                 }
+
             }
             console.log('newArr', newArr)
             console.log('milsec', +focus.clone())
             console.log('todaymil', +moment(arr[15].groupedDate))
         }
+
     return (
         <View>
             <HeaderCont>
@@ -127,17 +126,18 @@ const ActivityScreen = ({ focus, setFocus, navigation, period, showWeekly, setSh
             {(!data.sessions || data.sessions.length === 0) && <GraphDate >
                 No data for this day
             </GraphDate>}
-            {(data.sessions.length > 0) &&
-                <>
-                    <ActivityChart data={newArr} focus={focus} weekly={showWeekly} />
-                    <ActivityDisplay data={newArr} />
-                    <ActivityList data={newArr} navigation={navigation} weekly={showWeekly} />
-                </>
-            }
+                {(data.sessions.length > 0) &&
+                    <>
+                        <ActivityChart data={newArr} focus={focus} weekly={showWeekly} />
+                        <ActivityDisplay data={newArr} />
+                        <ActivityList data={newArr} navigation={navigation} weekly={showWeekly} />
+                    </>
+                }
 
 
-        </View>
-    )}
+            </View>
+        )
+    }
 };
 
 export default ActivityScreen;

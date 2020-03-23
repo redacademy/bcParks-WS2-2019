@@ -11,10 +11,11 @@ export const PeriodButtons = styled.TouchableOpacity`
     width: 152px;
     height: 32px;
     border-radius: 16px;
-    background-color: #66b17e; 
+    background-color:  #fff;
+    border: 1px solid #66b17e;
 `
 export const PeriodText = styled.Text`
-    color: #fff;
+    color: #66b17e;
     text-align: center;
     font-family: ${theme.bodyFont};
     font-size: ${theme.bodyFontSize};
