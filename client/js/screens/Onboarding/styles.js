@@ -22,6 +22,10 @@ export const BtnText = styled.Text`
     text-transform: capitalize;
     margin: 60px 20px 60px;
 `
+export const BottomCont = styled.View`
+    margin: 40px auto;
+`
+
 export const styles = StyleSheet.create({
     image: {
         marginHorizontal: 45,
