@@ -6,6 +6,7 @@ import { Background, Flex, BtnText, styles } from './styles';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import OnboardingTime from '../../assets/images/OnboardingTime';
+import DotNav from '../../components/DotNav/DotNav';
 
 const OnTime = ({ navigation }) => {
     return (
@@ -22,6 +23,7 @@ const OnTime = ({ navigation }) => {
                 <TouchableOpacity onPress={() => navigation.navigate('Tabs')}>
                     <BtnText isSkip>skip</BtnText>
                 </TouchableOpacity>
+                <DotNav activeIndex={1} />
                 <TouchableOpacity onPress={() => navigation.push('OnActivity')}>
                     <BtnText>next</BtnText>
                 </TouchableOpacity>
