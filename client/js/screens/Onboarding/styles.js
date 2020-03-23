@@ -17,12 +17,6 @@ export const LandingFlex = styled.View`
     justify-content: flex-end;
     align-items: center;
 `
-export const GoalFlex = styled.View`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-`
 export const StartBtnCont = styled.View`
     margin: 5px 80px 100px;
 `
@@ -56,12 +50,11 @@ export const styles = StyleSheet.create({
         marginRight: 40,
         marginVertical: 40
     },
-    longTxtBackIcon: {
-        marginLeft: 10,
-        marginRight: 15,
+    backIconLongTxt: {
+        marginHorizontal: 10,
         marginVertical: 40
     },
-    shortTxtBackIcon: {
+    backIconShortTxt: {
         marginLeft: 10,
         marginRight: 50,
         marginVertical: 40

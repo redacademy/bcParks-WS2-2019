@@ -3,18 +3,17 @@ import { withNavigation } from "react-navigation";
 import { TouchableOpacity } from 'react-native';
 import { theme, HeaderCont, Heading, SubHeading } from '../../globalStyles';
 import { Flex, BtnText, styles } from './styles';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import OnboardingTime from '../../assets/images/OnboardingTime';
 import DotNav from '../../components/DotNav/DotNav';
-import LinearGradient from 'react-native-linear-gradient';
 
 const OnTime = ({ navigation }) => {
     return (
         <LinearGradient colors={['#FFFFFF', '#8CBE82']}>
             <HeaderCont>
                 <TouchableOpacity onPress={() => navigation.goBack('OnLocation')}>
-                    <FontAwesomeIcon icon={faChevronLeft} color={theme.primaryColor} size={30} style={styles.longTxtBackIcon} />
+                    <Icon name='chevron-left' size={30} color={theme.bodyTextColor} style={styles.backIconLongTxt} />
                 </TouchableOpacity>
                 <Heading>Track your green time</Heading>
             </HeaderCont>

@@ -3,8 +3,8 @@ import { withNavigation } from "react-navigation";
 import { TouchableOpacity } from 'react-native';
 import { NoFlexHeaderCont, Heading, SubHeading } from '../../globalStyles';
 import { LandingFlex, BtnText, styles } from './styles';
-import OnboardingLanding from '../../assets/images/OnboardingLanding';
 import LinearGradient from 'react-native-linear-gradient';
+import OnboardingLanding from '../../assets/images/OnboardingLanding';
 
 const OnLanding = ({ navigation }) => {
     return (
