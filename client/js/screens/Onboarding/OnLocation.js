@@ -23,7 +23,7 @@ const OnLocation = ({ navigation }) => {
                 <TouchableOpacity onPress={() => navigation.navigate('Tabs')}>
                     <BtnText isSkip>skip</BtnText>
                 </TouchableOpacity>
-                <DotNav />
+                <DotNav activeIndex={0} />
                 <TouchableOpacity onPress={() => navigation.push('OnTime')}>
                     <BtnText>next</BtnText>
                 </TouchableOpacity>

@@ -18,16 +18,36 @@ export const Dot = styled.Text`
     margin: 0 3px;
 `
 
-const DotNav = () => {
-    return (
-        <DotsCont>
-            <Dot isActive></Dot>
-            <Dot></Dot>
-            <Dot></Dot>
-            <Dot></Dot>
-            <Dot></Dot>
-        </DotsCont>
-    )
+const DotNav = ({ activeIndex }) => {
+
+    if (activeIndex === 0) {
+        return (
+            <DotsCont>
+                <Dot isActive />
+                <Dot />
+                <Dot />
+                <Dot />
+            </DotsCont>
+        )
+    } else if (activeIndex === 1) {
+        return (
+            <DotsCont>
+                <Dot />
+                <Dot isActive />
+                <Dot />
+                <Dot />
+            </DotsCont>
+        )
+    } else if (activeIndex === 2) {
+        return (
+            <DotsCont>
+                <Dot />
+                <Dot />
+                <Dot isActive />
+                <Dot />
+            </DotsCont>
+        )
+    }
 };
 
 export default DotNav;
