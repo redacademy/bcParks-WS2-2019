@@ -45,9 +45,10 @@ const ActivityList = ({ data, navigation, weekly }) => {
                 }
             }
         });
+        console.log('groupedSession', groupedSessions)
 
         transformedData = groupedSessions.map(session => {
-            let { locations, timeDisplay, totalMood, count, totalDuration } = session;
+            let { locations, timeDisplay, totalMood, count, totalDuration, journal } = session;
             let hours = Math.floor(totalDuration / 60);
             let min = totalDuration % 60;
             let duration = `${hours ? hours + 'h ' : ''}${min}min`;
@@ -56,9 +57,10 @@ const ActivityList = ({ data, navigation, weekly }) => {
                 duration,
                 mood: totalMood / count,
                 locations,
-                timeDisplay
+                timeDisplay,
+                journal
             }
-        }).filter(item => item);
+        }).filter(i => i);
 
     } else {
         console.log('listData', data)
@@ -87,7 +89,6 @@ const ActivityList = ({ data, navigation, weekly }) => {
             <FlatListContainer
                 data={transformedData}
                 renderItem={({ item }) => {
-
                     return (
                         <ListContainer>
                             <Mood moodValue={item.mood} iconSize={50} />

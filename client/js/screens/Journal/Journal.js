@@ -29,7 +29,7 @@ import { theme, HeaderCont, styles } from '../../globalStyles';
 
 const JournalScreen = ({ params, navigation }) => {
 
-    let diff = (moment(params.item.timeEnd)).diff((moment(params.item.timeStart)));
+    let diff = (moment.tz(params.item.timeEnd, "America/Los_Angeles")).diff((moment.tz(params.item.timeStart, "America/Los_Angeles")));
     let duration = moment(diff).format('H [Hour] mm [Minutes]');
     return (
         <View>
@@ -37,7 +37,7 @@ const JournalScreen = ({ params, navigation }) => {
                 <TouchableOpacity onPress={() => navigation.goBack('Activity')}>
                     <Icon3 name='chevron-left' size={30} color={theme.bodyTextColor} style={styles.backIcon} />
                 </TouchableOpacity>
-                <Day>{moment(params.item.timeStart).format('dddd')}</Day>
+                <Day>{moment.tz(params.item.timeStart, "America/Los_Angeles").format('dddd')}</Day>
             </HeaderCont>
             <HeadContainer >
 
