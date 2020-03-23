@@ -45,6 +45,7 @@ const JournalScreen = ({ params, navigation }) => {
             let { mood, locations, journal } = session;
             console.log('start', timeStart);
 
+
             return {
                 duration,
                 mood,
@@ -61,6 +62,7 @@ const JournalScreen = ({ params, navigation }) => {
         listData.push(params.item)
     }
     let diff = (moment(listData.timeEnd)).diff((moment(listData.timeStart)));
+
     let duration = moment(diff).format('H [Hour] mm [Minutes]');
     console.log('listData', listData)
     return (
