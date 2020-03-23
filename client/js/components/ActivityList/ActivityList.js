@@ -35,7 +35,7 @@ const ActivityList = ({ data, navigation, weekly }) => {
                 groupedSessions[dayOfTheWeekIndex].totalMood += mood;
                 groupedSessions[dayOfTheWeekIndex].totalDuration += duration;
                 groupedSessions[dayOfTheWeekIndex].count += 1;
-                // groupedSessions[dayOfTheWeekIndex].locations.push(...locations);
+                groupedSessions[dayOfTheWeekIndex].locations.push(...locations);
             } else {
                 groupedSessions[dayOfTheWeekIndex] = {
                     timeDisplay,

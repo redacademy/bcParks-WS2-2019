@@ -45,12 +45,8 @@ const HomeScreen = ({ navigation, sessionData, goalData }) => {
     })
 
     return (
-        <View>
-            <View style={{ backgroundColor: 'white' }}>
-                <Button
-                    title="Edit goals"
-                    onPress={() => navigation.push('Goal')}
-                />
+        <View>     
+            <View style={{backgroundColor: "white"}}>
                 <Calendar
                     current={new Date()}
                     minDate={'2020-03-15'}
@@ -94,14 +90,13 @@ const HomeScreen = ({ navigation, sessionData, goalData }) => {
                         
                     }}
                     monthFormat={'MMMM dd, yyyy'}
-                // style={{marginTop: 30}}
+                style={{marginTop: 50}}
                 />
             </View>
-
             {/* <View style={{ backgroundColor: 'white' }}>
                 <Button title="expand" />
             </View> */}
-            <Text>Home Screen</Text>
+            <Text>Daily Progress</Text>
             <ProgressCircle
                 percent={today/goal*100}
                 radius={50}
@@ -112,11 +107,13 @@ const HomeScreen = ({ navigation, sessionData, goalData }) => {
             >
                 <Text>{/* {progress.duration + 'hours'} */}2hours</Text>
             </ProgressCircle>
-
+            <Button
+                    title="Edit goals"
+                    onPress={() => navigation.push('Goal')}
+            />   
             <Button
                 title="Go to Activity"
                 onPress={() => navigation.navigate('Activity')}
-
             />
             <Button
                 title="Go to Onboarding"

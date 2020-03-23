@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { withNavigation } from 'react-navigation';
 import Goal from "./Goal"
 
