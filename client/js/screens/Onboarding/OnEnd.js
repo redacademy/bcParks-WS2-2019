@@ -18,7 +18,7 @@ const OnEnd = ({ navigation }) => {
                 <TouchableOpacity onPress={() => navigation.navigate('Tabs')}>
                     <PrimaryBtn>start</PrimaryBtn>
                 </TouchableOpacity>
-                <DotNav />
+                <DotNav activeIndex={4} />
             </StartBtnCont>
         </Background>
     )

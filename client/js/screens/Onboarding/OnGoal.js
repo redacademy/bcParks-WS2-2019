@@ -23,7 +23,7 @@ const OnGoal = ({ navigation }) => {
                 <TouchableOpacity onPress={() => navigation.navigate('Tabs')}>
                     <BtnText isSkip>skip</BtnText>
                 </TouchableOpacity>
-                <DotNav />
+                <DotNav activeIndex={3} />
                 <TouchableOpacity onPress={() => navigation.push('OnEnd')}>
                     <BtnText>next</BtnText>
                 </TouchableOpacity>
