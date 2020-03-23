@@ -63,7 +63,7 @@ const ActivityList = ({ data, navigation, weekly }) => {
                 timeStartDisplay,
                 dayData
             }
-        })/* .filter(item => item) */;
+        }).filter(item => item);
         
     } else {
         transformedData = data.map(session => {
