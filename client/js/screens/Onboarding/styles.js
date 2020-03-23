@@ -11,8 +11,20 @@ export const Flex = styled.View`
     justify-content: space-between;
     align-items: center;
 `
+export const LandingFlex = styled.View`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+`
+export const GoalFlex = styled.View`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+`
 export const StartBtnCont = styled.View`
-    margin: 40px auto 100px;
+    margin: 5px 80px 100px;
 `
 export const BtnText = styled.Text`
     font-family: ${theme.bodyFont};
@@ -20,7 +32,7 @@ export const BtnText = styled.Text`
     font-weight: ${props => props.isSkip ? 300 : 600};
     color: ${theme.bodyTextColor};
     text-transform: capitalize;
-    margin: 60px 20px 60px;
+    margin: 80px 30px;
 `
 export const BottomCont = styled.View`
     margin: 40px auto;
@@ -29,11 +41,15 @@ export const BottomCont = styled.View`
 export const styles = StyleSheet.create({
     image: {
         marginHorizontal: 45,
-        marginVertical: 100
+        marginVertical: 115
     },
-    imageActivity: {
+    imageLanding: {
         marginHorizontal: 45,
-        marginVertical: 120
+        marginVertical: 90
+    },
+    imageTime: {
+        marginHorizontal: 45,
+        marginVertical: 105
     },
     backIcon: {
         marginLeft: 10,

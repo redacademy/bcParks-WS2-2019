@@ -2,13 +2,14 @@ import React from 'react';
 import { withNavigation } from "react-navigation";
 import { TouchableOpacity } from 'react-native';
 import { NoFlexHeaderCont, Heading, SubHeading, PrimaryBtn } from '../../globalStyles';
-import { Background, StartBtnCont, BottomCont, styles } from './styles';
+import { StartBtnCont, BottomCont, styles } from './styles';
 import OnboardingEnd from '../../assets/images/OnboardingEnd';
 import DotNav from '../../components/DotNav/DotNav';
+import LinearGradient from 'react-native-linear-gradient';
 
 const OnEnd = ({ navigation }) => {
     return (
-        <Background>
+        <LinearGradient colors={['#FFFFFF', '#8CBE82']}>
             <NoFlexHeaderCont>
                 <Heading>Let's get started!</Heading>
             </NoFlexHeaderCont>
@@ -22,7 +23,7 @@ const OnEnd = ({ navigation }) => {
                     <DotNav activeIndex={4} />
                 </BottomCont>
             </StartBtnCont>
-        </Background>
+        </LinearGradient>
     )
 }
 
