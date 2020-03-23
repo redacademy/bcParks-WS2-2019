@@ -56,63 +56,75 @@ const ActivityScreen = ({ focus, setFocus, navigation, period, showWeekly, setSh
     if (loading) return <Text>Loading!</Text>;
     if (error) return <Text>Error!</Text>;
     if (data) {
-        let arr = []
-        arr = helper(data.sessions)
+        let arr = helper(data.sessions)
         let newArr = []
 
-        for (let i = 0; i < arr.length; i++) {
-            if (arr[i].groupedDate === focus.format("YYYY-MM-DD")) {
-                newArr = arr[i].data;
-                break;
-            } else {
-                console.log(false)
+        if(!showWeekly){
+            console.log('arr', arr)
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].groupedDate === focus.clone().format("YYYY-MM-DD")) {
+                    newArr = arr[i].data;
+                    break;
+                } else {
+                    console.log(false)
+                }
             }
+            console.log('newArr', newArr)
+        } else {
+            for (let i = 0; i < arr.length; i++) {
+                if (+moment(arr[i].groupedDate) >= +focus.clone() && +moment(arr[i].groupedDate) < +moment(focus.clone().add(period, 'd'))) {
+                    for (let j = 0; j < arr[i].data.length; j++){
+                        newArr.push(arr[i].data[j])
+                    }
+                } else {
+                    console.log(false)
+                }
+
+            }
+            console.log('newArr', newArr)
+            console.log('milsec', +focus.clone())
+            console.log('todaymil', +moment(arr[15].groupedDate))
         }
 
+    return (
+        <View>
+            <HeaderCont>
+                <TouchableOpacity onPress={() => navigation.goBack('Home')}>
+                    <Icon name='chevron-left' size={30} color={theme.bodyTextColor} style={styles.backIcon} />
+                </TouchableOpacity>
+                <Heading>Activity</Heading>
+            </HeaderCont>
+            <ButtonsContainer>
 
-        console.log('newarr', newArr)
-        return (
-            <View>
-                <HeaderCont>
-                    <TouchableOpacity onPress={() => navigation.goBack('Home')}>
-                        <Icon name='chevron-left' size={30} color={theme.bodyTextColor} style={styles.backIcon} />
-                    </TouchableOpacity>
-                    <Heading>Activity</Heading>
-                </HeaderCont>
-                <ButtonsContainer>
+                <PeriodButtons onPress={() => {
+                    setShowWeekly(false)
 
-                    <PeriodButtons
-                        onPress={() => {
-                            setShowWeekly(false);
+                }}>
+                    <PeriodText>Daily</PeriodText>
+                </PeriodButtons>
 
-                        }}>
-                        <PeriodText>Daily</PeriodText>
-                    </PeriodButtons>
-
-                    <PeriodButtons
-                        onPress={() => {
-                            setShowWeekly(true);
-
-                        }}>
-                        <PeriodText>Weekly</PeriodText>
-                    </PeriodButtons>
-                </ButtonsContainer>
-                <ArrowsContainer>
-                    <TouchableOpacity onPress={() => {
-                        setFocus(focus.clone().subtract(period, 'd'))
-                    }}
-                    >
-                        <ArrowText>&lt;</ArrowText>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {
-                        setFocus(focus.clone().add(period, 'd'))
-                    }}
-                    >
-                        <ArrowText>&gt;</ArrowText>
-                    </TouchableOpacity>
-                </ArrowsContainer>
-                {(!data.sessions || data.sessions.length === 0) && <GraphDate >
-                    No data for this day
+                <PeriodButtons onPress={() => {
+                    setShowWeekly(true)
+                }}>
+                    <PeriodText>Weekly</PeriodText>
+                </PeriodButtons>
+            </ButtonsContainer>
+            <ArrowsContainer>
+                <TouchableOpacity onPress={() => {
+                    setFocus(focus.clone().subtract(period, 'd'))
+                }}
+                >
+                    <ArrowText>&lt;</ArrowText>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => {
+                    setFocus(focus.clone().add(period, 'd'))
+                }}
+                >
+                    <ArrowText>&gt;</ArrowText>
+                </TouchableOpacity>
+            </ArrowsContainer>
+            {(!data.sessions || data.sessions.length === 0) && <GraphDate >
+                No data for this day
             </GraphDate>}
                 {(data.sessions.length > 0) &&
                     <>

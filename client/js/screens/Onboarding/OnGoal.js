@@ -6,8 +6,10 @@ import { Background, Flex, BtnText, styles } from './styles';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import Goal from '../Goal/Goal';
+import DotNav from '../../components/DotNav/DotNav';
 
-const OnGoal = ({ navigation }) => {
+const OnGoal = ({ navigation, route }) => {
+    const params = route.params
     return (
         <Background>
             <HeaderCont>
@@ -17,15 +19,16 @@ const OnGoal = ({ navigation }) => {
                 <Heading>Let's set a goal</Heading>
             </HeaderCont>
             <SubHeading>2 hours in nature each week, and at least 20mins each time is recommended. Of course, more the better! </SubHeading>
-            <Goal />
-            <Flex>
+            <Goal navigation={navigation} page={params.page}/>
+{/*             <Flex>
                 <TouchableOpacity onPress={() => navigation.navigate('Tabs')}>
                     <BtnText isSkip>skip</BtnText>
                 </TouchableOpacity>
+                <DotNav activeIndex={3} />
                 <TouchableOpacity onPress={() => navigation.push('OnEnd')}>
                     <BtnText>next</BtnText>
                 </TouchableOpacity>
-            </Flex>
+            </Flex> */}
         </Background>
     )
 }

@@ -21,11 +21,13 @@ import Icon3 from 'react-native-vector-icons/SimpleLineIcons';
 
 const ActivityList = ({ data, navigation, weekly }) => {
     let transformedData;
+    console.log('listData', data)
     if (weekly) {
         let groupedSessions = [];
         data.map(session => {
+            console.log('weeklySession', session)
             const start = moment.tz(session.timeStart, "America/Los_Angeles");
-            let timeDisplay = start.format('dddd');
+            let timeStartDisplay = start.format('dddd');
             let dayOfTheWeekIndex = start.format('d');
             let duration = moment.tz(session.timeEnd, "America/Los_Angeles").diff(start, 'minutes');
 
@@ -35,20 +37,22 @@ const ActivityList = ({ data, navigation, weekly }) => {
                 groupedSessions[dayOfTheWeekIndex].totalDuration += duration;
                 groupedSessions[dayOfTheWeekIndex].count += 1;
                 groupedSessions[dayOfTheWeekIndex].locations.push(...locations);
+                groupedSessions[dayOfTheWeekIndex].dayData.push(session);
             } else {
                 groupedSessions[dayOfTheWeekIndex] = {
-                    timeDisplay,
+                    timeStartDisplay,
                     totalMood: mood,
                     locations,
                     totalDuration: duration,
-                    count: 1
+                    count: 1,
+                    dayData: [session]
                 }
             }
         });
-        console.log('groupedSession', groupedSessions)
 
+        console.log('grouped', groupedSessions)
         transformedData = groupedSessions.map(session => {
-            let { locations, timeDisplay, totalMood, count, totalDuration, journal } = session;
+            let { locations, timeStartDisplay, totalMood, count, totalDuration, dayData } = session;
             let hours = Math.floor(totalDuration / 60);
             let min = totalDuration % 60;
             let duration = `${hours ? hours + 'h ' : ''}${min}min`;
@@ -57,29 +61,35 @@ const ActivityList = ({ data, navigation, weekly }) => {
                 duration,
                 mood: totalMood / count,
                 locations,
-                timeDisplay,
-                journal
+                timeStartDisplay,
+                dayData
             }
-        }).filter(i => i);
-
+        }).filter(item => item);
+        
     } else {
-        console.log('listData', data)
         transformedData = data.map(session => {
             const start = moment.tz(session.timeStart, "America/Los_Angeles");
-            const timeDisplay = start.format('HH:mm a');
+            const timeStart = start.format();
+            const timeStartDisplay = start.format('HH:mm a');
+            const end = moment.tz(session.timeEnd, "America/Vancouver");
+            const timeEnd = end.format();
+            const timeEndDisplay = end.format('HH:mm a');
             let diff = moment.tz(session.timeEnd, "America/Los_Angeles").diff(start, 'minutes');
             let hours = Math.floor(diff / 60);
             let min = diff % 60;
             let duration = `${hours ? hours + 'h ' : ''}${min}min`;
             let { mood, locations, journal } = session;
-            console.log('start', start);
+            console.log('start', timeStart);
 
             return {
                 duration,
                 mood,
                 locations,
-                timeDisplay,
-                journal
+                timeStart,
+                timeEnd,
+                journal,
+                timeStartDisplay,
+                timeEndDisplay
             }
         });
     }
@@ -95,7 +105,7 @@ const ActivityList = ({ data, navigation, weekly }) => {
                             <ActivityDetails>
                                 <DetailRow>
                                     <Icon name='access-time' size={22} color='#66b17e'></Icon>
-                                    <ListItem> {item.timeDisplay} </ListItem>
+                                    <ListItem> {item.timeStartDisplay} </ListItem>
                                 </DetailRow>
                                 <DetailRow>
                                     <Icon2 name='leaf' size={22} color='#66b17e'></Icon2>
@@ -108,7 +118,7 @@ const ActivityList = ({ data, navigation, weekly }) => {
                             </ActivityDetails>
                             {/* {!weekly && */}
                             <NotebookIcon>
-                                <TouchableOpacity onPress={() => navigation.navigate('Journal', { item })}>
+                                <TouchableOpacity onPress={() => navigation.navigate('Journal', { item, weekly })}>
                                     <Icon3 name='notebook' size={18} color='#878787'></Icon3>
                                 </TouchableOpacity>
                             </NotebookIcon>
@@ -117,7 +127,7 @@ const ActivityList = ({ data, navigation, weekly }) => {
                         </ListContainer>
                     )
                 }}
-                keyExtractor={item => item.timeDisplay}
+                keyExtractor={item => item.timeStartDisplay}
             >
             </FlatListContainer>
 

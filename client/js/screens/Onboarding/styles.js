@@ -9,6 +9,7 @@ export const Flex = styled.View`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 `
 export const StartBtnCont = styled.View`
     margin: 40px auto 100px;
@@ -21,6 +22,10 @@ export const BtnText = styled.Text`
     text-transform: capitalize;
     margin: 60px 20px 60px;
 `
+export const BottomCont = styled.View`
+    margin: 40px auto;
+`
+
 export const styles = StyleSheet.create({
     image: {
         marginHorizontal: 45,

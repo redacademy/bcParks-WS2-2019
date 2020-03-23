@@ -13,6 +13,8 @@ import MoodSelectScreen from '../screens/MoodSelect';
 import TextInputScreen from '../screens/TextInput';
 import GoalScreen from '../screens/Goal';
 import JournalScreen from '../screens/Journal';
+import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import {
   OnLanding,
   OnLocation,
@@ -27,6 +29,7 @@ import {
   ForgotPwContainer,
 } from '../screens/User';
 import MapContext from '../context/MapContext';
+import {theme} from '../globalStyles'
 
 const OnboardingStack = createStackNavigator();
 const OnboardingStackScreen = () => {
@@ -98,6 +101,16 @@ const ActivityStackScreen = () => {
   );
 };
 
+const SettingsStack = createStackNavigator();
+
+const SettingsStackScreen = () => {
+  return(
+    <SettingsStack.Navigator headerMode="none">
+      <SettingsStack.Screen name="Settings" component={GoalScreen} />
+    </SettingsStack.Navigator>
+  )
+}
+
 const Tab = createBottomTabNavigator();
 
 const NavTabs = () => {
@@ -117,6 +130,8 @@ const NavTabs = () => {
             return <Timer />;
           } else if (name === 'Activity') {
             return <Activity />;
+          } else if (name === 'Settings') {
+            return <Icon2 name='settings' size={35} color={theme.primaryColor} />
           }
         },
       })}
@@ -148,6 +163,11 @@ const NavTabs = () => {
         name="Activity"
         component={ActivityStackScreen}
         options={{title: 'Activity', tabBarVisible: false}}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={SettingsStackScreen}
+        options={{title: 'Settings', tabBarVisible: false}}
       />
     </Tab.Navigator>
   );
