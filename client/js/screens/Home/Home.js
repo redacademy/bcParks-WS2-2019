@@ -49,8 +49,7 @@ const HomeScreen = ({ navigation, sessionData, goalData }) => {
             <View style={{backgroundColor: "white"}}>
                 <Calendar
                     current={new Date()}
-                    minDate={'2020-03-15'}
-                    maxDate={'2020-03-21'}
+
                     hideExtraDays={true}
                     dayComponent={({ date, state, marking}) => {
                         // console.log('date', date)
@@ -58,18 +57,21 @@ const HomeScreen = ({ navigation, sessionData, goalData }) => {
                         // console.log('mark', marking)
                         // console.log('grouped', grouped)
                         
-                        const [progress, setProgress] = useState();
+                        // const [progress, setProgress] = useState();
+                        let progress = 0;
 
-                        useEffect(() => {
+                        // useEffect(() => {
 
                             for (let i = 0; i < sample.length; i++) {
                                 if (sample[i].groupedDate === date.dateString) {
-                                    setProgress(sample[i].diff)
+                                    progress = sample[i].diff
                                     break;
+                                } else {
+                                    progress = 0
                                 }
                             }
                             
-                        }, [])
+                        // }, [])
                             return (
                                 <ProgressCircle
                                     percent={(progress/goal)*100}
