@@ -2,12 +2,11 @@ import styled from 'styled-components';
 import { theme } from '../../globalStyles';
 import { StyleSheet } from 'react-native';
 
-export const HeadContainer = styled.View`
+export const HeadContainer = styled.FlatList`
     height: 100%;
     background-color: #8cbe82;
-    
-
 `
+
 export const Day = styled.Text`
     margin-top: 40px;
     text-align: center;
