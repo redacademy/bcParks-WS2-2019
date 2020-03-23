@@ -1,23 +1,31 @@
-import React from 'react';
-import {Text, Modal, StyleSheet} from 'react-native';
+import React, {useEffect} from 'react';
+import {Text, Modal, StyleSheet, TouchableOpacity, View} from 'react-native';
+import GetImages from '../utils/GetImages';
+import Brief from '../Brief';
+import {PrimaryBtn} from '../../../../globalStyles';
 
-const Details = ({modalVisible}) => {
+const Details = ({modalVisible, setModalVisible, detail}) => {
   return (
-    <Modal
-      style={styles.container}
-      animationType="fade"
-      transparent={false}
-      visible={modalVisible}>
-      <Text>Details</Text>
+    <Modal animationType="slide" transparent={false} visible={modalVisible}>
+      <View style={styles.header}></View>
+      <TouchableOpacity onPress={() => setModalVisible(false)}>
+        <Text>close</Text>
+      </TouchableOpacity>
+      <View style={styles.image}>
+        <GetImages reference={detail.photo_reference} />
+      </View>
+      <Brief detail={detail} />
+      <PrimaryBtn>Google Maps</PrimaryBtn>
     </Modal>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  header: {
+    height: 44,
+  },
+  image: {
+    height: 307,
   },
 });
 

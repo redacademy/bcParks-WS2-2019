@@ -24,7 +24,7 @@ const OnActivity = ({ navigation }) => {
                     <BtnText isSkip>skip</BtnText>
                 </TouchableOpacity>
                 <DotNav activeIndex={2} />
-                <TouchableOpacity onPress={() => navigation.push('OnGoal')}>
+                <TouchableOpacity onPress={() => navigation.push('OnGoal'), {page: "onBoarding"}}>
                     <BtnText>next</BtnText>
                 </TouchableOpacity>
             </Flex>

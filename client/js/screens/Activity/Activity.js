@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     ScrollView,
     View,
@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import moment from "moment";
+import moment from "moment-timezone";
 import ActivityChart from '../../components/ActivityChart/ActivityChart';
 import ActivityList from '../../components/ActivityList/ActivityList';
 import ActivityDisplay from '../../components/ActivityDisplay/ActivityDisplay';
@@ -24,12 +24,11 @@ import {
 } from './styles'
 import { theme, HeaderCont, Heading, styles } from '../../globalStyles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
+import helper from '../../context/helperFunction';
 
 const SESSIONS_QUERY = gql`
-  query Sessions($where: SessionWhereInput){
-    sessions(where: $where) {
-        id
+  query Sessions{
+    sessions{
         timeStart
         timeEnd
         locations {
@@ -44,27 +43,50 @@ const SESSIONS_QUERY = gql`
 `
 
 
-const ActivityScreen = ({ focusDay, setFocusDay, period, setPeriod, navigation }) => {
+const ActivityScreen = ({ focus, setFocus, navigation, period, showWeekly, setShowWeekly }) => {
+    console.log('focus', focus.format())
+    // let newFocus = moment.tz(focus.format(), "America/Vancouver").format();
+    // console.log('newFocus', newFocus)
+    let start = focus.format('YYYY-MM-DD');
 
-    let start = focusDay.format('YYYY-MM-DD');
-    let end = focusDay.clone().add(1, 'd').format('YYYY-MM-DD');
+    console.log('start', start)
+    let end = focus.clone().add(period, 'd').format('YYYY-MM-DD');
+    console.log('end', end)
 
-    // let startWeek = period.format('YYYY-MM-DD');
-    // let endWeek = period.clone().add(7, 'd').format('YYYY-MM-DD');
 
-    const { loading, data, error, networkStatus } = useQuery(SESSIONS_QUERY, {
-        variables: {
-            where: {
-                timeStart_gt: start, timeEnd_lt: end,
-                // timeStart_gt: startWeek, timeEnd_lt: endWeek
-            }
-        }
-    });
+    const { loading, data, error, networkStatus } = useQuery(SESSIONS_QUERY);
 
     if (networkStatus === 4) return <Text>Refetching!</Text>
     if (loading) return <Text>Loading!</Text>;
     if (error) return <Text>Error!</Text>;
-
+    if (data) {
+        let arr = helper(data.sessions)
+        let newArr = []
+        if(!showWeekly){
+            console.log('arr', arr)
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].groupedDate === focus.clone().format("YYYY-MM-DD")) {
+                    newArr = arr[i].data;
+                    break;
+                } else {
+                    console.log(false)
+                }
+            }
+            console.log('newArr', newArr)
+        } else {
+            for (let i = 0; i < arr.length; i++) {
+                if (+moment(arr[i].groupedDate) >= +focus.clone() && +moment(arr[i].groupedDate) < +moment(focus.clone().add(period, 'd'))) {
+                    for (let j = 0; j < arr[i].data.length; j++){
+                        newArr.push(arr[i].data[j])
+                    }
+                } else {
+                    console.log(false)
+                }
+            }
+            console.log('newArr', newArr)
+            console.log('milsec', +focus.clone())
+            console.log('todaymil', +moment(arr[15].groupedDate))
+        }
     return (
         <View>
             <HeaderCont>
@@ -76,26 +98,27 @@ const ActivityScreen = ({ focusDay, setFocusDay, period, setPeriod, navigation }
             <ButtonsContainer>
 
                 <PeriodButtons onPress={() => {
+                    setShowWeekly(false)
 
                 }}>
                     <PeriodText>Daily</PeriodText>
                 </PeriodButtons>
 
                 <PeriodButtons onPress={() => {
-
+                    setShowWeekly(true)
                 }}>
                     <PeriodText>Weekly</PeriodText>
                 </PeriodButtons>
             </ButtonsContainer>
             <ArrowsContainer>
                 <TouchableOpacity onPress={() => {
-                    setFocusDay(focusDay.clone().subtract(1, 'd'))
+                    setFocus(focus.clone().subtract(period, 'd'))
                 }}
                 >
                     <ArrowText>&lt;</ArrowText>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => {
-                    setFocusDay(focusDay.clone().add(1, 'd'))
+                    setFocus(focus.clone().add(period, 'd'))
                 }}
                 >
                     <ArrowText>&gt;</ArrowText>
@@ -106,16 +129,15 @@ const ActivityScreen = ({ focusDay, setFocusDay, period, setPeriod, navigation }
             </GraphDate>}
             {(data.sessions.length > 0) &&
                 <>
-                    <ActivityChart data={data.sessions} />
-                    <ActivityDisplay data={data.sessions} />
-                    <ActivityList data={data.sessions} navigation={navigation} />
-                    {/* <Mood data={data.sessions} /> */}
+                    <ActivityChart data={newArr} focus={focus} weekly={showWeekly} />
+                    <ActivityDisplay data={newArr} />
+                    <ActivityList data={newArr} navigation={navigation} weekly={showWeekly} />
                 </>
             }
 
 
         </View>
-    );
+    )}
 };
 
 export default ActivityScreen;

@@ -5,33 +5,41 @@ import {
     Text
 } from 'react-native';
 // import styles from './styles';
-import moment from "moment";
+// import moment from "moment";
+import moment from "moment-timezone";
+
 import {
     DisplayContainer,
     SubDisplayContainer,
-    styles,
     DisplayTitle,
     DisplayContent,
     DisplayRow,
     MoodDisplayContainer
 } from './styles';
-import MoodFace from '../../assets/images/MoodVeryHappy';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Mood from '../Mood/Mood';
-
-
 
 const ActivityDisplay = ({ data }) => {
 
     let durationDisplay = data.map(session => {
-        let start = moment.utc(session.timeStart);
-        let end = moment.utc(session.timeEnd);
+        let start = moment.tz(session.timeStart, "America/Los_Angeles");
+        let end = moment.tz(session.timeEnd, "America/Los_Angeles");
         return (end.diff(start, 'hours', true))
     });
-    const totalDuration = durationDisplay.reduce((result, number) => result + number);
-    let moodDisplay = data.map(s => s.mood);
-    const sum = moodDisplay.reduce((a, b) => a + b, 0);
-    const avg = (sum / moodDisplay.length) || 0;
+    let totalDuration;
+    let moodDisplay;
+    let sum
+    let avg
+    if(durationDisplay.length === 0){
+        totalDuration = 0
+        sum = 0
+        avg = 0
+    } else {
+        totalDuration = durationDisplay.reduce((result, number) => result + number )
+        moodDisplay = data.map(s => s.mood);
+        sum = moodDisplay.reduce((a, b) => a + b, 0 );
+        avg = (sum / moodDisplay.length) || 0;
+    }
     return (
         <DisplayContainer>
             <SubDisplayContainer>
@@ -44,8 +52,7 @@ const ActivityDisplay = ({ data }) => {
             <SubDisplayContainer>
                 <DisplayTitle>Average mood</DisplayTitle>
                 <MoodDisplayContainer>
-                    <DisplayContent>{avg}</DisplayContent>
-                    <Mood />
+                    <Mood moodValue={avg} showText={true} iconSize={27} />
                 </MoodDisplayContainer>
             </SubDisplayContainer>
         </DisplayContainer>
