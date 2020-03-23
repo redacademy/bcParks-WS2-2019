@@ -69,7 +69,7 @@ const JournalScreen = ({ params, navigation }) => {
                 <TouchableOpacity onPress={() => navigation.goBack('Activity')}>
                     <Icon3 name='chevron-left' size={30} color={theme.bodyTextColor} style={styles.backIcon} />
                 </TouchableOpacity>
-                <Day>{moment(params.item.timeStart).format('dddd')}</Day>
+                <Day>{moment(listData[0].timeStart).format('dddd')}</Day>
             </HeaderCont>
             <HeadContainer
                 data={listData}
