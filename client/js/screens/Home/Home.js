@@ -1,17 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text } from 'react-native';
 import ProgressCircle from 'react-native-progress-circle';
 import { Calendar } from 'react-native-calendars';
 import ProgressContext from '../../context/ProgressContext';
 import moment from 'moment-timezone';
+import { Heading } from '../../globalStyles';
 import {
-    DetailedProgressContainer,
-    TextTitle,
-    ProgressBarContainer,
-    Complete,
-    Goal
-} from './style';
-import AuthContext from "../../context/AuthContext";
+    HomeText, DetailedProgressContainer, HomeHeaderCont, ProgressBarContainer,
+    Complete, Goal, Flex, ProgressText
+} from './styles';
+import LinearGradient from 'react-native-linear-gradient';
 
 
 const HomeScreen = ({ navigation, sessionData, goalData, user }) => {
@@ -28,7 +26,7 @@ const HomeScreen = ({ navigation, sessionData, goalData, user }) => {
         for (let i = 0; i < sample.length; i++) {
             if (sample[i].groupedDate === num) {
                 setToday(sample[i].diff)
-                console.log('같은날',sample[i].diff)
+                console.log('같은날', sample[i].diff)
                 break;
             } else {
                 setToday(0)
@@ -42,7 +40,7 @@ const HomeScreen = ({ navigation, sessionData, goalData, user }) => {
     })
 
     return (
-        <View>
+        <LinearGradient colors={['#FFFFFF', '#8CBE82']}>
             <View style={{ backgroundColor: "white" }}>
                 <Calendar
                     current={new Date()}
@@ -74,7 +72,7 @@ const HomeScreen = ({ navigation, sessionData, goalData, user }) => {
                                 percent={(progress / dayGoal) * 100}
                                 radius={15}
                                 borderWidth={3}
-                                color="green"
+                                color="709868"
                                 shadowColor="#999"
                                 bgColor="white"
                             >
@@ -101,43 +99,35 @@ const HomeScreen = ({ navigation, sessionData, goalData, user }) => {
                 />
             </View>
             <DetailedProgressContainer>
-                <Text>{user && user.email ? user.email : "No user logged in"}</Text>
-                <TextTitle>Daily Progress</TextTitle>
+                {/* <Text>{user && user.email ? user.email : "No user logged in"}</Text> */}
+                <HomeHeaderCont>
+                    <Heading>Daily Progress</Heading>
+                </HomeHeaderCont>
                 <ProgressBarContainer>
                     <Complete>
-                        <Text>Complete</Text>
-                        <Text>{(today / goal * 100).toFixed(1)}%</Text>
+                        <HomeText>Complete</HomeText>
+                        <HomeText>{(today / goal * 100).toFixed(1)}%</HomeText>
                     </Complete>
                     <ProgressCircle
                         percent={today / goal * 100}
-                        radius={50}
-                        borderWidth={10}
-                        color="green"
+                        radius={90}
+                        borderWidth={15}
+                        color="709868"
                         shadowColor="#999"
                         bgColor="white"
                     >
-                        <View>
-                            <Text>{(today / 1000 / 3600).toFixed(1)}</Text>
-                            <Text>hours</Text>
-                        </View>
+                        <Flex>
+                            <ProgressText isNumber>{(today / 1000 / 3600).toFixed(1)}</ProgressText>
+                            <ProgressText>hours</ProgressText>
+                        </Flex>
                     </ProgressCircle>
                     <Goal>
-                        <Text>Goal</Text>
-                        <Text>{parseInt(goal / 1000 / 3600)} hours</Text>
+                        <HomeText>Goal</HomeText>
+                        <HomeText>{parseInt(goal / 1000 / 3600)} hours</HomeText>
                     </Goal>
                 </ProgressBarContainer>
             </DetailedProgressContainer>
-            <Button
-                title="Go to Onboarding"
-                onPress={() => navigation.navigate('Onboarding')}
-
-            />
-            <Button
-                title="Go to User Login"
-                onPress={() => navigation.navigate('User')}
-
-            />
-        </View>
+        </LinearGradient>
     );
 }
 

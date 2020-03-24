@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Button, TouchableOpacity, TextInput } from 'react-native';
+import { View, TouchableOpacity, TextInput } from 'react-native';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import {
@@ -15,18 +15,14 @@ import {
     DayTextBtn,
     InputContainer,
     TextHours,
-    BodyCont,
     Background,
     DotNavView,
-    SaveButton,
-    SaveText,
     LogOutButton,
     LogOutText,
     SaveContainer
-} from './style';
+} from './styles';
 import DaysButton from '../../components/DaysButton/DaysButton';
-import { theme, HeaderCont, Heading, styles } from '../../globalStyles';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Heading, PrimaryBtn, NoFlexHeaderCont } from '../../globalStyles';
 import Dash from 'react-native-dash';
 import DotNav from '../../components/DotNav/DotNav';
 
@@ -67,14 +63,11 @@ const GoalScreen = ({ navigation, page, setUser }) => {
     return (
         <Background theme={page}>
             {page !== "onBoarding" ?
-                <HeaderCont>
-                    <TouchableOpacity onPress={() => navigation.goBack('Home')}>
-                        <Icon name='chevron-left' size={30} color={theme.bodyTextColor} style={styles.backIcon} />
-                    </TouchableOpacity>
+                <NoFlexHeaderCont>
                     <Heading>
                         Settings
                     </Heading>
-                </HeaderCont> :
+                </NoFlexHeaderCont> :
                 null
             }
 
@@ -254,7 +247,7 @@ const GoalScreen = ({ navigation, page, setUser }) => {
                 :
 
                 <SaveContainer>
-                    <SaveButton title="Save" onPress={() => {
+                    <TouchableOpacity title="Save" onPress={() => {
 
                         if (days.length === 0) {
                             alert("Please select at least one day")
@@ -279,8 +272,8 @@ const GoalScreen = ({ navigation, page, setUser }) => {
                         }
 
                     }} >
-                        <SaveText>Save</SaveText>
-                    </SaveButton>
+                        <PrimaryBtn>Save</PrimaryBtn>
+                    </TouchableOpacity>
                     <LogOutButton title="Log out"
                         onPress={() => {
                             setUser({
