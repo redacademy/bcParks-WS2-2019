@@ -10,7 +10,6 @@ const QUERY_GOALS = gql`
     query {
         goals{
             id
-            hours
             days{
                 title
             }
