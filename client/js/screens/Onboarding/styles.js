@@ -4,6 +4,7 @@ import { StyleSheet } from 'react-native';
 
 export const Background = styled.View`
     background-color: ${theme.screenBkgColor};
+    height: 100%;
 `
 export const Flex = styled.View`
     display: flex;
