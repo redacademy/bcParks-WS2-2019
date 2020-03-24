@@ -14,7 +14,14 @@ import {
     EverydayButton,
     DayTextBtn,
     InputContainer,
-    TextHours
+    TextHours,
+    BodyCont,
+    Background,
+    SaveButton,
+    SaveText,
+    LogOutButton,
+    LogOutText,
+    SaveContainer
 } from './style';
 import DaysButton from '../../components/DaysButton/DaysButton';
 import { theme, HeaderCont, Heading, styles } from '../../globalStyles';
@@ -55,7 +62,7 @@ const GoalScreen = ({ navigation, page }) => {
             setDays([...days, day])
     }
     return (
-        <View>
+        <Background>
             {page !== "onBoarding" ?
                 <HeaderCont>
                     <TouchableOpacity onPress={() => navigation.goBack('Home')}>
@@ -149,7 +156,7 @@ const GoalScreen = ({ navigation, page }) => {
                             dashGap={0}
                             dashLength={100}
                         />
-                        <LineText >I want to spen this amount of time</LineText>
+                        <LineText >I want to spend this amount of time</LineText>
                         <Dash
                             style={{ width: 100, height: 1, flexDirection: 'row' }}
                             dashColor={'#5a8a4d'}
@@ -170,13 +177,34 @@ const GoalScreen = ({ navigation, page }) => {
                         <TextHours>hours per day</TextHours>
                     </InputContainer>
                 </View> :
-
-                <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-                    onChangeText={text => {
-                        setHours(parseInt(text));
-                        setText(text)
-                    }}
-                    value={text} />
+                <View>
+                    <LinesContainer >
+                        <Dash
+                            style={{ width: 100, height: 1, flexDirection: 'row' }}
+                            dashColor={'#5a8a4d'}
+                            dashThickness={1}
+                            dashGap={0}
+                            dashLength={100}
+                        />
+                        <LineText >I want to spend this amount of time</LineText>
+                        <Dash
+                            style={{ width: 100, height: 1, flexDirection: 'row' }}
+                            dashColor={'#5a8a4d'}
+                            dashThickness={1}
+                            dashGap={0}
+                            dashLength={100}
+                        />
+                    </LinesContainer>
+                    <InputContainer>
+                        <TextInput style={{ height: 32, backgroundColor: '#fff', width: 72, borderRadius: 10, color: '#cc6c4e', fontSize: 22, textAlign: 'center' }}
+                            onChangeText={text => {
+                                setHours(parseInt(text));
+                                setText(text)
+                            }}
+                            value={text} />
+                        <TextHours>hours per day</TextHours>
+                    </InputContainer>
+                </View>
             }
             {page === "onBoarding" ?
 
@@ -212,8 +240,8 @@ const GoalScreen = ({ navigation, page }) => {
                     </TouchableOpacity>
                 </Flex>
                 :
-                <View>
-                    <Button title="Save" onPress={() => {
+                <SaveContainer>
+                    <SaveButton title="Save" onPress={() => {
                         if (days.length === 0) {
                             alert("Please select at least one day")
                         } else if (isNaN(hours)) {
@@ -235,11 +263,15 @@ const GoalScreen = ({ navigation, page }) => {
                             navigation.popToTop()
                             navigation.push('Home')
                         }
-                    }} />
-                    <Button title="Log out" />
-                </View>
+                    }} >
+                        <SaveText>Save</SaveText>
+                    </SaveButton>
+                    <LogOutButton title="Log out" >
+                        <LogOutText >Log out</LogOutText>
+                    </LogOutButton>
+                </SaveContainer>
             }
-        </View>
+        </Background>
     )
 }
 

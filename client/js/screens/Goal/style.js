@@ -54,7 +54,7 @@ export const EverydayButton = styled.TouchableOpacity`
     width: 345px;
     height: 32px;
     border-radius: 10px;
-    background-color: ${props => props.toggle ? '#cc6c4e' : theme.invertTextColor};
+    background-color: ${props => props.toggle ? '#5a8a4d' : theme.invertTextColor};
     margin: 0 auto;
 `
 export const InputContainer = styled.View`
@@ -70,14 +70,14 @@ export const TextHours = styled.Text`
     font-weight: 300;
     padding: 8px;
 `
-
-
 export const Flex = styled.View`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    position: absolute;
+    top: 500px;
+    width: 100%;
 `
-
 export const BtnText = styled.Text`
     font-family: ${theme.bodyFont};
     font-size: ${theme.bodyFontSize};
@@ -86,3 +86,45 @@ export const BtnText = styled.Text`
     text-transform: capitalize;
     margin: 60px 20px 60px;
 `
+export const Background = styled.View`
+    position: relative;
+    background-color: ${theme.screenBkgColor};
+    height: 100%;
+`
+export const SaveButton = styled.TouchableOpacity`
+    width: 200px;
+    height: 48px;
+    border-radius: 20px;
+    background-color: #5a8a4d;
+    color: #fff;
+    margin: 0 auto;
+`
+export const SaveText = styled.Text`
+    color: #fff;
+    text-align: center;
+    font-family: ${theme.headlineFont};
+    font-size: ${theme.h2FontSize};
+    padding-top: 10px; 
+`
+export const LogOutButton = styled.TouchableOpacity`
+    color: #303030;;
+    text-align: center;
+    font-family: ${theme.bodyFont};
+    font-size: ${theme.bodyFontSize};
+    margin-top: 60px;
+`
+export const LogOutText = styled.Text`
+    color: #303030;;
+    text-align: center;
+    font-family: ${theme.bodyFont};
+    font-size: 16px;
+    font-weight: 300;
+    text-decoration: underline;
+    
+`
+export const SaveContainer = styled.View`
+    position: absolute;
+    top: 700px;
+    left: 100px;
+`
+
