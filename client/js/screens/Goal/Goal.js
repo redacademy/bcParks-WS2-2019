@@ -6,6 +6,7 @@ import { DayButtonContainer, ToggleMenu, Flex, BtnText } from './style';
 import DaysButton from '../../components/DaysButton/DaysButton';
 import { theme, HeaderCont, Heading, styles } from '../../globalStyles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import DotNav from '../../components/DotNav/DotNav';
 
 const Mutation_UpdateGoals = gql`
     mutation UpdateGoals($hours: Float!, $title: [String!]) {
@@ -52,7 +53,7 @@ const GoalScreen = ({ navigation, page }) => {
                 </HeaderCont> :
                 null
             }
-            <View style ={{ marginTop: 50}}>
+            <View style={{ marginTop: 50 }}>
                 <Text style={{ alignSelf: "center" }}>I want to repeat spending time in green space</Text>
             </View>
             <ToggleMenu>
@@ -103,67 +104,68 @@ const GoalScreen = ({ navigation, page }) => {
                     }}
                     value={text} />
             }
-            {page === "onBoarding" ? 
-            
-            <Flex>
-                <TouchableOpacity onPress={() => {
-                    navigation.navigate('Tabs')
-                }}>
-                    <BtnText isSkip>skip</BtnText>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => {
-                    if (days.length === 0) {
-                        alert("Please select at least one day")
-                    } else if (isNaN(hours)) {
-                        setText("");
-                        alert("Please enter a number");
-                    } else if (hours <= 1) {
-                        setText("");
-                        alert("Please enter more than 1 hour")
-                    } else {
-                        UpdateGoals({
-                            variables: {
-                                hours: hours,
-                                title: days
-                            }
-                        });
-                        setHours(1);
-                        setText("");
-                        alert("Goal has been updated")
-                        navigation.push('OnEnd')
-                    }
-                }}>
-                    <BtnText>next</BtnText>
-                </TouchableOpacity>
-            </Flex>
-            :
-            <View>
-            <Button title="Save" onPress={() => {
-                if (days.length === 0) {
-                    alert("Please select at least one day")
-                } else if (isNaN(hours)) {
-                    setText("");
-                    alert("Please enter a number");
-                } else if (hours <= 1) {
-                    setText("");
-                    alert("Please enter more than 1 hour")
-                } else {
-                    UpdateGoals({
-                        variables: {
-                            hours: hours,
-                            title: days
+            {page === "onBoarding" ?
+
+                <Flex>
+                    <TouchableOpacity onPress={() => {
+                        navigation.navigate('Tabs')
+                    }}>
+                        <BtnText isSkip>skip</BtnText>
+                    </TouchableOpacity>
+                    <DotNav activeIndex={3} />
+                    <TouchableOpacity onPress={() => {
+                        if (days.length === 0) {
+                            alert("Please select at least one day")
+                        } else if (isNaN(hours)) {
+                            setText("");
+                            alert("Please enter a number");
+                        } else if (hours <= 1) {
+                            setText("");
+                            alert("Please enter more than 1 hour")
+                        } else {
+                            UpdateGoals({
+                                variables: {
+                                    hours: hours,
+                                    title: days
+                                }
+                            });
+                            setHours(1);
+                            setText("");
+                            alert("Goal has been updated")
+                            navigation.push('OnEnd')
                         }
-                    });
-                    setHours(1);
-                    setText("");
-                    alert("Goal has been updated")
-                    navigation.popToTop()
-                    navigation.push('Home')
-                }
-            }} />
-            <Button title="Log out" />
-            </View>
-        }
+                    }}>
+                        <BtnText>next</BtnText>
+                    </TouchableOpacity>
+                </Flex>
+                :
+                <View>
+                    <Button title="Save" onPress={() => {
+                        if (days.length === 0) {
+                            alert("Please select at least one day")
+                        } else if (isNaN(hours)) {
+                            setText("");
+                            alert("Please enter a number");
+                        } else if (hours <= 1) {
+                            setText("");
+                            alert("Please enter more than 1 hour")
+                        } else {
+                            UpdateGoals({
+                                variables: {
+                                    hours: hours,
+                                    title: days
+                                }
+                            });
+                            setHours(1);
+                            setText("");
+                            alert("Goal has been updated")
+                            navigation.popToTop()
+                            navigation.push('Home')
+                        }
+                    }} />
+                    <Button title="Log out" />
+                </View>
+            }
         </View>
     )
 }
