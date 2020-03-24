@@ -6,6 +6,7 @@ type Session {
     mood: Float
     journal: String
     date: DateTime!
+    user: User!
   }
 
   type User {
@@ -72,6 +73,7 @@ type Session {
     id : ID! @id
     hours: Float!
     days: Days!
+    user: User!
   }
 
   type Days {

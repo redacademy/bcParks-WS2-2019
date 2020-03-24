@@ -17,7 +17,7 @@ const Containter = styled.View`
 `;
 const SearchButton = styled.TouchableOpacity`
   position: absolute;
-  top: 12px;
+  top: 40px;
   background: #fff;
   padding: 10px 30px;
   border-radius: 5px;
@@ -57,12 +57,12 @@ const Maps = ({children, navigation, _carousel}) => {
     setRegion,
   } = useContext(MapContext);
 
-  const GoogleAPIFetch = () => {
-    const dataURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${userLocation.latitude},${userLocation.longitude}&radius=1000&type=park&fields=place_id,name,opening_hours,formatted_address,geometry&key=${GOOGLE_API_KEY}`;
+  const calcRadius = () => region.longitudeDelta * 40000;
+  const GoogleAPIFetch = (lat, lng) => {
+    const dataURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${calcRadius()}&type=park&fields=place_id,name,opening_hours,formatted_address,geometry&key=${GOOGLE_API_KEY}`;
     fetch(dataURL)
       .then(response => response.json())
-      .then(data => setAPIData(data.result))
-      .then(() => AddDataFromGoogleAPI());
+      .then(data => setAPIData(data.results));
   };
   const AddDataFromGoogleAPI = () => {
     APIData.map(APIMap => {
@@ -119,12 +119,18 @@ const Maps = ({children, navigation, _carousel}) => {
     setSelectedIndex(index);
   };
   useEffect(() => {
+    GoogleAPIFetch(userLocation.latitude, userLocation.longitude);
+  }, []);
+  useEffect(() => {
     if (_carousel) {
       _carousel.current.snapToItem(selectedIndex);
     }
   }, [selectedIndex]);
+  useEffect(() => {
+    setSelectedMap(APIData[0]);
+  }, [APIData]);
   const getMarkers = () =>
-    mapData.map((map, index) => {
+    APIData.map((map, index) => {
       return (
         <Marker
           onPress={() => onPress(map, index)}
@@ -150,10 +156,10 @@ const Maps = ({children, navigation, _carousel}) => {
         style={styles.map}
         provider={PROVIDER_GOOGLE}
         initialRegion={{
-          latitude: 49.2479999,
-          longitude: -123.1300971,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
+          latitude: userLocation ? userLocation.latitude : 49.2506506,
+          longitude: userLocation ? userLocation.longitude : -123.0981612,
+          latitudeDelta: 0.0298,
+          longitudeDelta: 0.0228,
         }}
         onRegionChange={region => setRegion(region)}
         showsUserLocation={true}>
@@ -167,7 +173,8 @@ const Maps = ({children, navigation, _carousel}) => {
         <Polygon coordinates={VanDusen} />
       </MapView>
       <BackButton navigation={navigation} />
-      <SearchButton onPress={() => GoogleAPIFetch()}>
+      <SearchButton
+        onPress={() => GoogleAPIFetch(region.latitude, region.longitude)}>
         <Text style={styles.button}>Search in this area</Text>
       </SearchButton>
       <Containter>{children}</Containter>

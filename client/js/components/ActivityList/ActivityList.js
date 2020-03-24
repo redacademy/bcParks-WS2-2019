@@ -65,7 +65,7 @@ const ActivityList = ({ data, navigation, weekly }) => {
                 dayData
             }
         }).filter(item => item);
-        
+
     } else {
         transformedData = data.map(session => {
             const start = moment.tz(session.timeStart, "America/Los_Angeles");
@@ -116,14 +116,11 @@ const ActivityList = ({ data, navigation, weekly }) => {
                                     <ListItem> {item.locations && item.locations.length > 0 && item.locations[0].name} </ListItem>
                                 </DetailRow>
                             </ActivityDetails>
-                            {/* {!weekly && */}
                             <NotebookIcon>
                                 <TouchableOpacity onPress={() => navigation.navigate('Journal', { item, weekly })}>
                                     <Icon3 name='notebook' size={18} color='#878787'></Icon3>
                                 </TouchableOpacity>
                             </NotebookIcon>
-                            {/* } */}
-
                         </ListContainer>
                     )
                 }}
