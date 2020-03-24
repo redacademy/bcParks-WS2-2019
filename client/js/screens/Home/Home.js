@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useReducer } from 'react';
 import { View, Text, Button } from 'react-native';
 import ProgressCircle from 'react-native-progress-circle';
 import { Calendar } from 'react-native-calendars';
@@ -12,7 +12,8 @@ import {
     Goal
 } from './style';
 
-const HomeScreen = ({ navigation, sessionData, goalData }) => {
+
+const HomeScreen = ({ navigation, sessionData, goalData, user }) => {
 
     const { goals } = goalData;
     const { sessions } = sessionData;
@@ -20,8 +21,8 @@ const HomeScreen = ({ navigation, sessionData, goalData }) => {
     const [goal, setGoal] = useState(3600000);
     const [num, setNum] = useState('')
     const [today, setToday] = useState(0);
+
     let changedTime = moment.tz(sessions[29].timeStart, "America/Vancouver").format();
-    console.log('changedTime', changedTime)
 
     const display = () => {
         for (let i = 0; i < sample.length; i++) {
@@ -97,8 +98,8 @@ const HomeScreen = ({ navigation, sessionData, goalData }) => {
                     style={{ marginTop: 50 }}
                 />
             </View>
-
             <DetailedProgressContainer>
+                <Text>{user && user.email ? user.email : "No user logged in"}</Text>
                 <TextTitle>Daily Progress</TextTitle>
                 <ProgressBarContainer>
                     <Complete>
