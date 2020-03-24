@@ -3,26 +3,19 @@ import { useLazyQuery } from '@apollo/react-hooks';
 import gql from "graphql-tag";
 import { withNavigation } from 'react-navigation';
 import Login from "./Login";
+import AuthContext from "../../../context/AuthContext";
 
-const LOGIN_USER = gql`
-  query login($id: ID, $email: String!, $password: String!) {
-    User(Id: $ID) {
-      id
-      email
-    }
-  }
-`;
 
 const LoginContainer = ({ navigation }) => {
-    const [{ loading, error, data }] = useLazyQuery(
-        LOGIN_USER, { variables: { id, email, password } }
-    )
-    if (loading) return null;
-    if (error) return 'Error!';
 
-    return (
-        <Login navigation={navigation} onClick={login} />
-    )
+  return (
+    <AuthContext.Consumer>
+      {({ user, setUser }) => {
+        return <Login navigation={navigation} setUser={setUser} />
+      }}
+    </AuthContext.Consumer>
+
+  )
 }
 
 export default withNavigation(LoginContainer);

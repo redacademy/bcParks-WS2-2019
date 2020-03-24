@@ -13,7 +13,7 @@ export default helper = (sessions) => {
         }, {})
     }
     let grouped = group(sessions, 'timeStart');
-    console.log('grouped', grouped)
+    //console.log('grouped', grouped)
     Object.keys(grouped).forEach((groupedDate) => {
         let diff = 0;
         let data = grouped[groupedDate];
@@ -29,6 +29,6 @@ export default helper = (sessions) => {
         })
         // console.log('day of the week', moment(groupedDate).format('dddd'))
     })
-    console.log('arr', arr)
+    //console.log('arr', arr)
     return arr;
 }

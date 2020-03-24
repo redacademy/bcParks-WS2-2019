@@ -6,21 +6,23 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './globalStyles';
 import ProgressProvider from './context/ProgressProvider';
 import MapProvider from './context/MapProvider';
-import AuthProvider from './context/AuthContext';
+import { AuthProvider } from './context/AuthContext';
 const App = () => {
   return (
     <>
-      <ApolloProvider client={client}>
-        <ThemeProvider theme={theme}>
-          <AuthProvider>
+      <AuthProvider>
+        <ApolloProvider client={client}>
+          <ThemeProvider theme={theme}>
+
             <ProgressProvider>
               <MapProvider>
                 <Navigation />
               </MapProvider>
             </ProgressProvider>
-          </AuthProvider>
-        </ThemeProvider>
-      </ApolloProvider>
+
+          </ThemeProvider>
+        </ApolloProvider>
+      </AuthProvider>
     </>
   );
 };
