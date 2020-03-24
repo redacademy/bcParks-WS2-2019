@@ -25,7 +25,13 @@ const Card = ({detail}) => {
         style={styles.card}
         onPress={() => setModalVisible(true)}>
         <ImageWrap>
-          <GetImages reference={detail.photo_reference} />
+          <GetImages
+            reference={
+              detail.photos
+                ? detail.photos[0].photo_reference
+                : detail.photo_reference
+            }
+          />
         </ImageWrap>
         <Brief detail={detail} />
       </TouchableOpacity>

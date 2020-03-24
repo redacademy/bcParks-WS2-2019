@@ -3,8 +3,14 @@ import { View, Text, Button } from 'react-native';
 import ProgressCircle from 'react-native-progress-circle';
 import { Calendar } from 'react-native-calendars';
 import ProgressContext from '../../context/ProgressContext';
-// import moment from 'moment';
 import moment from 'moment-timezone';
+import { 
+    DetailedProgressContainer,
+    TextTitle,
+    ProgressBarContainer,
+    Complete,
+    Goal
+} from './style';
 
 const HomeScreen = ({ navigation, sessionData, goalData }) => {
     
@@ -95,28 +101,38 @@ const HomeScreen = ({ navigation, sessionData, goalData }) => {
                 style={{marginTop: 50}}
                 />
             </View>
-            {/* <View style={{ backgroundColor: 'white' }}>
-                <Button title="expand" />
-            </View> */}
-            <Text>Daily Progress</Text>
-            <ProgressCircle
-                percent={today/goal*100}
-                radius={50}
-                borderWidth={10}
-                color="green"
-                shadowColor="#999"
-                bgColor="white"
-            >
-                <Text>{/* {progress.duration + 'hours'} */}2hours</Text>
-            </ProgressCircle>
-            <Button
+
+            <DetailedProgressContainer>
+                <TextTitle>Daily Progress</TextTitle>
+                <ProgressBarContainer>
+                    <Complete>
+                        <Text>Complete</Text>
+                        <Text>{today/goal * 100}%</Text>
+                    </Complete>
+                    <ProgressCircle
+                        percent={today / goal * 100}
+                        radius={50}
+                        borderWidth={10}
+                        color="green"
+                        shadowColor="#999"
+                        bgColor="white"
+                    >
+                        <Text>{/* {progress.duration + 'hours'} */}2hours</Text>
+                    </ProgressCircle>
+                    <Goal>
+                        <Text>Goal</Text>
+                        <Text>1 hours</Text>
+                    </Goal>
+                </ProgressBarContainer>
+            </DetailedProgressContainer>
+            {/* <Button
                     title="Edit goals"
                     onPress={() => navigation.push('Goal')}
-            />   
-            <Button
+            /> */}
+            {/* <Button
                 title="Go to Activity"
                 onPress={() => navigation.navigate('Activity')}
-            />
+            /> */}
             <Button
                 title="Go to Onboarding"
                 onPress={() => navigation.navigate('Onboarding')}
