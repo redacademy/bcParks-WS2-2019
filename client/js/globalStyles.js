@@ -13,6 +13,7 @@ export const theme = {
   dayBtnColor: '#9B9A30',
   headlineFont: 'Comfortaa-Regular',
   bodyFont: 'OpenSans-Regular',
+  h1FontColor: '#cc6c4e',
   h1FontSize: '30px',
   h2FontSize: '24px',
   bodyFontSize: '18px',
