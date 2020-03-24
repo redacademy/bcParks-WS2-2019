@@ -617,6 +617,7 @@ type Goal {
   id: ID!
   hours: Float!
   days: Days!
+  user: User!
 }
 
 type GoalConnection {
@@ -629,6 +630,7 @@ input GoalCreateInput {
   id: ID
   hours: Float!
   days: DaysCreateOneInput!
+  user: UserCreateOneInput!
 }
 
 type GoalEdge {
@@ -669,6 +671,7 @@ input GoalSubscriptionWhereInput {
 input GoalUpdateInput {
   hours: Float
   days: DaysUpdateOneRequiredInput
+  user: UserUpdateOneRequiredInput
 }
 
 input GoalUpdateManyMutationInput {
@@ -699,6 +702,7 @@ input GoalWhereInput {
   hours_gt: Float
   hours_gte: Float
   days: DaysWhereInput
+  user: UserWhereInput
   AND: [GoalWhereInput!]
   OR: [GoalWhereInput!]
   NOT: [GoalWhereInput!]
@@ -1779,6 +1783,7 @@ type Session {
   mood: Float
   journal: String
   date: DateTime!
+  user: User!
 }
 
 type SessionConnection {
@@ -1795,6 +1800,7 @@ input SessionCreateInput {
   mood: Float
   journal: String
   date: DateTime!
+  user: UserCreateOneInput!
 }
 
 type SessionEdge {
@@ -1851,6 +1857,7 @@ input SessionUpdateInput {
   mood: Float
   journal: String
   date: DateTime
+  user: UserUpdateOneRequiredInput
 }
 
 input SessionUpdateManyMutationInput {
@@ -1925,6 +1932,7 @@ input SessionWhereInput {
   date_lte: DateTime
   date_gt: DateTime
   date_gte: DateTime
+  user: UserWhereInput
   AND: [SessionWhereInput!]
   OR: [SessionWhereInput!]
   NOT: [SessionWhereInput!]
@@ -2097,6 +2105,11 @@ input UserCreateInput {
   password: String!
 }
 
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+}
+
 type UserEdge {
   node: User!
   cursor: String!
@@ -2135,6 +2148,11 @@ input UserSubscriptionWhereInput {
   NOT: [UserSubscriptionWhereInput!]
 }
 
+input UserUpdateDataInput {
+  email: String
+  password: String
+}
+
 input UserUpdateInput {
   email: String
   password: String
@@ -2143,6 +2161,18 @@ input UserUpdateInput {
 input UserUpdateManyMutationInput {
   email: String
   password: String
+}
+
+input UserUpdateOneRequiredInput {
+  create: UserCreateInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
 }
 
 input UserWhereInput {
