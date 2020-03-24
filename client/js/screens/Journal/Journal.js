@@ -58,7 +58,7 @@ const JournalScreen = ({ params, navigation }) => {
         });
 
     } else {
-        listData.push(params.item.timeStart)
+        listData.push(params.item)
     }
     let diff = (moment(listData.timeEnd)).diff((moment(listData.timeStart)));
 
