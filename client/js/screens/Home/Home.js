@@ -28,7 +28,7 @@ const HomeScreen = ({ navigation, sessionData, goalData, user }) => {
         for (let i = 0; i < sample.length; i++) {
             if (sample[i].groupedDate === num) {
                 setToday(sample[i].diff)
-                console.log('같은날',sample[i].diff)
+                console.log('같은날', sample[i].diff)
                 break;
             } else {
                 setToday(0)
@@ -135,6 +135,11 @@ const HomeScreen = ({ navigation, sessionData, goalData, user }) => {
             <Button
                 title="Go to User Login"
                 onPress={() => navigation.navigate('User')}
+
+            />
+            <Button
+                title="Go to onGoal"
+                onPress={() => navigation.navigate('OnGoal')}
 
             />
         </View>

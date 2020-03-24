@@ -15,17 +15,14 @@ import {
     DayTextBtn,
     InputContainer,
     TextHours,
-    BodyCont,
     Background,
     DotNavView,
-    SaveButton,
-    SaveText,
     LogOutButton,
     LogOutText,
     SaveContainer
 } from './style';
 import DaysButton from '../../components/DaysButton/DaysButton';
-import { theme, HeaderCont, Heading, styles } from '../../globalStyles';
+import { theme, HeaderCont, Heading, PrimaryBtn, styles } from '../../globalStyles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Dash from 'react-native-dash';
 import DotNav from '../../components/DotNav/DotNav';
@@ -254,7 +251,7 @@ const GoalScreen = ({ navigation, page, setUser }) => {
                 :
 
                 <SaveContainer>
-                    <SaveButton title="Save" onPress={() => {
+                    <TouchableOpacity title="Save" onPress={() => {
 
                         if (days.length === 0) {
                             alert("Please select at least one day")
@@ -279,8 +276,8 @@ const GoalScreen = ({ navigation, page, setUser }) => {
                         }
 
                     }} >
-                        <SaveText>Save</SaveText>
-                    </SaveButton>
+                        <PrimaryBtn>Save</PrimaryBtn>
+                    </TouchableOpacity>
                     <LogOutButton title="Log out"
                         onPress={() => {
                             setUser({

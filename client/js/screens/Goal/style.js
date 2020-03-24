@@ -88,28 +88,13 @@ export const BtnText = styled.Text`
 `
 export const Background = styled.View`
     position: relative;
-    background-color: ${props=> props.theme!="onBoarding" ? theme.screenBkgColor : "transparent"};
+    background-color: ${props => props.theme != "onBoarding" ? theme.screenBkgColor : "transparent"};
     height: 100%;
 `
 export const BackgroundTransP = styled.View`
     position: relative;
     background-color: transparent;
     height: 100%;
-`
-export const SaveButton = styled.TouchableOpacity`
-    width: 200px;
-    height: 48px;
-    border-radius: 20px;
-    background-color: #5a8a4d;
-    color: #fff;
-    margin: 0 auto;
-`
-export const SaveText = styled.Text`
-    color: #fff;
-    text-align: center;
-    font-family: ${theme.headlineFont};
-    font-size: ${theme.h2FontSize};
-    padding-top: 10px; 
 `
 export const LogOutButton = styled.TouchableOpacity`
     color: #303030;;
