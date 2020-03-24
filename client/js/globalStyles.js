@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export const theme = {
   primaryColor: '#49773A',
   accentColor: '#DA6645',
   grayColor: '#767676',
-  screenBkgColor: '#A3CB9B',
+  screenBkgColor: '#AED1A7',
   txtInputBkg: '#fff',
   bodyTextColor: '#000',
   invertTextColor: '#fff',
@@ -16,8 +16,7 @@ export const theme = {
   h1FontColor: '#cc6c4e',
   h1FontSize: '30px',
   h2FontSize: '24px',
-  bodyFontSize: '18px',
-  // #8cbe82
+  bodyFontSize: '18px'
 };
 
 export const ScreenBkgCont = styled.View`

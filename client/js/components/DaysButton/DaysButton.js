@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { DayButton, DayTextBtn } from '../../screens/Goal/style';
+import { DayButton, DayTextBtn } from '../../screens/Goal/styles';
 
 const DaysButton = (props) => {
     const [selected] = useState(false);

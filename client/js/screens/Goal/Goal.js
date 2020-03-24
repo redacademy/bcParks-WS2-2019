@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Button, TouchableOpacity, TextInput } from 'react-native';
+import { View, TouchableOpacity, TextInput } from 'react-native';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import {
@@ -20,10 +20,9 @@ import {
     LogOutButton,
     LogOutText,
     SaveContainer
-} from './style';
+} from './styles';
 import DaysButton from '../../components/DaysButton/DaysButton';
-import { theme, HeaderCont, Heading, PrimaryBtn, styles } from '../../globalStyles';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Heading, PrimaryBtn, NoFlexHeaderCont } from '../../globalStyles';
 import Dash from 'react-native-dash';
 import DotNav from '../../components/DotNav/DotNav';
 
@@ -64,14 +63,11 @@ const GoalScreen = ({ navigation, page, setUser }) => {
     return (
         <Background theme={page}>
             {page !== "onBoarding" ?
-                <HeaderCont>
-                    <TouchableOpacity onPress={() => navigation.goBack('Home')}>
-                        <Icon name='chevron-left' size={30} color={theme.bodyTextColor} style={styles.backIcon} />
-                    </TouchableOpacity>
+                <NoFlexHeaderCont>
                     <Heading>
                         Settings
                     </Heading>
-                </HeaderCont> :
+                </NoFlexHeaderCont> :
                 null
             }
 

@@ -26,7 +26,7 @@ export const DayButton = styled.TouchableOpacity`
     border-radius: 10px;
 `
 export const DayTextBtn = styled.Text`
-    color: ${props => props.toggle ? theme.invertTextColor : '#323232'};
+    color: ${props => props.toggle ? theme.invertTextColor : theme.bodyTextColor};
     text-align: center;
     margin: auto 0;
 `
@@ -40,12 +40,11 @@ export const TimeButtons = styled.TouchableOpacity`
     width: 100px;
     height: 32px;
     border-radius: 10px;
-    background-color:  ${props => props.isDaily ? "#5a8a4d" : "#fff"};
-    color: #303030;
+    background-color:  ${props => props.isDaily ? theme.primaryColor : "#fff"};
 `
 export const ButtonText = styled.Text`
-    color: #303030;
     text-align: center;
+    color: ${theme.bodyTextColor};
     font-family: ${theme.bodyFont};
     font-size: ${theme.bodyFontSize};
     padding: 3px;
@@ -54,7 +53,7 @@ export const EverydayButton = styled.TouchableOpacity`
     width: 345px;
     height: 32px;
     border-radius: 10px;
-    background-color: ${props => props.toggle ? '#5a8a4d' : theme.invertTextColor};
+    background-color: ${props => props.toggle ? theme.accentColor : theme.invertTextColor};
     margin: 0 auto;
 `
 export const InputContainer = styled.View`
@@ -64,10 +63,9 @@ export const InputContainer = styled.View`
     margin: 40px auto;
 `
 export const TextHours = styled.Text`
-    color: #303030;
+    color: ${theme.bodyTextColor};
     font-family: ${theme.bodyFont};
-    font-size: 16px;
-    font-weight: 300;
+    font-size: ${theme.bodyFontSize};
     padding: 8px;
 `
 export const Flex = styled.View`
@@ -97,24 +95,21 @@ export const BackgroundTransP = styled.View`
     height: 100%;
 `
 export const LogOutButton = styled.TouchableOpacity`
-    color: #303030;;
+    text-align: center;
+    font-family: ${theme.bodyFont};
+`
+export const LogOutText = styled.Text`
+    color: ${theme.bodyTextColor};
     text-align: center;
     font-family: ${theme.bodyFont};
     font-size: ${theme.bodyFontSize};
-    margin-top: 60px;
-`
-export const LogOutText = styled.Text`
-    color: #303030;;
-    text-align: center;
-    font-family: ${theme.bodyFont};
-    font-size: 16px;
-    font-weight: 300;
     text-decoration: underline;
+    margin: 30px auto;
     
 `
 export const SaveContainer = styled.View`
     position: absolute;
-    top: 700px;
+    top: 650px;
     left: 100px;
 `
 export const DotNavView = styled.View`

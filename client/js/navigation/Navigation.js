@@ -126,7 +126,7 @@ const NavTabs = () => {
         inactiveTintColor: 'grey',
         activeTintColor: '#49773A',
         style: {
-          height: 110,
+          height: 105,
           padding: 10,
           backgroundColor: '#fff',
         },
@@ -154,7 +154,7 @@ const NavTabs = () => {
       <Tab.Screen
         name="Settings"
         component={SettingsStackScreen}
-        options={{ title: 'Settings', tabBarVisible: false }}
+        options={{ title: 'Settings' }}
       />
     </Tab.Navigator>
   );
