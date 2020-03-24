@@ -110,7 +110,7 @@ const NavTabs = () => {
         tabBarIcon: () => {
           const { name } = route;
           if (name === 'Home') {
-            return <Explore />;
+            return <Icon2 name='home' size={35} color={theme.primaryColor} />;
           } else if (name === 'Explore') {
             return <Explore />;
           } else if (name === 'Timer') {
