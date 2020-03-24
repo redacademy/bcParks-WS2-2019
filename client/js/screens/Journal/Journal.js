@@ -74,7 +74,7 @@ const JournalScreen = ({ params, navigation }) => {
             <HeadContainer
                 data={listData}
                 renderItem={({ item }) => {
-                    //console.log('item', item)
+                    // console.log('item', item)
                     return (
                         <JournalBox>
                             <TimesContainer>
@@ -96,7 +96,7 @@ const JournalScreen = ({ params, navigation }) => {
                                 </IconDurationRow>
                                 <IconLocationRow>
                                     <Icon2 name='map-marker' size={24} color='#8cbe82'></Icon2>
-                                    <LocationText>{item.locations && item.locations.length > 0 && item.locations[0].name}</LocationText>
+                                    <LocationText>{item.locations && item.locations.length > 0 ? item.locations[0].name : "Location Unavailable"}</LocationText>
                                 </IconLocationRow>
                                 <JournalText>{item.journal}</JournalText>
                             </LogContainer>

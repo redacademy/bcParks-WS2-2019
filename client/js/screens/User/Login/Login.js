@@ -23,9 +23,9 @@ const LoginScreen = ({ navigation, setUser }) => {
             console.log("setting user", userData.users[0])
             setUser({
                 id: userData.users[0].id,
-                emai: userData.users[0].email
+                email: userData.users[0].email
             })
-            navigation.navigate('Home')
+            navigation.navigate('Tabs')
         }
     })
     const handleLogin = () => {
@@ -53,6 +53,9 @@ const LoginScreen = ({ navigation, setUser }) => {
                 </TouchableOpacity>
             </LoginBtnCont>
             <LinkCont>
+                <TouchableOpacity onPress={() => navigation.navigate('Tabs')}>
+                    <TextLink>Go Home</TextLink>
+                </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.push('SignUp')}>
                     <TextLink>Create an Account</TextLink>
                 </TouchableOpacity>

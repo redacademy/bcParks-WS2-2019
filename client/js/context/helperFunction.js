@@ -1,7 +1,17 @@
+import {useContext} from 'react';
 import moment from 'moment-timezone';
+import AuthContext from './AuthContext';
 
-export default helper = (sessions) => {
+export default helper = (sessions, user) => {
+    
     let arr = []
+    let userData = []
+    sessions.forEach(session => {
+        if(user.email === session.user.email){
+            userData.push(session)
+        }
+    })
+    console.log('userData', userData)
     const group = (session, date) => {
         return session.reduce(function (acc, obj) {
             let key = moment(obj[date]).format('YYYY-MM-DD');
@@ -12,8 +22,8 @@ export default helper = (sessions) => {
             return acc
         }, {})
     }
-    let grouped = group(sessions, 'timeStart');
-    //console.log('grouped', grouped)
+    let grouped = group(userData, 'timeStart');
+    console.log('grouped', grouped)
     Object.keys(grouped).forEach((groupedDate) => {
         let diff = 0;
         let data = grouped[groupedDate];

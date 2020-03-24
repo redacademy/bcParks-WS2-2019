@@ -113,7 +113,7 @@ const ActivityList = ({ data, navigation, weekly }) => {
                                 </DetailRow>
                                 <DetailRow>
                                     <Icon2 name='map-marker' size={22} color='#66b17e'></Icon2>
-                                    <ListItem> {item.locations && item.locations.length > 0 && item.locations[0].name} </ListItem>
+                                    <ListItem> {item.locations && item.locations.length > 0 ? item.locations[0].name : "Location Unavailable"}</ListItem>
                                 </DetailRow>
                             </ActivityDetails>
                             <NotebookIcon>

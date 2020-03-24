@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useReducer } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, Button } from 'react-native';
 import ProgressCircle from 'react-native-progress-circle';
 import { Calendar } from 'react-native-calendars';
@@ -11,33 +11,35 @@ import {
     Complete,
     Goal
 } from './style';
+import AuthContext from "../../context/AuthContext";
 
 
 const HomeScreen = ({ navigation, sessionData, goalData, user }) => {
-
+    // const { user } = useContext(AuthContext);
+    console.log('HomeUser', user)
     const { goals } = goalData;
-    const { sessions } = sessionData;
     const { sample } = useContext(ProgressContext);
+    console.log('sample', sample)
     const [goal, setGoal] = useState(3600000);
     const [num, setNum] = useState('')
     const [today, setToday] = useState(0);
-
-    let changedTime = moment.tz(sessions[29].timeStart, "America/Vancouver").format();
 
     const display = () => {
         for (let i = 0; i < sample.length; i++) {
             if (sample[i].groupedDate === num) {
                 setToday(sample[i].diff)
+                console.log('같은날',sample[i].diff)
                 break;
             } else {
                 setToday(0)
             }
         }
     }
-
+    console.log('num', num)
+    console.log('today', today)
     useEffect(() => {
         display()
-    }, [num])
+    })
 
     return (
         <View>
