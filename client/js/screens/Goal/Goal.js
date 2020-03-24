@@ -27,6 +27,7 @@ import DaysButton from '../../components/DaysButton/DaysButton';
 import { theme, HeaderCont, Heading, styles } from '../../globalStyles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Dash from 'react-native-dash';
+import DotNav from '../../components/DotNav/DotNav';
 
 
 const Mutation_UpdateGoals = gql`
@@ -74,6 +75,7 @@ const GoalScreen = ({ navigation, page }) => {
                 </HeaderCont> :
                 null
             }
+
             <LinesContainer >
                 <Dash
                     style={{ width: 60, height: 1, flexDirection: 'row' }}
@@ -91,6 +93,7 @@ const GoalScreen = ({ navigation, page }) => {
                     dashLength={60}
                 />
             </LinesContainer>
+
             <ToggleMenu>
                 <TimeButtons
                     title="Daily"
@@ -214,6 +217,9 @@ const GoalScreen = ({ navigation, page }) => {
                     }}>
                         <BtnText isSkip>skip</BtnText>
                     </TouchableOpacity>
+
+                    <DotNav activeIndex={3} />
+
                     <TouchableOpacity onPress={() => {
                         if (days.length === 0) {
                             alert("Please select at least one day")
@@ -240,8 +246,10 @@ const GoalScreen = ({ navigation, page }) => {
                     </TouchableOpacity>
                 </Flex>
                 :
+
                 <SaveContainer>
                     <SaveButton title="Save" onPress={() => {
+
                         if (days.length === 0) {
                             alert("Please select at least one day")
                         } else if (isNaN(hours)) {
@@ -263,6 +271,7 @@ const GoalScreen = ({ navigation, page }) => {
                             navigation.popToTop()
                             navigation.push('Home')
                         }
+
                     }} >
                         <SaveText>Save</SaveText>
                     </SaveButton>
@@ -272,6 +281,7 @@ const GoalScreen = ({ navigation, page }) => {
                 </SaveContainer>
             }
         </Background>
+
     )
 }
 
