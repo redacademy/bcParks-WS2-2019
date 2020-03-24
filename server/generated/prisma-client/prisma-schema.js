@@ -68,6 +68,7 @@ scalar DateTime
 type Days {
   id: ID!
   title: String!
+  hours: Float!
 }
 
 type DaysConnection {
@@ -79,11 +80,12 @@ type DaysConnection {
 input DaysCreateInput {
   id: ID
   title: String!
+  hours: Float!
 }
 
-input DaysCreateOneInput {
-  create: DaysCreateInput
-  connect: DaysWhereUniqueInput
+input DaysCreateManyInput {
+  create: [DaysCreateInput!]
+  connect: [DaysWhereUniqueInput!]
 }
 
 type DaysEdge {
@@ -96,11 +98,56 @@ enum DaysOrderByInput {
   id_DESC
   title_ASC
   title_DESC
+  hours_ASC
+  hours_DESC
 }
 
 type DaysPreviousValues {
   id: ID!
   title: String!
+  hours: Float!
+}
+
+input DaysScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  hours: Float
+  hours_not: Float
+  hours_in: [Float!]
+  hours_not_in: [Float!]
+  hours_lt: Float
+  hours_lte: Float
+  hours_gt: Float
+  hours_gte: Float
+  AND: [DaysScalarWhereInput!]
+  OR: [DaysScalarWhereInput!]
+  NOT: [DaysScalarWhereInput!]
 }
 
 type DaysSubscriptionPayload {
@@ -123,24 +170,48 @@ input DaysSubscriptionWhereInput {
 
 input DaysUpdateDataInput {
   title: String
+  hours: Float
 }
 
 input DaysUpdateInput {
   title: String
+  hours: Float
+}
+
+input DaysUpdateManyDataInput {
+  title: String
+  hours: Float
+}
+
+input DaysUpdateManyInput {
+  create: [DaysCreateInput!]
+  update: [DaysUpdateWithWhereUniqueNestedInput!]
+  upsert: [DaysUpsertWithWhereUniqueNestedInput!]
+  delete: [DaysWhereUniqueInput!]
+  connect: [DaysWhereUniqueInput!]
+  set: [DaysWhereUniqueInput!]
+  disconnect: [DaysWhereUniqueInput!]
+  deleteMany: [DaysScalarWhereInput!]
+  updateMany: [DaysUpdateManyWithWhereNestedInput!]
 }
 
 input DaysUpdateManyMutationInput {
   title: String
+  hours: Float
 }
 
-input DaysUpdateOneRequiredInput {
-  create: DaysCreateInput
-  update: DaysUpdateDataInput
-  upsert: DaysUpsertNestedInput
-  connect: DaysWhereUniqueInput
+input DaysUpdateManyWithWhereNestedInput {
+  where: DaysScalarWhereInput!
+  data: DaysUpdateManyDataInput!
 }
 
-input DaysUpsertNestedInput {
+input DaysUpdateWithWhereUniqueNestedInput {
+  where: DaysWhereUniqueInput!
+  data: DaysUpdateDataInput!
+}
+
+input DaysUpsertWithWhereUniqueNestedInput {
+  where: DaysWhereUniqueInput!
   update: DaysUpdateDataInput!
   create: DaysCreateInput!
 }
@@ -174,6 +245,14 @@ input DaysWhereInput {
   title_not_starts_with: String
   title_ends_with: String
   title_not_ends_with: String
+  hours: Float
+  hours_not: Float
+  hours_in: [Float!]
+  hours_not_in: [Float!]
+  hours_lt: Float
+  hours_lte: Float
+  hours_gt: Float
+  hours_gte: Float
   AND: [DaysWhereInput!]
   OR: [DaysWhereInput!]
   NOT: [DaysWhereInput!]
@@ -615,8 +694,7 @@ input GeoPointWhereUniqueInput {
 
 type Goal {
   id: ID!
-  hours: Float!
-  days: Days!
+  days(where: DaysWhereInput, orderBy: DaysOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Days!]
   user: User!
 }
 
@@ -628,8 +706,7 @@ type GoalConnection {
 
 input GoalCreateInput {
   id: ID
-  hours: Float!
-  days: DaysCreateOneInput!
+  days: DaysCreateManyInput
   user: UserCreateOneInput!
 }
 
@@ -641,13 +718,10 @@ type GoalEdge {
 enum GoalOrderByInput {
   id_ASC
   id_DESC
-  hours_ASC
-  hours_DESC
 }
 
 type GoalPreviousValues {
   id: ID!
-  hours: Float!
 }
 
 type GoalSubscriptionPayload {
@@ -669,13 +743,8 @@ input GoalSubscriptionWhereInput {
 }
 
 input GoalUpdateInput {
-  hours: Float
-  days: DaysUpdateOneRequiredInput
+  days: DaysUpdateManyInput
   user: UserUpdateOneRequiredInput
-}
-
-input GoalUpdateManyMutationInput {
-  hours: Float
 }
 
 input GoalWhereInput {
@@ -693,15 +762,9 @@ input GoalWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  hours: Float
-  hours_not: Float
-  hours_in: [Float!]
-  hours_not_in: [Float!]
-  hours_lt: Float
-  hours_lte: Float
-  hours_gt: Float
-  hours_gte: Float
-  days: DaysWhereInput
+  days_every: DaysWhereInput
+  days_some: DaysWhereInput
+  days_none: DaysWhereInput
   user: UserWhereInput
   AND: [GoalWhereInput!]
   OR: [GoalWhereInput!]
@@ -1213,6 +1276,7 @@ input MapWhereInput {
 
 input MapWhereUniqueInput {
   id: ID
+  externalId: String
 }
 
 type Mutation {
@@ -1241,7 +1305,6 @@ type Mutation {
   deleteManyGeometries(where: GeometryWhereInput): BatchPayload!
   createGoal(data: GoalCreateInput!): Goal!
   updateGoal(data: GoalUpdateInput!, where: GoalWhereUniqueInput!): Goal
-  updateManyGoals(data: GoalUpdateManyMutationInput!, where: GoalWhereInput): BatchPayload!
   upsertGoal(where: GoalWhereUniqueInput!, create: GoalCreateInput!, update: GoalUpdateInput!): Goal!
   deleteGoal(where: GoalWhereUniqueInput!): Goal
   deleteManyGoals(where: GoalWhereInput): BatchPayload!
