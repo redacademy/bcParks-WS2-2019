@@ -205,7 +205,7 @@ const GoalScreen = ({ navigation, page }) => {
                                 setText(text)
                             }}
                             value={text} />
-                        <TextHours>hours per day</TextHours>
+                        <TextHours>hours per week</TextHours>
                     </InputContainer>
                 </View>
             }
