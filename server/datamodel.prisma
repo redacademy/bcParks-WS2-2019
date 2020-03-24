@@ -23,7 +23,7 @@ type Session {
     plus_code: PlusCode
     photo_reference: String
     opening_hours: Boolean
-    features: [Feature]
+    features: [Feature!]! 
     boundaries: [GeoPoint]
   }
 
@@ -60,7 +60,7 @@ type Session {
   type Feature {
     id: ID! @id
     title: String!
-    maps: [Map!]! @relation(link: TABLE, name: "MapFeature")
+    maps: [Map!]! @relation(link: TABLE)
   }
 
   type GeoPoint {

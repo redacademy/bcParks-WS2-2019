@@ -186,6 +186,7 @@ input DaysWhereUniqueInput {
 type Feature {
   id: ID!
   title: String!
+  maps(where: MapWhereInput, orderBy: MapOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Map!]
 }
 
 type FeatureConnection {
@@ -197,11 +198,17 @@ type FeatureConnection {
 input FeatureCreateInput {
   id: ID
   title: String!
+  maps: MapCreateManyWithoutFeaturesInput
 }
 
-input FeatureCreateManyInput {
-  create: [FeatureCreateInput!]
+input FeatureCreateManyWithoutMapsInput {
+  create: [FeatureCreateWithoutMapsInput!]
   connect: [FeatureWhereUniqueInput!]
+}
+
+input FeatureCreateWithoutMapsInput {
+  id: ID
+  title: String!
 }
 
 type FeatureEdge {
@@ -273,32 +280,29 @@ input FeatureSubscriptionWhereInput {
   NOT: [FeatureSubscriptionWhereInput!]
 }
 
-input FeatureUpdateDataInput {
-  title: String
-}
-
 input FeatureUpdateInput {
   title: String
+  maps: MapUpdateManyWithoutFeaturesInput
 }
 
 input FeatureUpdateManyDataInput {
   title: String
 }
 
-input FeatureUpdateManyInput {
-  create: [FeatureCreateInput!]
-  update: [FeatureUpdateWithWhereUniqueNestedInput!]
-  upsert: [FeatureUpsertWithWhereUniqueNestedInput!]
+input FeatureUpdateManyMutationInput {
+  title: String
+}
+
+input FeatureUpdateManyWithoutMapsInput {
+  create: [FeatureCreateWithoutMapsInput!]
   delete: [FeatureWhereUniqueInput!]
   connect: [FeatureWhereUniqueInput!]
   set: [FeatureWhereUniqueInput!]
   disconnect: [FeatureWhereUniqueInput!]
+  update: [FeatureUpdateWithWhereUniqueWithoutMapsInput!]
+  upsert: [FeatureUpsertWithWhereUniqueWithoutMapsInput!]
   deleteMany: [FeatureScalarWhereInput!]
   updateMany: [FeatureUpdateManyWithWhereNestedInput!]
-}
-
-input FeatureUpdateManyMutationInput {
-  title: String
 }
 
 input FeatureUpdateManyWithWhereNestedInput {
@@ -306,15 +310,19 @@ input FeatureUpdateManyWithWhereNestedInput {
   data: FeatureUpdateManyDataInput!
 }
 
-input FeatureUpdateWithWhereUniqueNestedInput {
-  where: FeatureWhereUniqueInput!
-  data: FeatureUpdateDataInput!
+input FeatureUpdateWithoutMapsDataInput {
+  title: String
 }
 
-input FeatureUpsertWithWhereUniqueNestedInput {
+input FeatureUpdateWithWhereUniqueWithoutMapsInput {
   where: FeatureWhereUniqueInput!
-  update: FeatureUpdateDataInput!
-  create: FeatureCreateInput!
+  data: FeatureUpdateWithoutMapsDataInput!
+}
+
+input FeatureUpsertWithWhereUniqueWithoutMapsInput {
+  where: FeatureWhereUniqueInput!
+  update: FeatureUpdateWithoutMapsDataInput!
+  create: FeatureCreateWithoutMapsInput!
 }
 
 input FeatureWhereInput {
@@ -346,6 +354,9 @@ input FeatureWhereInput {
   title_not_starts_with: String
   title_ends_with: String
   title_not_ends_with: String
+  maps_every: MapWhereInput
+  maps_some: MapWhereInput
+  maps_none: MapWhereInput
   AND: [FeatureWhereInput!]
   OR: [FeatureWhereInput!]
   NOT: [FeatureWhereInput!]
@@ -836,7 +847,7 @@ type Map {
   geometry: Geometry!
   vicinity: String!
   plus_code: PlusCode
-  photos: [String!]!
+  photo_reference: String
   opening_hours: Boolean
   features(where: FeatureWhereInput, orderBy: FeatureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Feature!]
   boundaries(where: GeoPointWhereInput, orderBy: GeoPointOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [GeoPoint!]
@@ -855,9 +866,9 @@ input MapCreateInput {
   geometry: GeometryCreateOneInput!
   vicinity: String!
   plus_code: PlusCodeCreateOneInput
-  photos: MapCreatephotosInput
+  photo_reference: String
   opening_hours: Boolean
-  features: FeatureCreateManyInput
+  features: FeatureCreateManyWithoutMapsInput
   boundaries: GeoPointCreateManyInput
 }
 
@@ -866,8 +877,21 @@ input MapCreateManyInput {
   connect: [MapWhereUniqueInput!]
 }
 
-input MapCreatephotosInput {
-  set: [String!]
+input MapCreateManyWithoutFeaturesInput {
+  create: [MapCreateWithoutFeaturesInput!]
+  connect: [MapWhereUniqueInput!]
+}
+
+input MapCreateWithoutFeaturesInput {
+  id: ID
+  externalId: String!
+  name: String!
+  geometry: GeometryCreateOneInput!
+  vicinity: String!
+  plus_code: PlusCodeCreateOneInput
+  photo_reference: String
+  opening_hours: Boolean
+  boundaries: GeoPointCreateManyInput
 }
 
 type MapEdge {
@@ -884,6 +908,8 @@ enum MapOrderByInput {
   name_DESC
   vicinity_ASC
   vicinity_DESC
+  photo_reference_ASC
+  photo_reference_DESC
   opening_hours_ASC
   opening_hours_DESC
 }
@@ -893,7 +919,7 @@ type MapPreviousValues {
   externalId: String!
   name: String!
   vicinity: String!
-  photos: [String!]!
+  photo_reference: String
   opening_hours: Boolean
 }
 
@@ -954,6 +980,20 @@ input MapScalarWhereInput {
   vicinity_not_starts_with: String
   vicinity_ends_with: String
   vicinity_not_ends_with: String
+  photo_reference: String
+  photo_reference_not: String
+  photo_reference_in: [String!]
+  photo_reference_not_in: [String!]
+  photo_reference_lt: String
+  photo_reference_lte: String
+  photo_reference_gt: String
+  photo_reference_gte: String
+  photo_reference_contains: String
+  photo_reference_not_contains: String
+  photo_reference_starts_with: String
+  photo_reference_not_starts_with: String
+  photo_reference_ends_with: String
+  photo_reference_not_ends_with: String
   opening_hours: Boolean
   opening_hours_not: Boolean
   AND: [MapScalarWhereInput!]
@@ -985,9 +1025,9 @@ input MapUpdateDataInput {
   geometry: GeometryUpdateOneRequiredInput
   vicinity: String
   plus_code: PlusCodeUpdateOneInput
-  photos: MapUpdatephotosInput
+  photo_reference: String
   opening_hours: Boolean
-  features: FeatureUpdateManyInput
+  features: FeatureUpdateManyWithoutMapsInput
   boundaries: GeoPointUpdateManyInput
 }
 
@@ -997,9 +1037,9 @@ input MapUpdateInput {
   geometry: GeometryUpdateOneRequiredInput
   vicinity: String
   plus_code: PlusCodeUpdateOneInput
-  photos: MapUpdatephotosInput
+  photo_reference: String
   opening_hours: Boolean
-  features: FeatureUpdateManyInput
+  features: FeatureUpdateManyWithoutMapsInput
   boundaries: GeoPointUpdateManyInput
 }
 
@@ -1007,7 +1047,7 @@ input MapUpdateManyDataInput {
   externalId: String
   name: String
   vicinity: String
-  photos: MapUpdatephotosInput
+  photo_reference: String
   opening_hours: Boolean
 }
 
@@ -1027,8 +1067,20 @@ input MapUpdateManyMutationInput {
   externalId: String
   name: String
   vicinity: String
-  photos: MapUpdatephotosInput
+  photo_reference: String
   opening_hours: Boolean
+}
+
+input MapUpdateManyWithoutFeaturesInput {
+  create: [MapCreateWithoutFeaturesInput!]
+  delete: [MapWhereUniqueInput!]
+  connect: [MapWhereUniqueInput!]
+  set: [MapWhereUniqueInput!]
+  disconnect: [MapWhereUniqueInput!]
+  update: [MapUpdateWithWhereUniqueWithoutFeaturesInput!]
+  upsert: [MapUpsertWithWhereUniqueWithoutFeaturesInput!]
+  deleteMany: [MapScalarWhereInput!]
+  updateMany: [MapUpdateManyWithWhereNestedInput!]
 }
 
 input MapUpdateManyWithWhereNestedInput {
@@ -1036,8 +1088,15 @@ input MapUpdateManyWithWhereNestedInput {
   data: MapUpdateManyDataInput!
 }
 
-input MapUpdatephotosInput {
-  set: [String!]
+input MapUpdateWithoutFeaturesDataInput {
+  externalId: String
+  name: String
+  geometry: GeometryUpdateOneRequiredInput
+  vicinity: String
+  plus_code: PlusCodeUpdateOneInput
+  photo_reference: String
+  opening_hours: Boolean
+  boundaries: GeoPointUpdateManyInput
 }
 
 input MapUpdateWithWhereUniqueNestedInput {
@@ -1045,10 +1104,21 @@ input MapUpdateWithWhereUniqueNestedInput {
   data: MapUpdateDataInput!
 }
 
+input MapUpdateWithWhereUniqueWithoutFeaturesInput {
+  where: MapWhereUniqueInput!
+  data: MapUpdateWithoutFeaturesDataInput!
+}
+
 input MapUpsertWithWhereUniqueNestedInput {
   where: MapWhereUniqueInput!
   update: MapUpdateDataInput!
   create: MapCreateInput!
+}
+
+input MapUpsertWithWhereUniqueWithoutFeaturesInput {
+  where: MapWhereUniqueInput!
+  update: MapUpdateWithoutFeaturesDataInput!
+  create: MapCreateWithoutFeaturesInput!
 }
 
 input MapWhereInput {
@@ -1110,6 +1180,20 @@ input MapWhereInput {
   vicinity_ends_with: String
   vicinity_not_ends_with: String
   plus_code: PlusCodeWhereInput
+  photo_reference: String
+  photo_reference_not: String
+  photo_reference_in: [String!]
+  photo_reference_not_in: [String!]
+  photo_reference_lt: String
+  photo_reference_lte: String
+  photo_reference_gt: String
+  photo_reference_gte: String
+  photo_reference_contains: String
+  photo_reference_not_contains: String
+  photo_reference_starts_with: String
+  photo_reference_not_starts_with: String
+  photo_reference_ends_with: String
+  photo_reference_not_ends_with: String
   opening_hours: Boolean
   opening_hours_not: Boolean
   features_every: FeatureWhereInput
