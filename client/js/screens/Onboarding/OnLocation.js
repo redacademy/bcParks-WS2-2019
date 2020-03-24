@@ -1,22 +1,18 @@
 import React from 'react';
 import { withNavigation } from "react-navigation";
 import { TouchableOpacity } from 'react-native';
-import { theme, HeaderCont, Heading, SubHeading } from '../../globalStyles';
+import { NoFlexHeaderCont, Heading, SubHeading } from '../../globalStyles';
 import { Flex, BtnText, styles } from './styles';
 import LinearGradient from 'react-native-linear-gradient';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import OnboardingLocation from '../../assets/images/OnboardingLocation';
 import DotNav from '../../components/DotNav/DotNav';
 
 const OnLocation = ({ navigation }) => {
     return (
         <LinearGradient colors={['#FFFFFF', '#8CBE82']}>
-            <HeaderCont>
-                <TouchableOpacity onPress={() => navigation.goBack('OnLanding')}>
-                    <Icon name='chevron-left' size={30} color={theme.bodyTextColor} style={styles.backIcon} />
-                </TouchableOpacity>
+            <NoFlexHeaderCont>
                 <Heading>Find green space</Heading>
-            </HeaderCont>
+            </NoFlexHeaderCont>
             <SubHeading>Search for green spaces near you!</SubHeading>
             <OnboardingLocation style={styles.image} />
             <Flex>
