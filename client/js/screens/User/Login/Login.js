@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
-import { ScreenBkgCont, Heading, SubHeading, PrimaryBtn } from '../../../globalStyles';
-import { FormCont, InputCont, InputLabel, StyledInput, Flex, LoginBtnCont, LinkCont, TextLink } from '../styles';
-
+import { theme, HeaderCont, Heading, SubHeading, PrimaryBtn } from '../../../globalStyles';
+import { FormCont, InputCont, InputLabel, StyledInput, LoginBtnCont, LinkCont, TextLink, styles } from '../styles';
+import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
@@ -34,9 +35,14 @@ const LoginScreen = ({ navigation, setUser }) => {
     }
 
     return (
-        <ScreenBkgCont>
-            <Heading>Login</Heading>
-            <SubHeading>Log into your account to start your journey!</SubHeading>
+        <LinearGradient colors={['#FFFFFF', '#8CBE82']}>
+            <HeaderCont>
+                <TouchableOpacity onPress={() => navigation.goBack('OnLanding')}>
+                    <Icon name='chevron-left' size={30} color={theme.bodyTextColor} style={styles.backIconLogin} />
+                </TouchableOpacity>
+                <Heading>Login</Heading>
+            </HeaderCont>
+            <SubHeading>Let's continue your journey!</SubHeading>
             <FormCont>
                 <InputCont>
                     <InputLabel>Email</InputLabel>
@@ -49,21 +55,18 @@ const LoginScreen = ({ navigation, setUser }) => {
             </FormCont>
             <LoginBtnCont>
                 <TouchableOpacity onPress={handleLogin}>
-                    <PrimaryBtn>login</PrimaryBtn>
+                    <PrimaryBtn>start</PrimaryBtn>
                 </TouchableOpacity>
             </LoginBtnCont>
             <LinkCont>
                 <TouchableOpacity onPress={() => navigation.navigate('Tabs')}>
-                    <TextLink>Go Home</TextLink>
+                    <TextLink>skip to Home</TextLink>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.push('SignUp')}>
                     <TextLink>Create an Account</TextLink>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.push('ForgotPw')}>
-                    <TextLink>Forgot Password</TextLink>
-                </TouchableOpacity>
             </LinkCont>
-        </ScreenBkgCont>
+        </LinearGradient>
     );
 }
 

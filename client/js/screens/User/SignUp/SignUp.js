@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
-import { Heading, ScreenBkgCont, PrimaryBtn, SubHeading } from '../../../globalStyles';
-import { FormCont, InputCont, InputLabel, StyledInput, TextLink, SignBtnCont, LinkCont, SubmitBtnCont } from '../styles';
+import { theme, HeaderCont, Heading, PrimaryBtn, SubHeading } from '../../../globalStyles';
+import { FormCont, InputCont, InputLabel, StyledInput, SignBtnCont, styles } from '../styles';
+import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 //import bcrypt from "bcrypt";
@@ -23,8 +25,9 @@ const SignUpScreen = ({ navigation, setUser }) => {
         onCompleted: insertData => {
             setUser({
                 id: insertData.id,
-                emai: insertData.email
+                email: insertData.email
             })
+            navigation.navigate('OnLocation');
         }
     })
 
@@ -34,8 +37,13 @@ const SignUpScreen = ({ navigation, setUser }) => {
     }
 
     return (
-        <ScreenBkgCont>
-            <Heading>Create your Account</Heading>
+        <LinearGradient colors={['#FFFFFF', '#8CBE82']}>
+            <HeaderCont>
+                <TouchableOpacity onPress={() => navigation.goBack('OnLanding')}>
+                    <Icon name='chevron-left' size={30} color={theme.bodyTextColor} style={styles.backIconSignUp} />
+                </TouchableOpacity>
+                <Heading>Create your Account</Heading>
+            </HeaderCont>
             <SubHeading>Having an account will help save your personal tracking data.</SubHeading>
             <FormCont>
                 <InputCont>
@@ -52,12 +60,7 @@ const SignUpScreen = ({ navigation, setUser }) => {
                     <PrimaryBtn>submit</PrimaryBtn>
                 </TouchableOpacity>
             </SignBtnCont>
-            <LinkCont>
-                <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                    <TextLink>I have a login</TextLink>
-                </TouchableOpacity>
-            </LinkCont>
-        </ScreenBkgCont>
+        </LinearGradient>
     );
 }
 

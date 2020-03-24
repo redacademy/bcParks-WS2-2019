@@ -65,8 +65,8 @@ const GoalScreen = ({ navigation, page, setUser }) => {
             setDays([...days, day])
     }
     return (
-        <Background theme = {page}>
-        {page !== "onBoarding" ?
+        <Background theme={page}>
+            {page !== "onBoarding" ?
                 <HeaderCont>
                     <TouchableOpacity onPress={() => navigation.goBack('Home')}>
                         <Icon name='chevron-left' size={30} color={theme.bodyTextColor} style={styles.backIcon} />
@@ -223,9 +223,9 @@ const GoalScreen = ({ navigation, page, setUser }) => {
                     }}>
                         <BtnText isSkip>skip</BtnText>
                     </TouchableOpacity>
-                        <DotNavView>
-                            <DotNav activeIndex={3} />
-                        </DotNavView>
+                    <DotNavView>
+                        <DotNav activeIndex={3} />
+                    </DotNavView>
                     <TouchableOpacity onPress={() => {
                         if (days.length === 0) {
                             alert("Please select at least one day")
@@ -281,16 +281,16 @@ const GoalScreen = ({ navigation, page, setUser }) => {
                     }} >
                         <SaveText>Save</SaveText>
                     </SaveButton>
-                    <LogOutButton title="Log out" 
-                                  onPress={()=>{
-                                      setUser({
-                                          id: null,
-                                          email: null
-                                      })
-                                      navigation.navigate('Home')
-                                  }}
+                    <LogOutButton title="Log out"
+                        onPress={() => {
+                            setUser({
+                                id: null,
+                                email: null
+                            })
+                            navigation.navigate('Onboarding')
+                        }}
                     >
-                        <LogOutText >Log out</LogOutText>
+                        <LogOutText>Log out</LogOutText>
                     </LogOutButton>
                 </SaveContainer>
             }
