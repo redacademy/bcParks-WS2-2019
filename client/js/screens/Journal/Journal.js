@@ -28,7 +28,7 @@ import Dash from 'react-native-dash';
 import { theme, HeaderCont, styles } from '../../globalStyles';
 
 const JournalScreen = ({ params, navigation }) => {
-    console.log(params)
+    //console.log(params)
     let listData = [];
     if (params.weekly) {
         listData = params.item.dayData.map(session => {
@@ -43,7 +43,6 @@ const JournalScreen = ({ params, navigation }) => {
             let min = diff % 60;
             let duration = `${hours ? hours + 'h ' : ''}${min}min`;
             let { mood, locations, journal } = session;
-
 
             return {
                 duration,
@@ -63,8 +62,6 @@ const JournalScreen = ({ params, navigation }) => {
     let diff = (moment(listData.timeEnd)).diff((moment(listData.timeStart)));
 
     let duration = moment(diff).format('H [Hour] mm [Minutes]');
-    console.log('listData', listData)
-
 
     return (
         <View>
@@ -77,7 +74,7 @@ const JournalScreen = ({ params, navigation }) => {
             <HeadContainer
                 data={listData}
                 renderItem={({ item }) => {
-                    console.log('item', item)
+                    //console.log('item', item)
                     return (
                         <JournalBox>
                             <TimesContainer>

@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useReducer } from 'react';
 import { View, Text, Button } from 'react-native';
 import ProgressCircle from 'react-native-progress-circle';
 import { Calendar } from 'react-native-calendars';
 import ProgressContext from '../../context/ProgressContext';
 import moment from 'moment-timezone';
-import { 
+import {
     DetailedProgressContainer,
     TextTitle,
     ProgressBarContainer,
@@ -12,32 +12,32 @@ import {
     Goal
 } from './style';
 
-const HomeScreen = ({ navigation, sessionData, goalData }) => {
-    
+const HomeScreen = ({ navigation, sessionData, goalData, user }) => {
+
     const { goals } = goalData;
     const { sessions } = sessionData;
     const { sample, setSample, update, getItem } = useContext(ProgressContext);
-    console.log('sample', sample)
-    console.log('sampelData', sample[0])
+    //console.log('sample', sample)
+    //console.log('sampelData', sample[0])
     const [goal, setGoal] = useState(360000);
-    const [ num, setNum] = useState('')
-    const [ today, setToday] = useState(0);
+    const [num, setNum] = useState('')
+    const [today, setToday] = useState(0);
 
-    console.log('goals', goals)
-    console.log('currentTime', moment.tz(moment(), "America/Vancouver").format())
-    console.log('sessions',sessions)
+    //console.log('goals', goals)
+    //console.log('currentTime', moment.tz(moment(), "America/Vancouver").format())
+    //console.log('sessions', sessions)
     let changedTime = moment.tz(sessions[29].timeStart, "America/Vancouver").format();
-    console.log('changedTime', changedTime)
-    
+    //console.log('changedTime', changedTime)
+
     let day;
     for (let i = 0; i < goals.length; i++) {
         day = goals[i].days.title;
-        console.log('day', day)
+        //console.log('day', day)
     }
 
     const display = () => {
-        for(let i=0; i<sample.length; i++) {
-            if(sample[i].groupedDate === num){
+        for (let i = 0; i < sample.length; i++) {
+            if (sample[i].groupedDate === num) {
                 setToday(sample[i].diff)
                 break;
             } else {
@@ -47,67 +47,67 @@ const HomeScreen = ({ navigation, sessionData, goalData }) => {
     }
 
     useEffect(() => {
-        display()    
+        display()
     })
 
     return (
-        <View>     
-            <View style={{backgroundColor: "white"}}>
+        <View>
+            <View style={{ backgroundColor: "white" }}>
                 <Calendar
                     current={new Date()}
 
                     hideExtraDays={true}
-                    dayComponent={({ date, state, marking}) => {
+                    dayComponent={({ date, state, marking }) => {
                         // console.log('date', date)
                         // console.log('state', state)
                         // console.log('mark', marking)
                         // console.log('grouped', grouped)
-                        
+
                         // const [progress, setProgress] = useState();
                         let progress = 0;
 
                         // useEffect(() => {
 
-                            for (let i = 0; i < sample.length; i++) {
-                                if (sample[i].groupedDate === date.dateString) {
-                                    progress = sample[i].diff
-                                    break;
-                                } else {
-                                    progress = 0
-                                }
+                        for (let i = 0; i < sample.length; i++) {
+                            if (sample[i].groupedDate === date.dateString) {
+                                progress = sample[i].diff
+                                break;
+                            } else {
+                                progress = 0
                             }
-                            
+                        }
+
                         // }, [])
-                            return (
-                                <ProgressCircle
-                                    percent={(progress/goal)*100}
-                                    radius={15}
-                                    borderWidth={3}
-                                    color="green"
-                                    shadowColor="#999"
-                                    bgColor="white"
+                        return (
+                            <ProgressCircle
+                                percent={(progress / goal) * 100}
+                                radius={15}
+                                borderWidth={3}
+                                color="green"
+                                shadowColor="#999"
+                                bgColor="white"
+                            >
+                                <Text
+                                    onPress={() => {
+                                        setNum(date.dateString)
+                                    }}
                                 >
-                                    <Text
-                                        onPress={() => { 
-                                            setNum(date.dateString)
-                                        }}
-                                    >
-                                        {date.day}</Text>
-                                </ProgressCircle>
-                            )
-                        
+                                    {date.day}</Text>
+                            </ProgressCircle>
+                        )
+
                     }}
                     monthFormat={'MMMM dd, yyyy'}
-                style={{marginTop: 50}}
+                    style={{ marginTop: 50 }}
                 />
             </View>
-
             <DetailedProgressContainer>
+                <Text>{user && user.email ? user.email : "No user logged in"}</Text>
                 <TextTitle>Daily Progress</TextTitle>
                 <ProgressBarContainer>
                     <Complete>
                         <Text>Complete</Text>
-                        <Text>{today/goal * 100}%</Text>
+                        <Text>{today / goal * 100}%</Text>
                     </Complete>
                     <ProgressCircle
                         percent={today / goal * 100}
@@ -125,14 +125,6 @@ const HomeScreen = ({ navigation, sessionData, goalData }) => {
                     </Goal>
                 </ProgressBarContainer>
             </DetailedProgressContainer>
-            {/* <Button
-                    title="Edit goals"
-                    onPress={() => navigation.push('Goal')}
-            /> */}
-            {/* <Button
-                title="Go to Activity"
-                onPress={() => navigation.navigate('Activity')}
-            /> */}
             <Button
                 title="Go to Onboarding"
                 onPress={() => navigation.navigate('Onboarding')}
