@@ -17,7 +17,7 @@ type Session {
   
   type Map {
     id: ID! @id
-    externalId: String!
+    externalId: String! @unique
     name: String!
     geometry: Geometry!
     vicinity: String!
