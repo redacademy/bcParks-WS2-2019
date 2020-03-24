@@ -17,20 +17,21 @@ const ADD_USER = gql`
 
 
 const SignUpScreen = ({ navigation, setUser }) => {
+    const [id, setId] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [createUser] = useMutation(ADD_USER, {
         onCompleted: insertData => {
             setUser({
                 id: insertData.id,
-                emai: insertData.email
+                email: insertData.email
             })
         }
     })
 
 
     const handleSignup = () => {
-        createUser({ variables: { data: { email, password } } })
+        createUser({ variables: { data: { id, email, password } } })
     }
 
     return (
@@ -40,7 +41,10 @@ const SignUpScreen = ({ navigation, setUser }) => {
             <FormCont>
                 <InputCont>
                     <InputLabel>Email</InputLabel>
-                    <StyledInput onChangeText={(text) => { setEmail(text) }} />
+                    <StyledInput onChangeText={(text) => { 
+                        setEmail(text)
+                        setId(text)
+                        }} />
                 </InputCont>
                 <InputCont>
                     <InputLabel>Password</InputLabel>
