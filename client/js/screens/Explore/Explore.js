@@ -4,7 +4,7 @@ import MapSwiper from './components/MapSwiper';
 import MapContext from '../../context/MapContext';
 
 const ExploreScreen = ({navigation}) => {
-  const {mapData, setSelectedMap} = useContext(MapContext);
+  const {APIData, mapData, setSelectedMap} = useContext(MapContext);
   const _carousel = useRef();
 
   const cardWidth = 291;
@@ -12,7 +12,7 @@ const ExploreScreen = ({navigation}) => {
   return (
     <Maps navigation={navigation} _carousel={_carousel}>
       <MapSwiper
-        mapData={mapData}
+        mapData={APIData}
         cardWidth={cardWidth}
         setSelectedMap={setSelectedMap}
         _carousel={_carousel}

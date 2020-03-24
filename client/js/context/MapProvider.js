@@ -36,7 +36,6 @@ const MapProvider = ({children}) => {
   useEffect(() => {
     fetchData(query).then(data => {
       setMapData(data.maps);
-      setSelectedMap(data.maps[0]);
     });
     Geolocation.watchPosition(({coords}) => setUserLocation(coords));
   }, []);
