@@ -1,10 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { Heading, ScreenBkgCont, PrimaryBtn, SubHeading } from '../../../globalStyles';
 import { FormCont, InputCont, InputLabel, StyledInput, TextLink, SignBtnCont, LinkCont, SubmitBtnCont } from '../styles';
+import { useMutation } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+//import bcrypt from "bcrypt";
+
+const ADD_USER = gql`
+    mutation CreateUser($data: UserCreateInput!) {
+        createUser(data: $data) {
+            id,
+            email
+        }
+    }
+`;
 
 
-const SignUpScreen = ({ navigation }) => {
+const SignUpScreen = ({ navigation, setUser }) => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [createUser] = useMutation(ADD_USER, {
+        onCompleted: insertData => {
+            setUser({
+                id: insertData.id,
+                emai: insertData.email
+            })
+        }
+    })
+
+
+    const handleSignup = () => {
+        createUser({ variables: { data: { email, password } } })
+    }
 
     return (
         <ScreenBkgCont>
@@ -13,19 +40,15 @@ const SignUpScreen = ({ navigation }) => {
             <FormCont>
                 <InputCont>
                     <InputLabel>Email</InputLabel>
-                    <StyledInput />
+                    <StyledInput onChangeText={(text) => { setEmail(text) }} />
                 </InputCont>
                 <InputCont>
                     <InputLabel>Password</InputLabel>
-                    <StyledInput />
-                </InputCont>
-                <InputCont>
-                    <InputLabel>Confirm Password</InputLabel>
-                    <StyledInput />
+                    <StyledInput onChangeText={(text) => { setPassword(text) }} />
                 </InputCont>
             </FormCont>
             <SignBtnCont>
-                <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                <TouchableOpacity onPress={handleSignup}>
                     <PrimaryBtn>submit</PrimaryBtn>
                 </TouchableOpacity>
             </SignBtnCont>
