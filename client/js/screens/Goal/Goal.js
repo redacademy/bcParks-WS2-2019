@@ -2,11 +2,33 @@ import React, { useState } from 'react';
 import { View, Text, Button, TouchableOpacity, TextInput } from 'react-native';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import { DayButtonContainer, ToggleMenu, Flex, BtnText } from './style';
+import {
+    DayButtonContainer,
+    ToggleMenu,
+    Flex,
+    BtnText,
+    LinesContainer,
+    TimeButtons,
+    ButtonText,
+    LineText,
+    EverydayButton,
+    DayTextBtn,
+    InputContainer,
+    TextHours,
+    BodyCont,
+    Background,
+    SaveButton,
+    SaveText,
+    LogOutButton,
+    LogOutText,
+    SaveContainer
+} from './style';
 import DaysButton from '../../components/DaysButton/DaysButton';
 import { theme, HeaderCont, Heading, styles } from '../../globalStyles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import Dash from 'react-native-dash';
 import DotNav from '../../components/DotNav/DotNav';
+
 
 const Mutation_UpdateGoals = gql`
     mutation UpdateGoals($hours: Float!, $title: [String!]) {
@@ -41,7 +63,7 @@ const GoalScreen = ({ navigation, page }) => {
             setDays([...days, day])
     }
     return (
-        <View>
+        <Background>
             {page !== "onBoarding" ?
                 <HeaderCont>
                     <TouchableOpacity onPress={() => navigation.goBack('Home')}>
@@ -53,26 +75,65 @@ const GoalScreen = ({ navigation, page }) => {
                 </HeaderCont> :
                 null
             }
-            <View style={{ marginTop: 50 }}>
-                <Text style={{ alignSelf: "center" }}>I want to repeat spending time in green space</Text>
-            </View>
+
+            <LinesContainer >
+                <Dash
+                    style={{ width: 60, height: 1, flexDirection: 'row' }}
+                    dashColor={'#5a8a4d'}
+                    dashThickness={1}
+                    dashGap={0}
+                    dashLength={60}
+                />
+                <LineText >I want to repeat spending time in green space</LineText>
+                <Dash
+                    style={{ width: 60, height: 1, flexDirection: 'row' }}
+                    dashColor={'#5a8a4d'}
+                    dashThickness={1}
+                    dashGap={0}
+                    dashLength={60}
+                />
+            </LinesContainer>
+
             <ToggleMenu>
-                <Button title="Daily"
+                <TimeButtons
+                    title="Daily"
                     onPress={() => {
                         setType("daily");
                     }}
-                />
-                <Button title="Weekly"
+                >
+                    <ButtonText>Daily</ButtonText>
+                </TimeButtons >
+                <TimeButtons
+                    title="Weekly"
                     onPress={() => {
                         setType("weekly");
                         setDays("weekly");
                     }}
-                />
+                >
+                    <ButtonText>Weekly</ButtonText>
+                </TimeButtons >
             </ToggleMenu>
 
             {type.includes("daily") ?
 
                 <View>
+                    <LinesContainer >
+                        <Dash
+                            style={{ width: 150, height: 1, flexDirection: 'row' }}
+                            dashColor={'#5a8a4d'}
+                            dashThickness={1}
+                            dashGap={0}
+                            dashLength={150}
+                        />
+                        <LineText >On these days</LineText>
+                        <Dash
+                            style={{ width: 150, height: 1, flexDirection: 'row' }}
+                            dashColor={'#5a8a4d'}
+                            dashThickness={1}
+                            dashGap={0}
+                            dashLength={150}
+                        />
+                    </LinesContainer>
                     <DayButtonContainer>
                         <DaysButton addDays={addDays} days={days} setDays={setDays} short="S" long="Sunday" />
                         <DaysButton addDays={addDays} days={days} setDays={setDays} short="M" long="Monday" />
@@ -82,27 +143,71 @@ const GoalScreen = ({ navigation, page }) => {
                         <DaysButton addDays={addDays} days={days} setDays={setDays} short="F" long="Friday" />
                         <DaysButton addDays={addDays} days={days} setDays={setDays} short="S" long="Saturday" />
                     </DayButtonContainer>
-                    <Button title="everyday"
+                    <EverydayButton title="everyday"
                         onPress={() => {
                             days.length === 7 ?
                                 setDays([]) :
                                 setDays(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
-                        }} />
-                    <Text style={{ alignSelf: "center" }}>I want to spend this amount of hours</Text>
-                    <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1, width: 60 }}
-                        onChangeText={text => {
-                            setHours(parseInt(text));
-                            setText(text)
-                        }}
-                        value={text} />
-                </View> :
+                        }} >
+                        <DayTextBtn>Everyday</DayTextBtn>
+                    </EverydayButton>
+                    <LinesContainer >
+                        <Dash
+                            style={{ width: 100, height: 1, flexDirection: 'row' }}
+                            dashColor={'#5a8a4d'}
+                            dashThickness={1}
+                            dashGap={0}
+                            dashLength={100}
+                        />
+                        <LineText >I want to spend this amount of time</LineText>
+                        <Dash
+                            style={{ width: 100, height: 1, flexDirection: 'row' }}
+                            dashColor={'#5a8a4d'}
+                            dashThickness={1}
+                            dashGap={0}
+                            dashLength={100}
+                        />
+                    </LinesContainer>
+                    <InputContainer>
+                        <TextInput style={{ height: 32, backgroundColor: '#fff', width: 72, borderRadius: 10, color: '#cc6c4e', fontSize: 22, textAlign: 'center' }}
+                            onChangeText={text => {
+                                setHours(parseInt(text));
+                                setText(text)
+                            }}
+                            value={text} >
 
-                <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-                    onChangeText={text => {
-                        setHours(parseInt(text));
-                        setText(text)
-                    }}
-                    value={text} />
+                        </TextInput>
+                        <TextHours>hours per day</TextHours>
+                    </InputContainer>
+                </View> :
+                <View>
+                    <LinesContainer >
+                        <Dash
+                            style={{ width: 100, height: 1, flexDirection: 'row' }}
+                            dashColor={'#5a8a4d'}
+                            dashThickness={1}
+                            dashGap={0}
+                            dashLength={100}
+                        />
+                        <LineText >I want to spend this amount of time</LineText>
+                        <Dash
+                            style={{ width: 100, height: 1, flexDirection: 'row' }}
+                            dashColor={'#5a8a4d'}
+                            dashThickness={1}
+                            dashGap={0}
+                            dashLength={100}
+                        />
+                    </LinesContainer>
+                    <InputContainer>
+                        <TextInput style={{ height: 32, backgroundColor: '#fff', width: 72, borderRadius: 10, color: '#cc6c4e', fontSize: 22, textAlign: 'center' }}
+                            onChangeText={text => {
+                                setHours(parseInt(text));
+                                setText(text)
+                            }}
+                            value={text} />
+                        <TextHours>hours per day</TextHours>
+                    </InputContainer>
+                </View>
             }
             {page === "onBoarding" ?
 
@@ -112,7 +217,9 @@ const GoalScreen = ({ navigation, page }) => {
                     }}>
                         <BtnText isSkip>skip</BtnText>
                     </TouchableOpacity>
+
                     <DotNav activeIndex={3} />
+
                     <TouchableOpacity onPress={() => {
                         if (days.length === 0) {
                             alert("Please select at least one day")
@@ -139,8 +246,10 @@ const GoalScreen = ({ navigation, page }) => {
                     </TouchableOpacity>
                 </Flex>
                 :
-                <View>
-                    <Button title="Save" onPress={() => {
+
+                <SaveContainer>
+                    <SaveButton title="Save" onPress={() => {
+
                         if (days.length === 0) {
                             alert("Please select at least one day")
                         } else if (isNaN(hours)) {
@@ -162,11 +271,17 @@ const GoalScreen = ({ navigation, page }) => {
                             navigation.popToTop()
                             navigation.push('Home')
                         }
-                    }} />
-                    <Button title="Log out" />
-                </View>
+
+                    }} >
+                        <SaveText>Save</SaveText>
+                    </SaveButton>
+                    <LogOutButton title="Log out" >
+                        <LogOutText >Log out</LogOutText>
+                    </LogOutButton>
+                </SaveContainer>
             }
-        </View>
+        </Background>
+
     )
 }
 
