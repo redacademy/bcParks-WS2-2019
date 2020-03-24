@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import {
     ScrollView,
     View,
@@ -25,6 +25,7 @@ import {
 import { theme, HeaderCont, Heading, styles } from '../../globalStyles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import helper from '../../context/helperFunction';
+import ProgressContext from '../../context/ProgressContext';
 
 const SESSIONS_QUERY = gql`
   query Sessions{
@@ -48,6 +49,7 @@ const ActivityScreen = ({ focus, setFocus, navigation, period, showWeekly, setSh
     // console.log('focus', focus.format())
     let start = focus.format('YYYY-MM-DD');
     let end = focus.clone().add(period, 'd').format('YYYY-MM-DD');
+    const { sample } = useContext(ProgressContext);
 
 
     const { loading, data, error, networkStatus } = useQuery(SESSIONS_QUERY);
@@ -56,7 +58,7 @@ const ActivityScreen = ({ focus, setFocus, navigation, period, showWeekly, setSh
     if (loading) return <Text>Loading!</Text>;
     if (error) return <Text>Error!</Text>;
     if (data) {
-        let arr = helper(data.sessions)
+        let arr = sample
         let newArr = []
 
         if(!showWeekly){
@@ -83,7 +85,7 @@ const ActivityScreen = ({ focus, setFocus, navigation, period, showWeekly, setSh
             }
             console.log('newArr', newArr)
             console.log('milsec', +focus.clone())
-            console.log('todaymil', +moment(arr[15].groupedDate))
+            
         }
 
     return (

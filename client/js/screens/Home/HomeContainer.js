@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useContext, useEffect } from "react"
 import { withNavigation } from 'react-navigation';
 import { Text } from "react-native"
 import Home from "./Home"
@@ -17,38 +17,36 @@ const QUERY_GOALS = gql`
         }
     }
 `;
-export const QUERY_SESSIONS = gql`
-    query {
-        sessions{
-            timeStart
-            timeEnd
-            date
-        }
-    }
-`
+
 const HomeContainer = ({ navigation }) => {
-    const { loading: sessionLoading, error: sessionError, data: sessionData } = useQuery(QUERY_SESSIONS);
+    const {user} = useContext(AuthContext);
+
+    // const { loading: sessionLoading, error: sessionError, data: sessionData } = 
+    //     useQuery(QUERY_SESSIONS, {
+    //         variables: {
+    //             email: user.email || "admin@gmail.com"
+    //         }
+    //     });
+    console.log('goalQuery', useQuery(QUERY_GOALS))
     const { loading: goalLoading, error: goalError, data: goalData } = useQuery(QUERY_GOALS);
 
-    return (<AuthContext.Consumer>
-        {({ user }) => {
 
+            console.log('containerNav', navigation)
 
-            if (sessionLoading || goalLoading) {
+            if (goalLoading) {
                 return (
                     <Text>Loading</Text>
                 )
-            } else if (sessionError || goalError) {
+            } else if (goalError) {
                 return (
                     <Text>Error</Text>
                 )
             } else {
                 return (
-                    <Home sessionData={sessionData} goalData={goalData} navigation={navigation} user={user} />
+                    <Home goalData={goalData} navigation={navigation} user={user} />
                 )
             }
-        }}
-    </AuthContext.Consumer>)
+
 
 
 }

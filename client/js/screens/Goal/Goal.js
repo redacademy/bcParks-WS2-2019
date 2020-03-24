@@ -17,6 +17,7 @@ import {
     TextHours,
     BodyCont,
     Background,
+    DotNavView,
     SaveButton,
     SaveText,
     LogOutButton,
@@ -47,9 +48,10 @@ const Mutation_UpdateGoals = gql`
     }
 `
 
-const GoalScreen = ({ navigation, page }) => {
+const GoalScreen = ({ navigation, page, setUser }) => {
     console.log('page', page)
     const [type, setType] = useState("daily");
+    const [current, setCurrent] = useState(true)
     const [days, setDays] = useState([]);
     const [hours, setHours] = useState(1);
     const [text, setText] = useState("");
@@ -63,8 +65,8 @@ const GoalScreen = ({ navigation, page }) => {
             setDays([...days, day])
     }
     return (
-        <Background>
-            {page !== "onBoarding" ?
+        <Background theme = {page}>
+        {page !== "onBoarding" ?
                 <HeaderCont>
                     <TouchableOpacity onPress={() => navigation.goBack('Home')}>
                         <Icon name='chevron-left' size={30} color={theme.bodyTextColor} style={styles.backIcon} />
@@ -97,17 +99,21 @@ const GoalScreen = ({ navigation, page }) => {
             <ToggleMenu>
                 <TimeButtons
                     title="Daily"
+                    isDaily={current}
                     onPress={() => {
                         setType("daily");
+                        setCurrent(!current)
                     }}
                 >
                     <ButtonText>Daily</ButtonText>
                 </TimeButtons >
                 <TimeButtons
                     title="Weekly"
+                    isDaily={!current}
                     onPress={() => {
                         setType("weekly");
                         setDays("weekly");
+                        setCurrent(!current)
                     }}
                 >
                     <ButtonText>Weekly</ButtonText>
@@ -217,9 +223,9 @@ const GoalScreen = ({ navigation, page }) => {
                     }}>
                         <BtnText isSkip>skip</BtnText>
                     </TouchableOpacity>
-
-                    <DotNav activeIndex={3} />
-
+                        <DotNavView>
+                            <DotNav activeIndex={3} />
+                        </DotNavView>
                     <TouchableOpacity onPress={() => {
                         if (days.length === 0) {
                             alert("Please select at least one day")
@@ -275,13 +281,20 @@ const GoalScreen = ({ navigation, page }) => {
                     }} >
                         <SaveText>Save</SaveText>
                     </SaveButton>
-                    <LogOutButton title="Log out" >
+                    <LogOutButton title="Log out" 
+                                  onPress={()=>{
+                                      setUser({
+                                          id: null,
+                                          email: null
+                                      })
+                                      navigation.navigate('Home')
+                                  }}
+                    >
                         <LogOutText >Log out</LogOutText>
                     </LogOutButton>
                 </SaveContainer>
             }
         </Background>
-
     )
 }
 

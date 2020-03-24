@@ -40,7 +40,7 @@ export const TimeButtons = styled.TouchableOpacity`
     width: 100px;
     height: 32px;
     border-radius: 10px;
-    background-color:  #fff;
+    background-color:  ${props => props.isDaily ? "#5a8a4d" : "#fff"};
     color: #303030;
 `
 export const ButtonText = styled.Text`
@@ -88,7 +88,12 @@ export const BtnText = styled.Text`
 `
 export const Background = styled.View`
     position: relative;
-    background-color: ${theme.screenBkgColor};
+    background-color: ${props=> props.theme!="onBoarding" ? theme.screenBkgColor : "transparent"};
+    height: 100%;
+`
+export const BackgroundTransP = styled.View`
+    position: relative;
+    background-color: transparent;
     height: 100%;
 `
 export const SaveButton = styled.TouchableOpacity`
@@ -127,4 +132,6 @@ export const SaveContainer = styled.View`
     top: 700px;
     left: 100px;
 `
-
+export const DotNavView = styled.View`
+    justify-content: center
+`

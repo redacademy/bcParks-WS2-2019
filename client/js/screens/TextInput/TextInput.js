@@ -6,7 +6,6 @@ import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import InputTextBox from '../../components/InputText/InputText';
 import styled from 'styled-components';
-import QUERY_SESSIONS from '../Home/HomeContainer';
 
 const InputHeading = styled.Text`
     font-size:${theme.bodyFontSize};

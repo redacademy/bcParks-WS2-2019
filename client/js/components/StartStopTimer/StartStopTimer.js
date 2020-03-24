@@ -6,20 +6,6 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import moment from 'moment';
 
-const Query_Session = gql`
-    query {
-        session(
-            where: {
-                id: "ck7o67opa0j87094270k3z1np"
-            }
-        ){
-            id
-            timeStart
-            timeEnd
-            date
-        }
-    }
-`
 
 const StartStopTimer = ({ navigation }) => {
 
