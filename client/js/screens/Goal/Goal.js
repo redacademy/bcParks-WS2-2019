@@ -354,6 +354,7 @@ const GoalScreen = ({ navigation, page, setUser }) => {
                             })
                             navigation.popToTop()
                             navigation.navigate('User')
+
                         }}
                     >
                         <LogOutText>{user.id==null ? "Sign In" : "Log out"}</LogOutText>

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { StyleSheet } from 'react-native';
 
 export const theme = {
   primaryColor: '#49773A',
@@ -16,7 +15,7 @@ export const theme = {
   h1FontColor: '#CC6C4E',
   h1FontSize: '30px',
   h2FontSize: '24px',
-  bodyFontSize: '18px'
+  bodyFontSize: '18px',
 };
 
 export const ScreenBkgCont = styled.View`
@@ -58,11 +57,11 @@ export const PrimaryBtn = styled.Text`
   border-radius: 23px;
   overflow: hidden;
 `;
-export const styles = StyleSheet.create({
-  backIcon: {
-    marginLeft: 10,
-    marginRight: 110,
-    marginTop: 40,
-    marginBottom: 20,
-  },
-});
+
+export const IconButton = styled.TouchableOpacity`
+  position: absolute;
+  left: 10px;
+  top: 50px;
+  z-index: 100;
+  padding: 15px;
+`;

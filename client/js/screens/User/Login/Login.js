@@ -50,7 +50,7 @@ const LoginScreen = ({ navigation, setUser }) => {
                 </InputCont>
                 <InputCont>
                     <InputLabel>Password</InputLabel>
-                    <StyledInput onChangeText={(text) => { setPassword(text) }} />
+                    <StyledInput secureTextEntry={true} onChangeText={(text) => { setPassword(text) }} />
                 </InputCont>
             </FormCont>
             <LoginBtnCont>

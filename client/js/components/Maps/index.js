@@ -1,23 +1,25 @@
-import React, {useEffect, useState, useRef, useContext} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import React, {useEffect, useContext} from 'react';
+import {View, StyleSheet, Text, Dimensions} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker, Polygon} from 'react-native-maps';
 import polyline from '@mapbox/polyline';
-import fetchData from '../../config/fetchData';
 import styled from 'styled-components';
-import {addMapMutation} from './helper/mutation';
 import {GOOGLE_API_KEY} from '../../config';
 import {QueenElizabeth, VanDusen} from './utils/PolygonSample';
 import BackButton from '../BackButton';
 import MapContext from '../../context/MapContext';
 
+const PercentHeight = number => {
+  const screenHeight = Dimensions.get('screen').height;
+  return (screenHeight * number) / 100;
+};
 const Containter = styled.View`
-  height: 333px;
+  height: ${PercentHeight(45)};
   background: #fff;
   width: 100%;
 `;
 const SearchButton = styled.TouchableOpacity`
   position: absolute;
-  top: 40px;
+  top: 60px;
   background: #fff;
   padding: 10px 30px;
   border-radius: 5px;
@@ -56,35 +58,8 @@ const Maps = ({children, navigation, _carousel}) => {
     region,
     setRegion,
     setArrived,
+    GoogleAPIFetch,
   } = useContext(MapContext);
-
-  const calcRadius = () => region.longitudeDelta * 40000;
-  const GoogleAPIFetch = (lat, lng) => {
-    const dataURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${calcRadius()}&type=park&fields=place_id,name,opening_hours,formatted_address,geometry&key=${GOOGLE_API_KEY}`;
-    fetch(dataURL)
-      .then(response => response.json())
-      .then(data => setAPIData(data.results))
-      .then(() => AddDataFromGoogleAPI());
-  };
-  const AddDataFromGoogleAPI = () => {
-    APIData.map(APIMap => {
-      const mutation = addMapMutation(
-        APIMap.id,
-        APIMap.name,
-        APIMap.vicinity,
-        APIMap.photos ? APIMap.photos[0].photo_reference : '',
-        APIMap.plus_code,
-        APIMap.geometry.location,
-        APIMap.geometry.viewport.northeast,
-        APIMap.geometry.viewport.southwest,
-      );
-      mapData.filter(map => {
-        if (map.externalId !== APIMap.id) {
-          fetchData(mutation);
-        }
-      });
-    });
-  };
 
   const mergeLot = (latitude, longitude) => `${latitude}, ${longitude}`;
   useEffect(() => {
@@ -123,19 +98,12 @@ const Maps = ({children, navigation, _carousel}) => {
     setSelectedMap(map);
     setSelectedIndex(index);
   };
-  useEffect(() => {
-    if (userLocation) {
-      GoogleAPIFetch(userLocation.latitude, userLocation.longitude);
-    }
-  }, [userLocation]);
+
   useEffect(() => {
     if (_carousel) {
       _carousel.current.snapToItem(selectedIndex);
     }
   }, [selectedIndex]);
-  useEffect(() => {
-    setSelectedMap(APIData[0]);
-  }, [APIData]);
 
   const getMarkers = () =>
     APIData.map((map, index) => {
@@ -196,7 +164,7 @@ const styles = StyleSheet.create({
   },
   map: {
     width: '100%',
-    height: 484,
+    height: PercentHeight(55),
   },
   button: {
     fontSize: 16,
