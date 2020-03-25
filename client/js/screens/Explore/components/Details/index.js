@@ -56,18 +56,18 @@ const Details = ({modalVisible, setModalVisible, detail}) => {
         <Text style={styles.activities}>Activities:</Text>
         {features
           ? features.map((feature, index) => (
-              <Text key={index} style={styles.lists}>
+              <OpenSansLight key={index} style={styles.lists}>
                 {feature.title}
-              </Text>
+              </OpenSansLight>
             ))
           : null}
         <View>
           <PrimaryBtn onPress={() => GoogleMapsOpen(detail.geometry.location)}>
             Google Maps
           </PrimaryBtn>
-          <Text>
-            Already here? <Text>start green time</Text>
-          </Text>
+          <OpenSansLight>
+            Already here? <Text style={styles.underLine}>start green time</Text>
+          </OpenSansLight>
         </View>
       </Container>
     </Modal>
@@ -82,19 +82,23 @@ const Separator = styled.View`
   background: #ddd;
   margin: 10px 0;
 `;
+const OpenSansLight = styled.Text`
+  color: #505050;
+  font-size: 16px;
+  line-height: 20px;
+`;
 const styles = StyleSheet.create({
   activities: {
     fontSize: 16,
-  },
-  lists: {
-    fontSize: 16,
-    color: '#505050',
   },
   header: {
     height: 44,
   },
   image: {
     height: 307,
+  },
+  underLine: {
+    textDecorationLine: 'underline',
   },
 });
 
