@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { TouchableOpacity, Text } from 'react-native';
-import { StartStopCont, TimerDisplay, TimerContainer, InfoTextCont, InfoText, BtnCont } from './styles.js';
+import { TouchableOpacity } from 'react-native';
+import { TimerDisplay, TimerContainer, InfoTextCont, InfoText, BtnCont } from './styles.js';
 import { theme, PrimaryBtn } from '../../globalStyles';
-import { useQuery, useMutation } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 import moment from 'moment';
+import LinearGradient from 'react-native-linear-gradient';
 
 
 const StartStopTimer = ({ navigation }) => {
@@ -12,8 +11,6 @@ const StartStopTimer = ({ navigation }) => {
     const [startStop, setStartStop] = useState(true);
     const [startTime, setStartTime] = useState("");
     const [date, setDate] = useState("");
-
-    // const { data, loading, error } = useQuery(Query_Session);
 
     const StopWatch = (time) => {
         const calculateTimeLeft = () => {
@@ -82,20 +79,12 @@ const StartStopTimer = ({ navigation }) => {
         num <= 9 ? `0${num}` : num
     )
     return (
-        <StartStopCont>
+        <LinearGradient colors={['#FFFFFF', '#8CBE82']}>
             <TimerContainer>
                 {startStop ?
                     <TimerDisplay>00:00:00</TimerDisplay> :
                     <StopWatch time={parseInt(moment().format('x'))} />}
             </TimerContainer>
-            {/* <TouchableOpacity onPress={() => {
-                    const session = data.session;
-                    let diff = new Date(session.timeEnd) - new Date(session.timeStart);
-                    setTime(diff / 3600000)
-                    console.log(time)
-                }}>
-                    <Text>Log</Text>
-                </TouchableOpacity> */}
             <InfoTextCont>
                 <InfoText>Spending more time in nature contributes to a better sleep cycle and helps with lowering anxiety</InfoText>
             </InfoTextCont>
@@ -115,9 +104,8 @@ const StartStopTimer = ({ navigation }) => {
                     }
                 </TouchableOpacity>
             </BtnCont>
-        </StartStopCont>
+        </LinearGradient>
     );
-
 }
 
 export default StartStopTimer;

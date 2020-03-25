@@ -1,15 +1,12 @@
 import styled from 'styled-components';
 import { theme } from '../../globalStyles';
 
-export const StartStopCont = styled.View`
-    background-color: ${theme.screenBkgColor};
-`
 export const TimerDisplay = styled.Text`
     font-family: ${theme.headlineFont};
     font-weight: 600;
     font-size: 50px;
     color: ${theme.grayColor};
-    
+    margin: 35px auto;
 `
 export const TimerContainer = styled.View`
     display: flex;
@@ -26,8 +23,8 @@ export const InfoText = styled.Text`
     color: ${theme.bodyTextColor};
     text-align: center;
     width:80%;
-    margin: 30px auto;
+    margin: 15px auto;
 `
 export const BtnCont = styled.View`
-    margin: 50px auto 30px;
+    margin: 50px auto 90px;
 `
