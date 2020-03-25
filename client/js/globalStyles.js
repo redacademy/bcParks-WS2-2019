@@ -12,6 +12,7 @@ export const theme = {
   MoodIconColor: '#FCCC1A',
   headlineFont: 'Comfortaa-Regular',
   bodyFont: 'OpenSans-Regular',
+  bodyFontLight: 'OpenSans-Light',
   h1FontColor: '#CC6C4E',
   h1FontSize: '30px',
   h2FontSize: '24px',
@@ -25,6 +26,7 @@ export const ScreenBkgCont = styled.View`
 export const HeaderCont = styled.View`
   display: flex;
   flex-direction: row;
+  justify-content: center;
   margin: 30px 0 0;
 `;
 export const NoFlexHeaderCont = styled.View`
@@ -46,7 +48,7 @@ export const SubHeading = styled.Text`
   margin: 0 auto;
 `;
 export const PrimaryBtn = styled.Text`
-  font-family: ${theme.bodyFont};
+  font-family: ${theme.headlineFont};
   font-size: ${theme.h2FontSize};
   background-color: ${({isStop}) =>
     isStop ? theme.accentColor : theme.primaryColor};

@@ -3,6 +3,7 @@ import MapContext from './MapContext';
 import fetchData from '../config/fetchData';
 import Geolocation from '@react-native-community/geolocation';
 import {GOOGLE_API_KEY} from '../config';
+import {addMapMutation} from '../components/Maps/helper/mutation';
 
 const MapProvider = ({children}) => {
   const [mapData, setMapData] = useState([]);

@@ -4,6 +4,7 @@ import MapContext from '../../../../context/MapContext';
 import {GOOGLE_API_KEY} from '../../../../config';
 import styled from 'styled-components';
 import {theme} from '../../../../globalStyles';
+
 const Brief = ({detail, limit}) => {
   const {userLocation, APIData} = useContext(MapContext);
   const {location} = detail.geometry;
@@ -46,14 +47,17 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     color: '#303030',
+    fontFamily: theme.bodyFont,
   },
   distance: {
     fontSize: 18,
     color: '#303030',
+    fontFamily: theme.bodyFont,
   },
   details: {
     fontSize: 16,
     color: '#505050',
+    fontFamily: theme.bodyFont,
   },
 });
 
