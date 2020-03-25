@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Text,
   Modal,
@@ -9,11 +9,11 @@ import {
 } from 'react-native';
 import GetImages from '../utils/GetImages';
 import Brief from '../Brief';
-import {PrimaryBtn} from '../../../../globalStyles';
+import { PrimaryBtn } from '../../../../globalStyles';
 import fetchData from '../../../../config/fetchData';
 import styled from 'styled-components';
 
-const Details = ({modalVisible, setModalVisible, detail}) => {
+const Details = ({ modalVisible, setModalVisible, detail }) => {
   const [features, setFeatures] = useState([]);
   const query = `query{
     features(where:{maps_some:{externalId:"${detail ? detail.id : ''}"}}){
@@ -28,7 +28,7 @@ const Details = ({modalVisible, setModalVisible, detail}) => {
   }, [detail]);
 
   const GoogleMapsOpen = location => {
-    const scheme = Platform.select({ios: 'maps:0,0?q=', android: 'geo:0,0?q='});
+    const scheme = Platform.select({ ios: 'maps:0,0?q=', android: 'geo:0,0?q=' });
     const url = Platform.select({
       ios: `${scheme}@${location.lat},${location.lng}`,
       android: `${scheme}${location.lat},${location.lng}`,
@@ -53,13 +53,13 @@ const Details = ({modalVisible, setModalVisible, detail}) => {
       <Container>
         <Brief detail={detail} />
         <Separator />
-        <Text style={styles.activities}>Activities:</Text>
+        <Text style={styles.activities}>Features:</Text>
         {features
           ? features.map((feature, index) => (
-              <OpenSansLight key={index} style={styles.lists}>
-                {feature.title}
-              </OpenSansLight>
-            ))
+            <OpenSansLight key={index} style={styles.lists}>
+              - {feature.title}
+            </OpenSansLight>
+          ))
           : null}
         <View>
           <PrimaryBtn onPress={() => GoogleMapsOpen(detail.geometry.location)}>
