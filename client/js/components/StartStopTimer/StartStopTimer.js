@@ -112,7 +112,6 @@ const StartStopTimer = ({navigation}) => {
 };
 
 export default StartStopTimer;
-=======
 import React, { useState, useEffect } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { TimerDisplay, TimerContainer, InfoTextCont, InfoText, BtnCont } from './styles.js';
