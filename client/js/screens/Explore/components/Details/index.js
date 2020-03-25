@@ -1,13 +1,5 @@
 import React, {useEffect, useState, useContext} from 'react';
-import {
-  Text,
-  Modal,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-  Linking,
-  ScrollView,
-} from 'react-native';
+import {Text, Modal, StyleSheet, View, Linking, ScrollView} from 'react-native';
 import GetImages from '../utils/GetImages';
 import Brief from '../Brief';
 import {PrimaryBtn, theme, IconButton} from '../../../../globalStyles';
@@ -82,7 +74,7 @@ const Details = ({modalVisible, setModalVisible, detail}) => {
             Maps
           </PrimaryBtn>
           <OpenSansLight>
-            Already here?
+            Already here?{' '}
             <Text style={styles.link} onPress={() => onPress()}>
               start green time
             </Text>
@@ -109,13 +101,15 @@ const Separator = styled.View`
 `;
 const OpenSansLight = styled.Text`
   color: #505050;
+  font-family: ${theme.bodyFontLight};
   font-size: ${theme.bodyFontSize};
   line-height: 20px;
-  margin-top: 24px;
+  margin-top: 28px;
   text-align: ${({center}) => (center ? 'center' : 'left')};
 `;
 const styles = StyleSheet.create({
   features: {
+    fontFamily: theme.bodyFont,
     fontSize: 18,
   },
   header: {
@@ -125,6 +119,7 @@ const styles = StyleSheet.create({
     height: 307,
   },
   link: {
+    fontFamily: theme.bodyFontLight,
     textDecorationLine: 'underline',
     textTransform: 'capitalize',
   },
