@@ -3,14 +3,18 @@ import { DayButton, DayTextBtn } from '../../screens/Goal/styles';
 
 const DaysButton = (props) => {
     const [selected] = useState(false);
-
+    const [toggle, setToggle] = useState(false)
     return (
         <DayButton
-            toggle={props.days.includes(props.long) ? !selected : selected}
+            toggle={toggle ? !selected : selected}
+            everyday={props.everyday}
             onPress={() => {
                 props.addDays(props.long)
+                setToggle(!toggle)
             }}>
-            <DayTextBtn toggle={props.days.includes(props.long) ? !selected : selected}>
+            <DayTextBtn toggle={toggle? !selected : selected}
+                        everyday={props.everyday}
+            >
                 {props.short}
             </DayTextBtn>
         </DayButton>

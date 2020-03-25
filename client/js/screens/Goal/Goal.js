@@ -95,6 +95,7 @@ const GoalScreen = ({ navigation, page, setUser, user }) => {
     const [days, setDays] = useState([]);
     const [hours, setHours] = useState(1);
     const [text, setText] = useState("");
+    const [everyday, setEveryday] = useState(false)
     const [UpdateGoals] = useMutation(Mutation_UpdateGoals);
     const [createGoal] = useMutation(Mutation_CreateGoal);
     
@@ -152,7 +153,7 @@ const GoalScreen = ({ navigation, page, setUser, user }) => {
                     isDaily={!current}
                     onPress={() => {
                         setType("weekly");
-                        setDays("weekly");
+                        setDays(["weekly"]);
                         setCurrent(!current)
                     }}
                 >
@@ -181,16 +182,17 @@ const GoalScreen = ({ navigation, page, setUser, user }) => {
                         />
                     </LinesContainer>
                     <DayButtonContainer>
-                        <DaysButton addDays={addDays} days={days} setDays={setDays} short="S" long="Sunday" />
-                        <DaysButton addDays={addDays} days={days} setDays={setDays} short="M" long="Monday" />
-                        <DaysButton addDays={addDays} days={days} setDays={setDays} short="T" long="Tuesday" />
-                        <DaysButton addDays={addDays} days={days} setDays={setDays} short="W" long="Wednesday" />
-                        <DaysButton addDays={addDays} days={days} setDays={setDays} short="T" long="Thursday" />
-                        <DaysButton addDays={addDays} days={days} setDays={setDays} short="F" long="Friday" />
-                        <DaysButton addDays={addDays} days={days} setDays={setDays} short="S" long="Saturday" />
+                        <DaysButton addDays={addDays} everyday={everyday} days={days} setDays={setDays} short="S" long="Sunday" />
+                        <DaysButton addDays={addDays} everyday={everyday} days={days} setDays={setDays} short="M" long="Monday" />
+                        <DaysButton addDays={addDays} everyday={everyday} days={days} setDays={setDays} short="T" long="Tuesday" />
+                        <DaysButton addDays={addDays} everyday={everyday} days={days} setDays={setDays} short="W" long="Wednesday" />
+                        <DaysButton addDays={addDays} everyday={everyday} days={days} setDays={setDays} short="T" long="Thursday" />
+                        <DaysButton addDays={addDays} everyday={everyday} days={days} setDays={setDays} short="F" long="Friday" />
+                        <DaysButton addDays={addDays} everyday={everyday} days={days} setDays={setDays} short="S" long="Saturday" />
                     </DayButtonContainer>
                     <EverydayButton title="everyday"
                         onPress={() => {
+                            setEveryday(!everyday)
                             days.length === 7 ?
                                 setDays([]) :
                                 setDays(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])

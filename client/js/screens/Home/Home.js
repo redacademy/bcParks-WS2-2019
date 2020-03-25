@@ -106,7 +106,7 @@ const HomeScreen = ({ navigation, sessionData, goalData, user }) => {
                 <ProgressBarContainer>
                     <Complete>
                         <HomeText>Complete</HomeText>
-                        <HomeText>{(today / goal * 100).toFixed(1)}%</HomeText>
+                        <HomeText>{(today > goal ) ? 100 : (today / goal * 100).toFixed(1)}%</HomeText>
                     </Complete>
                     <ProgressCircle
                         percent={today / goal * 100}

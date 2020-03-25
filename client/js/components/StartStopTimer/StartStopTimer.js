@@ -82,7 +82,7 @@ const StartStopTimer = ({ navigation }) => {
         <LinearGradient colors={['#FFFFFF', '#8CBE82']}>
             <TimerContainer>
                 {startStop ?
-                    <TimerDisplay>00:00:00</TimerDisplay> :
+                    <TimerDisplay theme={"zero"}>00:00:00</TimerDisplay> :
                     <StopWatch time={parseInt(moment().format('x'))} />}
             </TimerContainer>
             <InfoTextCont>
