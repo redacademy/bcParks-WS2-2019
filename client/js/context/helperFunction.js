@@ -1,13 +1,13 @@
-import {useContext} from 'react';
+import { useContext } from 'react';
 import moment from 'moment-timezone';
 import AuthContext from './AuthContext';
 
 export default helper = (sessions, user) => {
-    
+
     let arr = []
     let userData = []
     sessions.forEach(session => {
-        if(user.email === session.user.email){
+        if (user.email === session.user.email) {
             userData.push(session)
         }
     })
@@ -23,7 +23,6 @@ export default helper = (sessions, user) => {
         }, {})
     }
     let grouped = group(userData, 'timeStart');
-    console.log('grouped', grouped)
     Object.keys(grouped).forEach((groupedDate) => {
         let diff = 0;
         let data = grouped[groupedDate];
@@ -37,8 +36,6 @@ export default helper = (sessions, user) => {
             data,
             diff
         })
-        // console.log('day of the week', moment(groupedDate).format('dddd'))
     })
-    //console.log('arr', arr)
     return arr;
 }

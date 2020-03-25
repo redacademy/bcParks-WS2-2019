@@ -55,6 +55,7 @@ const Maps = ({children, navigation, _carousel}) => {
     setSelectedIndex,
     region,
     setRegion,
+    setArrived,
   } = useContext(MapContext);
 
   const calcRadius = () => region.longitudeDelta * 40000;
@@ -62,22 +63,23 @@ const Maps = ({children, navigation, _carousel}) => {
     const dataURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${calcRadius()}&type=park&fields=place_id,name,opening_hours,formatted_address,geometry&key=${GOOGLE_API_KEY}`;
     fetch(dataURL)
       .then(response => response.json())
-      .then(data => setAPIData(data.results));
+      .then(data => setAPIData(data.results))
+      .then(() => AddDataFromGoogleAPI());
   };
   const AddDataFromGoogleAPI = () => {
     APIData.map(APIMap => {
+      const mutation = addMapMutation(
+        APIMap.id,
+        APIMap.name,
+        APIMap.vicinity,
+        APIMap.photos ? APIMap.photos[0].photo_reference : '',
+        APIMap.plus_code,
+        APIMap.geometry.location,
+        APIMap.geometry.viewport.northeast,
+        APIMap.geometry.viewport.southwest,
+      );
       mapData.filter(map => {
         if (map.externalId !== APIMap.id) {
-          const mutation = addMapMutation(
-            APIMap.id,
-            APIMap.name,
-            APIMap.vicinity,
-            APIMap.photos ? APIMap.photos[0].photo_reference : '',
-            APIMap.plus_code,
-            APIMap.geometry.location,
-            APIMap.geometry.viewport.northeast,
-            APIMap.geometry.viewport.southwest,
-          );
           fetchData(mutation);
         }
       });
@@ -93,7 +95,7 @@ const Maps = ({children, navigation, _carousel}) => {
         mergeLot(location.lat, location.lng),
       );
     }
-  }, [selectedMap]);
+  }, [selectedMap, userLocation]);
   const getDirections = (startLoc, destinationLoc) => {
     const directionAPI = `https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${destinationLoc}&key=${GOOGLE_API_KEY}`;
     fetch(directionAPI)
@@ -106,6 +108,9 @@ const Maps = ({children, navigation, _carousel}) => {
             longitude: point[1],
           };
         });
+        if (data.routes[0].legs[0].distance.value >= 100) {
+          setArrived(true);
+        }
         setCoords(coords);
       });
   };
@@ -119,8 +124,10 @@ const Maps = ({children, navigation, _carousel}) => {
     setSelectedIndex(index);
   };
   useEffect(() => {
-    GoogleAPIFetch(userLocation.latitude, userLocation.longitude);
-  }, []);
+    if (userLocation) {
+      GoogleAPIFetch(userLocation.latitude, userLocation.longitude);
+    }
+  }, [userLocation]);
   useEffect(() => {
     if (_carousel) {
       _carousel.current.snapToItem(selectedIndex);
@@ -129,6 +136,7 @@ const Maps = ({children, navigation, _carousel}) => {
   useEffect(() => {
     setSelectedMap(APIData[0]);
   }, [APIData]);
+
   const getMarkers = () =>
     APIData.map((map, index) => {
       return (

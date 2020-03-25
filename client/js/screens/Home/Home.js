@@ -11,7 +11,6 @@ import {
 } from './styles';
 import LinearGradient from 'react-native-linear-gradient';
 
-
 const HomeScreen = ({ navigation, sessionData, goalData, user }) => {
     // const { user } = useContext(AuthContext);
     console.log('HomeUser', user)

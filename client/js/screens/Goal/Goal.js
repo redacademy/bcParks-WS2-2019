@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, TextInput } from 'react-native';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import {
     DayButtonContainer,
@@ -88,8 +88,6 @@ const Mutation_CreateGoal = gql`
 `
 
 const GoalScreen = ({ navigation, page, setUser, user }) => {
-    console.log('page', page)
-    console.log('goalUser', user)
     const [type, setType] = useState("daily");
     const [current, setCurrent] = useState(true)
     const [days, setDays] = useState([]);
@@ -98,7 +96,7 @@ const GoalScreen = ({ navigation, page, setUser, user }) => {
     const [everyday, setEveryday] = useState(false)
     const [UpdateGoals] = useMutation(Mutation_UpdateGoals);
     const [createGoal] = useMutation(Mutation_CreateGoal);
-    
+
     let goalArr = []
 
     const addDays = (day) => {
@@ -279,21 +277,13 @@ const GoalScreen = ({ navigation, page, setUser, user }) => {
                             setText("");
                             alert("Please enter more than 1 hour")
                         } else {
-                            days.forEach(day=>{
+                            days.forEach(day => {
                                 goalArr.push({
                                     title: day,
                                     hours: hours
                                 })
                             })
-                            console.log('goalArr', goalArr)
-                        
-                            
-                            // createGoal({
-                            //     variables: {
-                            //         goalArr: goalArr,
-                            //         userId: user.id
-                            //     }
-                            // });
+
                             setHours(1);
                             setText("");
                             alert("Goal has been updated")

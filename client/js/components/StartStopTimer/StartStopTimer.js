@@ -1,32 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import { TouchableOpacity } from 'react-native';
-import { TimerDisplay, TimerContainer, InfoTextCont, InfoText, BtnCont } from './styles.js';
-import { theme, PrimaryBtn } from '../../globalStyles';
+import React, {useState, useEffect} from 'react';
+import {TouchableOpacity} from 'react-native';
+import {
+  TimerDisplay,
+  TimerContainer,
+  InfoTextCont,
+  InfoText,
+  BtnCont,
+} from './styles.js';
+import {theme, PrimaryBtn} from '../../globalStyles';
 import moment from 'moment';
 import LinearGradient from 'react-native-linear-gradient';
 
+const StartStopTimer = ({navigation}) => {
+  const [startStop, setStartStop] = useState(true);
+  const [startTime, setStartTime] = useState('');
+  const [date, setDate] = useState('');
 
-const StartStopTimer = ({ navigation }) => {
+  const StopWatch = time => {
+    const calculateTimeLeft = () => {
+      const diff = +new Date() - time.time;
 
-    const [startStop, setStartStop] = useState(true);
-    const [startTime, setStartTime] = useState("");
-    const [date, setDate] = useState("");
+      let timeLeft = {};
 
-    const StopWatch = (time) => {
-        const calculateTimeLeft = () => {
-            const diff = +new Date() - time.time;
-
-            let timeLeft = {};
-
-            if (diff > 0) {
-                timeLeft = {
-                    hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-                    minutes: Math.floor((diff / 1000 / 60) % 60),
-                    seconds: Math.floor((diff / 1000) % 60)
-                }
-            }
-            return timeLeft;
+      if (diff > 0) {
+        timeLeft = {
+          hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((diff / 1000 / 60) % 60),
+          seconds: Math.floor((diff / 1000) % 60),
         };
+      }
+      return timeLeft;
+    };
 
         const [timer, setTimer] = useState({
             hours: 0,

@@ -1,13 +1,9 @@
-import React, { Component, useState } from 'react';
+import React from 'react';
 import {
     ScrollView,
-    View,
-    Text
 } from 'react-native';
-import styles from './styles';
 import { BarChart } from 'react-native-chart-kit';
 import { Dimensions } from "react-native";
-// import moment from "moment";
 import moment from "moment-timezone";
 import { GraphContainer } from './styles';
 import { GraphDate } from '../../screens/Activity/styles'
@@ -15,9 +11,7 @@ import { GraphDate } from '../../screens/Activity/styles'
 const screenWidth = Dimensions.get("window").width;
 const chartConfig = {
     backgroundColor: "#ffffff",
-    // backgroundGradientFrom: "#DA6645",
     backgroundGradientFromOpacity: 0,
-    // backgroundGradientTo: "#DA6645",
     backgroundGradientToOpacity: 0,
     color: () => `#DA6645`,
     labelColor: (opacity = 0.6) => `rgba(65, 65, 63, ${opacity})`,
@@ -25,7 +19,6 @@ const chartConfig = {
     barRadius: 2,
     decimalPlaces: 1,
 };
-
 
 const ActivityChart = ({ data, focus, weekly }) => {
     const labels = weekly ?
@@ -43,18 +36,13 @@ const ActivityChart = ({ data, focus, weekly }) => {
             let time = end.diff(start, 'hours');
             times[dayOfTheWeek] = times[dayOfTheWeek] + time;
         })
-
         duration = times;
+
     } else {
         duration = data.map(session => {
-
             let start = moment.tz(session.timeStart, "America/Vancouver");
             let end = moment.tz(session.timeEnd, "America/Vancouver");
-            // console.log('start', start.format());
-            // console.log('end', end.format())
-
             return end.diff(start, 'hours', true)
-            // return 100000
         })
     }
 
@@ -65,8 +53,8 @@ const ActivityChart = ({ data, focus, weekly }) => {
                 data: duration,
             },
         ],
-
     };
+
     return (
         <ScrollView>
             <GraphContainer >
@@ -76,7 +64,6 @@ const ActivityChart = ({ data, focus, weekly }) => {
                         focus.format('YYYY-MM-DD')}
                 </GraphDate>
                 <BarChart
-                    // style={graphStyle}
                     data={graphData}
                     width={screenWidth}
                     height={220}
@@ -85,9 +72,7 @@ const ActivityChart = ({ data, focus, weekly }) => {
                     withInnerLines={false}
                     fromZero
                     showBarTops={false}
-
                 />
-
             </GraphContainer>
         </ScrollView>
     )
