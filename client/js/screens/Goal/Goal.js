@@ -329,7 +329,7 @@ const GoalScreen = ({ navigation, page, setUser, user }) => {
                                 id: null,
                                 email: null
                             })
-                            navigation.navigate('Onboarding')
+                            navigation.navigate('OnLanding')
                         }}
                     >
                         <LogOutText>Log out</LogOutText>
