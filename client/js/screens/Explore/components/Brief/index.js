@@ -2,32 +2,49 @@ import React, {useEffect, useState, useContext} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import MapContext from '../../../../context/MapContext';
 import {GOOGLE_API_KEY} from '../../../../config';
+import styled from 'styled-components';
 const Brief = ({detail}) => {
-  const {userLocation} = useContext(MapContext);
+  const {userLocation, APIData} = useContext(MapContext);
   const {location} = detail.geometry;
   const [distance, setDistance] = useState();
 
   useEffect(() => {
-    const Url = `https://maps.googleapis.com/maps/api/directions/json?origin=${userLocation.latitude},${userLocation.longitude}&destination=${location.lat},${location.lng}&key=${GOOGLE_API_KEY}`;
+    const Url = userLocation
+      ? `https://maps.googleapis.com/maps/api/directions/json?origin=${userLocation.latitude},${userLocation.longitude}&destination=${location.lat},${location.lng}&key=${GOOGLE_API_KEY}`
+      : null;
     fetch(Url)
       .then(response => response.json())
       .then(data => setDistance(data.routes[0].legs[0].distance.text));
-  }, [userLocation]);
+  }, [userLocation, APIData]);
   return (
     <View>
-      <Text>{detail.name}</Text>
-      <Text>{distance}</Text>
-      <Text>{detail.vicinity}</Text>
+      <Box>
+        <Text style={styles.title}>{detail.name}</Text>
+        <Text>{distance}</Text>
+      </Box>
+      <Text style={styles.details}>{detail.vicinity}</Text>
     </View>
   );
 };
 
+const Box = styled.View`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+`;
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#2c3e50',
+  title: {
+    fontSize: 20,
+    color: '#303030',
+  },
+  distance: {
+    fontSize: 16,
+    color: '#303030',
+  },
+  details: {
+    fontSize: 12,
+    color: '#505050',
   },
 });
 

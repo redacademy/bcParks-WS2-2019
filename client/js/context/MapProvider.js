@@ -9,6 +9,7 @@ const MapProvider = ({children}) => {
   const [selectedMap, setSelectedMap] = useState();
   const [userLocation, setUserLocation] = useState();
   const [coords, setCoords] = useState([]);
+  const [arrived, setArrived] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(1);
   const [region, setRegion] = useState({
     latitude: 49.2479999,
@@ -55,6 +56,8 @@ const MapProvider = ({children}) => {
         setSelectedIndex,
         region,
         setRegion,
+        arrived,
+        setArrived,
       }}>
       {children}
     </MapContext.Provider>

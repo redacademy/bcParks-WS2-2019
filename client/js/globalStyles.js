@@ -50,13 +50,13 @@ export const SubHeading = styled.Text`
 export const PrimaryBtn = styled.Text`
   font-family: ${theme.bodyFont};
   font-size: ${theme.h2FontSize};
-  background-color: ${props =>
-    props.isStop ? theme.accentColor : theme.primaryColor};
+  background-color: ${({isStop}) =>
+    isStop ? theme.accentColor : theme.primaryColor};
   color: ${theme.invertTextColor};
   text-align: center;
   text-transform: capitalize;
   padding: 10px 80px;
-  border-radius: 25px;
+  border-radius: 23px;
   overflow: hidden;
 `;
 export const styles = StyleSheet.create({
