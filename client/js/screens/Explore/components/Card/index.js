@@ -9,6 +9,7 @@ const ImageWrap = styled.View`
   height: 161px;
   border-radius: 4px;
   overflow: hidden;
+  margin-bottom: 10px;
 `;
 
 const Card = ({detail}) => {
@@ -33,7 +34,7 @@ const Card = ({detail}) => {
             }
           />
         </ImageWrap>
-        <Brief detail={detail} />
+        <Brief detail={detail} limit={true} />
       </TouchableOpacity>
     </>
   );

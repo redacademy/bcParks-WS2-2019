@@ -6,13 +6,15 @@ import Carousel from 'react-native-snap-carousel';
 const Box = styled.View`
   padding: 15px;
 `;
-const MapSwiper = ({mapData, cardWidth, setSelectedMap, _carousel}) => {
+const MapSwiper = ({mapData, setSelectedMap, _carousel}) => {
+  const cardWidth = 330;
+
   const _renderItem = ({item, index}) => {
     return <Card detail={item} key={index} />;
   };
   return (
     <Box>
-      <Text style={styles.title}>Near By Green Spaces</Text>
+      <Text style={styles.title}>Nearby Green Spaces</Text>
       <Carousel
         ref={_carousel}
         data={mapData}
@@ -31,7 +33,7 @@ const MapSwiper = ({mapData, cardWidth, setSelectedMap, _carousel}) => {
 };
 const styles = StyleSheet.create({
   title: {
-    fontSize: 20,
+    fontSize: 24,
     letterSpacing: -0.14,
     marginBottom: 14,
     color: '#303030',
