@@ -1,4 +1,4 @@
-import React, {useContext, useEffect } from "react"
+import React, {useContext, useEffect, useState } from "react"
 import { withNavigation } from 'react-navigation';
 import { Text } from "react-native"
 import Home from "./Home"
@@ -29,23 +29,18 @@ const QUERY_GOALS = gql`
 const HomeContainer = ({ navigation }) => {
     const {user} = useContext(AuthContext);
     const { sample } = useContext(ProgressContext);
+    const [ currentUser, setCurrentUser ] = useState();
 
-    // const { loading: sessionLoading, error: sessionError, data: sessionData } = 
-    //     useQuery(QUERY_SESSIONS, {
-    //         variables: {
-    //             email: user.email || "admin@gmail.com"
-    //         }
-    //     });
+    useEffect(()=> {
+        setCurrentUser(user.id)
+    }, [user.id])
     
     const { loading: goalLoading, error: goalError, data: goalData } = useQuery(QUERY_GOALS, {variables:{
         userId: user.id
     }});
 
-            console.log('sample', sample)
-            console.log('user', user)
-            console.log('containerNav', navigation)
 
-            if (goalLoading || sample.length === 0) {
+            if (goalLoading || currentUser!==user.id) {
                 return (
                     <Text>Loading</Text>
                 )
@@ -53,8 +48,11 @@ const HomeContainer = ({ navigation }) => {
                 return (
                     <Text>Error</Text>
                 )
-            } else {
-                console.log("goalData", goalData)
+            } else if(user.id === null && sample.length === 0) {
+                return (
+                    <Text>Loading</Text>
+                )
+            } else {                
                 return (
                     <Home goalData={goalData} navigation={navigation} user={user} sample={sample}/>
                 )

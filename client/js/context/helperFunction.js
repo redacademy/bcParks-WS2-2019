@@ -11,7 +11,6 @@ export default helper = (sessions, user) => {
             userData.push(session)
         }
     })
-    console.log('userData', userData)
     const group = (session, date) => {
         return session.reduce(function (acc, obj) {
             let key = moment(obj[date]).format('YYYY-MM-DD');

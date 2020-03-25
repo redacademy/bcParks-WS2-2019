@@ -104,47 +104,48 @@ const TextInputScreen = ({ navigation, params }) => {
             <InputTextBox update={updateJournal} journal={journal} />
             <NextBtnCont>
                 <TouchableOpacity onPress={() => {
-                    console.log('params', params)
-                    console.log('selected', selectedMap)
-                    CreateSession({
-                        variables: {
-                            timeStart: params.startTime,
-                            timeEnd: params.endTime,
-                            mood: params.mood,
-                            journal: journal,
-                            date: params.date,
-                            externalId: "Random",
-                            locationName: selectedMap.name,
-                            vicinity: selectedMap.vicinity,
-                            locLat: selectedMap.geometry.location.lat,
-                            locLng: selectedMap.geometry.location.lng,
-                            neLat: selectedMap.geometry.viewport.northeast.lat,
-                            neLng: selectedMap.geometry.viewport.northeast.lng,
-                            swLat: selectedMap.geometry.viewport.southwest.lat,
-                            swLng: selectedMap.geometry.viewport.southwest.lng,
-                            userId: user.id,
-                        },
-                        refetchQueries: [{
-                            query: gql`
-                            query {
-                                sessions(
-                                    where: {
-                                        user: {
-                                            id: ${user.id}
-                                        }
-                                    }
-                                ){
-                                    timeStart
-                                    timeEnd
-                                    date
-                                    user{
-                                        id
-                                    }
-                                }
-                            }
-                        `
-                        }]
-                    })
+                    // console.log('params', params)
+                    // console.log('selected', selectedMap)
+                    // CreateSession({
+                    //     variables: {
+                    //         timeStart: params.startTime,
+                    //         timeEnd: params.endTime,
+                    //         mood: params.mood,
+                    //         journal: journal,
+                    //         date: params.date,
+                    //         externalId: "Random",
+                    //         locationName: selectedMap.name,
+                    //         vicinity: selectedMap.vicinity,
+                    //         locLat: selectedMap.geometry.location.lat,
+                    //         locLng: selectedMap.geometry.location.lng,
+                    //         neLat: selectedMap.geometry.viewport.northeast.lat,
+                    //         neLng: selectedMap.geometry.viewport.northeast.lng,
+                    //         swLat: selectedMap.geometry.viewport.southwest.lat,
+                    //         swLng: selectedMap.geometry.viewport.southwest.lng,
+                    //         userId: user.id,
+                    //     },
+                    //     refetchQueries: [{
+                    //         query: gql`
+                    //         query {
+                    //             sessions(
+                    //                 where: {
+                    //                     user: {
+                    //                         id: ${user.id}
+                    //                     }
+                    //                 }
+                    //             ){
+                    //                 timeStart
+                    //                 timeEnd
+                    //                 date
+                    //                 user{
+                    //                     id
+                    //                 }
+                    //             }
+                    //         }
+                    //     `
+                    //     }]
+                    // })
+                    alert('A session has been created')
                     navigation.popToTop()
                     navigation.navigate('Home')
                 }}>
@@ -152,14 +153,15 @@ const TextInputScreen = ({ navigation, params }) => {
                 </TouchableOpacity>
             </NextBtnCont>
             <TouchableOpacity onPress={() => {
-                CreateSession({
-                    variables: {
-                        timeStart: params.startTime,
-                        timeEnd: params.endTime,
-                        date: params.date,
-                        mood: params.mood,
-                    }
-                })
+                // CreateSession({
+                //     variables: {
+                //         timeStart: params.startTime,
+                //         timeEnd: params.endTime,
+                //         date: params.date,
+                //         mood: params.mood,
+                //     }
+                // })
+                alert('A session has been created')
                 navigation.popToTop()
                 navigation.navigate('Home')
             }}>

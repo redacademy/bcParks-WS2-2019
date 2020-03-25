@@ -44,10 +44,9 @@ const ProgressProvider = ({children}) => {
     useEffect(() => {
         fetchData(QUERY_SESSIONS).then(data => {
             let sessions = data.sessions;
-            console.log('sessions', sessions)
             setSample(helper(sessions, user))
         })
-    }, [user])
+    }, [])
 
     return (
         <ProgressContext.Provider value={{sample, writeStore, getItem, update, setSample}}>

@@ -13,10 +13,12 @@ import LinearGradient from 'react-native-linear-gradient';
 import GoalContainer from '../Goal';
 
 const HomeScreen = ({ navigation, sessionData, goalData, user, sample }) => {
-    console.log('HomeUser', user)
+
+
     const { days } = goalData.goal;
-    console.log('days', days)
-    console.log('sample', sample)
+
+
+
     const [num, setNum] = useState('')
     const [today, setToday] = useState(0);
     const [goalIndex, setGoalIndex] = useState(0)
@@ -25,7 +27,6 @@ const HomeScreen = ({ navigation, sessionData, goalData, user, sample }) => {
         for (let i = 0; i < sample.length; i++) {
             if (sample[i].groupedDate === num) {
                 setToday(sample[i].diff)
-                console.log('같은날', sample[i].diff)
                 break;
             } else {
                 setToday(0)
@@ -36,11 +37,10 @@ const HomeScreen = ({ navigation, sessionData, goalData, user, sample }) => {
         let p = 0;
         return p = days[index].hours * 3600000
     }
-    // console.log('num', num)
-    // console.log('today', today)
+
     useEffect(() => {
         display()
-    }, [num])
+    }, [num, sample])
 
     return (
         <LinearGradient colors={['#FFFFFF', '#8CBE82']}>
@@ -68,9 +68,6 @@ const HomeScreen = ({ navigation, sessionData, goalData, user, sample }) => {
                                 break;
                             }
                         }
-                        console.log('date', date.dateString)
-                        // console.log('progress', progress)
-                        // console.log('dayGoal', percent(goalIndex))
                         return (
                             <ProgressCircle
                                 percent={(progress / dayGoal) * 100}
@@ -84,7 +81,6 @@ const HomeScreen = ({ navigation, sessionData, goalData, user, sample }) => {
                                     onPress={() => {
                                         setNum(date.dateString)
                                         setGoalIndex(moment.tz(date.dateString, "America/Vancouver").format('d'))
-                                        console.log('goalIndex', goalIndex)
                                     }}
                                 >
                                     {date.day}</Text>

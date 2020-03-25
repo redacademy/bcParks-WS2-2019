@@ -97,7 +97,6 @@ const GoalScreen = ({ navigation, page, setUser }) => {
     const [UpdateGoals] = useMutation(Mutation_UpdateGoals);
     const [createGoal] = useMutation(Mutation_CreateGoal);
     const { user } = useContext(AuthContext);
-    console.log('user', user)
 
     let goalArr = [
         {title: "Sunday",hours: 1},
@@ -271,9 +270,9 @@ const GoalScreen = ({ navigation, page, setUser }) => {
 
                 <Flex>
                     <TouchableOpacity onPress={() => {
-                        navigation.navigate('Tabs')
+                        navigation.goBack()
                     }}>
-                        <BtnText isSkip>skip</BtnText>
+                        <BtnText isSkip>Back</BtnText>
                     </TouchableOpacity>
                     <DotNavView>
                         <DotNav activeIndex={3} />
