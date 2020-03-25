@@ -1,7 +1,5 @@
 import { theme } from '../../globalStyles';
 import styled from 'styled-components';
-import { StyleSheet } from 'react-native';
-
 
 export const FlatListContainer = styled.FlatList`
     background-color: #8cbe82;
@@ -18,7 +16,6 @@ export const ListContainer = styled.View`
     width: 90%;
     margin: 5px auto;
 `
-
 export const ActivityDetails = styled.View`
     display: flex;
     flex-direction: column;
@@ -31,13 +28,11 @@ export const DetailRow = styled.View`
     justify-content: flex-start;
     padding: 4px;
 `
-
 export const ListItem = styled.Text`
     font-family: ${theme.bodyFont};
     font-size: 15px; 
     color: ${theme.grayColor};
 `
-
 export const NotebookIcon = styled.View`
     padding-right: 15px;
 `

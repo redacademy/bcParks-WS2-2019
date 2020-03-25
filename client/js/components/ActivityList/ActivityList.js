@@ -3,7 +3,6 @@ import {
     View,
     TouchableOpacity
 } from 'react-native';
-// import moment from "moment";
 import moment from "moment-timezone";
 import Mood from '../Mood/Mood';
 import {
@@ -11,7 +10,6 @@ import {
     ActivityDetails,
     FlatListContainer,
     ListItem,
-    styles,
     DetailRow,
     NotebookIcon
 } from './styles';
@@ -21,11 +19,9 @@ import Icon3 from 'react-native-vector-icons/SimpleLineIcons';
 
 const ActivityList = ({ data, navigation, weekly }) => {
     let transformedData;
-    console.log('listData', data)
     if (weekly) {
         let groupedSessions = [];
         data.map(session => {
-            console.log('weeklySession', session)
             const start = moment.tz(session.timeStart, "America/Los_Angeles");
             let timeStartDisplay = start.format('dddd');
             let dayOfTheWeekIndex = start.format('d');
@@ -47,7 +43,6 @@ const ActivityList = ({ data, navigation, weekly }) => {
                     count: 1,
                     dayData: [session]
                 }
-                console.log('grouped', groupedSessions)
             }
         });
 
@@ -79,7 +74,6 @@ const ActivityList = ({ data, navigation, weekly }) => {
             let min = diff % 60;
             let duration = `${hours ? hours + 'h ' : ''}${min}min`;
             let { mood, locations, journal } = session;
-            console.log('start', timeStart);
 
             return {
                 duration,
@@ -93,7 +87,7 @@ const ActivityList = ({ data, navigation, weekly }) => {
             }
         });
     }
-    console.log('transformedData', transformedData)
+
     return (
         <View>
             <FlatListContainer

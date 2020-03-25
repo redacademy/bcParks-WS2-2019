@@ -1,12 +1,10 @@
 import styled from 'styled-components';
 import { theme } from '../../globalStyles';
-import { StyleSheet } from 'react-native';
 
 export const HeadContainer = styled.FlatList`
     height: 100%;
     background-color: #8cbe82;
 `
-
 export const Day = styled.Text`
     margin-top: 40px;
     text-align: center;
@@ -23,9 +21,6 @@ export const JournalBox = styled.View`
     border-radius: 5px;
     background-color: #ffffff;
     text-align: center;
-
-
-
 `
 export const TimesContainer = styled.View`
     display: flex;
@@ -33,7 +28,6 @@ export const TimesContainer = styled.View`
     justify-content: space-evenly;
     align-items: center;
     padding: 0 20px;
-
 `
 export const DurationText = styled.Text`
     font-family: ${theme.bodyFont};
@@ -52,29 +46,25 @@ export const LocationText = styled.Text`
     color: #303030;
     font-weight: 300;
     padding-left: 5px;
-
 `
 export const JournalText = styled.Text`
     font-family: ${theme.bodyFont};
     font-size: 14px;
     color: #323232;
     padding-left: 5px;
-
 `
 export const LogContainer = styled.View`
     display: flex;
     flex-direction: column;
     width: 70%;
     padding: 20px;
-    
 `
 export const IconDurationRow = styled.View`
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    margin: 10px 0;
-    
+    margin: 10px 0;   
 `
 export const IconLocationRow = styled.View`
     display: flex;
