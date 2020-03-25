@@ -3,14 +3,11 @@ import styled from 'styled-components';
 import { theme } from '../../globalStyles';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 
-
-
 export const MoodText = styled.Text`
     font-family: ${theme.bodyFont};
     font-size: 16px;
     color: #303030;
 `
-
 const Mood = ({ moodValue, showText, iconSize }) => {
     let text;
     let iconName;
