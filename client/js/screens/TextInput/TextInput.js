@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { theme, PrimaryBtn } from '../../globalStyles';
 import { NextBtnCont, InputSkipText } from '../Timer/styles';
@@ -7,6 +7,7 @@ import { gql } from 'apollo-boost';
 import InputTextBox from '../../components/InputText/InputText';
 import styled from 'styled-components';
 import LinearGradient from 'react-native-linear-gradient';
+import MapContext from '../../context/MapContext';
 
 const InputHeading = styled.Text`
     font-size:${theme.bodyFontSize};
@@ -38,14 +39,14 @@ const Mutation_CreateSession = gql`
 `
 
 const TextInputScreen = ({ navigation, params }) => {
-
+    const { selectedMap } = useContext(MapContext)
     const [journal, setJournal] = useState("");
     const [CreateSession] = useMutation(Mutation_CreateSession);
 
     const updateJournal = text => {
         setJournal(text)
     }
-
+    console.log('map', selectedMap.name)
     return (
         <LinearGradient colors={['#FFFFFF', '#8CBE82']}>
             <InputHeading>Write about your experience with Green Time.</InputHeading>

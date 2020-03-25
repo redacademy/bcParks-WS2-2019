@@ -21,12 +21,12 @@ export const DayButtonContainer = styled.View`
 export const DayButton = styled.TouchableOpacity`
     width: 32px;
     height: 32px
-    background-color: ${props => props.toggle ? '#cc6c4e' : theme.invertTextColor};
+    background-color: ${props => props.toggle || props.everyday==true ? '#cc6c4e' : theme.invertTextColor};
     margin: 20px 10px;
     border-radius: 10px;
 `
 export const DayTextBtn = styled.Text`
-    color: ${props => props.toggle ? theme.invertTextColor : theme.bodyTextColor};
+    color: ${props => props.toggle || props.everyday==true ? theme.invertTextColor : theme.bodyTextColor};
     text-align: center;
     margin: auto 0;
 `

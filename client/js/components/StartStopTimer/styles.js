@@ -6,7 +6,7 @@ export const TimerDisplay = styled.Text`
     font-weight: 600;
     font-size: 50px;
     color: ${theme.grayColor};
-    margin: 35px auto;
+    margin: ${props=>props.theme ==="zero"? "35px auto" : 0};
 `
 export const TimerContainer = styled.View`
     display: flex;
