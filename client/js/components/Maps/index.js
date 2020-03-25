@@ -56,35 +56,8 @@ const Maps = ({children, navigation, _carousel}) => {
     region,
     setRegion,
     setArrived,
+    GoogleAPIFetch,
   } = useContext(MapContext);
-
-  const calcRadius = () => region.longitudeDelta * 40000;
-  const GoogleAPIFetch = (lat, lng) => {
-    const dataURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${calcRadius()}&type=park&fields=place_id,name,opening_hours,formatted_address,geometry&key=${GOOGLE_API_KEY}`;
-    fetch(dataURL)
-      .then(response => response.json())
-      .then(data => setAPIData(data.results))
-      .then(() => AddDataFromGoogleAPI());
-  };
-  const AddDataFromGoogleAPI = () => {
-    APIData.map(APIMap => {
-      const mutation = addMapMutation(
-        APIMap.id,
-        APIMap.name,
-        APIMap.vicinity,
-        APIMap.photos ? APIMap.photos[0].photo_reference : '',
-        APIMap.plus_code,
-        APIMap.geometry.location,
-        APIMap.geometry.viewport.northeast,
-        APIMap.geometry.viewport.southwest,
-      );
-      mapData.filter(map => {
-        if (map.externalId !== APIMap.id) {
-          fetchData(mutation);
-        }
-      });
-    });
-  };
 
   const mergeLot = (latitude, longitude) => `${latitude}, ${longitude}`;
   useEffect(() => {
@@ -123,19 +96,12 @@ const Maps = ({children, navigation, _carousel}) => {
     setSelectedMap(map);
     setSelectedIndex(index);
   };
-  useEffect(() => {
-    if (userLocation) {
-      GoogleAPIFetch(userLocation.latitude, userLocation.longitude);
-    }
-  }, [userLocation]);
+
   useEffect(() => {
     if (_carousel) {
       _carousel.current.snapToItem(selectedIndex);
     }
   }, [selectedIndex]);
-  useEffect(() => {
-    setSelectedMap(APIData[0]);
-  }, [APIData]);
 
   const getMarkers = () =>
     APIData.map((map, index) => {
