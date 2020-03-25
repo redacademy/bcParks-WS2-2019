@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, TouchableOpacity, TextInput } from 'react-native';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
@@ -25,14 +25,14 @@ import DaysButton from '../../components/DaysButton/DaysButton';
 import { Heading, PrimaryBtn, NoFlexHeaderCont } from '../../globalStyles';
 import Dash from 'react-native-dash';
 import DotNav from '../../components/DotNav/DotNav';
+import AuthContext from '../../context/AuthContext';
 
 
 const Mutation_UpdateGoals = gql`
-    mutation UpdateGoals($userId: ID!, $newDays: [DaysCreateInput!], $titleArr: [String!], $hours: Float) {
+    mutation UpdateGoals($userId: ID!, $titleArr: [String!], $hours: Float) {
         updateGoal(
             data: {
                 days: {
-                    create: $newDays
                     updateMany: {
                         where: {
                             title_in: $titleArr
@@ -87,7 +87,7 @@ const Mutation_CreateGoal = gql`
     }
 `
 
-const GoalScreen = ({ navigation, page, setUser, user }) => {
+const GoalScreen = ({ navigation, page, setUser }) => {
     const [type, setType] = useState("daily");
     const [current, setCurrent] = useState(true)
     const [days, setDays] = useState([]);
@@ -96,8 +96,19 @@ const GoalScreen = ({ navigation, page, setUser, user }) => {
     const [everyday, setEveryday] = useState(false)
     const [UpdateGoals] = useMutation(Mutation_UpdateGoals);
     const [createGoal] = useMutation(Mutation_CreateGoal);
+    const { user } = useContext(AuthContext);
+    console.log('user', user)
 
-    let goalArr = []
+    let goalArr = [
+        {title: "Sunday",hours: 1},
+        {title: "Monday",hours: 1},
+        {title: "Tuesday",hours: 1},
+        {title: "Wednesday",hours: 1},
+        {title: "Thursday",hours: 1},
+        {title: "Friday",hours: 1},
+        {title: "Saturday",hours: 1},
+        {title: "weekly", hours: 7}
+    ]
 
     const addDays = (day) => {
         days.includes(day) ?
@@ -277,13 +288,22 @@ const GoalScreen = ({ navigation, page, setUser, user }) => {
                             setText("");
                             alert("Please enter more than 1 hour")
                         } else {
-                            days.forEach(day => {
-                                goalArr.push({
-                                    title: day,
-                                    hours: hours
-                                })
+                            days.forEach(day=>{
+                                for(let i = 0; i<goalArr.length; i++){
+                                    if(goalArr[i].title === day){
+                                        goalArr[i].hours = hours
+                                        break;
+                                    }
+                                }
                             })
+                            
 
+                            createGoal({
+                                variables: {
+                                    goalArr: goalArr,
+                                    userId: user.id
+                                }
+                            })
                             setHours(1);
                             setText("");
                             alert("Goal has been updated")
@@ -297,7 +317,10 @@ const GoalScreen = ({ navigation, page, setUser, user }) => {
 
                 <SaveContainer>
                     <TouchableOpacity title="Save" onPress={() => {
-
+                        if(user.id==null){
+                            alert("Please sign in first.")
+                        } else {
+                        
                         if (days.length === 0) {
                             alert("Please select at least one day")
                         } else if (isNaN(hours)) {
@@ -310,16 +333,16 @@ const GoalScreen = ({ navigation, page, setUser, user }) => {
                             UpdateGoals({
                                 variables: {
                                     hours: hours,
-                                    title: days
+                                    titleArr: days,
+                                    userId: user.id
                                 }
                             });
                             setHours(1);
                             setText("");
                             alert("Goal has been updated")
-                            navigation.popToTop()
-                            navigation.push('Home')
+                            navigation.navigate('Home')
                         }
-
+                        }
                     }} >
                         <PrimaryBtn>Save</PrimaryBtn>
                     </TouchableOpacity>
@@ -329,10 +352,11 @@ const GoalScreen = ({ navigation, page, setUser, user }) => {
                                 id: null,
                                 email: null
                             })
-                            navigation.navigate('Onboarding')
+                            navigation.popToTop()
+                            navigation.navigate('User')
                         }}
                     >
-                        <LogOutText>Log out</LogOutText>
+                        <LogOutText>{user.id==null ? "Sign In" : "Log out"}</LogOutText>
                     </LogOutButton>
                 </SaveContainer>
             }

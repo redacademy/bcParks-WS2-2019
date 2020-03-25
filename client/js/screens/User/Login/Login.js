@@ -59,9 +59,6 @@ const LoginScreen = ({ navigation, setUser }) => {
                 </TouchableOpacity>
             </LoginBtnCont>
             <LinkCont>
-                <TouchableOpacity onPress={() => navigation.navigate('Tabs')}>
-                    <TextLink>skip to Home</TextLink>
-                </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.push('SignUp')}>
                     <TextLink>Create an Account</TextLink>
                 </TouchableOpacity>

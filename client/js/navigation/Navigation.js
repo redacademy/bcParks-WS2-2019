@@ -40,6 +40,7 @@ const UserStackScreen = () => {
     <UserStack.Navigator initialRouteName="Login" headerMode="none">
       <UserStack.Screen name="Login" component={LoginContainer} />
       <UserStack.Screen name="SignUp" component={SignUpContainer} />
+      <UserStack.Screen name="Goal" component={GoalScreen} />
     </UserStack.Navigator>
   );
 };

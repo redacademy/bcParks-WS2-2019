@@ -11,7 +11,7 @@ import AuthContext from "../../context/AuthContext";
 
 const OnGoal = ({ navigation, route }) => {
     const params = route.params
-    const { user } = useContext(AuthContext)
+    
     return (
         <LinearGradient colors={['#FFFFFF', '#8CBE82']}>
             <HeaderCont>
@@ -21,7 +21,7 @@ const OnGoal = ({ navigation, route }) => {
                 <Heading>Let's set a goal</Heading>
             </HeaderCont>
             <SubHeading>2 hours in nature each week, and at least 20mins each time is recommended. Of course, more the better! </SubHeading>
-            <Goal navigation={navigation} page={params.page} user={user}/>
+            <Goal navigation={navigation} page={params.page} />
         </LinearGradient>
     )
 }
