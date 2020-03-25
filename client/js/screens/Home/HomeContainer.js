@@ -5,13 +5,22 @@ import Home from "./Home"
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 import AuthContext from "../../context/AuthContext";
+import ProgressContext from '../../context/ProgressContext'
 
 const QUERY_GOALS = gql`
-    query {
-        goals{
+    query goal($userId: ID ){
+        goal(
+            where: {
+                id: $userId
+            }
+        ){
             id
             days{
                 title
+                hours
+            }
+            user{
+                id
             }
         }
     }
@@ -19,6 +28,7 @@ const QUERY_GOALS = gql`
 
 const HomeContainer = ({ navigation }) => {
     const {user} = useContext(AuthContext);
+    const { sample } = useContext(ProgressContext);
 
     // const { loading: sessionLoading, error: sessionError, data: sessionData } = 
     //     useQuery(QUERY_SESSIONS, {
@@ -26,13 +36,16 @@ const HomeContainer = ({ navigation }) => {
     //             email: user.email || "admin@gmail.com"
     //         }
     //     });
-    console.log('goalQuery', useQuery(QUERY_GOALS))
-    const { loading: goalLoading, error: goalError, data: goalData } = useQuery(QUERY_GOALS);
+    
+    const { loading: goalLoading, error: goalError, data: goalData } = useQuery(QUERY_GOALS, {variables:{
+        userId: user.id
+    }});
 
-
+            console.log('sample', sample)
+            console.log('user', user)
             console.log('containerNav', navigation)
 
-            if (goalLoading) {
+            if (goalLoading || sample.length === 0) {
                 return (
                     <Text>Loading</Text>
                 )
@@ -41,8 +54,9 @@ const HomeContainer = ({ navigation }) => {
                     <Text>Error</Text>
                 )
             } else {
+                console.log("goalData", goalData)
                 return (
-                    <Home goalData={goalData} navigation={navigation} user={user} />
+                    <Home goalData={goalData} navigation={navigation} user={user} sample={sample}/>
                 )
             }
 
