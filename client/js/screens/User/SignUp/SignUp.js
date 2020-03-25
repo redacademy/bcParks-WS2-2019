@@ -49,14 +49,14 @@ const SignUpScreen = ({ navigation, setUser }) => {
             <FormCont>
                 <InputCont>
                     <InputLabel>Email</InputLabel>
-                    <StyledInput onChangeText={(text) => { 
+                    <StyledInput onChangeText={(text) => {
                         setEmail(text)
                         setId(text)
-                        }} />
+                    }} />
                 </InputCont>
                 <InputCont>
                     <InputLabel>Password</InputLabel>
-                    <StyledInput onChangeText={(text) => { setPassword(text) }} />
+                    <StyledInput secureTextEntry={true} onChangeText={(text) => { setPassword(text) }} />
                 </InputCont>
             </FormCont>
             <SignBtnCont>
