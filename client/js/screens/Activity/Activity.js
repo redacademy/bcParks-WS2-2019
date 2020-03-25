@@ -73,7 +73,7 @@ const ActivityScreen = ({
 
     return (
       <View>
-        <BackButton />
+        <BackButton to="Home" />
         <HeaderCont>
           <Heading>Activity</Heading>
         </HeaderCont>

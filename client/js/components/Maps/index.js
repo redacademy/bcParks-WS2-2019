@@ -148,7 +148,7 @@ const Maps = ({children, navigation, _carousel}) => {
         <Polygon coordinates={QueenElizabeth} />
         <Polygon coordinates={VanDusen} />
       </MapView>
-      <BackButton />
+      <BackButton to="Home" />
       <SearchButton
         onPress={() => GoogleAPIFetch(region.latitude, region.longitude)}>
         <Text style={styles.button}>Search in this area</Text>
