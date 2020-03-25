@@ -11,7 +11,7 @@ export const PeriodButtons = styled.TouchableOpacity`
     width: 152px;
     height: 32px;
     border-radius: 16px;
-    background-color:  ${props => props.showWeekly ? '#cc6c4e' : theme.invertTextColor};
+    background-color:  ${props => props.showWeekly ? '#66b17e' : theme.invertTextColor};
     border: 1px solid #66b17e;
 `
 export const PeriodText = styled.Text`

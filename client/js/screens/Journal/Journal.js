@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     View,
-    Text,
     TouchableOpacity
 } from 'react-native';
 import moment from "moment";
@@ -9,8 +8,6 @@ import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/Entypo';
 import Icon3 from 'react-native-vector-icons/MaterialIcons';
 import Mood from '../../components/Mood/Mood';
-
-
 import {
     Day,
     TimesContainer,
@@ -28,7 +25,6 @@ import Dash from 'react-native-dash';
 import { theme, HeaderCont, styles } from '../../globalStyles';
 
 const JournalScreen = ({ params, navigation }) => {
-    //console.log(params)
     let listData = [];
     if (params.weekly) {
         listData = params.item.dayData.map(session => {
@@ -60,7 +56,6 @@ const JournalScreen = ({ params, navigation }) => {
         listData.push(params.item)
     }
     let diff = (moment(listData.timeEnd)).diff((moment(listData.timeStart)));
-
     let duration = moment(diff).format('H [Hour] mm [Minutes]');
 
     return (
@@ -74,7 +69,6 @@ const JournalScreen = ({ params, navigation }) => {
             <HeadContainer
                 data={listData}
                 renderItem={({ item }) => {
-                    // console.log('item', item)
                     return (
                         <JournalBox>
                             <TimesContainer>
@@ -106,10 +100,6 @@ const JournalScreen = ({ params, navigation }) => {
                 keyExtractor={item => item.timeStart}
             />
 
-
-
-
-            {/* </HeadContainer> */}
         </View>
     );
 };

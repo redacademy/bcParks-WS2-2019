@@ -1,5 +1,5 @@
-import JournalContainer from "./JournalContainer"
-import Journal from "./Journal"
+import JournalContainer from "./JournalContainer";
+import Journal from "./Journal";
 
-export { Journal }
-export default JournalContainer
+export { Journal };
+export default JournalContainer;
