@@ -11,11 +11,11 @@ export const PeriodButtons = styled.TouchableOpacity`
     width: 152px;
     height: 32px;
     border-radius: 16px;
-    background-color:  #fff;
+    background-color:  ${props => props.showWeekly ? '#cc6c4e' : theme.invertTextColor};
     border: 1px solid #66b17e;
 `
 export const PeriodText = styled.Text`
-    color: #66b17e;
+    color: ${props => props.showWeekly ? theme.invertTextColor : "#66b17e"};
     text-align: center;
     font-family: ${theme.bodyFont};
     font-size: ${theme.bodyFontSize};

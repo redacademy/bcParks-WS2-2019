@@ -1,8 +1,12 @@
+import { StyleSheet } from 'react-native';
 import styled from 'styled-components';
 import { theme } from '../../globalStyles';
 
+export const TopMarginCont = styled.View`
+    marginTop: 50px;    
+`
 export const FormCont = styled.View`
-    margin: 50px;
+    margin: 100px 50px;
 `
 export const InputCont = styled.View`
     margin: 20px 0;
@@ -33,12 +37,13 @@ export const TextLink = styled.Text`
     color ${theme.bodyTextColor};
     text-align: center;
     margin: 0 0 20px;
+    text-decoration: underline;
 `
 export const LoginBtnCont = styled.View`
     margin: 40px auto 0;
 `
 export const SignBtnCont = styled.View`
-    margin: 0 auto;
+    margin: 100px auto 100px;
 `
 export const PwBtnCont = styled.View`
     margin: 200px auto 0;
@@ -49,3 +54,14 @@ export const LinkCont = styled.View`
 export const PwLinkCont = styled.View`
     margin: 50px 0 100px;
 `
+export const styles = StyleSheet.create({
+    backIconLogin: {
+        marginLeft: 10,
+        marginRight: 120,
+        marginVertical: 40
+    },
+    backIconSignUp: {
+        marginHorizontal: 10,
+        marginVertical: 40
+    },
+});

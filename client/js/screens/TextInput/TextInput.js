@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
-import { theme, ScreenBkgCont, PrimaryBtn } from '../../globalStyles';
+import { theme, PrimaryBtn } from '../../globalStyles';
 import { NextBtnCont, InputSkipText } from '../Timer/styles';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import InputTextBox from '../../components/InputText/InputText';
 import styled from 'styled-components';
+import LinearGradient from 'react-native-linear-gradient';
 
 const InputHeading = styled.Text`
     font-size:${theme.bodyFontSize};
     font-family: ${theme.bodyFont};
     width: 70%
-    margin: 70px 35px 40px;
+    margin: 100px 35px 40px;
     line-height: 30px;
 `
 
@@ -44,11 +45,11 @@ const TextInputScreen = ({ navigation, params }) => {
     const updateJournal = text => {
         setJournal(text)
     }
-    
+
     return (
-        <ScreenBkgCont>
+        <LinearGradient colors={['#FFFFFF', '#8CBE82']}>
             <InputHeading>Write about your experience with Green Time.</InputHeading>
-            <InputTextBox update={updateJournal} journal={journal}/>
+            <InputTextBox update={updateJournal} journal={journal} />
             <NextBtnCont>
                 <TouchableOpacity onPress={() => {
                     CreateSession({
@@ -60,7 +61,7 @@ const TextInputScreen = ({ navigation, params }) => {
                             journal: journal,
                         },
                         refetchQueries: [{
-                            query: gql `
+                            query: gql`
                             query {
                                 sessions{
                                     timeStart
@@ -91,7 +92,7 @@ const TextInputScreen = ({ navigation, params }) => {
             }}>
                 <InputSkipText>skip</InputSkipText>
             </TouchableOpacity>
-        </ScreenBkgCont>
+        </LinearGradient>
     );
 }
 

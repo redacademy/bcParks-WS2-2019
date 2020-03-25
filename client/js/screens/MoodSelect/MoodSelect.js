@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
-import { ScreenBkgCont, Heading, SubHeading, PrimaryBtn } from '../../globalStyles';
+import { Heading, SubHeading, PrimaryBtn, NoFlexHeaderCont } from '../../globalStyles';
 import { NextBtnCont, InputSkipText } from '../Timer/styles';
+import LinearGradient from 'react-native-linear-gradient';
 import MoodSlider from '../../components/MoodSlider/MoodSlider';
 
 
 const MoodSelectScreen = ({ navigation, params }) => {
     const [mood, updateMood] = useState(2.5)
     const [newParams, updateParams] = useState(params)
-    
+
     return (
-        <ScreenBkgCont>
-            <Heading>Amazing!</Heading>
+        <LinearGradient colors={['#FFFFFF', '#8CBE82']}>
+            <NoFlexHeaderCont>
+                <Heading>Amazing!</Heading>
+            </NoFlexHeaderCont>
             <SubHeading>How are you feeling?</SubHeading>
-            <MoodSlider mood={mood} update={updateMood}/>
+            <MoodSlider mood={mood} update={updateMood} />
             <NextBtnCont>
                 <TouchableOpacity onPress={() => {
                     params.mood = mood;
@@ -28,7 +31,7 @@ const MoodSelectScreen = ({ navigation, params }) => {
             }}>
                 <InputSkipText>Skip</InputSkipText>
             </TouchableOpacity>
-        </ScreenBkgCont>
+        </LinearGradient>
     );
 }
 

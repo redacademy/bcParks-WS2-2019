@@ -17,7 +17,7 @@ type Session {
   
   type Map {
     id: ID! @id
-    externalId: String!
+    externalId: String! @unique
     name: String!
     geometry: Geometry!
     vicinity: String!
@@ -71,14 +71,14 @@ type Session {
 
   type Goal {
     id : ID! @id
-    hours: Float!
-    days: Days!
+    days: [Days]!
     user: User!
   }
 
   type Days {
     id: ID! @id
     title: String!
+    hours: Float!
   }
 
   type Progress {

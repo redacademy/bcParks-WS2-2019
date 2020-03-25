@@ -1,7 +1,7 @@
-import React, {useContext} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import React, { useContext } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Explore from '../assets/images/Explore';
 import Timer from '../assets/images/Timer';
 import Activity from '../assets/images/Activity';
@@ -13,23 +13,11 @@ import MoodSelectScreen from '../screens/MoodSelect';
 import TextInputScreen from '../screens/TextInput';
 import GoalScreen from '../screens/Goal';
 import JournalScreen from '../screens/Journal';
-import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
-
-import {
-  OnLanding,
-  OnLocation,
-  OnTime,
-  OnActivity,
-  OnGoal,
-  OnEnd,
-} from '../screens/Onboarding';
-import {
-  LoginContainer,
-  SignUpContainer,
-  ForgotPwContainer,
-} from '../screens/User';
+import { OnLanding, OnLocation, OnTime, OnActivity, OnGoal, OnEnd } from '../screens/Onboarding';
+import { LoginContainer, SignUpContainer } from '../screens/User';
 import MapContext from '../context/MapContext';
-import {theme} from '../globalStyles'
+import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
+import { theme } from '../globalStyles'
 
 const OnboardingStack = createStackNavigator();
 const OnboardingStackScreen = () => {
@@ -52,7 +40,6 @@ const UserStackScreen = () => {
     <UserStack.Navigator initialRouteName="Login" headerMode="none">
       <UserStack.Screen name="Login" component={LoginContainer} />
       <UserStack.Screen name="SignUp" component={SignUpContainer} />
-      <UserStack.Screen name="ForgotPw" component={ForgotPwContainer} />
     </UserStack.Navigator>
   );
 };
@@ -104,7 +91,7 @@ const ActivityStackScreen = () => {
 const SettingsStack = createStackNavigator();
 
 const SettingsStackScreen = () => {
-  return(
+  return (
     <SettingsStack.Navigator headerMode="none">
       <SettingsStack.Screen name="Settings" component={GoalScreen} />
     </SettingsStack.Navigator>
@@ -119,11 +106,11 @@ const NavTabs = () => {
   return (
     <Tab.Navigator
       initialRouteName="Home"
-      screenOptions={({route}) => ({
+      screenOptions={({ route }) => ({
         tabBarIcon: () => {
-          const {name} = route;
+          const { name } = route;
           if (name === 'Home') {
-            return <Explore />;
+            return <Icon2 name='home' size={35} color={theme.primaryColor} />;
           } else if (name === 'Explore') {
             return <Explore />;
           } else if (name === 'Timer') {
@@ -139,7 +126,7 @@ const NavTabs = () => {
         inactiveTintColor: 'grey',
         activeTintColor: '#49773A',
         style: {
-          height: 110,
+          height: 105,
           padding: 10,
           backgroundColor: '#fff',
         },
@@ -147,27 +134,27 @@ const NavTabs = () => {
       <Tab.Screen
         name="Home"
         component={HomeStackScreen}
-        options={{title: 'Home'}}
+        options={{ title: 'Home' }}
       />
       <Tab.Screen
         name="Explore"
         component={ExploreStackScreen}
-        options={{title: 'Explore', tabBarVisible: false}}
+        options={{ title: 'Explore', tabBarVisible: false }}
       />
       <Tab.Screen
         name="Timer"
         component={TimerStackScreen}
-        options={{title: 'Timer', tabBarVisible: false}}
+        options={{ title: 'Timer', tabBarVisible: false }}
       />
       <Tab.Screen
         name="Activity"
         component={ActivityStackScreen}
-        options={{title: 'Activity', tabBarVisible: false}}
+        options={{ title: 'Activity', tabBarVisible: false }}
       />
       <Tab.Screen
         name="Settings"
         component={SettingsStackScreen}
-        options={{title: 'Settings', tabBarVisible: false}}
+        options={{ title: 'Settings' }}
       />
     </Tab.Navigator>
   );

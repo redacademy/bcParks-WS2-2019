@@ -1,23 +1,22 @@
 import styled from 'styled-components';
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export const theme = {
   primaryColor: '#49773A',
   accentColor: '#DA6645',
   grayColor: '#767676',
-  screenBkgColor: '#A3CB9B',
-  txtInputBkg: '#fff',
+  screenBkgColor: '#AED1A7',
+  txtInputBkg: '#FFF',
   bodyTextColor: '#000',
-  invertTextColor: '#fff',
-  disabledColor: '#9d9d9d',
-  dayBtnColor: '#9B9A30',
+  invertTextColor: '#FFF',
+  disabledColor: '#9D9D9D',
+  MoodIconColor: '#FCCC1A',
   headlineFont: 'Comfortaa-Regular',
   bodyFont: 'OpenSans-Regular',
-  h1FontColor: '#cc6c4e',
+  h1FontColor: '#CC6C4E',
   h1FontSize: '30px',
   h2FontSize: '24px',
-  bodyFontSize: '18px',
-  // #8cbe82
+  bodyFontSize: '18px'
 };
 
 export const ScreenBkgCont = styled.View`

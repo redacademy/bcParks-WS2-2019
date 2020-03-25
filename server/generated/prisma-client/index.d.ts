@@ -388,10 +388,6 @@ export interface Prisma {
     data: GoalUpdateInput;
     where: GoalWhereUniqueInput;
   }) => GoalPromise;
-  updateManyGoals: (args: {
-    data: GoalUpdateManyMutationInput;
-    where?: GoalWhereInput;
-  }) => BatchPayloadPromise;
   upsertGoal: (args: {
     where: GoalWhereUniqueInput;
     create: GoalCreateInput;
@@ -640,11 +636,13 @@ export type LocationOrderByInput =
   | "lng_ASC"
   | "lng_DESC";
 
-export type DaysOrderByInput =
+export type SouthWestOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "title_ASC"
-  | "title_DESC";
+  | "lat_ASC"
+  | "lat_DESC"
+  | "lng_ASC"
+  | "lng_DESC";
 
 export type FeatureOrderByInput =
   | "id_ASC"
@@ -660,19 +658,15 @@ export type GeoPointOrderByInput =
 
 export type GeometryOrderByInput = "id_ASC" | "id_DESC";
 
-export type GoalOrderByInput =
+export type GoalOrderByInput = "id_ASC" | "id_DESC";
+
+export type DaysOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "title_ASC"
+  | "title_DESC"
   | "hours_ASC"
   | "hours_DESC";
-
-export type SouthWestOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "lat_ASC"
-  | "lat_DESC"
-  | "lng_ASC"
-  | "lng_DESC";
 
 export type UserOrderByInput =
   | "id_ASC"
@@ -710,125 +704,18 @@ export type SessionOrderByInput =
   | "date_ASC"
   | "date_DESC";
 
-export interface GeoPointCreateManyInput {
-  create?: Maybe<GeoPointCreateInput[] | GeoPointCreateInput>;
-  connect?: Maybe<GeoPointWhereUniqueInput[] | GeoPointWhereUniqueInput>;
+export interface FeatureUpdateInput {
+  title?: Maybe<String>;
+  maps?: Maybe<MapUpdateManyWithoutFeaturesInput>;
 }
 
 export type DaysWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
-export interface UserUpsertNestedInput {
-  update: UserUpdateDataInput;
-  create: UserCreateInput;
-}
-
-export interface MapUpdateManyDataInput {
-  externalId?: Maybe<String>;
-  name?: Maybe<String>;
-  vicinity?: Maybe<String>;
-  photo_reference?: Maybe<String>;
-  opening_hours?: Maybe<Boolean>;
-}
-
-export type SouthWestWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface LocationUpdateDataInput {
-  lat?: Maybe<Float>;
-  lng?: Maybe<Float>;
-}
-
-export interface UserUpdateDataInput {
-  email?: Maybe<String>;
-  password?: Maybe<String>;
-}
-
-export interface SouthWestWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  lat?: Maybe<Float>;
-  lat_not?: Maybe<Float>;
-  lat_in?: Maybe<Float[] | Float>;
-  lat_not_in?: Maybe<Float[] | Float>;
-  lat_lt?: Maybe<Float>;
-  lat_lte?: Maybe<Float>;
-  lat_gt?: Maybe<Float>;
-  lat_gte?: Maybe<Float>;
-  lng?: Maybe<Float>;
-  lng_not?: Maybe<Float>;
-  lng_in?: Maybe<Float[] | Float>;
-  lng_not_in?: Maybe<Float[] | Float>;
-  lng_lt?: Maybe<Float>;
-  lng_lte?: Maybe<Float>;
-  lng_gt?: Maybe<Float>;
-  lng_gte?: Maybe<Float>;
-  AND?: Maybe<SouthWestWhereInput[] | SouthWestWhereInput>;
-  OR?: Maybe<SouthWestWhereInput[] | SouthWestWhereInput>;
-  NOT?: Maybe<SouthWestWhereInput[] | SouthWestWhereInput>;
-}
-
-export interface UserUpdateOneRequiredInput {
-  create?: Maybe<UserCreateInput>;
-  update?: Maybe<UserUpdateDataInput>;
-  upsert?: Maybe<UserUpsertNestedInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface FeatureWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  title?: Maybe<String>;
-  title_not?: Maybe<String>;
-  title_in?: Maybe<String[] | String>;
-  title_not_in?: Maybe<String[] | String>;
-  title_lt?: Maybe<String>;
-  title_lte?: Maybe<String>;
-  title_gt?: Maybe<String>;
-  title_gte?: Maybe<String>;
-  title_contains?: Maybe<String>;
-  title_not_contains?: Maybe<String>;
-  title_starts_with?: Maybe<String>;
-  title_not_starts_with?: Maybe<String>;
-  title_ends_with?: Maybe<String>;
-  title_not_ends_with?: Maybe<String>;
-  maps_every?: Maybe<MapWhereInput>;
-  maps_some?: Maybe<MapWhereInput>;
-  maps_none?: Maybe<MapWhereInput>;
-  AND?: Maybe<FeatureWhereInput[] | FeatureWhereInput>;
-  OR?: Maybe<FeatureWhereInput[] | FeatureWhereInput>;
-  NOT?: Maybe<FeatureWhereInput[] | FeatureWhereInput>;
-}
-
-export interface DaysUpsertNestedInput {
-  update: DaysUpdateDataInput;
-  create: DaysCreateInput;
+export interface LocationUpsertNestedInput {
+  update: LocationUpdateDataInput;
+  create: LocationCreateInput;
 }
 
 export interface LocationWhereInput {
@@ -867,617 +754,11 @@ export interface LocationWhereInput {
   NOT?: Maybe<LocationWhereInput[] | LocationWhereInput>;
 }
 
-export interface DaysUpdateDataInput {
-  title?: Maybe<String>;
-}
-
-export interface UserSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<UserWhereInput>;
-  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-}
-
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface SessionSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<SessionWhereInput>;
-  AND?: Maybe<SessionSubscriptionWhereInput[] | SessionSubscriptionWhereInput>;
-  OR?: Maybe<SessionSubscriptionWhereInput[] | SessionSubscriptionWhereInput>;
-  NOT?: Maybe<SessionSubscriptionWhereInput[] | SessionSubscriptionWhereInput>;
-}
-
-export interface DaysWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  title?: Maybe<String>;
-  title_not?: Maybe<String>;
-  title_in?: Maybe<String[] | String>;
-  title_not_in?: Maybe<String[] | String>;
-  title_lt?: Maybe<String>;
-  title_lte?: Maybe<String>;
-  title_gt?: Maybe<String>;
-  title_gte?: Maybe<String>;
-  title_contains?: Maybe<String>;
-  title_not_contains?: Maybe<String>;
-  title_starts_with?: Maybe<String>;
-  title_not_starts_with?: Maybe<String>;
-  title_ends_with?: Maybe<String>;
-  title_not_ends_with?: Maybe<String>;
-  AND?: Maybe<DaysWhereInput[] | DaysWhereInput>;
-  OR?: Maybe<DaysWhereInput[] | DaysWhereInput>;
-  NOT?: Maybe<DaysWhereInput[] | DaysWhereInput>;
-}
-
-export interface PlusCodeSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<PlusCodeWhereInput>;
-  AND?: Maybe<
-    PlusCodeSubscriptionWhereInput[] | PlusCodeSubscriptionWhereInput
-  >;
-  OR?: Maybe<PlusCodeSubscriptionWhereInput[] | PlusCodeSubscriptionWhereInput>;
-  NOT?: Maybe<
-    PlusCodeSubscriptionWhereInput[] | PlusCodeSubscriptionWhereInput
-  >;
-}
-
-export interface DaysUpdateOneRequiredInput {
-  create?: Maybe<DaysCreateInput>;
-  update?: Maybe<DaysUpdateDataInput>;
-  upsert?: Maybe<DaysUpsertNestedInput>;
-  connect?: Maybe<DaysWhereUniqueInput>;
-}
-
-export interface GeometryWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  location?: Maybe<LocationWhereInput>;
-  viewport?: Maybe<ViewportWhereInput>;
-  AND?: Maybe<GeometryWhereInput[] | GeometryWhereInput>;
-  OR?: Maybe<GeometryWhereInput[] | GeometryWhereInput>;
-  NOT?: Maybe<GeometryWhereInput[] | GeometryWhereInput>;
-}
-
-export interface GoalUpdateInput {
-  hours?: Maybe<Float>;
-  days?: Maybe<DaysUpdateOneRequiredInput>;
-  user?: Maybe<UserUpdateOneRequiredInput>;
-}
-
-export interface MapSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<MapWhereInput>;
-  AND?: Maybe<MapSubscriptionWhereInput[] | MapSubscriptionWhereInput>;
-  OR?: Maybe<MapSubscriptionWhereInput[] | MapSubscriptionWhereInput>;
-  NOT?: Maybe<MapSubscriptionWhereInput[] | MapSubscriptionWhereInput>;
-}
-
-export interface UserCreateInput {
-  id?: Maybe<ID_Input>;
-  email: String;
-  password: String;
-}
-
-export interface GoalSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<GoalWhereInput>;
-  AND?: Maybe<GoalSubscriptionWhereInput[] | GoalSubscriptionWhereInput>;
-  OR?: Maybe<GoalSubscriptionWhereInput[] | GoalSubscriptionWhereInput>;
-  NOT?: Maybe<GoalSubscriptionWhereInput[] | GoalSubscriptionWhereInput>;
-}
-
-export type ViewportWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface GeoPointSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<GeoPointWhereInput>;
-  AND?: Maybe<
-    GeoPointSubscriptionWhereInput[] | GeoPointSubscriptionWhereInput
-  >;
-  OR?: Maybe<GeoPointSubscriptionWhereInput[] | GeoPointSubscriptionWhereInput>;
-  NOT?: Maybe<
-    GeoPointSubscriptionWhereInput[] | GeoPointSubscriptionWhereInput
-  >;
-}
-
-export interface UserCreateOneInput {
-  create?: Maybe<UserCreateInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface FeatureSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<FeatureWhereInput>;
-  AND?: Maybe<FeatureSubscriptionWhereInput[] | FeatureSubscriptionWhereInput>;
-  OR?: Maybe<FeatureSubscriptionWhereInput[] | FeatureSubscriptionWhereInput>;
-  NOT?: Maybe<FeatureSubscriptionWhereInput[] | FeatureSubscriptionWhereInput>;
-}
-
-export interface DaysCreateOneInput {
-  create?: Maybe<DaysCreateInput>;
-  connect?: Maybe<DaysWhereUniqueInput>;
-}
-
-export interface ViewportUpdateInput {
-  northeast?: Maybe<NorthEastUpdateOneRequiredInput>;
-  southwest?: Maybe<SouthWestUpdateOneRequiredInput>;
-}
-
-export interface GoalCreateInput {
-  id?: Maybe<ID_Input>;
-  hours: Float;
-  days: DaysCreateOneInput;
-  user: UserCreateOneInput;
-}
-
-export interface UserUpdateManyMutationInput {
-  email?: Maybe<String>;
-  password?: Maybe<String>;
-}
-
-export interface GeometryUpdateInput {
-  location?: Maybe<LocationUpdateOneRequiredInput>;
-  viewport?: Maybe<ViewportUpdateOneRequiredInput>;
-}
-
-export interface SouthWestUpdateManyMutationInput {
-  lat?: Maybe<Float>;
-  lng?: Maybe<Float>;
-}
-
-export type GoalWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface MapUpsertWithWhereUniqueNestedInput {
-  where: MapWhereUniqueInput;
-  update: MapUpdateDataInput;
-  create: MapCreateInput;
-}
-
-export interface DaysCreateInput {
-  id?: Maybe<ID_Input>;
-  title: String;
-}
-
-export interface UserWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  email?: Maybe<String>;
-  email_not?: Maybe<String>;
-  email_in?: Maybe<String[] | String>;
-  email_not_in?: Maybe<String[] | String>;
-  email_lt?: Maybe<String>;
-  email_lte?: Maybe<String>;
-  email_gt?: Maybe<String>;
-  email_gte?: Maybe<String>;
-  email_contains?: Maybe<String>;
-  email_not_contains?: Maybe<String>;
-  email_starts_with?: Maybe<String>;
-  email_not_starts_with?: Maybe<String>;
-  email_ends_with?: Maybe<String>;
-  email_not_ends_with?: Maybe<String>;
-  password?: Maybe<String>;
-  password_not?: Maybe<String>;
-  password_in?: Maybe<String[] | String>;
-  password_not_in?: Maybe<String[] | String>;
-  password_lt?: Maybe<String>;
-  password_lte?: Maybe<String>;
-  password_gt?: Maybe<String>;
-  password_gte?: Maybe<String>;
-  password_contains?: Maybe<String>;
-  password_not_contains?: Maybe<String>;
-  password_starts_with?: Maybe<String>;
-  password_not_starts_with?: Maybe<String>;
-  password_ends_with?: Maybe<String>;
-  password_not_ends_with?: Maybe<String>;
-  AND?: Maybe<UserWhereInput[] | UserWhereInput>;
-  OR?: Maybe<UserWhereInput[] | UserWhereInput>;
-  NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
-}
-
-export interface DaysUpdateInput {
-  title?: Maybe<String>;
-}
-
-export interface MapUpdateDataInput {
-  externalId?: Maybe<String>;
-  name?: Maybe<String>;
-  geometry?: Maybe<GeometryUpdateOneRequiredInput>;
-  vicinity?: Maybe<String>;
-  plus_code?: Maybe<PlusCodeUpdateOneInput>;
-  photo_reference?: Maybe<String>;
-  opening_hours?: Maybe<Boolean>;
-  features?: Maybe<FeatureUpdateManyWithoutMapsInput>;
-  boundaries?: Maybe<GeoPointUpdateManyInput>;
-}
-
-export interface DaysUpdateManyMutationInput {
-  title?: Maybe<String>;
-}
-
-export interface MapUpdateManyInput {
-  create?: Maybe<MapCreateInput[] | MapCreateInput>;
-  update?: Maybe<
-    MapUpdateWithWhereUniqueNestedInput[] | MapUpdateWithWhereUniqueNestedInput
-  >;
-  upsert?: Maybe<
-    MapUpsertWithWhereUniqueNestedInput[] | MapUpsertWithWhereUniqueNestedInput
-  >;
-  delete?: Maybe<MapWhereUniqueInput[] | MapWhereUniqueInput>;
-  connect?: Maybe<MapWhereUniqueInput[] | MapWhereUniqueInput>;
-  set?: Maybe<MapWhereUniqueInput[] | MapWhereUniqueInput>;
-  disconnect?: Maybe<MapWhereUniqueInput[] | MapWhereUniqueInput>;
-  deleteMany?: Maybe<MapScalarWhereInput[] | MapScalarWhereInput>;
-  updateMany?: Maybe<
-    MapUpdateManyWithWhereNestedInput[] | MapUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface GeoPointUpdateManyMutationInput {
-  boundary?: Maybe<Json>;
-}
-
-export interface SessionUpdateInput {
-  timeStart?: Maybe<DateTimeInput>;
-  timeEnd?: Maybe<DateTimeInput>;
-  locations?: Maybe<MapUpdateManyInput>;
-  mood?: Maybe<Float>;
-  journal?: Maybe<String>;
-  date?: Maybe<DateTimeInput>;
-  user?: Maybe<UserUpdateOneRequiredInput>;
-}
-
-export interface GeoPointUpdateInput {
-  boundary?: Maybe<Json>;
-}
-
-export interface SessionCreateInput {
-  id?: Maybe<ID_Input>;
-  timeStart: DateTimeInput;
-  timeEnd: DateTimeInput;
-  locations?: Maybe<MapCreateManyInput>;
-  mood?: Maybe<Float>;
-  journal?: Maybe<String>;
-  date: DateTimeInput;
-  user: UserCreateOneInput;
-}
-
-export interface FeatureCreateInput {
-  id?: Maybe<ID_Input>;
-  title: String;
-  maps?: Maybe<MapCreateManyWithoutFeaturesInput>;
-}
-
-export type MapWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface MapCreateManyWithoutFeaturesInput {
-  create?: Maybe<
-    MapCreateWithoutFeaturesInput[] | MapCreateWithoutFeaturesInput
-  >;
-  connect?: Maybe<MapWhereUniqueInput[] | MapWhereUniqueInput>;
-}
-
-export interface ProgressCreateInput {
-  id?: Maybe<ID_Input>;
-  duration: Float;
-  completion: Float;
-  date: DateTimeInput;
-  weekday: String;
-}
-
-export interface MapCreateWithoutFeaturesInput {
-  id?: Maybe<ID_Input>;
-  externalId: String;
-  name: String;
-  geometry: GeometryCreateOneInput;
-  vicinity: String;
-  plus_code?: Maybe<PlusCodeCreateOneInput>;
-  photo_reference?: Maybe<String>;
-  opening_hours?: Maybe<Boolean>;
-  boundaries?: Maybe<GeoPointCreateManyInput>;
-}
-
-export type NorthEastWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface GeometryCreateOneInput {
-  create?: Maybe<GeometryCreateInput>;
-  connect?: Maybe<GeometryWhereUniqueInput>;
-}
-
-export interface NorthEastUpdateManyMutationInput {
-  lat?: Maybe<Float>;
-  lng?: Maybe<Float>;
-}
-
-export interface GeometryCreateInput {
-  id?: Maybe<ID_Input>;
-  location: LocationCreateOneInput;
-  viewport: ViewportCreateOneInput;
-}
-
-export interface MapUpdateManyMutationInput {
-  externalId?: Maybe<String>;
-  name?: Maybe<String>;
-  vicinity?: Maybe<String>;
-  photo_reference?: Maybe<String>;
-  opening_hours?: Maybe<Boolean>;
-}
-
-export interface LocationCreateOneInput {
-  create?: Maybe<LocationCreateInput>;
-  connect?: Maybe<LocationWhereUniqueInput>;
-}
-
-export interface FeatureUpdateManyDataInput {
-  title?: Maybe<String>;
-}
-
-export interface LocationCreateInput {
-  id?: Maybe<ID_Input>;
-  lat: Float;
-  lng: Float;
-}
-
-export interface FeatureScalarWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  title?: Maybe<String>;
-  title_not?: Maybe<String>;
-  title_in?: Maybe<String[] | String>;
-  title_not_in?: Maybe<String[] | String>;
-  title_lt?: Maybe<String>;
-  title_lte?: Maybe<String>;
-  title_gt?: Maybe<String>;
-  title_gte?: Maybe<String>;
-  title_contains?: Maybe<String>;
-  title_not_contains?: Maybe<String>;
-  title_starts_with?: Maybe<String>;
-  title_not_starts_with?: Maybe<String>;
-  title_ends_with?: Maybe<String>;
-  title_not_ends_with?: Maybe<String>;
-  AND?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
-  OR?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
-  NOT?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
-}
-
-export interface ViewportCreateOneInput {
+export interface ViewportUpdateOneRequiredInput {
   create?: Maybe<ViewportCreateInput>;
+  update?: Maybe<ViewportUpdateDataInput>;
+  upsert?: Maybe<ViewportUpsertNestedInput>;
   connect?: Maybe<ViewportWhereUniqueInput>;
-}
-
-export type ProgressWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface ViewportCreateInput {
-  id?: Maybe<ID_Input>;
-  northeast: NorthEastCreateOneInput;
-  southwest: SouthWestCreateOneInput;
-}
-
-export interface FeatureUpdateWithWhereUniqueWithoutMapsInput {
-  where: FeatureWhereUniqueInput;
-  data: FeatureUpdateWithoutMapsDataInput;
-}
-
-export interface NorthEastCreateOneInput {
-  create?: Maybe<NorthEastCreateInput>;
-  connect?: Maybe<NorthEastWhereUniqueInput>;
-}
-
-export interface FeatureUpdateManyWithoutMapsInput {
-  create?: Maybe<
-    FeatureCreateWithoutMapsInput[] | FeatureCreateWithoutMapsInput
-  >;
-  delete?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
-  connect?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
-  set?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
-  disconnect?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
-  update?: Maybe<
-    | FeatureUpdateWithWhereUniqueWithoutMapsInput[]
-    | FeatureUpdateWithWhereUniqueWithoutMapsInput
-  >;
-  upsert?: Maybe<
-    | FeatureUpsertWithWhereUniqueWithoutMapsInput[]
-    | FeatureUpsertWithWhereUniqueWithoutMapsInput
-  >;
-  deleteMany?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
-  updateMany?: Maybe<
-    | FeatureUpdateManyWithWhereNestedInput[]
-    | FeatureUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface NorthEastCreateInput {
-  id?: Maybe<ID_Input>;
-  lat: Float;
-  lng: Float;
-}
-
-export interface FeatureCreateWithoutMapsInput {
-  id?: Maybe<ID_Input>;
-  title: String;
-}
-
-export interface SouthWestCreateOneInput {
-  create?: Maybe<SouthWestCreateInput>;
-  connect?: Maybe<SouthWestWhereUniqueInput>;
-}
-
-export type SessionWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface SouthWestCreateInput {
-  id?: Maybe<ID_Input>;
-  lat: Float;
-  lng: Float;
-}
-
-export interface SessionWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  timeStart?: Maybe<DateTimeInput>;
-  timeStart_not?: Maybe<DateTimeInput>;
-  timeStart_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  timeStart_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  timeStart_lt?: Maybe<DateTimeInput>;
-  timeStart_lte?: Maybe<DateTimeInput>;
-  timeStart_gt?: Maybe<DateTimeInput>;
-  timeStart_gte?: Maybe<DateTimeInput>;
-  timeEnd?: Maybe<DateTimeInput>;
-  timeEnd_not?: Maybe<DateTimeInput>;
-  timeEnd_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  timeEnd_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  timeEnd_lt?: Maybe<DateTimeInput>;
-  timeEnd_lte?: Maybe<DateTimeInput>;
-  timeEnd_gt?: Maybe<DateTimeInput>;
-  timeEnd_gte?: Maybe<DateTimeInput>;
-  locations_every?: Maybe<MapWhereInput>;
-  locations_some?: Maybe<MapWhereInput>;
-  locations_none?: Maybe<MapWhereInput>;
-  mood?: Maybe<Float>;
-  mood_not?: Maybe<Float>;
-  mood_in?: Maybe<Float[] | Float>;
-  mood_not_in?: Maybe<Float[] | Float>;
-  mood_lt?: Maybe<Float>;
-  mood_lte?: Maybe<Float>;
-  mood_gt?: Maybe<Float>;
-  mood_gte?: Maybe<Float>;
-  journal?: Maybe<String>;
-  journal_not?: Maybe<String>;
-  journal_in?: Maybe<String[] | String>;
-  journal_not_in?: Maybe<String[] | String>;
-  journal_lt?: Maybe<String>;
-  journal_lte?: Maybe<String>;
-  journal_gt?: Maybe<String>;
-  journal_gte?: Maybe<String>;
-  journal_contains?: Maybe<String>;
-  journal_not_contains?: Maybe<String>;
-  journal_starts_with?: Maybe<String>;
-  journal_not_starts_with?: Maybe<String>;
-  journal_ends_with?: Maybe<String>;
-  journal_not_ends_with?: Maybe<String>;
-  date?: Maybe<DateTimeInput>;
-  date_not?: Maybe<DateTimeInput>;
-  date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  date_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  date_lt?: Maybe<DateTimeInput>;
-  date_lte?: Maybe<DateTimeInput>;
-  date_gt?: Maybe<DateTimeInput>;
-  date_gte?: Maybe<DateTimeInput>;
-  user?: Maybe<UserWhereInput>;
-  AND?: Maybe<SessionWhereInput[] | SessionWhereInput>;
-  OR?: Maybe<SessionWhereInput[] | SessionWhereInput>;
-  NOT?: Maybe<SessionWhereInput[] | SessionWhereInput>;
-}
-
-export interface PlusCodeCreateOneInput {
-  create?: Maybe<PlusCodeCreateInput>;
-  connect?: Maybe<PlusCodeWhereUniqueInput>;
-}
-
-export interface LocationUpdateInput {
-  lat?: Maybe<Float>;
-  lng?: Maybe<Float>;
-}
-
-export interface PlusCodeCreateInput {
-  id?: Maybe<ID_Input>;
-  compound_code?: Maybe<String>;
-  global_code?: Maybe<String>;
 }
 
 export interface NorthEastWhereInput {
@@ -1516,357 +797,9 @@ export interface NorthEastWhereInput {
   NOT?: Maybe<NorthEastWhereInput[] | NorthEastWhereInput>;
 }
 
-export interface FeatureUpdateManyMutationInput {
-  title?: Maybe<String>;
-}
-
-export interface GeoPointWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  AND?: Maybe<GeoPointWhereInput[] | GeoPointWhereInput>;
-  OR?: Maybe<GeoPointWhereInput[] | GeoPointWhereInput>;
-  NOT?: Maybe<GeoPointWhereInput[] | GeoPointWhereInput>;
-}
-
-export interface GeoPointCreateInput {
-  id?: Maybe<ID_Input>;
-  boundary: Json;
-}
-
-export interface SouthWestSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<SouthWestWhereInput>;
-  AND?: Maybe<
-    SouthWestSubscriptionWhereInput[] | SouthWestSubscriptionWhereInput
-  >;
-  OR?: Maybe<
-    SouthWestSubscriptionWhereInput[] | SouthWestSubscriptionWhereInput
-  >;
-  NOT?: Maybe<
-    SouthWestSubscriptionWhereInput[] | SouthWestSubscriptionWhereInput
-  >;
-}
-
-export interface FeatureUpdateInput {
-  title?: Maybe<String>;
-  maps?: Maybe<MapUpdateManyWithoutFeaturesInput>;
-}
-
-export interface NorthEastSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<NorthEastWhereInput>;
-  AND?: Maybe<
-    NorthEastSubscriptionWhereInput[] | NorthEastSubscriptionWhereInput
-  >;
-  OR?: Maybe<
-    NorthEastSubscriptionWhereInput[] | NorthEastSubscriptionWhereInput
-  >;
-  NOT?: Maybe<
-    NorthEastSubscriptionWhereInput[] | NorthEastSubscriptionWhereInput
-  >;
-}
-
-export interface MapUpdateManyWithoutFeaturesInput {
-  create?: Maybe<
-    MapCreateWithoutFeaturesInput[] | MapCreateWithoutFeaturesInput
-  >;
-  delete?: Maybe<MapWhereUniqueInput[] | MapWhereUniqueInput>;
-  connect?: Maybe<MapWhereUniqueInput[] | MapWhereUniqueInput>;
-  set?: Maybe<MapWhereUniqueInput[] | MapWhereUniqueInput>;
-  disconnect?: Maybe<MapWhereUniqueInput[] | MapWhereUniqueInput>;
-  update?: Maybe<
-    | MapUpdateWithWhereUniqueWithoutFeaturesInput[]
-    | MapUpdateWithWhereUniqueWithoutFeaturesInput
-  >;
-  upsert?: Maybe<
-    | MapUpsertWithWhereUniqueWithoutFeaturesInput[]
-    | MapUpsertWithWhereUniqueWithoutFeaturesInput
-  >;
-  deleteMany?: Maybe<MapScalarWhereInput[] | MapScalarWhereInput>;
-  updateMany?: Maybe<
-    MapUpdateManyWithWhereNestedInput[] | MapUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface LocationSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<LocationWhereInput>;
-  AND?: Maybe<
-    LocationSubscriptionWhereInput[] | LocationSubscriptionWhereInput
-  >;
-  OR?: Maybe<LocationSubscriptionWhereInput[] | LocationSubscriptionWhereInput>;
-  NOT?: Maybe<
-    LocationSubscriptionWhereInput[] | LocationSubscriptionWhereInput
-  >;
-}
-
-export interface MapUpdateWithWhereUniqueWithoutFeaturesInput {
-  where: MapWhereUniqueInput;
-  data: MapUpdateWithoutFeaturesDataInput;
-}
-
-export type GeoPointWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface MapUpdateWithoutFeaturesDataInput {
-  externalId?: Maybe<String>;
-  name?: Maybe<String>;
-  geometry?: Maybe<GeometryUpdateOneRequiredInput>;
-  vicinity?: Maybe<String>;
-  plus_code?: Maybe<PlusCodeUpdateOneInput>;
-  photo_reference?: Maybe<String>;
-  opening_hours?: Maybe<Boolean>;
-  boundaries?: Maybe<GeoPointUpdateManyInput>;
-}
-
-export type GeometryWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface GeometryUpdateOneRequiredInput {
-  create?: Maybe<GeometryCreateInput>;
-  update?: Maybe<GeometryUpdateDataInput>;
-  upsert?: Maybe<GeometryUpsertNestedInput>;
-  connect?: Maybe<GeometryWhereUniqueInput>;
-}
-
-export interface SouthWestUpdateInput {
-  lat?: Maybe<Float>;
-  lng?: Maybe<Float>;
-}
-
-export interface GeometryUpdateDataInput {
-  location?: Maybe<LocationUpdateOneRequiredInput>;
-  viewport?: Maybe<ViewportUpdateOneRequiredInput>;
-}
-
-export interface GoalWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  hours?: Maybe<Float>;
-  hours_not?: Maybe<Float>;
-  hours_in?: Maybe<Float[] | Float>;
-  hours_not_in?: Maybe<Float[] | Float>;
-  hours_lt?: Maybe<Float>;
-  hours_lte?: Maybe<Float>;
-  hours_gt?: Maybe<Float>;
-  hours_gte?: Maybe<Float>;
-  days?: Maybe<DaysWhereInput>;
-  user?: Maybe<UserWhereInput>;
-  AND?: Maybe<GoalWhereInput[] | GoalWhereInput>;
-  OR?: Maybe<GoalWhereInput[] | GoalWhereInput>;
-  NOT?: Maybe<GoalWhereInput[] | GoalWhereInput>;
-}
-
-export interface LocationUpdateOneRequiredInput {
-  create?: Maybe<LocationCreateInput>;
-  update?: Maybe<LocationUpdateDataInput>;
-  upsert?: Maybe<LocationUpsertNestedInput>;
-  connect?: Maybe<LocationWhereUniqueInput>;
-}
-
-export interface MapUpdateWithWhereUniqueNestedInput {
-  where: MapWhereUniqueInput;
-  data: MapUpdateDataInput;
-}
-
-export interface ViewportWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  northeast?: Maybe<NorthEastWhereInput>;
-  southwest?: Maybe<SouthWestWhereInput>;
-  AND?: Maybe<ViewportWhereInput[] | ViewportWhereInput>;
-  OR?: Maybe<ViewportWhereInput[] | ViewportWhereInput>;
-  NOT?: Maybe<ViewportWhereInput[] | ViewportWhereInput>;
-}
-
-export interface MapCreateManyInput {
-  create?: Maybe<MapCreateInput[] | MapCreateInput>;
-  connect?: Maybe<MapWhereUniqueInput[] | MapWhereUniqueInput>;
-}
-
-export interface LocationUpsertNestedInput {
-  update: LocationUpdateDataInput;
-  create: LocationCreateInput;
-}
-
-export interface ProgressUpdateInput {
-  duration?: Maybe<Float>;
-  completion?: Maybe<Float>;
-  date?: Maybe<DateTimeInput>;
-  weekday?: Maybe<String>;
-}
-
-export interface ViewportUpdateOneRequiredInput {
-  create?: Maybe<ViewportCreateInput>;
-  update?: Maybe<ViewportUpdateDataInput>;
-  upsert?: Maybe<ViewportUpsertNestedInput>;
-  connect?: Maybe<ViewportWhereUniqueInput>;
-}
-
-export interface PlusCodeUpdateInput {
-  compound_code?: Maybe<String>;
-  global_code?: Maybe<String>;
-}
-
 export interface ViewportUpdateDataInput {
   northeast?: Maybe<NorthEastUpdateOneRequiredInput>;
   southwest?: Maybe<SouthWestUpdateOneRequiredInput>;
-}
-
-export type PlusCodeWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface NorthEastUpdateOneRequiredInput {
-  create?: Maybe<NorthEastCreateInput>;
-  update?: Maybe<NorthEastUpdateDataInput>;
-  upsert?: Maybe<NorthEastUpsertNestedInput>;
-  connect?: Maybe<NorthEastWhereUniqueInput>;
-}
-
-export interface FeatureUpsertWithWhereUniqueWithoutMapsInput {
-  where: FeatureWhereUniqueInput;
-  update: FeatureUpdateWithoutMapsDataInput;
-  create: FeatureCreateWithoutMapsInput;
-}
-
-export interface NorthEastUpdateDataInput {
-  lat?: Maybe<Float>;
-  lng?: Maybe<Float>;
-}
-
-export interface ProgressWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  duration?: Maybe<Float>;
-  duration_not?: Maybe<Float>;
-  duration_in?: Maybe<Float[] | Float>;
-  duration_not_in?: Maybe<Float[] | Float>;
-  duration_lt?: Maybe<Float>;
-  duration_lte?: Maybe<Float>;
-  duration_gt?: Maybe<Float>;
-  duration_gte?: Maybe<Float>;
-  completion?: Maybe<Float>;
-  completion_not?: Maybe<Float>;
-  completion_in?: Maybe<Float[] | Float>;
-  completion_not_in?: Maybe<Float[] | Float>;
-  completion_lt?: Maybe<Float>;
-  completion_lte?: Maybe<Float>;
-  completion_gt?: Maybe<Float>;
-  completion_gte?: Maybe<Float>;
-  date?: Maybe<DateTimeInput>;
-  date_not?: Maybe<DateTimeInput>;
-  date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  date_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  date_lt?: Maybe<DateTimeInput>;
-  date_lte?: Maybe<DateTimeInput>;
-  date_gt?: Maybe<DateTimeInput>;
-  date_gte?: Maybe<DateTimeInput>;
-  weekday?: Maybe<String>;
-  weekday_not?: Maybe<String>;
-  weekday_in?: Maybe<String[] | String>;
-  weekday_not_in?: Maybe<String[] | String>;
-  weekday_lt?: Maybe<String>;
-  weekday_lte?: Maybe<String>;
-  weekday_gt?: Maybe<String>;
-  weekday_gte?: Maybe<String>;
-  weekday_contains?: Maybe<String>;
-  weekday_not_contains?: Maybe<String>;
-  weekday_starts_with?: Maybe<String>;
-  weekday_not_starts_with?: Maybe<String>;
-  weekday_ends_with?: Maybe<String>;
-  weekday_not_ends_with?: Maybe<String>;
-  AND?: Maybe<ProgressWhereInput[] | ProgressWhereInput>;
-  OR?: Maybe<ProgressWhereInput[] | ProgressWhereInput>;
-  NOT?: Maybe<ProgressWhereInput[] | ProgressWhereInput>;
-}
-
-export interface NorthEastUpsertNestedInput {
-  update: NorthEastUpdateDataInput;
-  create: NorthEastCreateInput;
-}
-
-export interface FeatureCreateManyWithoutMapsInput {
-  create?: Maybe<
-    FeatureCreateWithoutMapsInput[] | FeatureCreateWithoutMapsInput
-  >;
-  connect?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
-}
-
-export interface SouthWestUpdateOneRequiredInput {
-  create?: Maybe<SouthWestCreateInput>;
-  update?: Maybe<SouthWestUpdateDataInput>;
-  upsert?: Maybe<SouthWestUpsertNestedInput>;
-  connect?: Maybe<SouthWestWhereUniqueInput>;
-}
-
-export interface LocationUpdateManyMutationInput {
-  lat?: Maybe<Float>;
-  lng?: Maybe<Float>;
-}
-
-export interface SouthWestUpdateDataInput {
-  lat?: Maybe<Float>;
-  lng?: Maybe<Float>;
 }
 
 export interface PlusCodeWhereInput {
@@ -1917,320 +850,124 @@ export interface PlusCodeWhereInput {
   NOT?: Maybe<PlusCodeWhereInput[] | PlusCodeWhereInput>;
 }
 
-export interface SouthWestUpsertNestedInput {
-  update: SouthWestUpdateDataInput;
-  create: SouthWestCreateInput;
+export interface NorthEastUpdateOneRequiredInput {
+  create?: Maybe<NorthEastCreateInput>;
+  update?: Maybe<NorthEastUpdateDataInput>;
+  upsert?: Maybe<NorthEastUpsertNestedInput>;
+  connect?: Maybe<NorthEastWhereUniqueInput>;
 }
 
-export interface ProgressSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<ProgressWhereInput>;
-  AND?: Maybe<
-    ProgressSubscriptionWhereInput[] | ProgressSubscriptionWhereInput
-  >;
-  OR?: Maybe<ProgressSubscriptionWhereInput[] | ProgressSubscriptionWhereInput>;
-  NOT?: Maybe<
-    ProgressSubscriptionWhereInput[] | ProgressSubscriptionWhereInput
-  >;
+export interface GeoPointWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  AND?: Maybe<GeoPointWhereInput[] | GeoPointWhereInput>;
+  OR?: Maybe<GeoPointWhereInput[] | GeoPointWhereInput>;
+  NOT?: Maybe<GeoPointWhereInput[] | GeoPointWhereInput>;
 }
 
-export interface ViewportUpsertNestedInput {
-  update: ViewportUpdateDataInput;
-  create: ViewportCreateInput;
+export interface DaysUpdateManyDataInput {
+  title?: Maybe<String>;
+  hours?: Maybe<Float>;
 }
 
-export interface GeometrySubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<GeometryWhereInput>;
-  AND?: Maybe<
-    GeometrySubscriptionWhereInput[] | GeometrySubscriptionWhereInput
-  >;
-  OR?: Maybe<GeometrySubscriptionWhereInput[] | GeometrySubscriptionWhereInput>;
-  NOT?: Maybe<
-    GeometrySubscriptionWhereInput[] | GeometrySubscriptionWhereInput
-  >;
+export interface GeoPointUpdateManyMutationInput {
+  boundary?: Maybe<Json>;
 }
 
-export interface GeometryUpsertNestedInput {
-  update: GeometryUpdateDataInput;
-  create: GeometryCreateInput;
-}
-
-export interface UserUpdateInput {
-  email?: Maybe<String>;
-  password?: Maybe<String>;
-}
-
-export interface PlusCodeUpdateOneInput {
-  create?: Maybe<PlusCodeCreateInput>;
-  update?: Maybe<PlusCodeUpdateDataInput>;
-  upsert?: Maybe<PlusCodeUpsertNestedInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<PlusCodeWhereUniqueInput>;
-}
-
-export type FeatureWhereUniqueInput = AtLeastOne<{
+export type UserWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
-export interface PlusCodeUpdateDataInput {
-  compound_code?: Maybe<String>;
-  global_code?: Maybe<String>;
-}
-
-export interface ProgressUpdateManyMutationInput {
-  duration?: Maybe<Float>;
-  completion?: Maybe<Float>;
-  date?: Maybe<DateTimeInput>;
-  weekday?: Maybe<String>;
-}
-
-export interface PlusCodeUpsertNestedInput {
-  update: PlusCodeUpdateDataInput;
-  create: PlusCodeCreateInput;
-}
-
-export interface NorthEastUpdateInput {
+export interface NorthEastUpdateDataInput {
   lat?: Maybe<Float>;
   lng?: Maybe<Float>;
 }
 
-export interface GeoPointUpdateManyInput {
-  create?: Maybe<GeoPointCreateInput[] | GeoPointCreateInput>;
-  update?: Maybe<
-    | GeoPointUpdateWithWhereUniqueNestedInput[]
-    | GeoPointUpdateWithWhereUniqueNestedInput
-  >;
-  upsert?: Maybe<
-    | GeoPointUpsertWithWhereUniqueNestedInput[]
-    | GeoPointUpsertWithWhereUniqueNestedInput
-  >;
-  delete?: Maybe<GeoPointWhereUniqueInput[] | GeoPointWhereUniqueInput>;
-  connect?: Maybe<GeoPointWhereUniqueInput[] | GeoPointWhereUniqueInput>;
-  set?: Maybe<GeoPointWhereUniqueInput[] | GeoPointWhereUniqueInput>;
-  disconnect?: Maybe<GeoPointWhereUniqueInput[] | GeoPointWhereUniqueInput>;
-  deleteMany?: Maybe<GeoPointScalarWhereInput[] | GeoPointScalarWhereInput>;
-  updateMany?: Maybe<
-    | GeoPointUpdateManyWithWhereNestedInput[]
-    | GeoPointUpdateManyWithWhereNestedInput
-  >;
+export interface DaysUpdateManyWithWhereNestedInput {
+  where: DaysScalarWhereInput;
+  data: DaysUpdateManyDataInput;
 }
 
-export interface FeatureUpdateWithoutMapsDataInput {
+export interface UserSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<UserWhereInput>;
+  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+}
+
+export interface DaysScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
   title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  hours?: Maybe<Float>;
+  hours_not?: Maybe<Float>;
+  hours_in?: Maybe<Float[] | Float>;
+  hours_not_in?: Maybe<Float[] | Float>;
+  hours_lt?: Maybe<Float>;
+  hours_lte?: Maybe<Float>;
+  hours_gt?: Maybe<Float>;
+  hours_gte?: Maybe<Float>;
+  AND?: Maybe<DaysScalarWhereInput[] | DaysScalarWhereInput>;
+  OR?: Maybe<DaysScalarWhereInput[] | DaysScalarWhereInput>;
+  NOT?: Maybe<DaysScalarWhereInput[] | DaysScalarWhereInput>;
 }
 
-export interface GeoPointUpdateWithWhereUniqueNestedInput {
-  where: GeoPointWhereUniqueInput;
-  data: GeoPointUpdateDataInput;
-}
-
-export interface MapCreateInput {
-  id?: Maybe<ID_Input>;
-  externalId: String;
-  name: String;
-  geometry: GeometryCreateOneInput;
-  vicinity: String;
-  plus_code?: Maybe<PlusCodeCreateOneInput>;
-  photo_reference?: Maybe<String>;
-  opening_hours?: Maybe<Boolean>;
-  features?: Maybe<FeatureCreateManyWithoutMapsInput>;
-  boundaries?: Maybe<GeoPointCreateManyInput>;
-}
-
-export interface GeoPointUpdateDataInput {
-  boundary?: Maybe<Json>;
-}
-
-export interface ViewportSubscriptionWhereInput {
+export interface SessionSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<ViewportWhereInput>;
-  AND?: Maybe<
-    ViewportSubscriptionWhereInput[] | ViewportSubscriptionWhereInput
-  >;
-  OR?: Maybe<ViewportSubscriptionWhereInput[] | ViewportSubscriptionWhereInput>;
-  NOT?: Maybe<
-    ViewportSubscriptionWhereInput[] | ViewportSubscriptionWhereInput
-  >;
+  node?: Maybe<SessionWhereInput>;
+  AND?: Maybe<SessionSubscriptionWhereInput[] | SessionSubscriptionWhereInput>;
+  OR?: Maybe<SessionSubscriptionWhereInput[] | SessionSubscriptionWhereInput>;
+  NOT?: Maybe<SessionSubscriptionWhereInput[] | SessionSubscriptionWhereInput>;
 }
 
-export interface GeoPointUpsertWithWhereUniqueNestedInput {
-  where: GeoPointWhereUniqueInput;
-  update: GeoPointUpdateDataInput;
-  create: GeoPointCreateInput;
-}
-
-export interface DaysSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<DaysWhereInput>;
-  AND?: Maybe<DaysSubscriptionWhereInput[] | DaysSubscriptionWhereInput>;
-  OR?: Maybe<DaysSubscriptionWhereInput[] | DaysSubscriptionWhereInput>;
-  NOT?: Maybe<DaysSubscriptionWhereInput[] | DaysSubscriptionWhereInput>;
-}
-
-export interface GeoPointScalarWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  AND?: Maybe<GeoPointScalarWhereInput[] | GeoPointScalarWhereInput>;
-  OR?: Maybe<GeoPointScalarWhereInput[] | GeoPointScalarWhereInput>;
-  NOT?: Maybe<GeoPointScalarWhereInput[] | GeoPointScalarWhereInput>;
-}
-
-export type LocationWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface GeoPointUpdateManyWithWhereNestedInput {
-  where: GeoPointScalarWhereInput;
-  data: GeoPointUpdateManyDataInput;
-}
-
-export interface FeatureUpdateManyWithWhereNestedInput {
-  where: FeatureScalarWhereInput;
-  data: FeatureUpdateManyDataInput;
-}
-
-export interface MapUpdateManyWithWhereNestedInput {
-  where: MapScalarWhereInput;
-  data: MapUpdateManyDataInput;
-}
-
-export interface MapScalarWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  externalId?: Maybe<String>;
-  externalId_not?: Maybe<String>;
-  externalId_in?: Maybe<String[] | String>;
-  externalId_not_in?: Maybe<String[] | String>;
-  externalId_lt?: Maybe<String>;
-  externalId_lte?: Maybe<String>;
-  externalId_gt?: Maybe<String>;
-  externalId_gte?: Maybe<String>;
-  externalId_contains?: Maybe<String>;
-  externalId_not_contains?: Maybe<String>;
-  externalId_starts_with?: Maybe<String>;
-  externalId_not_starts_with?: Maybe<String>;
-  externalId_ends_with?: Maybe<String>;
-  externalId_not_ends_with?: Maybe<String>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  vicinity?: Maybe<String>;
-  vicinity_not?: Maybe<String>;
-  vicinity_in?: Maybe<String[] | String>;
-  vicinity_not_in?: Maybe<String[] | String>;
-  vicinity_lt?: Maybe<String>;
-  vicinity_lte?: Maybe<String>;
-  vicinity_gt?: Maybe<String>;
-  vicinity_gte?: Maybe<String>;
-  vicinity_contains?: Maybe<String>;
-  vicinity_not_contains?: Maybe<String>;
-  vicinity_starts_with?: Maybe<String>;
-  vicinity_not_starts_with?: Maybe<String>;
-  vicinity_ends_with?: Maybe<String>;
-  vicinity_not_ends_with?: Maybe<String>;
-  photo_reference?: Maybe<String>;
-  photo_reference_not?: Maybe<String>;
-  photo_reference_in?: Maybe<String[] | String>;
-  photo_reference_not_in?: Maybe<String[] | String>;
-  photo_reference_lt?: Maybe<String>;
-  photo_reference_lte?: Maybe<String>;
-  photo_reference_gt?: Maybe<String>;
-  photo_reference_gte?: Maybe<String>;
-  photo_reference_contains?: Maybe<String>;
-  photo_reference_not_contains?: Maybe<String>;
-  photo_reference_starts_with?: Maybe<String>;
-  photo_reference_not_starts_with?: Maybe<String>;
-  photo_reference_ends_with?: Maybe<String>;
-  photo_reference_not_ends_with?: Maybe<String>;
-  opening_hours?: Maybe<Boolean>;
-  opening_hours_not?: Maybe<Boolean>;
-  AND?: Maybe<MapScalarWhereInput[] | MapScalarWhereInput>;
-  OR?: Maybe<MapScalarWhereInput[] | MapScalarWhereInput>;
-  NOT?: Maybe<MapScalarWhereInput[] | MapScalarWhereInput>;
-}
-
-export interface MapUpsertWithWhereUniqueWithoutFeaturesInput {
-  where: MapWhereUniqueInput;
-  update: MapUpdateWithoutFeaturesDataInput;
-  create: MapCreateWithoutFeaturesInput;
-}
-
-export interface GeoPointUpdateManyDataInput {
-  boundary?: Maybe<Json>;
-}
-
-export interface MapUpdateInput {
-  externalId?: Maybe<String>;
-  name?: Maybe<String>;
-  geometry?: Maybe<GeometryUpdateOneRequiredInput>;
-  vicinity?: Maybe<String>;
-  plus_code?: Maybe<PlusCodeUpdateOneInput>;
-  photo_reference?: Maybe<String>;
-  opening_hours?: Maybe<Boolean>;
-  features?: Maybe<FeatureUpdateManyWithoutMapsInput>;
-  boundaries?: Maybe<GeoPointUpdateManyInput>;
-}
-
-export interface PlusCodeUpdateManyMutationInput {
-  compound_code?: Maybe<String>;
-  global_code?: Maybe<String>;
-}
-
-export interface SessionUpdateManyMutationInput {
-  timeStart?: Maybe<DateTimeInput>;
-  timeEnd?: Maybe<DateTimeInput>;
-  mood?: Maybe<Float>;
-  journal?: Maybe<String>;
-  date?: Maybe<DateTimeInput>;
+export interface DaysUpsertWithWhereUniqueNestedInput {
+  where: DaysWhereUniqueInput;
+  update: DaysUpdateDataInput;
+  create: DaysCreateInput;
 }
 
 export interface MapWhereInput {
@@ -2319,8 +1056,1337 @@ export interface MapWhereInput {
   NOT?: Maybe<MapWhereInput[] | MapWhereInput>;
 }
 
-export interface GoalUpdateManyMutationInput {
+export interface DaysUpdateDataInput {
+  title?: Maybe<String>;
   hours?: Maybe<Float>;
+}
+
+export interface NorthEastSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<NorthEastWhereInput>;
+  AND?: Maybe<
+    NorthEastSubscriptionWhereInput[] | NorthEastSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    NorthEastSubscriptionWhereInput[] | NorthEastSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    NorthEastSubscriptionWhereInput[] | NorthEastSubscriptionWhereInput
+  >;
+}
+
+export type ViewportWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface LocationSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<LocationWhereInput>;
+  AND?: Maybe<
+    LocationSubscriptionWhereInput[] | LocationSubscriptionWhereInput
+  >;
+  OR?: Maybe<LocationSubscriptionWhereInput[] | LocationSubscriptionWhereInput>;
+  NOT?: Maybe<
+    LocationSubscriptionWhereInput[] | LocationSubscriptionWhereInput
+  >;
+}
+
+export interface DaysUpdateWithWhereUniqueNestedInput {
+  where: DaysWhereUniqueInput;
+  data: DaysUpdateDataInput;
+}
+
+export interface GeometrySubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<GeometryWhereInput>;
+  AND?: Maybe<
+    GeometrySubscriptionWhereInput[] | GeometrySubscriptionWhereInput
+  >;
+  OR?: Maybe<GeometrySubscriptionWhereInput[] | GeometrySubscriptionWhereInput>;
+  NOT?: Maybe<
+    GeometrySubscriptionWhereInput[] | GeometrySubscriptionWhereInput
+  >;
+}
+
+export interface DaysUpdateManyInput {
+  create?: Maybe<DaysCreateInput[] | DaysCreateInput>;
+  update?: Maybe<
+    | DaysUpdateWithWhereUniqueNestedInput[]
+    | DaysUpdateWithWhereUniqueNestedInput
+  >;
+  upsert?: Maybe<
+    | DaysUpsertWithWhereUniqueNestedInput[]
+    | DaysUpsertWithWhereUniqueNestedInput
+  >;
+  delete?: Maybe<DaysWhereUniqueInput[] | DaysWhereUniqueInput>;
+  connect?: Maybe<DaysWhereUniqueInput[] | DaysWhereUniqueInput>;
+  set?: Maybe<DaysWhereUniqueInput[] | DaysWhereUniqueInput>;
+  disconnect?: Maybe<DaysWhereUniqueInput[] | DaysWhereUniqueInput>;
+  deleteMany?: Maybe<DaysScalarWhereInput[] | DaysScalarWhereInput>;
+  updateMany?: Maybe<
+    DaysUpdateManyWithWhereNestedInput[] | DaysUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface GeoPointSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<GeoPointWhereInput>;
+  AND?: Maybe<
+    GeoPointSubscriptionWhereInput[] | GeoPointSubscriptionWhereInput
+  >;
+  OR?: Maybe<GeoPointSubscriptionWhereInput[] | GeoPointSubscriptionWhereInput>;
+  NOT?: Maybe<
+    GeoPointSubscriptionWhereInput[] | GeoPointSubscriptionWhereInput
+  >;
+}
+
+export interface GoalUpdateInput {
+  days?: Maybe<DaysUpdateManyInput>;
+  user?: Maybe<UserUpdateOneRequiredInput>;
+}
+
+export interface DaysSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<DaysWhereInput>;
+  AND?: Maybe<DaysSubscriptionWhereInput[] | DaysSubscriptionWhereInput>;
+  OR?: Maybe<DaysSubscriptionWhereInput[] | DaysSubscriptionWhereInput>;
+  NOT?: Maybe<DaysSubscriptionWhereInput[] | DaysSubscriptionWhereInput>;
+}
+
+export interface UserCreateInput {
+  id?: Maybe<ID_Input>;
+  email: String;
+  password: String;
+}
+
+export type FeatureWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface UserUpdateManyMutationInput {
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+}
+
+export type GoalWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface DaysCreateInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  hours: Float;
+}
+
+export interface SouthWestUpdateInput {
+  lat?: Maybe<Float>;
+  lng?: Maybe<Float>;
+}
+
+export interface DaysUpdateInput {
+  title?: Maybe<String>;
+  hours?: Maybe<Float>;
+}
+
+export interface UserWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  email?: Maybe<String>;
+  email_not?: Maybe<String>;
+  email_in?: Maybe<String[] | String>;
+  email_not_in?: Maybe<String[] | String>;
+  email_lt?: Maybe<String>;
+  email_lte?: Maybe<String>;
+  email_gt?: Maybe<String>;
+  email_gte?: Maybe<String>;
+  email_contains?: Maybe<String>;
+  email_not_contains?: Maybe<String>;
+  email_starts_with?: Maybe<String>;
+  email_not_starts_with?: Maybe<String>;
+  email_ends_with?: Maybe<String>;
+  email_not_ends_with?: Maybe<String>;
+  password?: Maybe<String>;
+  password_not?: Maybe<String>;
+  password_in?: Maybe<String[] | String>;
+  password_not_in?: Maybe<String[] | String>;
+  password_lt?: Maybe<String>;
+  password_lte?: Maybe<String>;
+  password_gt?: Maybe<String>;
+  password_gte?: Maybe<String>;
+  password_contains?: Maybe<String>;
+  password_not_contains?: Maybe<String>;
+  password_starts_with?: Maybe<String>;
+  password_not_starts_with?: Maybe<String>;
+  password_ends_with?: Maybe<String>;
+  password_not_ends_with?: Maybe<String>;
+  AND?: Maybe<UserWhereInput[] | UserWhereInput>;
+  OR?: Maybe<UserWhereInput[] | UserWhereInput>;
+  NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
+}
+
+export interface DaysUpdateManyMutationInput {
+  title?: Maybe<String>;
+  hours?: Maybe<Float>;
+}
+
+export interface MapUpsertWithWhereUniqueNestedInput {
+  where: MapWhereUniqueInput;
+  update: MapUpdateDataInput;
+  create: MapCreateInput;
+}
+
+export interface UserCreateOneInput {
+  create?: Maybe<UserCreateInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface MapUpdateWithWhereUniqueNestedInput {
+  where: MapWhereUniqueInput;
+  data: MapUpdateDataInput;
+}
+
+export interface DaysCreateManyInput {
+  create?: Maybe<DaysCreateInput[] | DaysCreateInput>;
+  connect?: Maybe<DaysWhereUniqueInput[] | DaysWhereUniqueInput>;
+}
+
+export interface MapUpdateManyInput {
+  create?: Maybe<MapCreateInput[] | MapCreateInput>;
+  update?: Maybe<
+    MapUpdateWithWhereUniqueNestedInput[] | MapUpdateWithWhereUniqueNestedInput
+  >;
+  upsert?: Maybe<
+    MapUpsertWithWhereUniqueNestedInput[] | MapUpsertWithWhereUniqueNestedInput
+  >;
+  delete?: Maybe<MapWhereUniqueInput[] | MapWhereUniqueInput>;
+  connect?: Maybe<MapWhereUniqueInput[] | MapWhereUniqueInput>;
+  set?: Maybe<MapWhereUniqueInput[] | MapWhereUniqueInput>;
+  disconnect?: Maybe<MapWhereUniqueInput[] | MapWhereUniqueInput>;
+  deleteMany?: Maybe<MapScalarWhereInput[] | MapScalarWhereInput>;
+  updateMany?: Maybe<
+    MapUpdateManyWithWhereNestedInput[] | MapUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface FeatureCreateInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  maps?: Maybe<MapCreateManyWithoutFeaturesInput>;
+}
+
+export interface MapCreateManyInput {
+  create?: Maybe<MapCreateInput[] | MapCreateInput>;
+  connect?: Maybe<MapWhereUniqueInput[] | MapWhereUniqueInput>;
+}
+
+export interface MapCreateManyWithoutFeaturesInput {
+  create?: Maybe<
+    MapCreateWithoutFeaturesInput[] | MapCreateWithoutFeaturesInput
+  >;
+  connect?: Maybe<MapWhereUniqueInput[] | MapWhereUniqueInput>;
+}
+
+export type MapWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  externalId?: Maybe<String>;
+}>;
+
+export interface MapCreateWithoutFeaturesInput {
+  id?: Maybe<ID_Input>;
+  externalId: String;
+  name: String;
+  geometry: GeometryCreateOneInput;
+  vicinity: String;
+  plus_code?: Maybe<PlusCodeCreateOneInput>;
+  photo_reference?: Maybe<String>;
+  opening_hours?: Maybe<Boolean>;
+  boundaries?: Maybe<GeoPointCreateManyInput>;
+}
+
+export interface ProgressUpdateInput {
+  duration?: Maybe<Float>;
+  completion?: Maybe<Float>;
+  date?: Maybe<DateTimeInput>;
+  weekday?: Maybe<String>;
+}
+
+export interface GeometryCreateOneInput {
+  create?: Maybe<GeometryCreateInput>;
+  connect?: Maybe<GeometryWhereUniqueInput>;
+}
+
+export type NorthEastWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface GeometryCreateInput {
+  id?: Maybe<ID_Input>;
+  location: LocationCreateOneInput;
+  viewport: ViewportCreateOneInput;
+}
+
+export interface PlusCodeUpdateInput {
+  compound_code?: Maybe<String>;
+  global_code?: Maybe<String>;
+}
+
+export interface LocationCreateOneInput {
+  create?: Maybe<LocationCreateInput>;
+  connect?: Maybe<LocationWhereUniqueInput>;
+}
+
+export interface NorthEastUpdateInput {
+  lat?: Maybe<Float>;
+  lng?: Maybe<Float>;
+}
+
+export interface LocationCreateInput {
+  id?: Maybe<ID_Input>;
+  lat: Float;
+  lng: Float;
+}
+
+export interface MapUpdateManyMutationInput {
+  externalId?: Maybe<String>;
+  name?: Maybe<String>;
+  vicinity?: Maybe<String>;
+  photo_reference?: Maybe<String>;
+  opening_hours?: Maybe<Boolean>;
+}
+
+export interface ViewportCreateOneInput {
+  create?: Maybe<ViewportCreateInput>;
+  connect?: Maybe<ViewportWhereUniqueInput>;
+}
+
+export interface FeatureUpdateManyWithWhereNestedInput {
+  where: FeatureScalarWhereInput;
+  data: FeatureUpdateManyDataInput;
+}
+
+export interface ViewportCreateInput {
+  id?: Maybe<ID_Input>;
+  northeast: NorthEastCreateOneInput;
+  southwest: SouthWestCreateOneInput;
+}
+
+export type ProgressWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface NorthEastCreateOneInput {
+  create?: Maybe<NorthEastCreateInput>;
+  connect?: Maybe<NorthEastWhereUniqueInput>;
+}
+
+export interface FeatureUpdateWithoutMapsDataInput {
+  title?: Maybe<String>;
+}
+
+export interface NorthEastCreateInput {
+  id?: Maybe<ID_Input>;
+  lat: Float;
+  lng: Float;
+}
+
+export interface FeatureUpdateWithWhereUniqueWithoutMapsInput {
+  where: FeatureWhereUniqueInput;
+  data: FeatureUpdateWithoutMapsDataInput;
+}
+
+export interface SouthWestCreateOneInput {
+  create?: Maybe<SouthWestCreateInput>;
+  connect?: Maybe<SouthWestWhereUniqueInput>;
+}
+
+export interface MapUpdateInput {
+  externalId?: Maybe<String>;
+  name?: Maybe<String>;
+  geometry?: Maybe<GeometryUpdateOneRequiredInput>;
+  vicinity?: Maybe<String>;
+  plus_code?: Maybe<PlusCodeUpdateOneInput>;
+  photo_reference?: Maybe<String>;
+  opening_hours?: Maybe<Boolean>;
+  features?: Maybe<FeatureUpdateManyWithoutMapsInput>;
+  boundaries?: Maybe<GeoPointUpdateManyInput>;
+}
+
+export interface SouthWestCreateInput {
+  id?: Maybe<ID_Input>;
+  lat: Float;
+  lng: Float;
+}
+
+export type SessionWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface PlusCodeCreateOneInput {
+  create?: Maybe<PlusCodeCreateInput>;
+  connect?: Maybe<PlusCodeWhereUniqueInput>;
+}
+
+export interface SessionWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  timeStart?: Maybe<DateTimeInput>;
+  timeStart_not?: Maybe<DateTimeInput>;
+  timeStart_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  timeStart_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  timeStart_lt?: Maybe<DateTimeInput>;
+  timeStart_lte?: Maybe<DateTimeInput>;
+  timeStart_gt?: Maybe<DateTimeInput>;
+  timeStart_gte?: Maybe<DateTimeInput>;
+  timeEnd?: Maybe<DateTimeInput>;
+  timeEnd_not?: Maybe<DateTimeInput>;
+  timeEnd_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  timeEnd_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  timeEnd_lt?: Maybe<DateTimeInput>;
+  timeEnd_lte?: Maybe<DateTimeInput>;
+  timeEnd_gt?: Maybe<DateTimeInput>;
+  timeEnd_gte?: Maybe<DateTimeInput>;
+  locations_every?: Maybe<MapWhereInput>;
+  locations_some?: Maybe<MapWhereInput>;
+  locations_none?: Maybe<MapWhereInput>;
+  mood?: Maybe<Float>;
+  mood_not?: Maybe<Float>;
+  mood_in?: Maybe<Float[] | Float>;
+  mood_not_in?: Maybe<Float[] | Float>;
+  mood_lt?: Maybe<Float>;
+  mood_lte?: Maybe<Float>;
+  mood_gt?: Maybe<Float>;
+  mood_gte?: Maybe<Float>;
+  journal?: Maybe<String>;
+  journal_not?: Maybe<String>;
+  journal_in?: Maybe<String[] | String>;
+  journal_not_in?: Maybe<String[] | String>;
+  journal_lt?: Maybe<String>;
+  journal_lte?: Maybe<String>;
+  journal_gt?: Maybe<String>;
+  journal_gte?: Maybe<String>;
+  journal_contains?: Maybe<String>;
+  journal_not_contains?: Maybe<String>;
+  journal_starts_with?: Maybe<String>;
+  journal_not_starts_with?: Maybe<String>;
+  journal_ends_with?: Maybe<String>;
+  journal_not_ends_with?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
+  date_not?: Maybe<DateTimeInput>;
+  date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_lt?: Maybe<DateTimeInput>;
+  date_lte?: Maybe<DateTimeInput>;
+  date_gt?: Maybe<DateTimeInput>;
+  date_gte?: Maybe<DateTimeInput>;
+  user?: Maybe<UserWhereInput>;
+  AND?: Maybe<SessionWhereInput[] | SessionWhereInput>;
+  OR?: Maybe<SessionWhereInput[] | SessionWhereInput>;
+  NOT?: Maybe<SessionWhereInput[] | SessionWhereInput>;
+}
+
+export interface PlusCodeCreateInput {
+  id?: Maybe<ID_Input>;
+  compound_code?: Maybe<String>;
+  global_code?: Maybe<String>;
+}
+
+export interface LocationUpdateManyMutationInput {
+  lat?: Maybe<Float>;
+  lng?: Maybe<Float>;
+}
+
+export interface GeoPointCreateManyInput {
+  create?: Maybe<GeoPointCreateInput[] | GeoPointCreateInput>;
+  connect?: Maybe<GeoPointWhereUniqueInput[] | GeoPointWhereUniqueInput>;
+}
+
+export interface UserUpsertNestedInput {
+  update: UserUpdateDataInput;
+  create: UserCreateInput;
+}
+
+export interface GeoPointCreateInput {
+  id?: Maybe<ID_Input>;
+  boundary: Json;
+}
+
+export interface DaysWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  hours?: Maybe<Float>;
+  hours_not?: Maybe<Float>;
+  hours_in?: Maybe<Float[] | Float>;
+  hours_not_in?: Maybe<Float[] | Float>;
+  hours_lt?: Maybe<Float>;
+  hours_lte?: Maybe<Float>;
+  hours_gt?: Maybe<Float>;
+  hours_gte?: Maybe<Float>;
+  AND?: Maybe<DaysWhereInput[] | DaysWhereInput>;
+  OR?: Maybe<DaysWhereInput[] | DaysWhereInput>;
+  NOT?: Maybe<DaysWhereInput[] | DaysWhereInput>;
+}
+
+export interface GoalCreateInput {
+  id?: Maybe<ID_Input>;
+  days?: Maybe<DaysCreateManyInput>;
+  user: UserCreateOneInput;
+}
+
+export interface UserUpdateOneRequiredInput {
+  create?: Maybe<UserCreateInput>;
+  update?: Maybe<UserUpdateDataInput>;
+  upsert?: Maybe<UserUpsertNestedInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface MapUpdateManyWithoutFeaturesInput {
+  create?: Maybe<
+    MapCreateWithoutFeaturesInput[] | MapCreateWithoutFeaturesInput
+  >;
+  delete?: Maybe<MapWhereUniqueInput[] | MapWhereUniqueInput>;
+  connect?: Maybe<MapWhereUniqueInput[] | MapWhereUniqueInput>;
+  set?: Maybe<MapWhereUniqueInput[] | MapWhereUniqueInput>;
+  disconnect?: Maybe<MapWhereUniqueInput[] | MapWhereUniqueInput>;
+  update?: Maybe<
+    | MapUpdateWithWhereUniqueWithoutFeaturesInput[]
+    | MapUpdateWithWhereUniqueWithoutFeaturesInput
+  >;
+  upsert?: Maybe<
+    | MapUpsertWithWhereUniqueWithoutFeaturesInput[]
+    | MapUpsertWithWhereUniqueWithoutFeaturesInput
+  >;
+  deleteMany?: Maybe<MapScalarWhereInput[] | MapScalarWhereInput>;
+  updateMany?: Maybe<
+    MapUpdateManyWithWhereNestedInput[] | MapUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface SouthWestSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<SouthWestWhereInput>;
+  AND?: Maybe<
+    SouthWestSubscriptionWhereInput[] | SouthWestSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    SouthWestSubscriptionWhereInput[] | SouthWestSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    SouthWestSubscriptionWhereInput[] | SouthWestSubscriptionWhereInput
+  >;
+}
+
+export interface MapUpdateWithWhereUniqueWithoutFeaturesInput {
+  where: MapWhereUniqueInput;
+  data: MapUpdateWithoutFeaturesDataInput;
+}
+
+export interface PlusCodeSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<PlusCodeWhereInput>;
+  AND?: Maybe<
+    PlusCodeSubscriptionWhereInput[] | PlusCodeSubscriptionWhereInput
+  >;
+  OR?: Maybe<PlusCodeSubscriptionWhereInput[] | PlusCodeSubscriptionWhereInput>;
+  NOT?: Maybe<
+    PlusCodeSubscriptionWhereInput[] | PlusCodeSubscriptionWhereInput
+  >;
+}
+
+export interface MapUpdateWithoutFeaturesDataInput {
+  externalId?: Maybe<String>;
+  name?: Maybe<String>;
+  geometry?: Maybe<GeometryUpdateOneRequiredInput>;
+  vicinity?: Maybe<String>;
+  plus_code?: Maybe<PlusCodeUpdateOneInput>;
+  photo_reference?: Maybe<String>;
+  opening_hours?: Maybe<Boolean>;
+  boundaries?: Maybe<GeoPointUpdateManyInput>;
+}
+
+export interface GoalSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<GoalWhereInput>;
+  AND?: Maybe<GoalSubscriptionWhereInput[] | GoalSubscriptionWhereInput>;
+  OR?: Maybe<GoalSubscriptionWhereInput[] | GoalSubscriptionWhereInput>;
+  NOT?: Maybe<GoalSubscriptionWhereInput[] | GoalSubscriptionWhereInput>;
+}
+
+export interface GeometryUpdateOneRequiredInput {
+  create?: Maybe<GeometryCreateInput>;
+  update?: Maybe<GeometryUpdateDataInput>;
+  upsert?: Maybe<GeometryUpsertNestedInput>;
+  connect?: Maybe<GeometryWhereUniqueInput>;
+}
+
+export interface FeatureSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<FeatureWhereInput>;
+  AND?: Maybe<FeatureSubscriptionWhereInput[] | FeatureSubscriptionWhereInput>;
+  OR?: Maybe<FeatureSubscriptionWhereInput[] | FeatureSubscriptionWhereInput>;
+  NOT?: Maybe<FeatureSubscriptionWhereInput[] | FeatureSubscriptionWhereInput>;
+}
+
+export interface GeometryUpdateDataInput {
+  location?: Maybe<LocationUpdateOneRequiredInput>;
+  viewport?: Maybe<ViewportUpdateOneRequiredInput>;
+}
+
+export interface ViewportUpdateInput {
+  northeast?: Maybe<NorthEastUpdateOneRequiredInput>;
+  southwest?: Maybe<SouthWestUpdateOneRequiredInput>;
+}
+
+export interface LocationUpdateOneRequiredInput {
+  create?: Maybe<LocationCreateInput>;
+  update?: Maybe<LocationUpdateDataInput>;
+  upsert?: Maybe<LocationUpsertNestedInput>;
+  connect?: Maybe<LocationWhereUniqueInput>;
+}
+
+export interface SouthWestUpdateManyMutationInput {
+  lat?: Maybe<Float>;
+  lng?: Maybe<Float>;
+}
+
+export interface LocationUpdateDataInput {
+  lat?: Maybe<Float>;
+  lng?: Maybe<Float>;
+}
+
+export interface SessionUpdateManyMutationInput {
+  timeStart?: Maybe<DateTimeInput>;
+  timeEnd?: Maybe<DateTimeInput>;
+  mood?: Maybe<Float>;
+  journal?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
+}
+
+export interface ViewportWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  northeast?: Maybe<NorthEastWhereInput>;
+  southwest?: Maybe<SouthWestWhereInput>;
+  AND?: Maybe<ViewportWhereInput[] | ViewportWhereInput>;
+  OR?: Maybe<ViewportWhereInput[] | ViewportWhereInput>;
+  NOT?: Maybe<ViewportWhereInput[] | ViewportWhereInput>;
+}
+
+export type LocationWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface SouthWestWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  lat?: Maybe<Float>;
+  lat_not?: Maybe<Float>;
+  lat_in?: Maybe<Float[] | Float>;
+  lat_not_in?: Maybe<Float[] | Float>;
+  lat_lt?: Maybe<Float>;
+  lat_lte?: Maybe<Float>;
+  lat_gt?: Maybe<Float>;
+  lat_gte?: Maybe<Float>;
+  lng?: Maybe<Float>;
+  lng_not?: Maybe<Float>;
+  lng_in?: Maybe<Float[] | Float>;
+  lng_not_in?: Maybe<Float[] | Float>;
+  lng_lt?: Maybe<Float>;
+  lng_lte?: Maybe<Float>;
+  lng_gt?: Maybe<Float>;
+  lng_gte?: Maybe<Float>;
+  AND?: Maybe<SouthWestWhereInput[] | SouthWestWhereInput>;
+  OR?: Maybe<SouthWestWhereInput[] | SouthWestWhereInput>;
+  NOT?: Maybe<SouthWestWhereInput[] | SouthWestWhereInput>;
+}
+
+export interface SessionCreateInput {
+  id?: Maybe<ID_Input>;
+  timeStart: DateTimeInput;
+  timeEnd: DateTimeInput;
+  locations?: Maybe<MapCreateManyInput>;
+  mood?: Maybe<Float>;
+  journal?: Maybe<String>;
+  date: DateTimeInput;
+  user: UserCreateOneInput;
+}
+
+export interface FeatureWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  maps_every?: Maybe<MapWhereInput>;
+  maps_some?: Maybe<MapWhereInput>;
+  maps_none?: Maybe<MapWhereInput>;
+  AND?: Maybe<FeatureWhereInput[] | FeatureWhereInput>;
+  OR?: Maybe<FeatureWhereInput[] | FeatureWhereInput>;
+  NOT?: Maybe<FeatureWhereInput[] | FeatureWhereInput>;
+}
+
+export interface ProgressCreateInput {
+  id?: Maybe<ID_Input>;
+  duration: Float;
+  completion: Float;
+  date: DateTimeInput;
+  weekday: String;
+}
+
+export interface GeometryWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  location?: Maybe<LocationWhereInput>;
+  viewport?: Maybe<ViewportWhereInput>;
+  AND?: Maybe<GeometryWhereInput[] | GeometryWhereInput>;
+  OR?: Maybe<GeometryWhereInput[] | GeometryWhereInput>;
+  NOT?: Maybe<GeometryWhereInput[] | GeometryWhereInput>;
+}
+
+export interface NorthEastUpdateManyMutationInput {
+  lat?: Maybe<Float>;
+  lng?: Maybe<Float>;
+}
+
+export interface GeometryUpdateInput {
+  location?: Maybe<LocationUpdateOneRequiredInput>;
+  viewport?: Maybe<ViewportUpdateOneRequiredInput>;
+}
+
+export interface FeatureUpdateManyDataInput {
+  title?: Maybe<String>;
+}
+
+export interface NorthEastUpsertNestedInput {
+  update: NorthEastUpdateDataInput;
+  create: NorthEastCreateInput;
+}
+
+export interface FeatureUpsertWithWhereUniqueWithoutMapsInput {
+  where: FeatureWhereUniqueInput;
+  update: FeatureUpdateWithoutMapsDataInput;
+  create: FeatureCreateWithoutMapsInput;
+}
+
+export interface SouthWestUpdateOneRequiredInput {
+  create?: Maybe<SouthWestCreateInput>;
+  update?: Maybe<SouthWestUpdateDataInput>;
+  upsert?: Maybe<SouthWestUpsertNestedInput>;
+  connect?: Maybe<SouthWestWhereUniqueInput>;
+}
+
+export interface FeatureUpdateManyWithoutMapsInput {
+  create?: Maybe<
+    FeatureCreateWithoutMapsInput[] | FeatureCreateWithoutMapsInput
+  >;
+  delete?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
+  connect?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
+  set?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
+  disconnect?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
+  update?: Maybe<
+    | FeatureUpdateWithWhereUniqueWithoutMapsInput[]
+    | FeatureUpdateWithWhereUniqueWithoutMapsInput
+  >;
+  upsert?: Maybe<
+    | FeatureUpsertWithWhereUniqueWithoutMapsInput[]
+    | FeatureUpsertWithWhereUniqueWithoutMapsInput
+  >;
+  deleteMany?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
+  updateMany?: Maybe<
+    | FeatureUpdateManyWithWhereNestedInput[]
+    | FeatureUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface SouthWestUpdateDataInput {
+  lat?: Maybe<Float>;
+  lng?: Maybe<Float>;
+}
+
+export interface FeatureCreateManyWithoutMapsInput {
+  create?: Maybe<
+    FeatureCreateWithoutMapsInput[] | FeatureCreateWithoutMapsInput
+  >;
+  connect?: Maybe<FeatureWhereUniqueInput[] | FeatureWhereUniqueInput>;
+}
+
+export interface SouthWestUpsertNestedInput {
+  update: SouthWestUpdateDataInput;
+  create: SouthWestCreateInput;
+}
+
+export interface LocationUpdateInput {
+  lat?: Maybe<Float>;
+  lng?: Maybe<Float>;
+}
+
+export interface ViewportUpsertNestedInput {
+  update: ViewportUpdateDataInput;
+  create: ViewportCreateInput;
+}
+
+export interface UserUpdateDataInput {
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+}
+
+export interface GeometryUpsertNestedInput {
+  update: GeometryUpdateDataInput;
+  create: GeometryCreateInput;
+}
+
+export interface ProgressSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ProgressWhereInput>;
+  AND?: Maybe<
+    ProgressSubscriptionWhereInput[] | ProgressSubscriptionWhereInput
+  >;
+  OR?: Maybe<ProgressSubscriptionWhereInput[] | ProgressSubscriptionWhereInput>;
+  NOT?: Maybe<
+    ProgressSubscriptionWhereInput[] | ProgressSubscriptionWhereInput
+  >;
+}
+
+export interface PlusCodeUpdateOneInput {
+  create?: Maybe<PlusCodeCreateInput>;
+  update?: Maybe<PlusCodeUpdateDataInput>;
+  upsert?: Maybe<PlusCodeUpsertNestedInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<PlusCodeWhereUniqueInput>;
+}
+
+export type GeoPointWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface PlusCodeUpdateDataInput {
+  compound_code?: Maybe<String>;
+  global_code?: Maybe<String>;
+}
+
+export interface UserUpdateInput {
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+}
+
+export interface PlusCodeUpsertNestedInput {
+  update: PlusCodeUpdateDataInput;
+  create: PlusCodeCreateInput;
+}
+
+export interface MapUpdateDataInput {
+  externalId?: Maybe<String>;
+  name?: Maybe<String>;
+  geometry?: Maybe<GeometryUpdateOneRequiredInput>;
+  vicinity?: Maybe<String>;
+  plus_code?: Maybe<PlusCodeUpdateOneInput>;
+  photo_reference?: Maybe<String>;
+  opening_hours?: Maybe<Boolean>;
+  features?: Maybe<FeatureUpdateManyWithoutMapsInput>;
+  boundaries?: Maybe<GeoPointUpdateManyInput>;
+}
+
+export interface GeoPointUpdateManyInput {
+  create?: Maybe<GeoPointCreateInput[] | GeoPointCreateInput>;
+  update?: Maybe<
+    | GeoPointUpdateWithWhereUniqueNestedInput[]
+    | GeoPointUpdateWithWhereUniqueNestedInput
+  >;
+  upsert?: Maybe<
+    | GeoPointUpsertWithWhereUniqueNestedInput[]
+    | GeoPointUpsertWithWhereUniqueNestedInput
+  >;
+  delete?: Maybe<GeoPointWhereUniqueInput[] | GeoPointWhereUniqueInput>;
+  connect?: Maybe<GeoPointWhereUniqueInput[] | GeoPointWhereUniqueInput>;
+  set?: Maybe<GeoPointWhereUniqueInput[] | GeoPointWhereUniqueInput>;
+  disconnect?: Maybe<GeoPointWhereUniqueInput[] | GeoPointWhereUniqueInput>;
+  deleteMany?: Maybe<GeoPointScalarWhereInput[] | GeoPointScalarWhereInput>;
+  updateMany?: Maybe<
+    | GeoPointUpdateManyWithWhereNestedInput[]
+    | GeoPointUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface ProgressUpdateManyMutationInput {
+  duration?: Maybe<Float>;
+  completion?: Maybe<Float>;
+  date?: Maybe<DateTimeInput>;
+  weekday?: Maybe<String>;
+}
+
+export interface GeoPointUpdateWithWhereUniqueNestedInput {
+  where: GeoPointWhereUniqueInput;
+  data: GeoPointUpdateDataInput;
+}
+
+export type PlusCodeWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface GeoPointUpdateDataInput {
+  boundary?: Maybe<Json>;
+}
+
+export interface ProgressWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  duration?: Maybe<Float>;
+  duration_not?: Maybe<Float>;
+  duration_in?: Maybe<Float[] | Float>;
+  duration_not_in?: Maybe<Float[] | Float>;
+  duration_lt?: Maybe<Float>;
+  duration_lte?: Maybe<Float>;
+  duration_gt?: Maybe<Float>;
+  duration_gte?: Maybe<Float>;
+  completion?: Maybe<Float>;
+  completion_not?: Maybe<Float>;
+  completion_in?: Maybe<Float[] | Float>;
+  completion_not_in?: Maybe<Float[] | Float>;
+  completion_lt?: Maybe<Float>;
+  completion_lte?: Maybe<Float>;
+  completion_gt?: Maybe<Float>;
+  completion_gte?: Maybe<Float>;
+  date?: Maybe<DateTimeInput>;
+  date_not?: Maybe<DateTimeInput>;
+  date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_lt?: Maybe<DateTimeInput>;
+  date_lte?: Maybe<DateTimeInput>;
+  date_gt?: Maybe<DateTimeInput>;
+  date_gte?: Maybe<DateTimeInput>;
+  weekday?: Maybe<String>;
+  weekday_not?: Maybe<String>;
+  weekday_in?: Maybe<String[] | String>;
+  weekday_not_in?: Maybe<String[] | String>;
+  weekday_lt?: Maybe<String>;
+  weekday_lte?: Maybe<String>;
+  weekday_gt?: Maybe<String>;
+  weekday_gte?: Maybe<String>;
+  weekday_contains?: Maybe<String>;
+  weekday_not_contains?: Maybe<String>;
+  weekday_starts_with?: Maybe<String>;
+  weekday_not_starts_with?: Maybe<String>;
+  weekday_ends_with?: Maybe<String>;
+  weekday_not_ends_with?: Maybe<String>;
+  AND?: Maybe<ProgressWhereInput[] | ProgressWhereInput>;
+  OR?: Maybe<ProgressWhereInput[] | ProgressWhereInput>;
+  NOT?: Maybe<ProgressWhereInput[] | ProgressWhereInput>;
+}
+
+export interface GeoPointUpsertWithWhereUniqueNestedInput {
+  where: GeoPointWhereUniqueInput;
+  update: GeoPointUpdateDataInput;
+  create: GeoPointCreateInput;
+}
+
+export interface MapCreateInput {
+  id?: Maybe<ID_Input>;
+  externalId: String;
+  name: String;
+  geometry: GeometryCreateOneInput;
+  vicinity: String;
+  plus_code?: Maybe<PlusCodeCreateOneInput>;
+  photo_reference?: Maybe<String>;
+  opening_hours?: Maybe<Boolean>;
+  features?: Maybe<FeatureCreateManyWithoutMapsInput>;
+  boundaries?: Maybe<GeoPointCreateManyInput>;
+}
+
+export interface GeoPointScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  AND?: Maybe<GeoPointScalarWhereInput[] | GeoPointScalarWhereInput>;
+  OR?: Maybe<GeoPointScalarWhereInput[] | GeoPointScalarWhereInput>;
+  NOT?: Maybe<GeoPointScalarWhereInput[] | GeoPointScalarWhereInput>;
+}
+
+export interface ViewportSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ViewportWhereInput>;
+  AND?: Maybe<
+    ViewportSubscriptionWhereInput[] | ViewportSubscriptionWhereInput
+  >;
+  OR?: Maybe<ViewportSubscriptionWhereInput[] | ViewportSubscriptionWhereInput>;
+  NOT?: Maybe<
+    ViewportSubscriptionWhereInput[] | ViewportSubscriptionWhereInput
+  >;
+}
+
+export interface GeoPointUpdateManyWithWhereNestedInput {
+  where: GeoPointScalarWhereInput;
+  data: GeoPointUpdateManyDataInput;
+}
+
+export type GeometryWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface GeoPointUpdateManyDataInput {
+  boundary?: Maybe<Json>;
+}
+
+export interface SessionUpdateInput {
+  timeStart?: Maybe<DateTimeInput>;
+  timeEnd?: Maybe<DateTimeInput>;
+  locations?: Maybe<MapUpdateManyInput>;
+  mood?: Maybe<Float>;
+  journal?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
+  user?: Maybe<UserUpdateOneRequiredInput>;
+}
+
+export interface MapUpsertWithWhereUniqueWithoutFeaturesInput {
+  where: MapWhereUniqueInput;
+  update: MapUpdateWithoutFeaturesDataInput;
+  create: MapCreateWithoutFeaturesInput;
+}
+
+export interface FeatureScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  AND?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
+  OR?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
+  NOT?: Maybe<FeatureScalarWhereInput[] | FeatureScalarWhereInput>;
+}
+
+export interface MapScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  externalId?: Maybe<String>;
+  externalId_not?: Maybe<String>;
+  externalId_in?: Maybe<String[] | String>;
+  externalId_not_in?: Maybe<String[] | String>;
+  externalId_lt?: Maybe<String>;
+  externalId_lte?: Maybe<String>;
+  externalId_gt?: Maybe<String>;
+  externalId_gte?: Maybe<String>;
+  externalId_contains?: Maybe<String>;
+  externalId_not_contains?: Maybe<String>;
+  externalId_starts_with?: Maybe<String>;
+  externalId_not_starts_with?: Maybe<String>;
+  externalId_ends_with?: Maybe<String>;
+  externalId_not_ends_with?: Maybe<String>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  vicinity?: Maybe<String>;
+  vicinity_not?: Maybe<String>;
+  vicinity_in?: Maybe<String[] | String>;
+  vicinity_not_in?: Maybe<String[] | String>;
+  vicinity_lt?: Maybe<String>;
+  vicinity_lte?: Maybe<String>;
+  vicinity_gt?: Maybe<String>;
+  vicinity_gte?: Maybe<String>;
+  vicinity_contains?: Maybe<String>;
+  vicinity_not_contains?: Maybe<String>;
+  vicinity_starts_with?: Maybe<String>;
+  vicinity_not_starts_with?: Maybe<String>;
+  vicinity_ends_with?: Maybe<String>;
+  vicinity_not_ends_with?: Maybe<String>;
+  photo_reference?: Maybe<String>;
+  photo_reference_not?: Maybe<String>;
+  photo_reference_in?: Maybe<String[] | String>;
+  photo_reference_not_in?: Maybe<String[] | String>;
+  photo_reference_lt?: Maybe<String>;
+  photo_reference_lte?: Maybe<String>;
+  photo_reference_gt?: Maybe<String>;
+  photo_reference_gte?: Maybe<String>;
+  photo_reference_contains?: Maybe<String>;
+  photo_reference_not_contains?: Maybe<String>;
+  photo_reference_starts_with?: Maybe<String>;
+  photo_reference_not_starts_with?: Maybe<String>;
+  photo_reference_ends_with?: Maybe<String>;
+  photo_reference_not_ends_with?: Maybe<String>;
+  opening_hours?: Maybe<Boolean>;
+  opening_hours_not?: Maybe<Boolean>;
+  AND?: Maybe<MapScalarWhereInput[] | MapScalarWhereInput>;
+  OR?: Maybe<MapScalarWhereInput[] | MapScalarWhereInput>;
+  NOT?: Maybe<MapScalarWhereInput[] | MapScalarWhereInput>;
+}
+
+export type SouthWestWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface GeoPointUpdateInput {
+  boundary?: Maybe<Json>;
+}
+
+export interface FeatureUpdateManyMutationInput {
+  title?: Maybe<String>;
+}
+
+export interface MapUpdateManyDataInput {
+  externalId?: Maybe<String>;
+  name?: Maybe<String>;
+  vicinity?: Maybe<String>;
+  photo_reference?: Maybe<String>;
+  opening_hours?: Maybe<Boolean>;
+}
+
+export interface MapUpdateManyWithWhereNestedInput {
+  where: MapScalarWhereInput;
+  data: MapUpdateManyDataInput;
+}
+
+export interface MapSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<MapWhereInput>;
+  AND?: Maybe<MapSubscriptionWhereInput[] | MapSubscriptionWhereInput>;
+  OR?: Maybe<MapSubscriptionWhereInput[] | MapSubscriptionWhereInput>;
+  NOT?: Maybe<MapSubscriptionWhereInput[] | MapSubscriptionWhereInput>;
+}
+
+export interface FeatureCreateWithoutMapsInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+}
+
+export interface PlusCodeUpdateManyMutationInput {
+  compound_code?: Maybe<String>;
+  global_code?: Maybe<String>;
+}
+
+export interface GoalWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  days_every?: Maybe<DaysWhereInput>;
+  days_some?: Maybe<DaysWhereInput>;
+  days_none?: Maybe<DaysWhereInput>;
+  user?: Maybe<UserWhereInput>;
+  AND?: Maybe<GoalWhereInput[] | GoalWhereInput>;
+  OR?: Maybe<GoalWhereInput[] | GoalWhereInput>;
+  NOT?: Maybe<GoalWhereInput[] | GoalWhereInput>;
 }
 
 export interface NodeNode {
@@ -2343,68 +2409,21 @@ export interface ViewportPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
 }
 
-export interface User {
-  id: ID_Output;
-  email: String;
-  password: String;
-}
-
-export interface UserPromise extends Promise<User>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  email: () => Promise<String>;
-  password: () => Promise<String>;
-}
-
-export interface UserSubscription
-  extends Promise<AsyncIterator<User>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  email: () => Promise<AsyncIterator<String>>;
-  password: () => Promise<AsyncIterator<String>>;
-}
-
-export interface UserNullablePromise
-  extends Promise<User | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  email: () => Promise<String>;
-  password: () => Promise<String>;
-}
-
-export interface SouthWestSubscriptionPayload {
-  mutation: MutationType;
-  node: SouthWest;
-  updatedFields: String[];
-  previousValues: SouthWestPreviousValues;
-}
-
-export interface SouthWestSubscriptionPayloadPromise
-  extends Promise<SouthWestSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = SouthWestPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = SouthWestPreviousValuesPromise>() => T;
-}
-
-export interface SouthWestSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<SouthWestSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = SouthWestSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = SouthWestPreviousValuesSubscription>() => T;
-}
-
 export interface Goal {
   id: ID_Output;
-  hours: Float;
 }
 
 export interface GoalPromise extends Promise<Goal>, Fragmentable {
   id: () => Promise<ID_Output>;
-  hours: () => Promise<Float>;
-  days: <T = DaysPromise>() => T;
+  days: <T = FragmentableArray<Days>>(args?: {
+    where?: DaysWhereInput;
+    orderBy?: DaysOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
   user: <T = UserPromise>() => T;
 }
 
@@ -2412,8 +2431,15 @@ export interface GoalSubscription
   extends Promise<AsyncIterator<Goal>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  hours: () => Promise<AsyncIterator<Float>>;
-  days: <T = DaysSubscription>() => T;
+  days: <T = Promise<AsyncIterator<DaysSubscription>>>(args?: {
+    where?: DaysWhereInput;
+    orderBy?: DaysOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
   user: <T = UserSubscription>() => T;
 }
 
@@ -2421,270 +2447,16 @@ export interface GoalNullablePromise
   extends Promise<Goal | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  hours: () => Promise<Float>;
-  days: <T = DaysPromise>() => T;
+  days: <T = FragmentableArray<Days>>(args?: {
+    where?: DaysWhereInput;
+    orderBy?: DaysOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
   user: <T = UserPromise>() => T;
-}
-
-export interface GeometryEdge {
-  node: Geometry;
-  cursor: String;
-}
-
-export interface GeometryEdgePromise
-  extends Promise<GeometryEdge>,
-    Fragmentable {
-  node: <T = GeometryPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface GeometryEdgeSubscription
-  extends Promise<AsyncIterator<GeometryEdge>>,
-    Fragmentable {
-  node: <T = GeometrySubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateGeometry {
-  count: Int;
-}
-
-export interface AggregateGeometryPromise
-  extends Promise<AggregateGeometry>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateGeometrySubscription
-  extends Promise<AsyncIterator<AggregateGeometry>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface AggregateViewport {
-  count: Int;
-}
-
-export interface AggregateViewportPromise
-  extends Promise<AggregateViewport>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateViewportSubscription
-  extends Promise<AsyncIterator<AggregateViewport>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface Geometry {
-  id: ID_Output;
-}
-
-export interface GeometryPromise extends Promise<Geometry>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  location: <T = LocationPromise>() => T;
-  viewport: <T = ViewportPromise>() => T;
-}
-
-export interface GeometrySubscription
-  extends Promise<AsyncIterator<Geometry>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  location: <T = LocationSubscription>() => T;
-  viewport: <T = ViewportSubscription>() => T;
-}
-
-export interface GeometryNullablePromise
-  extends Promise<Geometry | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  location: <T = LocationPromise>() => T;
-  viewport: <T = ViewportPromise>() => T;
-}
-
-export interface ViewportConnection {
-  pageInfo: PageInfo;
-  edges: ViewportEdge[];
-}
-
-export interface ViewportConnectionPromise
-  extends Promise<ViewportConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<ViewportEdge>>() => T;
-  aggregate: <T = AggregateViewportPromise>() => T;
-}
-
-export interface ViewportConnectionSubscription
-  extends Promise<AsyncIterator<ViewportConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<ViewportEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateViewportSubscription>() => T;
-}
-
-export interface GeometryConnection {
-  pageInfo: PageInfo;
-  edges: GeometryEdge[];
-}
-
-export interface GeometryConnectionPromise
-  extends Promise<GeometryConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<GeometryEdge>>() => T;
-  aggregate: <T = AggregateGeometryPromise>() => T;
-}
-
-export interface GeometryConnectionSubscription
-  extends Promise<AsyncIterator<GeometryConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<GeometryEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateGeometrySubscription>() => T;
-}
-
-export interface AggregateUser {
-  count: Int;
-}
-
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface Feature {
-  id: ID_Output;
-  title: String;
-}
-
-export interface FeaturePromise extends Promise<Feature>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  maps: <T = FragmentableArray<Map>>(args?: {
-    where?: MapWhereInput;
-    orderBy?: MapOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
-export interface FeatureSubscription
-  extends Promise<AsyncIterator<Feature>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  title: () => Promise<AsyncIterator<String>>;
-  maps: <T = Promise<AsyncIterator<MapSubscription>>>(args?: {
-    where?: MapWhereInput;
-    orderBy?: MapOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
-export interface FeatureNullablePromise
-  extends Promise<Feature | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  maps: <T = FragmentableArray<Map>>(args?: {
-    where?: MapWhereInput;
-    orderBy?: MapOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
-export interface UserConnection {
-  pageInfo: PageInfo;
-  edges: UserEdge[];
-}
-
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
-}
-
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
-}
-
-export interface AggregateGeoPoint {
-  count: Int;
-}
-
-export interface AggregateGeoPointPromise
-  extends Promise<AggregateGeoPoint>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateGeoPointSubscription
-  extends Promise<AsyncIterator<AggregateGeoPoint>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface SouthWestEdge {
-  node: SouthWest;
-  cursor: String;
-}
-
-export interface SouthWestEdgePromise
-  extends Promise<SouthWestEdge>,
-    Fragmentable {
-  node: <T = SouthWestPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface SouthWestEdgeSubscription
-  extends Promise<AsyncIterator<SouthWestEdge>>,
-    Fragmentable {
-  node: <T = SouthWestSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface GeoPointEdge {
-  node: GeoPoint;
-  cursor: String;
-}
-
-export interface GeoPointEdgePromise
-  extends Promise<GeoPointEdge>,
-    Fragmentable {
-  node: <T = GeoPointPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface GeoPointEdgeSubscription
-  extends Promise<AsyncIterator<GeoPointEdge>>,
-    Fragmentable {
-  node: <T = GeoPointSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface Map {
@@ -2785,14 +2557,167 @@ export interface MapNullablePromise extends Promise<Map | null>, Fragmentable {
   }) => T;
 }
 
+export interface AggregateGeometry {
+  count: Int;
+}
+
+export interface AggregateGeometryPromise
+  extends Promise<AggregateGeometry>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateGeometrySubscription
+  extends Promise<AsyncIterator<AggregateGeometry>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Geometry {
+  id: ID_Output;
+}
+
+export interface GeometryPromise extends Promise<Geometry>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  location: <T = LocationPromise>() => T;
+  viewport: <T = ViewportPromise>() => T;
+}
+
+export interface GeometrySubscription
+  extends Promise<AsyncIterator<Geometry>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  location: <T = LocationSubscription>() => T;
+  viewport: <T = ViewportSubscription>() => T;
+}
+
+export interface GeometryNullablePromise
+  extends Promise<Geometry | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  location: <T = LocationPromise>() => T;
+  viewport: <T = ViewportPromise>() => T;
+}
+
+export interface GeometryEdge {
+  node: Geometry;
+  cursor: String;
+}
+
+export interface GeometryEdgePromise
+  extends Promise<GeometryEdge>,
+    Fragmentable {
+  node: <T = GeometryPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface GeometryEdgeSubscription
+  extends Promise<AsyncIterator<GeometryEdge>>,
+    Fragmentable {
+  node: <T = GeometrySubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateViewport {
+  count: Int;
+}
+
+export interface AggregateViewportPromise
+  extends Promise<AggregateViewport>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateViewportSubscription
+  extends Promise<AsyncIterator<AggregateViewport>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface GeometryConnection {
+  pageInfo: PageInfo;
+  edges: GeometryEdge[];
+}
+
+export interface GeometryConnectionPromise
+  extends Promise<GeometryConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<GeometryEdge>>() => T;
+  aggregate: <T = AggregateGeometryPromise>() => T;
+}
+
+export interface GeometryConnectionSubscription
+  extends Promise<AsyncIterator<GeometryConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<GeometryEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateGeometrySubscription>() => T;
+}
+
+export interface ViewportConnection {
+  pageInfo: PageInfo;
+  edges: ViewportEdge[];
+}
+
+export interface ViewportConnectionPromise
+  extends Promise<ViewportConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ViewportEdge>>() => T;
+  aggregate: <T = AggregateViewportPromise>() => T;
+}
+
+export interface ViewportConnectionSubscription
+  extends Promise<AsyncIterator<ViewportConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ViewportEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateViewportSubscription>() => T;
+}
+
+export interface AggregateGeoPoint {
+  count: Int;
+}
+
+export interface AggregateGeoPointPromise
+  extends Promise<AggregateGeoPoint>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateGeoPointSubscription
+  extends Promise<AsyncIterator<AggregateGeoPoint>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface AggregateUser {
+  count: Int;
+}
+
+export interface AggregateUserPromise
+  extends Promise<AggregateUser>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUser>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
 export interface Days {
   id: ID_Output;
   title: String;
+  hours: Float;
 }
 
 export interface DaysPromise extends Promise<Days>, Fragmentable {
   id: () => Promise<ID_Output>;
   title: () => Promise<String>;
+  hours: () => Promise<Float>;
 }
 
 export interface DaysSubscription
@@ -2800,6 +2725,7 @@ export interface DaysSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   title: () => Promise<AsyncIterator<String>>;
+  hours: () => Promise<AsyncIterator<Float>>;
 }
 
 export interface DaysNullablePromise
@@ -2807,23 +2733,28 @@ export interface DaysNullablePromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   title: () => Promise<String>;
+  hours: () => Promise<Float>;
 }
 
-export interface SessionEdge {
-  node: Session;
-  cursor: String;
+export interface UserConnection {
+  pageInfo: PageInfo;
+  edges: UserEdge[];
 }
 
-export interface SessionEdgePromise extends Promise<SessionEdge>, Fragmentable {
-  node: <T = SessionPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface SessionEdgeSubscription
-  extends Promise<AsyncIterator<SessionEdge>>,
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
     Fragmentable {
-  node: <T = SessionSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
+}
+
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
 }
 
 export interface DaysSubscriptionPayload {
@@ -2851,30 +2782,26 @@ export interface DaysSubscriptionPayloadSubscription
   previousValues: <T = DaysPreviousValuesSubscription>() => T;
 }
 
-export interface DaysConnection {
-  pageInfo: PageInfo;
-  edges: DaysEdge[];
+export interface AggregateSouthWest {
+  count: Int;
 }
 
-export interface DaysConnectionPromise
-  extends Promise<DaysConnection>,
+export interface AggregateSouthWestPromise
+  extends Promise<AggregateSouthWest>,
     Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<DaysEdge>>() => T;
-  aggregate: <T = AggregateDaysPromise>() => T;
+  count: () => Promise<Int>;
 }
 
-export interface DaysConnectionSubscription
-  extends Promise<AsyncIterator<DaysConnection>>,
+export interface AggregateSouthWestSubscription
+  extends Promise<AsyncIterator<AggregateSouthWest>>,
     Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<DaysEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateDaysSubscription>() => T;
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface DaysPreviousValues {
   id: ID_Output;
   title: String;
+  hours: Float;
 }
 
 export interface DaysPreviousValuesPromise
@@ -2882,6 +2809,7 @@ export interface DaysPreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   title: () => Promise<String>;
+  hours: () => Promise<Float>;
 }
 
 export interface DaysPreviousValuesSubscription
@@ -2889,64 +2817,124 @@ export interface DaysPreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   title: () => Promise<AsyncIterator<String>>;
+  hours: () => Promise<AsyncIterator<Float>>;
 }
 
-export interface AggregateProgress {
+export interface SouthWestConnection {
+  pageInfo: PageInfo;
+  edges: SouthWestEdge[];
+}
+
+export interface SouthWestConnectionPromise
+  extends Promise<SouthWestConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<SouthWestEdge>>() => T;
+  aggregate: <T = AggregateSouthWestPromise>() => T;
+}
+
+export interface SouthWestConnectionSubscription
+  extends Promise<AsyncIterator<SouthWestConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<SouthWestEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateSouthWestSubscription>() => T;
+}
+
+export interface GeoPointEdge {
+  node: GeoPoint;
+  cursor: String;
+}
+
+export interface GeoPointEdgePromise
+  extends Promise<GeoPointEdge>,
+    Fragmentable {
+  node: <T = GeoPointPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface GeoPointEdgeSubscription
+  extends Promise<AsyncIterator<GeoPointEdge>>,
+    Fragmentable {
+  node: <T = GeoPointSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface SessionEdge {
+  node: Session;
+  cursor: String;
+}
+
+export interface SessionEdgePromise extends Promise<SessionEdge>, Fragmentable {
+  node: <T = SessionPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface SessionEdgeSubscription
+  extends Promise<AsyncIterator<SessionEdge>>,
+    Fragmentable {
+  node: <T = SessionSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface SouthWestEdge {
+  node: SouthWest;
+  cursor: String;
+}
+
+export interface SouthWestEdgePromise
+  extends Promise<SouthWestEdge>,
+    Fragmentable {
+  node: <T = SouthWestPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface SouthWestEdgeSubscription
+  extends Promise<AsyncIterator<SouthWestEdge>>,
+    Fragmentable {
+  node: <T = SouthWestSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface SouthWestSubscriptionPayload {
+  mutation: MutationType;
+  node: SouthWest;
+  updatedFields: String[];
+  previousValues: SouthWestPreviousValues;
+}
+
+export interface SouthWestSubscriptionPayloadPromise
+  extends Promise<SouthWestSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = SouthWestPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = SouthWestPreviousValuesPromise>() => T;
+}
+
+export interface SouthWestSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<SouthWestSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = SouthWestSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = SouthWestPreviousValuesSubscription>() => T;
+}
+
+export interface AggregateSession {
   count: Int;
 }
 
-export interface AggregateProgressPromise
-  extends Promise<AggregateProgress>,
+export interface AggregateSessionPromise
+  extends Promise<AggregateSession>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateProgressSubscription
-  extends Promise<AsyncIterator<AggregateProgress>>,
+export interface AggregateSessionSubscription
+  extends Promise<AsyncIterator<AggregateSession>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface GeoPointConnection {
-  pageInfo: PageInfo;
-  edges: GeoPointEdge[];
-}
-
-export interface GeoPointConnectionPromise
-  extends Promise<GeoPointConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<GeoPointEdge>>() => T;
-  aggregate: <T = AggregateGeoPointPromise>() => T;
-}
-
-export interface GeoPointConnectionSubscription
-  extends Promise<AsyncIterator<GeoPointConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<GeoPointEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateGeoPointSubscription>() => T;
-}
-
-export interface ProgressConnection {
-  pageInfo: PageInfo;
-  edges: ProgressEdge[];
-}
-
-export interface ProgressConnectionPromise
-  extends Promise<ProgressConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<ProgressEdge>>() => T;
-  aggregate: <T = AggregateProgressPromise>() => T;
-}
-
-export interface ProgressConnectionSubscription
-  extends Promise<AsyncIterator<ProgressConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<ProgressEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateProgressSubscription>() => T;
 }
 
 export interface FeatureSubscriptionPayload {
@@ -2974,557 +2962,44 @@ export interface FeatureSubscriptionPayloadSubscription
   previousValues: <T = FeaturePreviousValuesSubscription>() => T;
 }
 
-export interface UserPreviousValues {
-  id: ID_Output;
-  email: String;
-  password: String;
-}
-
-export interface UserPreviousValuesPromise
-  extends Promise<UserPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  email: () => Promise<String>;
-  password: () => Promise<String>;
-}
-
-export interface UserPreviousValuesSubscription
-  extends Promise<AsyncIterator<UserPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  email: () => Promise<AsyncIterator<String>>;
-  password: () => Promise<AsyncIterator<String>>;
-}
-
-export interface FeaturePreviousValues {
-  id: ID_Output;
-  title: String;
-}
-
-export interface FeaturePreviousValuesPromise
-  extends Promise<FeaturePreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-}
-
-export interface FeaturePreviousValuesSubscription
-  extends Promise<AsyncIterator<FeaturePreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  title: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregatePlusCode {
-  count: Int;
-}
-
-export interface AggregatePlusCodePromise
-  extends Promise<AggregatePlusCode>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregatePlusCodeSubscription
-  extends Promise<AsyncIterator<AggregatePlusCode>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface AggregateFeature {
-  count: Int;
-}
-
-export interface AggregateFeaturePromise
-  extends Promise<AggregateFeature>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateFeatureSubscription
-  extends Promise<AsyncIterator<AggregateFeature>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface PlusCodeConnection {
+export interface SessionConnection {
   pageInfo: PageInfo;
-  edges: PlusCodeEdge[];
+  edges: SessionEdge[];
 }
 
-export interface PlusCodeConnectionPromise
-  extends Promise<PlusCodeConnection>,
+export interface SessionConnectionPromise
+  extends Promise<SessionConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<PlusCodeEdge>>() => T;
-  aggregate: <T = AggregatePlusCodePromise>() => T;
+  edges: <T = FragmentableArray<SessionEdge>>() => T;
+  aggregate: <T = AggregateSessionPromise>() => T;
 }
 
-export interface PlusCodeConnectionSubscription
-  extends Promise<AsyncIterator<PlusCodeConnection>>,
+export interface SessionConnectionSubscription
+  extends Promise<AsyncIterator<SessionConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<PlusCodeEdgeSubscription>>>() => T;
-  aggregate: <T = AggregatePlusCodeSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<SessionEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateSessionSubscription>() => T;
 }
 
-export interface GeoPointSubscriptionPayload {
-  mutation: MutationType;
-  node: GeoPoint;
-  updatedFields: String[];
-  previousValues: GeoPointPreviousValues;
-}
-
-export interface GeoPointSubscriptionPayloadPromise
-  extends Promise<GeoPointSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = GeoPointPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = GeoPointPreviousValuesPromise>() => T;
-}
-
-export interface GeoPointSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<GeoPointSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = GeoPointSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = GeoPointPreviousValuesSubscription>() => T;
-}
-
-export interface AggregateNorthEast {
-  count: Int;
-}
-
-export interface AggregateNorthEastPromise
-  extends Promise<AggregateNorthEast>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateNorthEastSubscription
-  extends Promise<AsyncIterator<AggregateNorthEast>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface GeoPointPreviousValues {
-  id: ID_Output;
-  boundary: Json;
-}
-
-export interface GeoPointPreviousValuesPromise
-  extends Promise<GeoPointPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  boundary: () => Promise<Json>;
-}
-
-export interface GeoPointPreviousValuesSubscription
-  extends Promise<AsyncIterator<GeoPointPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  boundary: () => Promise<AsyncIterator<Json>>;
-}
-
-export interface NorthEastConnection {
-  pageInfo: PageInfo;
-  edges: NorthEastEdge[];
-}
-
-export interface NorthEastConnectionPromise
-  extends Promise<NorthEastConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<NorthEastEdge>>() => T;
-  aggregate: <T = AggregateNorthEastPromise>() => T;
-}
-
-export interface NorthEastConnectionSubscription
-  extends Promise<AsyncIterator<NorthEastConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<NorthEastEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateNorthEastSubscription>() => T;
-}
-
-export interface FeatureEdge {
-  node: Feature;
+export interface ProgressEdge {
+  node: Progress;
   cursor: String;
 }
 
-export interface FeatureEdgePromise extends Promise<FeatureEdge>, Fragmentable {
-  node: <T = FeaturePromise>() => T;
+export interface ProgressEdgePromise
+  extends Promise<ProgressEdge>,
+    Fragmentable {
+  node: <T = ProgressPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface FeatureEdgeSubscription
-  extends Promise<AsyncIterator<FeatureEdge>>,
+export interface ProgressEdgeSubscription
+  extends Promise<AsyncIterator<ProgressEdge>>,
     Fragmentable {
-  node: <T = FeatureSubscription>() => T;
+  node: <T = ProgressSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateMap {
-  count: Int;
-}
-
-export interface AggregateMapPromise
-  extends Promise<AggregateMap>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateMapSubscription
-  extends Promise<AsyncIterator<AggregateMap>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface GeometrySubscriptionPayload {
-  mutation: MutationType;
-  node: Geometry;
-  updatedFields: String[];
-  previousValues: GeometryPreviousValues;
-}
-
-export interface GeometrySubscriptionPayloadPromise
-  extends Promise<GeometrySubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = GeometryPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = GeometryPreviousValuesPromise>() => T;
-}
-
-export interface GeometrySubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<GeometrySubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = GeometrySubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = GeometryPreviousValuesSubscription>() => T;
-}
-
-export interface MapConnection {
-  pageInfo: PageInfo;
-  edges: MapEdge[];
-}
-
-export interface MapConnectionPromise
-  extends Promise<MapConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<MapEdge>>() => T;
-  aggregate: <T = AggregateMapPromise>() => T;
-}
-
-export interface MapConnectionSubscription
-  extends Promise<AsyncIterator<MapConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<MapEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateMapSubscription>() => T;
-}
-
-export interface GeometryPreviousValues {
-  id: ID_Output;
-}
-
-export interface GeometryPreviousValuesPromise
-  extends Promise<GeometryPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-}
-
-export interface GeometryPreviousValuesSubscription
-  extends Promise<AsyncIterator<GeometryPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-}
-
-export interface LocationEdge {
-  node: Location;
-  cursor: String;
-}
-
-export interface LocationEdgePromise
-  extends Promise<LocationEdge>,
-    Fragmentable {
-  node: <T = LocationPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface LocationEdgeSubscription
-  extends Promise<AsyncIterator<LocationEdge>>,
-    Fragmentable {
-  node: <T = LocationSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface FeatureConnection {
-  pageInfo: PageInfo;
-  edges: FeatureEdge[];
-}
-
-export interface FeatureConnectionPromise
-  extends Promise<FeatureConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<FeatureEdge>>() => T;
-  aggregate: <T = AggregateFeaturePromise>() => T;
-}
-
-export interface FeatureConnectionSubscription
-  extends Promise<AsyncIterator<FeatureConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<FeatureEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateFeatureSubscription>() => T;
-}
-
-export interface AggregateDays {
-  count: Int;
-}
-
-export interface AggregateDaysPromise
-  extends Promise<AggregateDays>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateDaysSubscription
-  extends Promise<AsyncIterator<AggregateDays>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface GoalSubscriptionPayload {
-  mutation: MutationType;
-  node: Goal;
-  updatedFields: String[];
-  previousValues: GoalPreviousValues;
-}
-
-export interface GoalSubscriptionPayloadPromise
-  extends Promise<GoalSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = GoalPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = GoalPreviousValuesPromise>() => T;
-}
-
-export interface GoalSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<GoalSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = GoalSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = GoalPreviousValuesSubscription>() => T;
-}
-
-export interface GoalEdge {
-  node: Goal;
-  cursor: String;
-}
-
-export interface GoalEdgePromise extends Promise<GoalEdge>, Fragmentable {
-  node: <T = GoalPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface GoalEdgeSubscription
-  extends Promise<AsyncIterator<GoalEdge>>,
-    Fragmentable {
-  node: <T = GoalSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface GoalPreviousValues {
-  id: ID_Output;
-  hours: Float;
-}
-
-export interface GoalPreviousValuesPromise
-  extends Promise<GoalPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  hours: () => Promise<Float>;
-}
-
-export interface GoalPreviousValuesSubscription
-  extends Promise<AsyncIterator<GoalPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  hours: () => Promise<AsyncIterator<Float>>;
-}
-
-export interface BatchPayload {
-  count: Long;
-}
-
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
-    Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface SouthWestPreviousValues {
-  id: ID_Output;
-  lat: Float;
-  lng: Float;
-}
-
-export interface SouthWestPreviousValuesPromise
-  extends Promise<SouthWestPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  lat: () => Promise<Float>;
-  lng: () => Promise<Float>;
-}
-
-export interface SouthWestPreviousValuesSubscription
-  extends Promise<AsyncIterator<SouthWestPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  lat: () => Promise<AsyncIterator<Float>>;
-  lng: () => Promise<AsyncIterator<Float>>;
-}
-
-export interface ViewportSubscriptionPayload {
-  mutation: MutationType;
-  node: Viewport;
-  updatedFields: String[];
-  previousValues: ViewportPreviousValues;
-}
-
-export interface ViewportSubscriptionPayloadPromise
-  extends Promise<ViewportSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = ViewportPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = ViewportPreviousValuesPromise>() => T;
-}
-
-export interface ViewportSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<ViewportSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = ViewportSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = ViewportPreviousValuesSubscription>() => T;
-}
-
-export interface LocationSubscriptionPayload {
-  mutation: MutationType;
-  node: Location;
-  updatedFields: String[];
-  previousValues: LocationPreviousValues;
-}
-
-export interface LocationSubscriptionPayloadPromise
-  extends Promise<LocationSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = LocationPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = LocationPreviousValuesPromise>() => T;
-}
-
-export interface LocationSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<LocationSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = LocationSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = LocationPreviousValuesSubscription>() => T;
-}
-
-export interface AggregateSouthWest {
-  count: Int;
-}
-
-export interface AggregateSouthWestPromise
-  extends Promise<AggregateSouthWest>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateSouthWestSubscription
-  extends Promise<AsyncIterator<AggregateSouthWest>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface LocationPreviousValues {
-  id: ID_Output;
-  lat: Float;
-  lng: Float;
-}
-
-export interface LocationPreviousValuesPromise
-  extends Promise<LocationPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  lat: () => Promise<Float>;
-  lng: () => Promise<Float>;
-}
-
-export interface LocationPreviousValuesSubscription
-  extends Promise<AsyncIterator<LocationPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  lat: () => Promise<AsyncIterator<Float>>;
-  lng: () => Promise<AsyncIterator<Float>>;
-}
-
-export interface AggregateSession {
-  count: Int;
-}
-
-export interface AggregateSessionPromise
-  extends Promise<AggregateSession>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateSessionSubscription
-  extends Promise<AsyncIterator<AggregateSession>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface GeoPoint {
-  id: ID_Output;
-  boundary: Json;
-}
-
-export interface GeoPointPromise extends Promise<GeoPoint>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  boundary: () => Promise<Json>;
-}
-
-export interface GeoPointSubscription
-  extends Promise<AsyncIterator<GeoPoint>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  boundary: () => Promise<AsyncIterator<Json>>;
-}
-
-export interface GeoPointNullablePromise
-  extends Promise<GeoPoint | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  boundary: () => Promise<Json>;
 }
 
 export interface Session {
@@ -3597,396 +3072,44 @@ export interface SessionNullablePromise
   user: <T = UserPromise>() => T;
 }
 
-export interface MapSubscriptionPayload {
-  mutation: MutationType;
-  node: Map;
-  updatedFields: String[];
-  previousValues: MapPreviousValues;
-}
-
-export interface MapSubscriptionPayloadPromise
-  extends Promise<MapSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = MapPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = MapPreviousValuesPromise>() => T;
-}
-
-export interface MapSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<MapSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = MapSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = MapPreviousValuesSubscription>() => T;
-}
-
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
-}
-
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
-    Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface MapPreviousValues {
-  id: ID_Output;
-  externalId: String;
-  name: String;
-  vicinity: String;
-  photo_reference?: String;
-  opening_hours?: Boolean;
-}
-
-export interface MapPreviousValuesPromise
-  extends Promise<MapPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  externalId: () => Promise<String>;
-  name: () => Promise<String>;
-  vicinity: () => Promise<String>;
-  photo_reference: () => Promise<String>;
-  opening_hours: () => Promise<Boolean>;
-}
-
-export interface MapPreviousValuesSubscription
-  extends Promise<AsyncIterator<MapPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  externalId: () => Promise<AsyncIterator<String>>;
-  name: () => Promise<AsyncIterator<String>>;
-  vicinity: () => Promise<AsyncIterator<String>>;
-  photo_reference: () => Promise<AsyncIterator<String>>;
-  opening_hours: () => Promise<AsyncIterator<Boolean>>;
-}
-
-export interface PlusCodeEdge {
-  node: PlusCode;
-  cursor: String;
-}
-
-export interface PlusCodeEdgePromise
-  extends Promise<PlusCodeEdge>,
-    Fragmentable {
-  node: <T = PlusCodePromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface PlusCodeEdgeSubscription
-  extends Promise<AsyncIterator<PlusCodeEdge>>,
-    Fragmentable {
-  node: <T = PlusCodeSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface PlusCode {
-  id: ID_Output;
-  compound_code?: String;
-  global_code?: String;
-}
-
-export interface PlusCodePromise extends Promise<PlusCode>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  compound_code: () => Promise<String>;
-  global_code: () => Promise<String>;
-}
-
-export interface PlusCodeSubscription
-  extends Promise<AsyncIterator<PlusCode>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  compound_code: () => Promise<AsyncIterator<String>>;
-  global_code: () => Promise<AsyncIterator<String>>;
-}
-
-export interface PlusCodeNullablePromise
-  extends Promise<PlusCode | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  compound_code: () => Promise<String>;
-  global_code: () => Promise<String>;
-}
-
-export interface NorthEastEdge {
-  node: NorthEast;
-  cursor: String;
-}
-
-export interface NorthEastEdgePromise
-  extends Promise<NorthEastEdge>,
-    Fragmentable {
-  node: <T = NorthEastPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface NorthEastEdgeSubscription
-  extends Promise<AsyncIterator<NorthEastEdge>>,
-    Fragmentable {
-  node: <T = NorthEastSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface NorthEastSubscriptionPayload {
-  mutation: MutationType;
-  node: NorthEast;
-  updatedFields: String[];
-  previousValues: NorthEastPreviousValues;
-}
-
-export interface NorthEastSubscriptionPayloadPromise
-  extends Promise<NorthEastSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = NorthEastPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = NorthEastPreviousValuesPromise>() => T;
-}
-
-export interface NorthEastSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<NorthEastSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = NorthEastSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = NorthEastPreviousValuesSubscription>() => T;
-}
-
-export interface MapEdge {
-  node: Map;
-  cursor: String;
-}
-
-export interface MapEdgePromise extends Promise<MapEdge>, Fragmentable {
-  node: <T = MapPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface MapEdgeSubscription
-  extends Promise<AsyncIterator<MapEdge>>,
-    Fragmentable {
-  node: <T = MapSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface NorthEastPreviousValues {
-  id: ID_Output;
-  lat: Float;
-  lng: Float;
-}
-
-export interface NorthEastPreviousValuesPromise
-  extends Promise<NorthEastPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  lat: () => Promise<Float>;
-  lng: () => Promise<Float>;
-}
-
-export interface NorthEastPreviousValuesSubscription
-  extends Promise<AsyncIterator<NorthEastPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  lat: () => Promise<AsyncIterator<Float>>;
-  lng: () => Promise<AsyncIterator<Float>>;
-}
-
-export interface LocationConnection {
+export interface DaysConnection {
   pageInfo: PageInfo;
-  edges: LocationEdge[];
+  edges: DaysEdge[];
 }
 
-export interface LocationConnectionPromise
-  extends Promise<LocationConnection>,
+export interface DaysConnectionPromise
+  extends Promise<DaysConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<LocationEdge>>() => T;
-  aggregate: <T = AggregateLocationPromise>() => T;
+  edges: <T = FragmentableArray<DaysEdge>>() => T;
+  aggregate: <T = AggregateDaysPromise>() => T;
 }
 
-export interface LocationConnectionSubscription
-  extends Promise<AsyncIterator<LocationConnection>>,
+export interface DaysConnectionSubscription
+  extends Promise<AsyncIterator<DaysConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<LocationEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateLocationSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<DaysEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateDaysSubscription>() => T;
 }
 
-export interface SouthWest {
+export interface FeaturePreviousValues {
   id: ID_Output;
-  lat: Float;
-  lng: Float;
+  title: String;
 }
 
-export interface SouthWestPromise extends Promise<SouthWest>, Fragmentable {
+export interface FeaturePreviousValuesPromise
+  extends Promise<FeaturePreviousValues>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
-  lat: () => Promise<Float>;
-  lng: () => Promise<Float>;
+  title: () => Promise<String>;
 }
 
-export interface SouthWestSubscription
-  extends Promise<AsyncIterator<SouthWest>>,
+export interface FeaturePreviousValuesSubscription
+  extends Promise<AsyncIterator<FeaturePreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  lat: () => Promise<AsyncIterator<Float>>;
-  lng: () => Promise<AsyncIterator<Float>>;
-}
-
-export interface SouthWestNullablePromise
-  extends Promise<SouthWest | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  lat: () => Promise<Float>;
-  lng: () => Promise<Float>;
-}
-
-export interface GoalConnection {
-  pageInfo: PageInfo;
-  edges: GoalEdge[];
-}
-
-export interface GoalConnectionPromise
-  extends Promise<GoalConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<GoalEdge>>() => T;
-  aggregate: <T = AggregateGoalPromise>() => T;
-}
-
-export interface GoalConnectionSubscription
-  extends Promise<AsyncIterator<GoalConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<GoalEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateGoalSubscription>() => T;
-}
-
-export interface PlusCodeSubscriptionPayload {
-  mutation: MutationType;
-  node: PlusCode;
-  updatedFields: String[];
-  previousValues: PlusCodePreviousValues;
-}
-
-export interface PlusCodeSubscriptionPayloadPromise
-  extends Promise<PlusCodeSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = PlusCodePromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = PlusCodePreviousValuesPromise>() => T;
-}
-
-export interface PlusCodeSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<PlusCodeSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = PlusCodeSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = PlusCodePreviousValuesSubscription>() => T;
-}
-
-export interface UserEdge {
-  node: User;
-  cursor: String;
-}
-
-export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
-  node: <T = UserPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdge>>,
-    Fragmentable {
-  node: <T = UserSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface PlusCodePreviousValues {
-  id: ID_Output;
-  compound_code?: String;
-  global_code?: String;
-}
-
-export interface PlusCodePreviousValuesPromise
-  extends Promise<PlusCodePreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  compound_code: () => Promise<String>;
-  global_code: () => Promise<String>;
-}
-
-export interface PlusCodePreviousValuesSubscription
-  extends Promise<AsyncIterator<PlusCodePreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  compound_code: () => Promise<AsyncIterator<String>>;
-  global_code: () => Promise<AsyncIterator<String>>;
-}
-
-export interface SessionConnection {
-  pageInfo: PageInfo;
-  edges: SessionEdge[];
-}
-
-export interface SessionConnectionPromise
-  extends Promise<SessionConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<SessionEdge>>() => T;
-  aggregate: <T = AggregateSessionPromise>() => T;
-}
-
-export interface SessionConnectionSubscription
-  extends Promise<AsyncIterator<SessionConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<SessionEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateSessionSubscription>() => T;
-}
-
-export interface NorthEast {
-  id: ID_Output;
-  lat: Float;
-  lng: Float;
-}
-
-export interface NorthEastPromise extends Promise<NorthEast>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  lat: () => Promise<Float>;
-  lng: () => Promise<Float>;
-}
-
-export interface NorthEastSubscription
-  extends Promise<AsyncIterator<NorthEast>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  lat: () => Promise<AsyncIterator<Float>>;
-  lng: () => Promise<AsyncIterator<Float>>;
-}
-
-export interface NorthEastNullablePromise
-  extends Promise<NorthEast | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  lat: () => Promise<Float>;
-  lng: () => Promise<Float>;
+  title: () => Promise<AsyncIterator<String>>;
 }
 
 export interface Progress {
@@ -4025,6 +3148,973 @@ export interface ProgressNullablePromise
   weekday: () => Promise<String>;
 }
 
+export interface GeoPointConnection {
+  pageInfo: PageInfo;
+  edges: GeoPointEdge[];
+}
+
+export interface GeoPointConnectionPromise
+  extends Promise<GeoPointConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<GeoPointEdge>>() => T;
+  aggregate: <T = AggregateGeoPointPromise>() => T;
+}
+
+export interface GeoPointConnectionSubscription
+  extends Promise<AsyncIterator<GeoPointConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<GeoPointEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateGeoPointSubscription>() => T;
+}
+
+export interface PlusCodeEdge {
+  node: PlusCode;
+  cursor: String;
+}
+
+export interface PlusCodeEdgePromise
+  extends Promise<PlusCodeEdge>,
+    Fragmentable {
+  node: <T = PlusCodePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface PlusCodeEdgeSubscription
+  extends Promise<AsyncIterator<PlusCodeEdge>>,
+    Fragmentable {
+  node: <T = PlusCodeSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface GeoPointSubscriptionPayload {
+  mutation: MutationType;
+  node: GeoPoint;
+  updatedFields: String[];
+  previousValues: GeoPointPreviousValues;
+}
+
+export interface GeoPointSubscriptionPayloadPromise
+  extends Promise<GeoPointSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = GeoPointPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = GeoPointPreviousValuesPromise>() => T;
+}
+
+export interface GeoPointSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<GeoPointSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = GeoPointSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = GeoPointPreviousValuesSubscription>() => T;
+}
+
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
+}
+
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface GeoPointPreviousValues {
+  id: ID_Output;
+  boundary: Json;
+}
+
+export interface GeoPointPreviousValuesPromise
+  extends Promise<GeoPointPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  boundary: () => Promise<Json>;
+}
+
+export interface GeoPointPreviousValuesSubscription
+  extends Promise<AsyncIterator<GeoPointPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  boundary: () => Promise<AsyncIterator<Json>>;
+}
+
+export interface NorthEastEdge {
+  node: NorthEast;
+  cursor: String;
+}
+
+export interface NorthEastEdgePromise
+  extends Promise<NorthEastEdge>,
+    Fragmentable {
+  node: <T = NorthEastPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface NorthEastEdgeSubscription
+  extends Promise<AsyncIterator<NorthEastEdge>>,
+    Fragmentable {
+  node: <T = NorthEastSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateFeature {
+  count: Int;
+}
+
+export interface AggregateFeaturePromise
+  extends Promise<AggregateFeature>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateFeatureSubscription
+  extends Promise<AsyncIterator<AggregateFeature>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Location {
+  id: ID_Output;
+  lat: Float;
+  lng: Float;
+}
+
+export interface LocationPromise extends Promise<Location>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  lat: () => Promise<Float>;
+  lng: () => Promise<Float>;
+}
+
+export interface LocationSubscription
+  extends Promise<AsyncIterator<Location>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  lat: () => Promise<AsyncIterator<Float>>;
+  lng: () => Promise<AsyncIterator<Float>>;
+}
+
+export interface LocationNullablePromise
+  extends Promise<Location | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  lat: () => Promise<Float>;
+  lng: () => Promise<Float>;
+}
+
+export interface GeometrySubscriptionPayload {
+  mutation: MutationType;
+  node: Geometry;
+  updatedFields: String[];
+  previousValues: GeometryPreviousValues;
+}
+
+export interface GeometrySubscriptionPayloadPromise
+  extends Promise<GeometrySubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = GeometryPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = GeometryPreviousValuesPromise>() => T;
+}
+
+export interface GeometrySubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<GeometrySubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = GeometrySubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = GeometryPreviousValuesSubscription>() => T;
+}
+
+export interface MapEdge {
+  node: Map;
+  cursor: String;
+}
+
+export interface MapEdgePromise extends Promise<MapEdge>, Fragmentable {
+  node: <T = MapPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface MapEdgeSubscription
+  extends Promise<AsyncIterator<MapEdge>>,
+    Fragmentable {
+  node: <T = MapSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface GeometryPreviousValues {
+  id: ID_Output;
+}
+
+export interface GeometryPreviousValuesPromise
+  extends Promise<GeometryPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+}
+
+export interface GeometryPreviousValuesSubscription
+  extends Promise<AsyncIterator<GeometryPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+}
+
+export interface AggregateLocation {
+  count: Int;
+}
+
+export interface AggregateLocationPromise
+  extends Promise<AggregateLocation>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateLocationSubscription
+  extends Promise<AsyncIterator<AggregateLocation>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface FeatureEdge {
+  node: Feature;
+  cursor: String;
+}
+
+export interface FeatureEdgePromise extends Promise<FeatureEdge>, Fragmentable {
+  node: <T = FeaturePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface FeatureEdgeSubscription
+  extends Promise<AsyncIterator<FeatureEdge>>,
+    Fragmentable {
+  node: <T = FeatureSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface LocationConnection {
+  pageInfo: PageInfo;
+  edges: LocationEdge[];
+}
+
+export interface LocationConnectionPromise
+  extends Promise<LocationConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<LocationEdge>>() => T;
+  aggregate: <T = AggregateLocationPromise>() => T;
+}
+
+export interface LocationConnectionSubscription
+  extends Promise<AsyncIterator<LocationConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<LocationEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateLocationSubscription>() => T;
+}
+
+export interface GoalSubscriptionPayload {
+  mutation: MutationType;
+  node: Goal;
+  updatedFields: String[];
+  previousValues: GoalPreviousValues;
+}
+
+export interface GoalSubscriptionPayloadPromise
+  extends Promise<GoalSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = GoalPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = GoalPreviousValuesPromise>() => T;
+}
+
+export interface GoalSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<GoalSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = GoalSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = GoalPreviousValuesSubscription>() => T;
+}
+
+export interface AggregateGoal {
+  count: Int;
+}
+
+export interface AggregateGoalPromise
+  extends Promise<AggregateGoal>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateGoalSubscription
+  extends Promise<AsyncIterator<AggregateGoal>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface GoalPreviousValues {
+  id: ID_Output;
+}
+
+export interface GoalPreviousValuesPromise
+  extends Promise<GoalPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+}
+
+export interface GoalPreviousValuesSubscription
+  extends Promise<AsyncIterator<GoalPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+}
+
+export interface GoalConnection {
+  pageInfo: PageInfo;
+  edges: GoalEdge[];
+}
+
+export interface GoalConnectionPromise
+  extends Promise<GoalConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<GoalEdge>>() => T;
+  aggregate: <T = AggregateGoalPromise>() => T;
+}
+
+export interface GoalConnectionSubscription
+  extends Promise<AsyncIterator<GoalConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<GoalEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateGoalSubscription>() => T;
+}
+
+export interface FeatureConnection {
+  pageInfo: PageInfo;
+  edges: FeatureEdge[];
+}
+
+export interface FeatureConnectionPromise
+  extends Promise<FeatureConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<FeatureEdge>>() => T;
+  aggregate: <T = AggregateFeaturePromise>() => T;
+}
+
+export interface FeatureConnectionSubscription
+  extends Promise<AsyncIterator<FeatureConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<FeatureEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateFeatureSubscription>() => T;
+}
+
+export interface User {
+  id: ID_Output;
+  email: String;
+  password: String;
+}
+
+export interface UserPromise extends Promise<User>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  email: () => Promise<String>;
+  password: () => Promise<String>;
+}
+
+export interface UserSubscription
+  extends Promise<AsyncIterator<User>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  email: () => Promise<AsyncIterator<String>>;
+  password: () => Promise<AsyncIterator<String>>;
+}
+
+export interface UserNullablePromise
+  extends Promise<User | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  email: () => Promise<String>;
+  password: () => Promise<String>;
+}
+
+export interface LocationSubscriptionPayload {
+  mutation: MutationType;
+  node: Location;
+  updatedFields: String[];
+  previousValues: LocationPreviousValues;
+}
+
+export interface LocationSubscriptionPayloadPromise
+  extends Promise<LocationSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = LocationPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = LocationPreviousValuesPromise>() => T;
+}
+
+export interface LocationSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<LocationSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = LocationSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = LocationPreviousValuesSubscription>() => T;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface LocationPreviousValues {
+  id: ID_Output;
+  lat: Float;
+  lng: Float;
+}
+
+export interface LocationPreviousValuesPromise
+  extends Promise<LocationPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  lat: () => Promise<Float>;
+  lng: () => Promise<Float>;
+}
+
+export interface LocationPreviousValuesSubscription
+  extends Promise<AsyncIterator<LocationPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  lat: () => Promise<AsyncIterator<Float>>;
+  lng: () => Promise<AsyncIterator<Float>>;
+}
+
+export interface UserSubscriptionPayload {
+  mutation: MutationType;
+  node: User;
+  updatedFields: String[];
+  previousValues: UserPreviousValues;
+}
+
+export interface UserSubscriptionPayloadPromise
+  extends Promise<UserSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = UserPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserPreviousValuesPromise>() => T;
+}
+
+export interface UserSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserPreviousValuesSubscription>() => T;
+}
+
+export interface SouthWestPreviousValues {
+  id: ID_Output;
+  lat: Float;
+  lng: Float;
+}
+
+export interface SouthWestPreviousValuesPromise
+  extends Promise<SouthWestPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  lat: () => Promise<Float>;
+  lng: () => Promise<Float>;
+}
+
+export interface SouthWestPreviousValuesSubscription
+  extends Promise<AsyncIterator<SouthWestPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  lat: () => Promise<AsyncIterator<Float>>;
+  lng: () => Promise<AsyncIterator<Float>>;
+}
+
+export interface Viewport {
+  id: ID_Output;
+}
+
+export interface ViewportPromise extends Promise<Viewport>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  northeast: <T = NorthEastPromise>() => T;
+  southwest: <T = SouthWestPromise>() => T;
+}
+
+export interface ViewportSubscription
+  extends Promise<AsyncIterator<Viewport>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  northeast: <T = NorthEastSubscription>() => T;
+  southwest: <T = SouthWestSubscription>() => T;
+}
+
+export interface ViewportNullablePromise
+  extends Promise<Viewport | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  northeast: <T = NorthEastPromise>() => T;
+  southwest: <T = SouthWestPromise>() => T;
+}
+
+export interface MapSubscriptionPayload {
+  mutation: MutationType;
+  node: Map;
+  updatedFields: String[];
+  previousValues: MapPreviousValues;
+}
+
+export interface MapSubscriptionPayloadPromise
+  extends Promise<MapSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = MapPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = MapPreviousValuesPromise>() => T;
+}
+
+export interface MapSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<MapSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = MapSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = MapPreviousValuesSubscription>() => T;
+}
+
+export interface ProgressConnection {
+  pageInfo: PageInfo;
+  edges: ProgressEdge[];
+}
+
+export interface ProgressConnectionPromise
+  extends Promise<ProgressConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ProgressEdge>>() => T;
+  aggregate: <T = AggregateProgressPromise>() => T;
+}
+
+export interface ProgressConnectionSubscription
+  extends Promise<AsyncIterator<ProgressConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ProgressEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateProgressSubscription>() => T;
+}
+
+export interface MapPreviousValues {
+  id: ID_Output;
+  externalId: String;
+  name: String;
+  vicinity: String;
+  photo_reference?: String;
+  opening_hours?: Boolean;
+}
+
+export interface MapPreviousValuesPromise
+  extends Promise<MapPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  externalId: () => Promise<String>;
+  name: () => Promise<String>;
+  vicinity: () => Promise<String>;
+  photo_reference: () => Promise<String>;
+  opening_hours: () => Promise<Boolean>;
+}
+
+export interface MapPreviousValuesSubscription
+  extends Promise<AsyncIterator<MapPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  externalId: () => Promise<AsyncIterator<String>>;
+  name: () => Promise<AsyncIterator<String>>;
+  vicinity: () => Promise<AsyncIterator<String>>;
+  photo_reference: () => Promise<AsyncIterator<String>>;
+  opening_hours: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface AggregatePlusCode {
+  count: Int;
+}
+
+export interface AggregatePlusCodePromise
+  extends Promise<AggregatePlusCode>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregatePlusCodeSubscription
+  extends Promise<AsyncIterator<AggregatePlusCode>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface GeoPoint {
+  id: ID_Output;
+  boundary: Json;
+}
+
+export interface GeoPointPromise extends Promise<GeoPoint>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  boundary: () => Promise<Json>;
+}
+
+export interface GeoPointSubscription
+  extends Promise<AsyncIterator<GeoPoint>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  boundary: () => Promise<AsyncIterator<Json>>;
+}
+
+export interface GeoPointNullablePromise
+  extends Promise<GeoPoint | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  boundary: () => Promise<Json>;
+}
+
+export interface AggregateNorthEast {
+  count: Int;
+}
+
+export interface AggregateNorthEastPromise
+  extends Promise<AggregateNorthEast>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateNorthEastSubscription
+  extends Promise<AsyncIterator<AggregateNorthEast>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface NorthEastSubscriptionPayload {
+  mutation: MutationType;
+  node: NorthEast;
+  updatedFields: String[];
+  previousValues: NorthEastPreviousValues;
+}
+
+export interface NorthEastSubscriptionPayloadPromise
+  extends Promise<NorthEastSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = NorthEastPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = NorthEastPreviousValuesPromise>() => T;
+}
+
+export interface NorthEastSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<NorthEastSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = NorthEastSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = NorthEastPreviousValuesSubscription>() => T;
+}
+
+export interface AggregateMap {
+  count: Int;
+}
+
+export interface AggregateMapPromise
+  extends Promise<AggregateMap>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateMapSubscription
+  extends Promise<AsyncIterator<AggregateMap>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface NorthEastPreviousValues {
+  id: ID_Output;
+  lat: Float;
+  lng: Float;
+}
+
+export interface NorthEastPreviousValuesPromise
+  extends Promise<NorthEastPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  lat: () => Promise<Float>;
+  lng: () => Promise<Float>;
+}
+
+export interface NorthEastPreviousValuesSubscription
+  extends Promise<AsyncIterator<NorthEastPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  lat: () => Promise<AsyncIterator<Float>>;
+  lng: () => Promise<AsyncIterator<Float>>;
+}
+
+export interface LocationEdge {
+  node: Location;
+  cursor: String;
+}
+
+export interface LocationEdgePromise
+  extends Promise<LocationEdge>,
+    Fragmentable {
+  node: <T = LocationPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface LocationEdgeSubscription
+  extends Promise<AsyncIterator<LocationEdge>>,
+    Fragmentable {
+  node: <T = LocationSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface Feature {
+  id: ID_Output;
+  title: String;
+}
+
+export interface FeaturePromise extends Promise<Feature>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  maps: <T = FragmentableArray<Map>>(args?: {
+    where?: MapWhereInput;
+    orderBy?: MapOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface FeatureSubscription
+  extends Promise<AsyncIterator<Feature>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  maps: <T = Promise<AsyncIterator<MapSubscription>>>(args?: {
+    where?: MapWhereInput;
+    orderBy?: MapOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface FeatureNullablePromise
+  extends Promise<Feature | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  maps: <T = FragmentableArray<Map>>(args?: {
+    where?: MapWhereInput;
+    orderBy?: MapOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface GoalEdge {
+  node: Goal;
+  cursor: String;
+}
+
+export interface GoalEdgePromise extends Promise<GoalEdge>, Fragmentable {
+  node: <T = GoalPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface GoalEdgeSubscription
+  extends Promise<AsyncIterator<GoalEdge>>,
+    Fragmentable {
+  node: <T = GoalSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface PlusCodeSubscriptionPayload {
+  mutation: MutationType;
+  node: PlusCode;
+  updatedFields: String[];
+  previousValues: PlusCodePreviousValues;
+}
+
+export interface PlusCodeSubscriptionPayloadPromise
+  extends Promise<PlusCodeSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = PlusCodePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = PlusCodePreviousValuesPromise>() => T;
+}
+
+export interface PlusCodeSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<PlusCodeSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = PlusCodeSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = PlusCodePreviousValuesSubscription>() => T;
+}
+
+export interface UserPreviousValues {
+  id: ID_Output;
+  email: String;
+  password: String;
+}
+
+export interface UserPreviousValuesPromise
+  extends Promise<UserPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  email: () => Promise<String>;
+  password: () => Promise<String>;
+}
+
+export interface UserPreviousValuesSubscription
+  extends Promise<AsyncIterator<UserPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  email: () => Promise<AsyncIterator<String>>;
+  password: () => Promise<AsyncIterator<String>>;
+}
+
+export interface PlusCodePreviousValues {
+  id: ID_Output;
+  compound_code?: String;
+  global_code?: String;
+}
+
+export interface PlusCodePreviousValuesPromise
+  extends Promise<PlusCodePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  compound_code: () => Promise<String>;
+  global_code: () => Promise<String>;
+}
+
+export interface PlusCodePreviousValuesSubscription
+  extends Promise<AsyncIterator<PlusCodePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  compound_code: () => Promise<AsyncIterator<String>>;
+  global_code: () => Promise<AsyncIterator<String>>;
+}
+
+export interface UserEdge {
+  node: User;
+  cursor: String;
+}
+
+export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
+  node: <T = UserPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserEdgeSubscription
+  extends Promise<AsyncIterator<UserEdge>>,
+    Fragmentable {
+  node: <T = UserSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface PlusCode {
+  id: ID_Output;
+  compound_code?: String;
+  global_code?: String;
+}
+
+export interface PlusCodePromise extends Promise<PlusCode>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  compound_code: () => Promise<String>;
+  global_code: () => Promise<String>;
+}
+
+export interface PlusCodeSubscription
+  extends Promise<AsyncIterator<PlusCode>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  compound_code: () => Promise<AsyncIterator<String>>;
+  global_code: () => Promise<AsyncIterator<String>>;
+}
+
+export interface PlusCodeNullablePromise
+  extends Promise<PlusCode | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  compound_code: () => Promise<String>;
+  global_code: () => Promise<String>;
+}
+
+export interface ViewportSubscriptionPayload {
+  mutation: MutationType;
+  node: Viewport;
+  updatedFields: String[];
+  previousValues: ViewportPreviousValues;
+}
+
+export interface ViewportSubscriptionPayloadPromise
+  extends Promise<ViewportSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ViewportPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ViewportPreviousValuesPromise>() => T;
+}
+
+export interface ViewportSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ViewportSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ViewportSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ViewportPreviousValuesSubscription>() => T;
+}
+
 export interface ProgressSubscriptionPayload {
   mutation: MutationType;
   node: Progress;
@@ -4050,21 +4140,25 @@ export interface ProgressSubscriptionPayloadSubscription
   previousValues: <T = ProgressPreviousValuesSubscription>() => T;
 }
 
-export interface DaysEdge {
-  node: Days;
-  cursor: String;
+export interface NorthEastConnection {
+  pageInfo: PageInfo;
+  edges: NorthEastEdge[];
 }
 
-export interface DaysEdgePromise extends Promise<DaysEdge>, Fragmentable {
-  node: <T = DaysPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface DaysEdgeSubscription
-  extends Promise<AsyncIterator<DaysEdge>>,
+export interface NorthEastConnectionPromise
+  extends Promise<NorthEastConnection>,
     Fragmentable {
-  node: <T = DaysSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<NorthEastEdge>>() => T;
+  aggregate: <T = AggregateNorthEastPromise>() => T;
+}
+
+export interface NorthEastConnectionSubscription
+  extends Promise<AsyncIterator<NorthEastConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<NorthEastEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateNorthEastSubscription>() => T;
 }
 
 export interface ProgressPreviousValues {
@@ -4095,65 +4189,64 @@ export interface ProgressPreviousValuesSubscription
   weekday: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateGoal {
-  count: Int;
+export interface DaysEdge {
+  node: Days;
+  cursor: String;
 }
 
-export interface AggregateGoalPromise
-  extends Promise<AggregateGoal>,
+export interface DaysEdgePromise extends Promise<DaysEdge>, Fragmentable {
+  node: <T = DaysPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface DaysEdgeSubscription
+  extends Promise<AsyncIterator<DaysEdge>>,
     Fragmentable {
-  count: () => Promise<Int>;
+  node: <T = DaysSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateGoalSubscription
-  extends Promise<AsyncIterator<AggregateGoal>>,
+export interface ViewportEdge {
+  node: Viewport;
+  cursor: String;
+}
+
+export interface ViewportEdgePromise
+  extends Promise<ViewportEdge>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  node: <T = ViewportPromise>() => T;
+  cursor: () => Promise<String>;
 }
 
-export interface SouthWestConnection {
-  pageInfo: PageInfo;
-  edges: SouthWestEdge[];
-}
-
-export interface SouthWestConnectionPromise
-  extends Promise<SouthWestConnection>,
+export interface ViewportEdgeSubscription
+  extends Promise<AsyncIterator<ViewportEdge>>,
     Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<SouthWestEdge>>() => T;
-  aggregate: <T = AggregateSouthWestPromise>() => T;
+  node: <T = ViewportSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface SouthWestConnectionSubscription
-  extends Promise<AsyncIterator<SouthWestConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<SouthWestEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateSouthWestSubscription>() => T;
-}
-
-export interface Location {
+export interface NorthEast {
   id: ID_Output;
   lat: Float;
   lng: Float;
 }
 
-export interface LocationPromise extends Promise<Location>, Fragmentable {
+export interface NorthEastPromise extends Promise<NorthEast>, Fragmentable {
   id: () => Promise<ID_Output>;
   lat: () => Promise<Float>;
   lng: () => Promise<Float>;
 }
 
-export interface LocationSubscription
-  extends Promise<AsyncIterator<Location>>,
+export interface NorthEastSubscription
+  extends Promise<AsyncIterator<NorthEast>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   lat: () => Promise<AsyncIterator<Float>>;
   lng: () => Promise<AsyncIterator<Float>>;
 }
 
-export interface LocationNullablePromise
-  extends Promise<Location | null>,
+export interface NorthEastNullablePromise
+  extends Promise<NorthEast | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
   lat: () => Promise<Float>;
@@ -4216,126 +4309,109 @@ export interface SessionSubscriptionPayloadSubscription
   previousValues: <T = SessionPreviousValuesSubscription>() => T;
 }
 
-export interface Viewport {
+export interface SouthWest {
   id: ID_Output;
+  lat: Float;
+  lng: Float;
 }
 
-export interface ViewportPromise extends Promise<Viewport>, Fragmentable {
+export interface SouthWestPromise extends Promise<SouthWest>, Fragmentable {
   id: () => Promise<ID_Output>;
-  northeast: <T = NorthEastPromise>() => T;
-  southwest: <T = SouthWestPromise>() => T;
+  lat: () => Promise<Float>;
+  lng: () => Promise<Float>;
 }
 
-export interface ViewportSubscription
-  extends Promise<AsyncIterator<Viewport>>,
+export interface SouthWestSubscription
+  extends Promise<AsyncIterator<SouthWest>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  northeast: <T = NorthEastSubscription>() => T;
-  southwest: <T = SouthWestSubscription>() => T;
+  lat: () => Promise<AsyncIterator<Float>>;
+  lng: () => Promise<AsyncIterator<Float>>;
 }
 
-export interface ViewportNullablePromise
-  extends Promise<Viewport | null>,
+export interface SouthWestNullablePromise
+  extends Promise<SouthWest | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  northeast: <T = NorthEastPromise>() => T;
-  southwest: <T = SouthWestPromise>() => T;
+  lat: () => Promise<Float>;
+  lng: () => Promise<Float>;
 }
 
-export interface ProgressEdge {
-  node: Progress;
-  cursor: String;
-}
-
-export interface ProgressEdgePromise
-  extends Promise<ProgressEdge>,
-    Fragmentable {
-  node: <T = ProgressPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface ProgressEdgeSubscription
-  extends Promise<AsyncIterator<ProgressEdge>>,
-    Fragmentable {
-  node: <T = ProgressSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface ViewportEdge {
-  node: Viewport;
-  cursor: String;
-}
-
-export interface ViewportEdgePromise
-  extends Promise<ViewportEdge>,
-    Fragmentable {
-  node: <T = ViewportPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface ViewportEdgeSubscription
-  extends Promise<AsyncIterator<ViewportEdge>>,
-    Fragmentable {
-  node: <T = ViewportSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateLocation {
+export interface AggregateProgress {
   count: Int;
 }
 
-export interface AggregateLocationPromise
-  extends Promise<AggregateLocation>,
+export interface AggregateProgressPromise
+  extends Promise<AggregateProgress>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateLocationSubscription
-  extends Promise<AsyncIterator<AggregateLocation>>,
+export interface AggregateProgressSubscription
+  extends Promise<AsyncIterator<AggregateProgress>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface UserSubscriptionPayload {
-  mutation: MutationType;
-  node: User;
-  updatedFields: String[];
-  previousValues: UserPreviousValues;
+export interface AggregateDays {
+  count: Int;
 }
 
-export interface UserSubscriptionPayloadPromise
-  extends Promise<UserSubscriptionPayload>,
+export interface AggregateDaysPromise
+  extends Promise<AggregateDays>,
     Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = UserPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = UserPreviousValuesPromise>() => T;
+  count: () => Promise<Int>;
 }
 
-export interface UserSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
+export interface AggregateDaysSubscription
+  extends Promise<AsyncIterator<AggregateDays>>,
     Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = UserSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = UserPreviousValuesSubscription>() => T;
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
-/*
-The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point). 
-*/
-export type Float = number;
+export interface MapConnection {
+  pageInfo: PageInfo;
+  edges: MapEdge[];
+}
 
-/*
-The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
-*/
-export type ID_Input = string | number;
-export type ID_Output = string;
+export interface MapConnectionPromise
+  extends Promise<MapConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<MapEdge>>() => T;
+  aggregate: <T = AggregateMapPromise>() => T;
+}
 
-/*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
-*/
-export type String = string;
+export interface MapConnectionSubscription
+  extends Promise<AsyncIterator<MapConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<MapEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateMapSubscription>() => T;
+}
+
+export interface PlusCodeConnection {
+  pageInfo: PageInfo;
+  edges: PlusCodeEdge[];
+}
+
+export interface PlusCodeConnectionPromise
+  extends Promise<PlusCodeConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<PlusCodeEdge>>() => T;
+  aggregate: <T = AggregatePlusCodePromise>() => T;
+}
+
+export interface PlusCodeConnectionSubscription
+  extends Promise<AsyncIterator<PlusCodeConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<PlusCodeEdgeSubscription>>>() => T;
+  aggregate: <T = AggregatePlusCodeSubscription>() => T;
+}
+
+export type Long = string;
 
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
@@ -4357,7 +4433,21 @@ The `Boolean` scalar type represents `true` or `false`.
 */
 export type Boolean = boolean;
 
-export type Long = string;
+/*
+The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
+*/
+export type ID_Input = string | number;
+export type ID_Output = string;
+
+/*
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+*/
+export type String = string;
+
+/*
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point). 
+*/
+export type Float = number;
 
 export type Json = any;
 
