@@ -1,10 +1,6 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 import styled from 'styled-components';
 import { theme } from '../../globalStyles';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
@@ -38,7 +34,7 @@ const Mood = ({ moodValue, showText, iconSize }) => {
 
     return (
         <>
-            <Icon2 name={iconName} size={iconSize} color='#f0ec79' ></Icon2>
+            <Icon2 name={iconName} size={iconSize} color={theme.MoodIconColor} ></Icon2>
             {showText && <MoodText>{text}</MoodText>}
         </>
     )
