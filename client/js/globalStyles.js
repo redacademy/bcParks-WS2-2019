@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {Dimensions} from 'react-native';
 
 export const theme = {
   primaryColor: '#49773A',
@@ -17,6 +18,7 @@ export const theme = {
   h1FontSize: '30px',
   h2FontSize: '24px',
   bodyFontSize: '18px',
+  fullHeight: Dimensions.get('screen').height,
 };
 
 export const ScreenBkgCont = styled.View`
