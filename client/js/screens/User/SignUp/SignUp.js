@@ -25,8 +25,8 @@ const SignUpScreen = ({ navigation, setUser }) => {
     const [createUser] = useMutation(ADD_USER, {
         onCompleted: insertData => {
             setUser({
-                id: insertData.id,
-                email: insertData.email
+                id: insertData.createUser.id,
+                email: insertData.createUser.email
             })
             navigation.navigate('OnLocation');
         }

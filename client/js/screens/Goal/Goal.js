@@ -28,30 +28,77 @@ import DotNav from '../../components/DotNav/DotNav';
 
 
 const Mutation_UpdateGoals = gql`
-    mutation UpdateGoals($hours: Float!, $title: [String!]) {
-        updateManyGoals(
+    mutation UpdateGoals($userId: ID!, $newDays: [DaysCreateInput!], $titleArr: [String!], $hours: Float) {
+        updateGoal(
             data: {
-                hours: $hours
+                days: {
+                    create: $newDays
+                    updateMany: {
+                        where: {
+                            title_in: $titleArr
+                        }
+                        data: {
+                            hours: $hours
+                        }
+                    }
+                }
             },
             where: {
+                id: $userId
+            }
+        ){
+            id
+            user{
+                id
+            }
+            days{
+                title
+                hours
+            }
+        }
+    }
+`
+const Mutation_CreateGoal = gql`
+    mutation createGoal($goalArr: [DaysCreateInput!] , $userId: ID) {
+        createGoal(
+            data: {
+                id: $userId
                 days: {
-                    title_in: $title
+                    create: $goalArr
+                }
+                user: {
+                    connect: {
+                        id: $userId
+                    }
                 }
             }
         ){
-            count
+            id
+            days{
+                id
+                title
+                hours
+            }
+            user{
+                id
+                email
+            }
         }
     }
 `
 
-const GoalScreen = ({ navigation, page, setUser }) => {
+const GoalScreen = ({ navigation, page, setUser, user }) => {
     console.log('page', page)
+    console.log('goalUser', user)
     const [type, setType] = useState("daily");
     const [current, setCurrent] = useState(true)
     const [days, setDays] = useState([]);
     const [hours, setHours] = useState(1);
     const [text, setText] = useState("");
     const [UpdateGoals] = useMutation(Mutation_UpdateGoals);
+    const [createGoal] = useMutation(Mutation_CreateGoal);
+    
+    let goalArr = []
 
     const addDays = (day) => {
         days.includes(day) ?
@@ -202,6 +249,7 @@ const GoalScreen = ({ navigation, page, setUser }) => {
                             onChangeText={text => {
                                 setHours(parseInt(text));
                                 setText(text)
+                                setDays(["weekly"]);
                             }}
                             value={text} />
                         <TextHours>hours per week</TextHours>
@@ -229,12 +277,21 @@ const GoalScreen = ({ navigation, page, setUser }) => {
                             setText("");
                             alert("Please enter more than 1 hour")
                         } else {
-                            UpdateGoals({
-                                variables: {
-                                    hours: hours,
-                                    title: days
-                                }
-                            });
+                            days.forEach(day=>{
+                                goalArr.push({
+                                    title: day,
+                                    hours: hours
+                                })
+                            })
+                            console.log('goalArr', goalArr)
+                        
+                            
+                            // createGoal({
+                            //     variables: {
+                            //         goalArr: goalArr,
+                            //         userId: user.id
+                            //     }
+                            // });
                             setHours(1);
                             setText("");
                             alert("Goal has been updated")

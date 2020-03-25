@@ -37,7 +37,7 @@ const SESSIONS_QUERY = gql`
             name
         }
         mood
-        date
+
         journal
     }
   }
@@ -71,7 +71,7 @@ const ActivityScreen = ({ focus, setFocus, navigation, period, showWeekly, setSh
                     console.log(false)
                 }
             }
-            console.log('newArr', newArr)
+            // console.log('newArr', newArr)
         } else {
             for (let i = 0; i < arr.length; i++) {
                 if (+moment(arr[i].groupedDate) >= +focus.clone() && +moment(arr[i].groupedDate) < +moment(focus.clone().add(period, 'd'))) {
@@ -98,17 +98,21 @@ const ActivityScreen = ({ focus, setFocus, navigation, period, showWeekly, setSh
             </HeaderCont>
             <ButtonsContainer>
 
-                <PeriodButtons onPress={() => {
-                    setShowWeekly(false)
+                <PeriodButtons 
+                    showWeekly={!showWeekly}
+                    onPress={() => {
+                    setShowWeekly(!showWeekly)
 
                 }}>
-                    <PeriodText>Daily</PeriodText>
+                    <PeriodText showWeekly={!showWeekly}>Daily</PeriodText>
                 </PeriodButtons>
 
-                <PeriodButtons onPress={() => {
-                    setShowWeekly(true)
+                <PeriodButtons 
+                    showWeekly={showWeekly}
+                    onPress={() => {
+                    setShowWeekly(!showWeekly)
                 }}>
-                    <PeriodText>Weekly</PeriodText>
+                    <PeriodText showWeekly={showWeekly}>Weekly</PeriodText>
                 </PeriodButtons>
             </ButtonsContainer>
             <ArrowsContainer>

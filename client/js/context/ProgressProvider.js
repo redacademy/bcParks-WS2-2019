@@ -13,6 +13,9 @@ const QUERY_SESSIONS = `
             timeEnd
             mood
             journal
+            locations{
+                name
+            }
             user{
                 email
             }
