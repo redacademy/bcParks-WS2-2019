@@ -32,84 +32,82 @@ const StartStopTimer = ({navigation}) => {
       return timeLeft;
     };
 
-        const [timer, setTimer] = useState({
-            hours: 0,
-            minutes: 0,
-            seconds: 0
-        });
+    const [timer, setTimer] = useState({
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+    });
 
-        useEffect(() => {
-            let mounted = true;
-            if (mounted) {
-                setTimeout(() => {
-                    setTimer(calculateTimeLeft());
-                }, 1000)
-            }
-        })
+    useEffect(() => {
+      let mounted = true;
+      if (mounted) {
+        setTimeout(() => {
+          setTimer(calculateTimeLeft());
+        }, 1000);
+      }
+    });
 
-        const timerComponents = [];
+    const timerComponents = [];
 
-        Object.keys(timer).forEach(interval => {
-            if (interval === 'seconds') {
-                timerComponents.push(
-                    <TimerDisplay>{addZero(timer[interval])}</TimerDisplay>
-                )
-            } else {
-                timerComponents.push(
-                    <TimerDisplay>{addZero(timer[interval])}:</TimerDisplay>
-                )
-            }
-        })
+    Object.keys(timer).forEach(interval => {
+      if (interval === 'seconds') {
+        timerComponents.push(
+          <TimerDisplay>{addZero(timer[interval])}</TimerDisplay>,
+        );
+      } else {
+        timerComponents.push(
+          <TimerDisplay>{addZero(timer[interval])}:</TimerDisplay>,
+        );
+      }
+    });
 
-        return (
-            timerComponents
-        )
-    }
+    return timerComponents;
+  };
 
-    const startTimer = () => {
-        setStartStop(!startStop);
-        setStartTime(moment().format());
-        setDate(moment().format("YYYY-MM-DD"));
-    }
+  const startTimer = () => {
+    setStartStop(!startStop);
+    setStartTime(moment().format());
+    setDate(moment().format('YYYY-MM-DD'));
+  };
 
-    const stopTimer = () => {
-        setStartStop(!startStop);
-        const endTime = moment().format()
-        navigation.push('MoodSelect', { startTime, endTime, date })
+  const stopTimer = () => {
+    setStartStop(!startStop);
+    const endTime = moment().format();
+    navigation.push('MoodSelect', {startTime, endTime, date});
+  };
 
-    }
-
-    const addZero = (num) => (
-        num <= 9 ? `0${num}` : num
-    )
-    return (
-        <LinearGradient colors={['#FFFFFF', '#8CBE82']}>
-            <TimerContainer>
-                {startStop ?
-                    <TimerDisplay theme={"zero"}>00:00:00</TimerDisplay> :
-                    <StopWatch time={parseInt(moment().format('x'))} />}
-            </TimerContainer>
-            <InfoTextCont>
-                <InfoText>Spending more time in nature contributes to a better sleep cycle and helps with lowering anxiety</InfoText>
-            </InfoTextCont>
-            <BtnCont>
-                <TouchableOpacity onPress={() => {
-                    startStop ?
-                        startTimer() :
-                        stopTimer()
-                }}>
-                    {startStop ?
-                        <PrimaryBtn>
-                            Start Green Time
-                        </PrimaryBtn> :
-                        <PrimaryBtn isStop theme={theme}>
-                            Stop Green Time
-                        </PrimaryBtn>
-                    }
-                </TouchableOpacity>
-            </BtnCont>
-        </LinearGradient>
-    );
-}
+  const addZero = num => (num <= 9 ? `0${num}` : num);
+  return (
+    <LinearGradient colors={['#FFFFFF', '#8CBE82']}>
+      <TimerContainer>
+        {startStop ? (
+          <TimerDisplay>00:00:00</TimerDisplay>
+        ) : (
+          <StopWatch time={parseInt(moment().format('x'))} />
+        )}
+      </TimerContainer>
+      <InfoTextCont>
+        <InfoText>
+          Spending more time in nature contributes to a better sleep cycle and
+          helps with lowering anxiety
+        </InfoText>
+      </InfoTextCont>
+      <BtnCont>
+        <TouchableOpacity
+          onPress={() => {
+            startStop ? startTimer() : stopTimer();
+          }}>
+          {startStop ? (
+            <PrimaryBtn>Start Green Time</PrimaryBtn>
+          ) : (
+            <PrimaryBtn isStop theme={theme}>
+              Stop Green Time
+            </PrimaryBtn>
+          )}
+        </TouchableOpacity>
+      </BtnCont>
+    </LinearGradient>
+  );
+};
 
 export default StartStopTimer;
