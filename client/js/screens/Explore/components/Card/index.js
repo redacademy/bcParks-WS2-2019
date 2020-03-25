@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import Brief from '../Brief';
 
 const ImageWrap = styled.View`
-  height: 161px;
+  height: 170px;
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 10px;

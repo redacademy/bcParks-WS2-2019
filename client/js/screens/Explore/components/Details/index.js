@@ -10,10 +10,11 @@ import {
 } from 'react-native';
 import GetImages from '../utils/GetImages';
 import Brief from '../Brief';
-import {PrimaryBtn, theme} from '../../../../globalStyles';
+import {PrimaryBtn, theme, IconButton} from '../../../../globalStyles';
 import fetchData from '../../../../config/fetchData';
 import styled from 'styled-components';
 import {NavigationContext} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const Details = ({modalVisible, setModalVisible, detail}) => {
   const navigation = useContext(NavigationContext);
@@ -33,10 +34,10 @@ const Details = ({modalVisible, setModalVisible, detail}) => {
   const Features = () => {
     return features.length ? (
       <ScrollView>
-        <Text style={styles.activities}>Activities:</Text>
+        <Text style={styles.features}>Features:</Text>
         {features.map((feature, index) => (
           <OpenSansLight key={index} style={styles.lists}>
-            {feature.title}
+            - {feature.title}
           </OpenSansLight>
         ))}
       </ScrollView>
@@ -60,9 +61,9 @@ const Details = ({modalVisible, setModalVisible, detail}) => {
   return (
     <Modal animationType="slide" transparent={false} visible={modalVisible}>
       <View style={styles.header}></View>
-      <TouchableOpacity onPress={() => setModalVisible(false)}>
-        <Text>close</Text>
-      </TouchableOpacity>
+      <IconButton onPress={() => setModalVisible(false)}>
+        <Icon name="close" size={30} color={theme.bodyTextColor} />
+      </IconButton>
       <View style={styles.image}>
         <GetImages
           reference={
@@ -114,7 +115,7 @@ const OpenSansLight = styled.Text`
   text-align: ${({center}) => (center ? 'center' : 'left')};
 `;
 const styles = StyleSheet.create({
-  activities: {
+  features: {
     fontSize: 18,
   },
   header: {
