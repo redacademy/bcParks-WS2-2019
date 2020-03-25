@@ -47,10 +47,10 @@ const ActivityList = ({ data, navigation, weekly }) => {
                     count: 1,
                     dayData: [session]
                 }
+                console.log('grouped', groupedSessions)
             }
         });
 
-        console.log('grouped', groupedSessions)
         transformedData = groupedSessions.map(session => {
             let { locations, timeStartDisplay, totalMood, count, totalDuration, dayData } = session;
             let hours = Math.floor(totalDuration / 60);
