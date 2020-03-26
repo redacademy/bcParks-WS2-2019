@@ -20,8 +20,8 @@ const OnTime = ({ navigation }) => {
             <SubHeading>When you get to a green space, just start your timer!</SubHeading>
             <OnboardingTime style={styles.imageTime} />
             <Flex>
-                <TouchableOpacity onPress={() => navigation.navigate('Tabs')}>
-                    <BtnText isSkip>skip</BtnText>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <BtnText isSkip>back</BtnText>
                 </TouchableOpacity>
                 <DotNav activeIndex={1} />
                 <TouchableOpacity onPress={() => navigation.push('OnActivity')}>
