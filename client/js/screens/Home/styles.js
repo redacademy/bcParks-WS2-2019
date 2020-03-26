@@ -17,18 +17,19 @@ export const Flex = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   position: absolute;
-  top: 30px;
+  height: 100%;
   width: 100%;
 `;
 export const HomeText = styled.Text`
-  font-family: ${theme.bodyFont};
+  font-family: ${theme.bodyFontLight};
   font-size: ${theme.bodyFontSize};
   color: ${theme.bodyTextColor};
 `;
 
 export const ProgressText = styled.Text`
-  font-family: ${theme.bodyFont};
+  font-family: ${theme.headlineFont};
   font-size: ${props => (props.isNumber ? `44px` : theme.bodyFontSize)};
   color: ${theme.bodyTextColor};
 `;
@@ -45,4 +46,10 @@ export const Goal = styled.View`
   height: 160px;
   align-items: center;
   justify-content: center;
+`;
+
+export const Box = styled.View`
+  background: #fff;
+  padding-bottom: 20px;
+  box-shadow: 0px 5px 6px rgba(198, 198, 198, 0.5);
 `;

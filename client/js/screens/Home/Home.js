@@ -14,6 +14,7 @@ import {
   Goal,
   Flex,
   ProgressText,
+  Box,
 } from './styles';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -43,7 +44,7 @@ const HomeScreen = ({goalData, sample}) => {
   }, [num]);
   return (
     <LinearGradient colors={['#FFFFFF', '#8CBE82']}>
-      <View style={{backgroundColor: 'white'}}>
+      <Box>
         <Calendar
           current={new Date()}
           hideExtraDays={true}
@@ -95,7 +96,7 @@ const HomeScreen = ({goalData, sample}) => {
           monthFormat={'MMMM dd, yyyy'}
           style={{marginTop: 50}}
         />
-      </View>
+      </Box>
       <DetailedProgressContainer>
         <HomeHeaderCont>
           <Heading>Daily Progress</Heading>
@@ -114,7 +115,7 @@ const HomeScreen = ({goalData, sample}) => {
             progress={
               today / percent(goalIndex) < 1 ? today / percent(goalIndex) : 0.99
             }
-            size={150}
+            size={170}
             color="#5DB353"
             unfilledColor="#DBDBDB"
             borderWidth={0}
