@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {TouchableOpacity} from 'react-native';
+import React, { useState } from 'react';
+import { TouchableOpacity } from 'react-native';
 import {
   HeaderCont,
   Heading,
@@ -17,8 +17,8 @@ import {
   TextLink,
 } from '../styles';
 import LinearGradient from 'react-native-linear-gradient';
-import {useLazyQuery} from '@apollo/react-hooks';
-import {gql} from 'apollo-boost';
+import { useLazyQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 import BackButton from '../../../components/BackButton';
 
 const FIND_USER = gql`
@@ -30,12 +30,11 @@ const FIND_USER = gql`
   }
 `;
 
-const LoginScreen = ({navigation, setUser}) => {
+const LoginScreen = ({ navigation, setUser }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [getUser] = useLazyQuery(FIND_USER, {
     onCompleted: userData => {
-      console.log('setting user', userData.users[0]);
       setUser({
         id: userData.users[0].id,
         email: userData.users[0].email,
@@ -44,8 +43,7 @@ const LoginScreen = ({navigation, setUser}) => {
     },
   });
   const handleLogin = () => {
-    console.log('logging in');
-    getUser({variables: {data: {email, password}}});
+    getUser({ variables: { data: { email, password } } });
   };
 
   return (

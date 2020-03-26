@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import ProgressContext from './ProgressContext';
 import AsyncStorage from '@react-native-community/async-storage';
 import fetchData from '../config/fetchData';
-import moment from 'moment-timezone';
 import helper from './helperFunction'
 import AuthContext from './AuthContext';
 
@@ -23,7 +22,7 @@ const QUERY_SESSIONS = `
     }
 `
 
-const ProgressProvider = ({children}) => {
+const ProgressProvider = ({ children }) => {
     const [sample, setSample] = useState([])
     const { user } = useContext(AuthContext);
 
@@ -44,13 +43,12 @@ const ProgressProvider = ({children}) => {
     useEffect(() => {
         fetchData(QUERY_SESSIONS).then(data => {
             let sessions = data.sessions;
-            console.log('sessions', sessions)
             setSample(helper(sessions, user))
         })
     }, [user])
 
     return (
-        <ProgressContext.Provider value={{sample, writeStore, getItem, update, setSample}}>
+        <ProgressContext.Provider value={{ sample, writeStore, getItem, update, setSample }}>
             {children}
         </ProgressContext.Provider>
     )

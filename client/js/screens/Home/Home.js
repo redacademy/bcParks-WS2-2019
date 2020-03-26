@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Text } from 'react-native';
 import ProgressCircle from 'react-native-progress-circle';
-import {Circle} from 'react-native-progress';
-import {Calendar} from 'react-native-calendars';
+import { Circle } from 'react-native-progress';
+import { Calendar } from 'react-native-calendars';
 import moment from 'moment-timezone';
-import {Heading} from '../../globalStyles';
+import { Heading } from '../../globalStyles';
 import {
   HomeText,
   DetailedProgressContainer,
@@ -18,8 +18,8 @@ import {
 } from './styles';
 import LinearGradient from 'react-native-linear-gradient';
 
-const HomeScreen = ({goalData, sample}) => {
-  const {days} = goalData.goal;
+const HomeScreen = ({ goalData, sample }) => {
+  const { days } = goalData.goal;
   const [num, setNum] = useState('');
   const [today, setToday] = useState(0);
   const [goalIndex, setGoalIndex] = useState(0);
@@ -28,7 +28,6 @@ const HomeScreen = ({goalData, sample}) => {
     for (let i = 0; i < sample.length; i++) {
       if (sample[i].groupedDate === num) {
         setToday(sample[i].diff);
-        console.log('같은날', sample[i].diff);
         break;
       } else {
         setToday(0);
@@ -48,7 +47,7 @@ const HomeScreen = ({goalData, sample}) => {
         <Calendar
           current={new Date()}
           hideExtraDays={true}
-          dayComponent={({date}) => {
+          dayComponent={({ date }) => {
             let progress = 0;
             let day;
             let dayGoal = 0;
@@ -86,7 +85,6 @@ const HomeScreen = ({goalData, sample}) => {
                         .tz(date.dateString, 'America/Vancouver')
                         .format('d'),
                     );
-                    console.log('goalIndex', goalIndex);
                   }}>
                   {date.day}
                 </Text>
@@ -94,7 +92,7 @@ const HomeScreen = ({goalData, sample}) => {
             );
           }}
           monthFormat={'MMMM dd, yyyy'}
-          style={{marginTop: 50}}
+          style={{ marginTop: 50 }}
         />
       </Box>
       <DetailedProgressContainer>

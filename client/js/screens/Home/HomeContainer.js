@@ -1,4 +1,4 @@
-import React, {useContext, useEffect } from "react"
+import React, { useContext } from "react"
 import { withNavigation } from 'react-navigation';
 import { Text } from "react-native"
 import Home from "./Home"
@@ -27,38 +27,27 @@ const QUERY_GOALS = gql`
 `;
 
 const HomeContainer = ({ navigation }) => {
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const { sample } = useContext(ProgressContext);
 
-    // const { loading: sessionLoading, error: sessionError, data: sessionData } = 
-    //     useQuery(QUERY_SESSIONS, {
-    //         variables: {
-    //             email: user.email || "admin@gmail.com"
-    //         }
-    //     });
-    
-    const { loading: goalLoading, error: goalError, data: goalData } = useQuery(QUERY_GOALS, {variables:{
-        userId: user.id
-    }});
-
-            console.log('sample', sample)
-            console.log('user', user)
-            console.log('containerNav', navigation)
-
-            if (goalLoading || (user.id == "Dev@test.com" && sample.length == 0)) {
-                return (
-                    <Text>Loading</Text>
-                )
-            } else if (goalError) {
-                return (
-                    <Text>Error</Text>
-                )
-            } else {
-                console.log("goalData", goalData)
-                return (
-                    <Home goalData={goalData} navigation={navigation} user={user} sample={sample}/>
-                )
-            }
+    const { loading: goalLoading, error: goalError, data: goalData } = useQuery(QUERY_GOALS, {
+        variables: {
+            userId: user.id
+        }
+    });
+    if (goalLoading || (user.id == "Dev@test.com" && sample.length == 0)) {
+        return (
+            <Text>Loading</Text>
+        )
+    } else if (goalError) {
+        return (
+            <Text>Error</Text>
+        )
+    } else {
+        return (
+            <Home goalData={goalData} navigation={navigation} user={user} sample={sample} />
+        )
+    }
 
 
 
