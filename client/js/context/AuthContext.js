@@ -7,7 +7,6 @@ const AuthProvider = ({ children }) => {
         id: null,
         email: null
     }
-    console.log("init user provider")
     const [user, setUser] = useState(initialState);
 
 

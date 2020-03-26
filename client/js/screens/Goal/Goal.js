@@ -97,17 +97,16 @@ const GoalScreen = ({ navigation, page, setUser }) => {
     const [UpdateGoals] = useMutation(Mutation_UpdateGoals);
     const [createGoal] = useMutation(Mutation_CreateGoal);
     const { user } = useContext(AuthContext);
-    console.log('user', user)
 
     let goalArr = [
-        {title: "Sunday",hours: 1},
-        {title: "Monday",hours: 1},
-        {title: "Tuesday",hours: 1},
-        {title: "Wednesday",hours: 1},
-        {title: "Thursday",hours: 1},
-        {title: "Friday",hours: 1},
-        {title: "Saturday",hours: 1},
-        {title: "weekly", hours: 7}
+        { title: "Sunday", hours: 1 },
+        { title: "Monday", hours: 1 },
+        { title: "Tuesday", hours: 1 },
+        { title: "Wednesday", hours: 1 },
+        { title: "Thursday", hours: 1 },
+        { title: "Friday", hours: 1 },
+        { title: "Saturday", hours: 1 },
+        { title: "weekly", hours: 7 }
     ]
 
     const addDays = (day) => {
@@ -288,15 +287,15 @@ const GoalScreen = ({ navigation, page, setUser }) => {
                             setText("");
                             alert("Please enter more than 1 hour")
                         } else {
-                            days.forEach(day=>{
-                                for(let i = 0; i<goalArr.length; i++){
-                                    if(goalArr[i].title === day){
+                            days.forEach(day => {
+                                for (let i = 0; i < goalArr.length; i++) {
+                                    if (goalArr[i].title === day) {
                                         goalArr[i].hours = hours
                                         break;
                                     }
                                 }
                             })
-                            
+
 
                             createGoal({
                                 variables: {
@@ -317,31 +316,31 @@ const GoalScreen = ({ navigation, page, setUser }) => {
 
                 <SaveContainer>
                     <TouchableOpacity title="Save" onPress={() => {
-                        if(user.id==null){
+                        if (user.id == null) {
                             alert("Please sign in first.")
                         } else {
-                        
-                        if (days.length === 0) {
-                            alert("Please select at least one day")
-                        } else if (isNaN(hours)) {
-                            setText("");
-                            alert("Please enter a number");
-                        } else if (hours <= 1) {
-                            setText("");
-                            alert("Please enter more than 1 hour")
-                        } else {
-                            UpdateGoals({
-                                variables: {
-                                    hours: hours,
-                                    titleArr: days,
-                                    userId: user.id
-                                }
-                            });
-                            setHours(1);
-                            setText("");
-                            alert("Goal has been updated")
-                            navigation.navigate('Home')
-                        }
+
+                            if (days.length === 0) {
+                                alert("Please select at least one day")
+                            } else if (isNaN(hours)) {
+                                setText("");
+                                alert("Please enter a number");
+                            } else if (hours <= 1) {
+                                setText("");
+                                alert("Please enter more than 1 hour")
+                            } else {
+                                UpdateGoals({
+                                    variables: {
+                                        hours: hours,
+                                        titleArr: days,
+                                        userId: user.id
+                                    }
+                                });
+                                setHours(1);
+                                setText("");
+                                alert("Goal has been updated")
+                                navigation.navigate('Home')
+                            }
                         }
                     }} >
                         <PrimaryBtn>Save</PrimaryBtn>
@@ -357,7 +356,7 @@ const GoalScreen = ({ navigation, page, setUser }) => {
 
                         }}
                     >
-                        <LogOutText>{user.id==null ? "Sign In" : "Log out"}</LogOutText>
+                        <LogOutText>{user.id == null ? "Sign In" : "Log out"}</LogOutText>
                     </LogOutButton>
                 </SaveContainer>
             }
