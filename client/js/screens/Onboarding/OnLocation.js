@@ -16,8 +16,8 @@ const OnLocation = ({ navigation }) => {
             <SubHeading>Search for green spaces near you!</SubHeading>
             <OnboardingLocation style={styles.image} />
             <Flex>
-                <TouchableOpacity onPress={() => navigation.navigate('Tabs')}>
-                    <BtnText isSkip>skip</BtnText>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <BtnText isSkip>back</BtnText>
                 </TouchableOpacity>
                 <DotNav activeIndex={0} />
                 <TouchableOpacity onPress={() => navigation.push('OnTime')}>

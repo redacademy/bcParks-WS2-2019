@@ -18,8 +18,8 @@ const OnActivity = ({navigation}) => {
       <SubHeading>Find out how well you are doing!</SubHeading>
       <OnboardingTime style={styles.image} />
       <Flex>
-        <TouchableOpacity onPress={() => navigation.navigate('Tabs')}>
-          <BtnText isSkip>skip</BtnText>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <BtnText isSkip>back</BtnText>
         </TouchableOpacity>
         <DotNav activeIndex={2} />
         <TouchableOpacity

@@ -271,9 +271,9 @@ const GoalScreen = ({ navigation, page, setUser }) => {
 
                 <Flex>
                     <TouchableOpacity onPress={() => {
-                        navigation.navigate('Tabs')
+                        navigation.goBack()
                     }}>
-                        <BtnText isSkip>skip</BtnText>
+                        <BtnText isSkip>back</BtnText>
                     </TouchableOpacity>
                     <DotNavView>
                         <DotNav activeIndex={3} />
