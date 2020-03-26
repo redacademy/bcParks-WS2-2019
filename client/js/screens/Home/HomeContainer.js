@@ -45,7 +45,7 @@ const HomeContainer = ({ navigation }) => {
             console.log('user', user)
             console.log('containerNav', navigation)
 
-            if (goalLoading || sample.length === 0) {
+            if (goalLoading || (user.id == "Dev@test.com" && sample.length == 0)) {
                 return (
                     <Text>Loading</Text>
                 )
